@@ -20,11 +20,11 @@ class AdminMiddleware
 
         if(\Auth::check() && \Auth::user()->user_role==User::ADMIN || \Auth::user()->user_role==User::DEVELOPER)
         {
-            redirect('/dashboard');
+            redirect('/admin/dashboard');
         }else{
 
             \Auth::logout();
-            return  redirect('/user-dashboard')->with('error','Please login here as a general user');
+            return  redirect('/user/user-dashboard')->with('error','Please login here as a general user');
         }
 
         return $next($request);

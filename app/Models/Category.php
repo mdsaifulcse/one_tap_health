@@ -9,12 +9,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Category extends Model
 {
     use HasFactory,SoftDeletes;
+
     const ACTIVE=1;
     const INACTIVE=0;
+    const OTHER=2;
+    const DRAFT=3;
 
     const YES=1;
     const NO=0;
 
     protected $table='categories';
-    protected $fillable=['name','description','icon_photo','sequence','status','show_home',];
+    protected $fillable=['category_name','category_name_bn','link','status','show_home','sequence','short_description','icon_photo',
+        'icon_class','created_by','updated_by'];
+
+    public function subCategoryData(){
+        return $this->hasMany(SubCategory::class,'category_id','id');
+    }
 }

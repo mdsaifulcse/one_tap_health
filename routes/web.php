@@ -15,11 +15,32 @@ use Inertia\Inertia;
 |
 */
 
+/*
+ ----------Admin Without-Authentication  -------
+*/
+Route::group(['prefix' => 'login','as' => 'login.'],function () {
+    Route::get('/admin',  [\App\Http\Controllers\LoginController::class,'showAdminLoginForm']);
+    Route::post('/admin', 'App\Http\Controllers\LoginController@adminLogin');
+});
 
 
-Route::group(['middleware' => ['auth','admin']], function() {
+
+Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
+    // ----------- For Categories, SubCategories ThirdSubCategory----------
+    Route::resource('categories',\App\Http\Controllers\Admin\CategoryController::class );
+    Route::resource('sub-categories',\App\Http\Controllers\Admin\SubCategoryController::class );
+    Route::resource('third-sub-categories',\App\Http\Controllers\Admin\ThirdSubCategoryController::class );
+
+
     // ----------- For admin & developer ----------
+    Route::get('/profile', 'ProfileController@myProfile');
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class,'dashboard'] );
+    Route::get('/edit-my-profile', [\App\Http\Controllers\Admin\ProfileController::class,'editMyProfile']);
+    Route::put('/update-my-profile', [\App\Http\Controllers\Admin\ProfileController::class,'updateMyProfile'])->name('update-my-profile');
+
+    Route::get('/change-my-password', [\App\Http\Controllers\Admin\ProfileController::class,'changeMyPassword'] );
+    Route::put('/update-my-password', [\App\Http\Controllers\Admin\ProfileController::class,'updateMyPassword'] )->name('update-my-password');
+
     Route::resource('/users', \App\Http\Controllers\Admin\UserController::class );
     Route::resource('/quizzes', \App\Http\Controllers\Admin\QuizController::class );
 });
@@ -33,6 +54,9 @@ Route::group(['middleware' => ['auth','admin']], function() {
 
 Route::get('/', function (){
     return redirect('/login');
+});
+Route::get('/login', function (){
+    return redirect('/login/admin');
 });
 
 //Route::middleware([

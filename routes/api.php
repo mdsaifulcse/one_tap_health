@@ -48,7 +48,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Admin','prefix' => 'logi
 /*
  ----------Admin With-Authentication(Token)  -------
 */
-Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Admin','middleware' => ['auth:sanctum'],'prefix' => 'admin','as' => 'admin.'],function (){
+Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Admin','middleware' => ['auth:sanctum'],'prefix' => 'app-admin','as' => 'app-admin.'],function (){
 
     /*--------- Common Data load api --------*/
     Route::get('/category-list', 'CommonDataLoadController@activeCategoryList');

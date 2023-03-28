@@ -1,3 +1,8 @@
+<style>
+    .thirdSubMenu{
+        text-indent: 8px;
+    }
+</style>
 <nav class="pcoded-navbar" pcoded-header-position="relative">
     <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
     <div class="pcoded-inner-navbar main-menu">
@@ -26,28 +31,81 @@
             </div>
         </div>
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation" menu-title-theme="theme5">Navigation</div>
+
         <ul class="pcoded-item pcoded-left-item">
-
-        @if($authUser->is_admin) <!--For admin -->
-            <li class="pcoded-hasmenu active pcoded-trigger">
+            <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-home"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard </span>
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Setting</span>
+                    <span class="pcoded-badge label label-warning">NEW</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
-                    <li class="active">
-                        <a href="{{route('users.index')}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">Users</span>
+                    {{--Sub Menu--}}
+                    <li class="pcoded-hasmenu "  dropdown-icon="style3" subitem-icon="style6">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Vertical</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        <ul class="pcoded-submenu thirdSubMenu">
+                            {{--third subMenu--}}
+                            <li class=" ">
+                                <a href="menu-static.html" data-i18n="nav.page_layout.vertical.static-layout">
+                                    <span class="pcoded-micon"><i class="icon-chart"></i></span>
+                                    <span class="pcoded-mtext">Static Layout</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    {{--Sub Menu--}}
+                    <li class=" ">
+                        <a href="menu-rtl.html" target="_blank" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">RTL</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
 
-                    <li class="active">
-                        <a href="{{route('quizzes.index')}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">Quizzes List</span>
+                </ul>
+            </li>
+            {{--Main Menu--}}
+            <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Setting</span>
+                    <span class="pcoded-badge label label-warning">NEW</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    {{--Sub Menu--}}
+                    <li class="pcoded-hasmenu "  dropdown-icon="style3" subitem-icon="style6">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Vertical</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        <ul class="pcoded-submenu thirdSubMenu">
+                            {{--third subMenu--}}
+                            <li class=" ">
+                                <a href="menu-static.html" data-i18n="nav.page_layout.vertical.static-layout">
+                                    <span class="pcoded-micon"><i class="icon-chart"></i></span>
+                                    <span class="pcoded-mtext">Static Layout</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    {{--Sub Menu--}}
+                    <li class=" ">
+                        <a href="menu-rtl.html" target="_blank" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">RTL</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
@@ -55,80 +113,6 @@
                 </ul>
             </li>
 
-        @elseif(!$authUser->is_admin) <!-- For General User -->
-
-            <li class="pcoded-hasmenu active pcoded-trigger">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-home"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Quiz </span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
-
-                    <li class="active">
-                        <a href="{{route('user-quiz.create').'?topic=Bangla'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">Bangla</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-                    <li class="active">
-                        <a href="{{route('user-quiz.create').'?topic=English'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">English</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-                    <li class="active">
-                        <a href="{{route('user-quiz.create').'?topic=Math'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">Math</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
-
-            <li class="pcoded-hasmenu active pcoded-trigger">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-home"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Quiz Answer </span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
-
-                    <li class="active">
-                        <a href="{{url('user-quiz-answer').'?topic=Bangla'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">Bangla</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-                    <li class="active">
-                        <a href="{{url('user-quiz-answer').'?topic=English'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">English</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-                    <li class="active">
-                        <a href="{{url('user-quiz-answer').'?topic=Math'}}">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.dash.default">Math</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
-        @endif
         </ul>
 
     </div>

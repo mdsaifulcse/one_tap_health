@@ -114,30 +114,58 @@
 
 @include('admin.layout.js-files')
 
-@include('sweetalert::alert')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
-<script type="text/javascript">
-
-
-    $('.show_confirm').click(function(event) {
-        var form =  $(this).closest("form");
-        var name = $(this).data("name");
-        event.preventDefault();
-        swal({
-            title: `Are you sure you want to delete this record?`,
-            text: "If you delete this, it will be gone forever.",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
+@if(Session::has('success'))
+    <script type="text/javascript">
+        swal.fire({
+            type: 'success',
+            title: '{{Session::get("success")}}',
+            showConfirmButton: true,
+            timer: 2000
         })
-            .then((willDelete) => {
-            if (willDelete) {
-                form.submit();
-            }
-        });
-    });
-
+    </script>
+@endif
+@if(Session::has('error'))
+    <script type="text/javascript">
+        swal.fire({
+            type: 'error',
+            title: '{{Session::get("error")}}',
+            showConfirmButton: true
+        })
+    </script>
+@endif
+<script type="text/javascript">
+    function deleteConfirm(id){
+        swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+            $("#"+id).submit();
+        }
+    })
+    }
+    //  Student Activation Warning -------------
+    function activationConfirm(id){
+        swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, active  ist!'
+        }).then((result) => {
+            if (result.value) {
+            $("#"+id).submit();
+        }
+    })
+    }
 </script>
 
 @yield('script')

@@ -8,11 +8,11 @@
                 <i class="ti-search"></i>
             </a>
             @if($authUser->is_admin)
-            <a href="{{url('/dashboard')}}">
+            <a href="{{url('/admin/dashboard')}}">
                 <img class="img-fluid" src="{{asset('admin/assets/images/logo.png')}}" alt="Theme-Logo" />
             </a>
             @else
-                <a href="{{url('/user-dashboard')}}">
+                <a href="{{url('/user/user-dashboard')}}">
                     <img class="img-fluid" src="{{asset('admin/assets/images/logo.png')}}" alt="Theme-Logo" />
                 </a>
                 @endif
@@ -110,6 +110,17 @@
                                     {{--<i class="ti-settings"></i> Settings--}}
                                 {{--</a>--}}
                             {{--</li>--}}
+                            <li>
+                                <a href="{{url('admin/edit-my-profile')}}">
+                                    <i class="icofont icofont-user"></i> Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('admin/change-my-password')}}">
+                                    <i class="icofont icofont-key"></i>Change Password
+                                </a>
+                            </li>
+
                             <li>
                                 <a href="javascript:void(0)" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

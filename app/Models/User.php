@@ -31,6 +31,10 @@ class User extends Authenticatable
     const APPROVED=1;
     const PENDING=2;
 
+    const ACTIVE=1;
+    const INACTIVE=0;
+
+
     const DEVELOPER=1;
     const SUPERADMIN=2;
     const ADMIN=3;
@@ -87,6 +91,14 @@ class User extends Authenticatable
             self::GENERALUSER=>'General User',
         ];
     }
+    public function getUserStatusAttribute() {
+
+        if ($this->status==1){
+            return 'Active';
+        }elseif($this->status==0){
+            return 'Inactive';
+        }
+    }
     public function getApprovalStatusAttribute() {
 
         if ($this->status==1){
@@ -114,8 +126,15 @@ class User extends Authenticatable
     public function getIsAdminAttribute(){
          if ($this->user_role==self::ADMIN){
              return true;
-         }else{
+         }elseif ($this->user_role==self::SUPERADMIN){
+             return true;
+         }
+         else{
             return false;
          }
+    }
+
+    public function profile(){
+        return $this->hasOne(UserProfile::class);
     }
 }

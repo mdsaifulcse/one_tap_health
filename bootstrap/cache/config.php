@@ -42,9 +42,10 @@
       25 => 'App\\Providers\\RouteServiceProvider',
       26 => 'App\\Providers\\FortifyServiceProvider',
       27 => 'App\\Providers\\JetstreamServiceProvider',
-      28 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
-      29 => 'Intervention\\Image\\ImageServiceProvider',
-      30 => 'App\\Providers\\DataLoadServiceProvider',
+      28 => 'Intervention\\Image\\ImageServiceProvider',
+      29 => 'App\\Providers\\DataLoadServiceProvider',
+      30 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+      31 => 'Yajra\\DataTables\\DataTablesServiceProvider',
     ),
     'aliases' => 
     array (
@@ -87,9 +88,9 @@
       'Validator' => 'Illuminate\\Support\\Facades\\Validator',
       'View' => 'Illuminate\\Support\\Facades\\View',
       'MyHelper' => 'App\\Providers\\MyHelperProvider',
-      'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
       'Image' => 'Intervention\\Image\\Facades\\Image',
       'DataLoad' => 'App\\CustomFacades\\DataLoadFacade',
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'auth' => 
@@ -193,7 +194,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'E:\\xampp\\htdocs\\Lms\\storage\\framework/cache/data',
+        'path' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -276,7 +277,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'lms',
+        'database' => 'one_tap_health',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -286,7 +287,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'lms',
+        'database' => 'one_tap_health',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -306,7 +307,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'lms',
+        'database' => 'one_tap_health',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -321,7 +322,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'lms',
+        'database' => 'one_tap_health',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -356,6 +357,168 @@
       ),
     ),
   ),
+  'datatables' => 
+  array (
+    'search' => 
+    array (
+      'smart' => true,
+      'multi_term' => true,
+      'case_insensitive' => true,
+      'use_wildcards' => false,
+      'starts_with' => false,
+    ),
+    'index_column' => 'DT_RowIndex',
+    'engines' => 
+    array (
+      'eloquent' => 'Yajra\\DataTables\\EloquentDataTable',
+      'query' => 'Yajra\\DataTables\\QueryDataTable',
+      'collection' => 'Yajra\\DataTables\\CollectionDataTable',
+      'resource' => 'Yajra\\DataTables\\ApiResourceDataTable',
+    ),
+    'builders' => 
+    array (
+    ),
+    'nulls_last_sql' => ':column :direction NULLS LAST',
+    'error' => NULL,
+    'columns' => 
+    array (
+      'excess' => 
+      array (
+        0 => 'rn',
+        1 => 'row_num',
+      ),
+      'escape' => '*',
+      'raw' => 
+      array (
+        0 => 'action',
+      ),
+      'blacklist' => 
+      array (
+        0 => 'password',
+        1 => 'remember_token',
+      ),
+      'whitelist' => '*',
+    ),
+    'json' => 
+    array (
+      'header' => 
+      array (
+      ),
+      'options' => 0,
+    ),
+  ),
+  'excel' => 
+  array (
+    'exports' => 
+    array (
+      'chunk_size' => 1000,
+      'pre_calculate_formulas' => false,
+      'strict_null_comparison' => false,
+      'csv' => 
+      array (
+        'delimiter' => ',',
+        'enclosure' => '"',
+        'line_ending' => '
+',
+        'use_bom' => false,
+        'include_separator_line' => false,
+        'excel_compatibility' => false,
+        'output_encoding' => '',
+        'test_auto_detect' => true,
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'imports' => 
+    array (
+      'read_only' => true,
+      'ignore_empty' => false,
+      'heading_row' => 
+      array (
+        'formatter' => 'slug',
+      ),
+      'csv' => 
+      array (
+        'delimiter' => NULL,
+        'enclosure' => '"',
+        'escape_character' => '\\',
+        'contiguous' => false,
+        'input_encoding' => 'UTF-8',
+      ),
+      'properties' => 
+      array (
+        'creator' => '',
+        'lastModifiedBy' => '',
+        'title' => '',
+        'description' => '',
+        'subject' => '',
+        'keywords' => '',
+        'category' => '',
+        'manager' => '',
+        'company' => '',
+      ),
+    ),
+    'extension_detector' => 
+    array (
+      'xlsx' => 'Xlsx',
+      'xlsm' => 'Xlsx',
+      'xltx' => 'Xlsx',
+      'xltm' => 'Xlsx',
+      'xls' => 'Xls',
+      'xlt' => 'Xls',
+      'ods' => 'Ods',
+      'ots' => 'Ods',
+      'slk' => 'Slk',
+      'xml' => 'Xml',
+      'gnumeric' => 'Gnumeric',
+      'htm' => 'Html',
+      'html' => 'Html',
+      'csv' => 'Csv',
+      'tsv' => 'Csv',
+      'pdf' => 'Dompdf',
+    ),
+    'value_binder' => 
+    array (
+      'default' => 'Maatwebsite\\Excel\\DefaultValueBinder',
+    ),
+    'cache' => 
+    array (
+      'driver' => 'memory',
+      'batch' => 
+      array (
+        'memory_limit' => 60000,
+      ),
+      'illuminate' => 
+      array (
+        'store' => NULL,
+      ),
+    ),
+    'transactions' => 
+    array (
+      'handler' => 'db',
+      'db' => 
+      array (
+        'connection' => NULL,
+      ),
+    ),
+    'temporary_files' => 
+    array (
+      'local_path' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\framework/cache/laravel-excel',
+      'remote_disk' => NULL,
+      'remote_prefix' => NULL,
+      'force_resync_remote' => NULL,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'local',
@@ -364,12 +527,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\xampp\\htdocs\\Lms\\storage\\app',
+        'root' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'E:\\xampp\\htdocs\\Lms\\storage\\app/public',
+        'root' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -387,7 +550,7 @@
     ),
     'links' => 
     array (
-      'E:\\xampp\\htdocs\\Lms\\public\\storage' => 'E:\\xampp\\htdocs\\Lms\\storage\\app/public',
+      'D:\\xampp-php8\\htdocs\\one_tap_health\\public\\storage' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\app/public',
     ),
   ),
   'fortify-options' => 
@@ -410,7 +573,7 @@
     'username' => 'auth',
     'email' => 'email',
     'views' => true,
-    'home' => '/dashboard',
+    'home' => '/admin/dashboard',
     'prefix' => '',
     'domain' => NULL,
     'limiters' => 
@@ -487,13 +650,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'E:\\xampp\\htdocs\\Lms\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'E:\\xampp\\htdocs\\Lms\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -544,7 +707,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'E:\\xampp\\htdocs\\Lms\\storage\\logs/laravel.log',
+        'path' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -610,7 +773,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'E:\\xampp\\htdocs\\Lms\\resources\\views/vendor/mail',
+        0 => 'D:\\xampp-php8\\htdocs\\one_tap_health\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -715,7 +878,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'E:\\xampp\\htdocs\\Lms\\storage\\framework/sessions',
+    'files' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -731,56 +894,13 @@
     'http_only' => true,
     'same_site' => 'lax',
   ),
-  'sweetalert' => 
-  array (
-    'cdn' => NULL,
-    'alwaysLoadJS' => false,
-    'neverLoadJS' => false,
-    'timer' => 5000,
-    'width' => '32rem',
-    'height_auto' => true,
-    'padding' => '1.25rem',
-    'animation' => 
-    array (
-      'enable' => false,
-    ),
-    'animatecss' => 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-    'show_confirm_button' => true,
-    'show_close_button' => false,
-    'toast_position' => 'top-end',
-    'timer_progress_bar' => true,
-    'middleware' => 
-    array (
-      'autoClose' => false,
-      'toast_position' => 'top-end',
-      'toast_close_button' => true,
-      'timer' => 6000,
-      'auto_display_error_messages' => true,
-    ),
-    'customClass' => 
-    array (
-      'container' => NULL,
-      'popup' => NULL,
-      'header' => NULL,
-      'title' => NULL,
-      'closeButton' => NULL,
-      'icon' => NULL,
-      'image' => NULL,
-      'content' => NULL,
-      'input' => NULL,
-      'actions' => NULL,
-      'confirmButton' => NULL,
-      'cancelButton' => NULL,
-      'footer' => NULL,
-    ),
-  ),
   'view' => 
   array (
     'paths' => 
     array (
-      0 => 'E:\\xampp\\htdocs\\Lms\\resources\\views',
+      0 => 'D:\\xampp-php8\\htdocs\\one_tap_health\\resources\\views',
     ),
-    'compiled' => 'E:\\xampp\\htdocs\\Lms\\storage\\framework\\views',
+    'compiled' => 'D:\\xampp-php8\\htdocs\\one_tap_health\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -834,7 +954,7 @@
       'ensure_pages_exist' => true,
       'page_paths' => 
       array (
-        0 => 'E:\\xampp\\htdocs\\Lms\\resources\\js/Pages',
+        0 => 'D:\\xampp-php8\\htdocs\\one_tap_health\\resources\\js/Pages',
       ),
       'page_extensions' => 
       array (
@@ -847,44 +967,74 @@
       ),
     ),
   ),
-  'livewire' => 
+  'datatables-buttons' => 
   array (
-    'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => 'E:\\xampp\\htdocs\\Lms\\resources\\views/livewire',
-    'layout' => 'layouts.app',
-    'asset_url' => NULL,
-    'app_url' => NULL,
-    'middleware_group' => 'web',
-    'temporary_file_upload' => 
+    'namespace' => 
     array (
-      'disk' => NULL,
-      'rules' => NULL,
-      'directory' => NULL,
-      'middleware' => NULL,
-      'preview_mimes' => 
-      array (
-        0 => 'png',
-        1 => 'gif',
-        2 => 'bmp',
-        3 => 'svg',
-        4 => 'wav',
-        5 => 'mp4',
-        6 => 'mov',
-        7 => 'avi',
-        8 => 'wmv',
-        9 => 'mp3',
-        10 => 'm4a',
-        11 => 'jpg',
-        12 => 'jpeg',
-        13 => 'mpga',
-        14 => 'webp',
-        15 => 'wma',
-      ),
-      'max_upload_time' => 5,
+      'base' => 'DataTables',
+      'model' => '',
     ),
-    'manifest_path' => NULL,
-    'back_button_cache' => false,
-    'render_on_redirect' => false,
+    'pdf_generator' => 'snappy',
+    'snappy' => 
+    array (
+      'options' => 
+      array (
+        'no-outline' => true,
+        'margin-left' => '0',
+        'margin-right' => '0',
+        'margin-top' => '10mm',
+        'margin-bottom' => '10mm',
+      ),
+      'orientation' => 'landscape',
+    ),
+    'parameters' => 
+    array (
+      'dom' => 'Bfrtip',
+      'order' => 
+      array (
+        0 => 
+        array (
+          0 => 0,
+          1 => 'desc',
+        ),
+      ),
+      'buttons' => 
+      array (
+        0 => 'create',
+        1 => 'export',
+        2 => 'print',
+        3 => 'reset',
+        4 => 'reload',
+      ),
+    ),
+    'generator' => 
+    array (
+      'columns' => 'id,add your columns,created_at,updated_at',
+      'buttons' => 'create,export,print,reset,reload',
+      'dom' => 'Bfrtip',
+    ),
+  ),
+  'datatables-html' => 
+  array (
+    'namespace' => 'LaravelDataTables',
+    'table' => 
+    array (
+      'class' => 'table',
+      'id' => 'dataTableBuilder',
+    ),
+    'callback' => 
+    array (
+      0 => '$',
+      1 => '$.',
+      2 => 'function',
+    ),
+    'script' => 'datatables::script',
+    'editor' => 'datatables::editor',
+  ),
+  'datatables-fractal' => 
+  array (
+    'includes' => 'include',
+    'serializer' => 'League\\Fractal\\Serializer\\DataArraySerializer',
   ),
   'tinker' => 
   array (

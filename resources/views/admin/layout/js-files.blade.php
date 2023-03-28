@@ -27,6 +27,8 @@
 <script type="text/javascript" src="{{asset('admin/assets/bower_components/i18next-xhr-backend/i18nextXHRBackend.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/assets/bower_components/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/assets/bower_components/jquery-i18next/jquery-i18next.min.js')}}"></script>
+{{--SweetAlert2--}}
+<script type="text/javascript" src="{{asset('admin/assets/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
 <!-- Custom js -->
 <script type="text/javascript" src="{{asset('admin/assets/pages/dashboard/custom-dashboard.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin/assets/js/script.js')}}"></script>

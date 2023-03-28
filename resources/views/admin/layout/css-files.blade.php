@@ -4,6 +4,7 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 <!-- Required Fremwork -->
 <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('admin/assets/bower_components/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet" type="text/css" />
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css" href="{{asset('admin/assets/icon/themify-icons/themify-icons.css')}}">
 <!-- ico font -->

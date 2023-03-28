@@ -41,14 +41,13 @@ class JetstreamServiceProvider extends ServiceProvider
 
                 //LoginHistoryEvent::dispatch($user); // dispatch / fire event -------
                 //event(new LoginHistoryEvent($user));
-
             }
         });
 
 
 
         Fortify::loginView(function () {
-            return view('auth.custom-login');
+            return view('auth.client-login');
         });
 
          Fortify::registerView(function () {

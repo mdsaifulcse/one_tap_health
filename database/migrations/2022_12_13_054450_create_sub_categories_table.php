@@ -16,14 +16,23 @@ class CreateSubCategoriesTable extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
-            $table->string('name',100)->nullable();
-            $table->text('description')->nullable();
-            $table->string('icon_photo')->nullable();
-            $table->tinyInteger('sequence')->default(0);
-            $table->tinyInteger('status')->default(\App\Models\SubCategory::ACTIVE)
-                ->comment('1=Active,0=Inactive');
 
+            $table->string('sub_category_name',150)->nullable();
+            $table->string('sub_category_name_bn',150)->nullable();
+            $table->string('link',255)->nullable();
+            $table->text('short_description')->nullable();
+
+            $table->string('icon_photo')->nullable();
+            $table->string('icon_class')->nullable();
+            $table->tinyInteger('sequence');
+            $table->string('status')->default(\App\Models\SubCategory::ACTIVE);
+
+            $table->unsignedBigInteger('created_by', false);
+            $table->unsignedBigInteger('updated_by', false)->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnDelete();
             $table->softDeletes();
+
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
@@ -38,6 +47,8 @@ class CreateSubCategoriesTable extends Migration
     {
         Schema::table('sub_categories',function (Blueprint $table){
             $table->dropForeign(['category_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
         });
 
         Schema::dropIfExists('sub_categories');

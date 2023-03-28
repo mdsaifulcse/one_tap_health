@@ -16,7 +16,7 @@
                             <i class="icofont icofont-home"></i>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#!">Pages</a>
+                    <li class="breadcrumb-item"><a href="#!">Home</a>
                     </li>
                     <li class="breadcrumb-item"><a href="#!">Dashboard</a>
                     </li>
@@ -28,7 +28,7 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card social-widget-card">
                         <div class="card-block-big bg-facebook">
-                            <h3>This is a dashboard</h3>
+                            <h3>100 +</h3>
                             <span class="m-t-10">This is a dashboard</span>
                             <i class="icofont icofont-social-facebook"></i>
                         </div>
@@ -37,8 +37,8 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card social-widget-card">
                         <div class="card-block-big bg-twitter">
-                            <h3>780 +</h3>
-                            <span class="m-t-10">Twitter Users</span>
+                            <h3>200 +</h3>
+                            <span class="m-t-10">This is a dashboard</span>
                             <i class="icofont icofont-social-twitter"></i>
                         </div>
                     </div>
@@ -46,8 +46,8 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card social-widget-card">
                         <div class="card-block-big bg-linkein">
-                            <h3>998 +</h3>
-                            <span class="m-t-10">Linked In Users</span>
+                            <h3>500 +</h3>
+                            <span class="m-t-10">This is a dashboard</span>
                             <i class="icofont icofont-brand-linkedin"></i>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card social-widget-card">
                         <div class="card-block-big bg-google-plus">
-                            <h3>650 +</h3>
-                            <span class="m-t-10">Google Plus Users</span>
+                            <h3>1000 +</h3>
+                            <span class="m-t-10">This is a dashboard</span>
                             <i class="icofont icofont-social-google-plus"></i>
                         </div>
                     </div>

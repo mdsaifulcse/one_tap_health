@@ -17,15 +17,23 @@ class CreateThirdSubCategoriesTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('sub_category_id');
-            $table->string('name',100)->nullable();
-            $table->text('description')->nullable();
-            $table->string('icon_photo')->nullable();
-            $table->tinyInteger('sequence')->default(0);
-            $table->tinyInteger('status')->default(\App\Models\ThirdSubCategory::ACTIVE)
-                ->comment('1=Active,0=Inactive');
 
-            $table->softDeletes();
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
+            $table->string('third_sub_category',150)->nullable();
+            $table->string('third_sub_category_bn',150)->nullable();
+            $table->string('link')->nullable();
+
+            $table->text('description')->nullable();
+
+            $table->string('icon_photo')->nullable();
+            $table->string('icon_class')->nullable();
+            $table->tinyInteger('sequence')->default(0);
+            $table->string('status')->default(\App\Models\ThirdSubCategory::ACTIVE);
+            $table->unsignedBigInteger('created_by', false);
+            $table->unsignedBigInteger('updated_by', false)->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->cascadeOnDelete();
+
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -39,6 +47,8 @@ class CreateThirdSubCategoriesTable extends Migration
     {
         Schema::table('third_sub_categories',function (Blueprint $table){
             $table->dropForeign(['sub_category_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
         });
 
         Schema::dropIfExists('third_sub_categories');

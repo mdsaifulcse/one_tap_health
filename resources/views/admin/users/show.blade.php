@@ -7,7 +7,7 @@
     <div class="card-block groups-contact">
         <h4>About {{$user->name}}</h4>
         <ul class="list-group">
-            <li class="list-group-item justify-content-between">
+            <li class="list-group-item justify-content-left">
                 Name:
                 <span class=" ">{{$user->name}}</span>
             </li>
@@ -21,12 +21,12 @@
             </li>
             <li class="list-group-item justify-content-between">
                 Status:
-                <span class="">{{$user->approval_status}}</span>
+                <span class="">{{$user->user_status}}</span>
             </li>
         </ul>
 
         <hr>
-        <form class="" method="post" action="{{route('users.store')}}">
+        <form class="" method="post" action="{{route('admin.users.store')}}">
             @csrf
             <input type="hidden" name="id" value="{{$user->id}}">
             <div class="row">
@@ -34,12 +34,16 @@
                     <label for="status">User Status:</label>
                 </div>
                 <div class="col">
-                    <select name="status" id="userStatus" class="form-control" required>
-                        <option value="">-- Select One --</option>
-                        <option value="0" @if($user->status ==0 ) selected @endif>Rejected</option>
-                        <option value="1" @if($user->status ==1) selected @endif>Approved</option>
-                        <option value="2" @if($user->status==2) selected @endif>Pending</option>
+                    <select name="status" id="userStatus" class="form-control">
+                        <option value="0" @if($user->status ==App\Models\User::INACTIVE ) selected @endif>Inactive</option>
+                        <option value="1" @if($user->status ==App\Models\User::ACTIVE) selected @endif>Active</option>
                     </select>
+                    {{--<select name="status" id="userStatus" class="form-control" required>--}}
+                        {{--<option value="">-- Select One --</option>--}}
+                        {{--<option value="0" @if($user->status ==0 ) selected @endif>Rejected</option>--}}
+                        {{--<option value="1" @if($user->status ==1) selected @endif>Approved</option>--}}
+                        {{--<option value="2" @if($user->status==2) selected @endif>Pending</option>--}}
+                    {{--</select>--}}
                 </div>
                 <div class="col">
                     <button type="submit" class="btn btn-default">Submit</button>
