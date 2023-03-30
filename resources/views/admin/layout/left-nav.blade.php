@@ -33,39 +33,72 @@
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation" menu-title-theme="theme5">Navigation</div>
 
         <ul class="pcoded-item pcoded-left-item">
+            {{--Main Menu--}}
             <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Setting</span>
-                    <span class="pcoded-badge label label-warning">NEW</span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Test</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
-                    {{--Sub Menu--}}
-                    <li class="pcoded-hasmenu "  dropdown-icon="style3" subitem-icon="style6">
-                        <a href="javascript:void(0)">
-                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
-                            <span class="pcoded-mtext">Vertical</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <ul class="pcoded-submenu thirdSubMenu">
-                            {{--third subMenu--}}
-                            <li class=" ">
-                                <a href="menu-static.html" data-i18n="nav.page_layout.vertical.static-layout">
-                                    <span class="pcoded-micon"><i class="icon-chart"></i></span>
-                                    <span class="pcoded-mtext">Static Layout</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
 
                     {{--Sub Menu--}}
                     <li class=" ">
-                        <a href="menu-rtl.html" target="_blank" data-i18n="nav.page_layout.rtl">
+                        <a href="{{route('admin.tests.create')}}" " data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
-                            <span class="pcoded-mtext">RTL</span>
+                            <span class="pcoded-mtext">Create Test</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{route('admin.tests.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">List Test</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                    {{--Sub Menu--}}
+                    {{--<li class="pcoded-hasmenu "  dropdown-icon="style3" subitem-icon="style6">--}}
+                    {{--<a href="javascript:void(0)">--}}
+                    {{--<span class="pcoded-micon"><i class="icon-pie-chart"></i></span>--}}
+                    {{--<span class="pcoded-mtext">Vertical</span>--}}
+                    {{--<span class="pcoded-mcaret"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="pcoded-submenu thirdSubMenu">--}}
+                    {{--third subMenu--}}
+                    {{--<li class=" ">--}}
+                    {{--<a href="menu-static.html" data-i18n="nav.page_layout.vertical.static-layout">--}}
+                    {{--<span class="pcoded-micon"><i class="icon-chart"></i></span>--}}
+                    {{--<span class="pcoded-mtext">Static Layout</span>--}}
+                    {{--<span class="pcoded-mcaret"></span>--}}
+                    {{--</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--</li>--}}
+
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu pcoded-trigger" dropdown-icon="style3" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Hospital</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    {{--Sub Menu--}}
+                    <li class=" ">
+                        <a href="{{route('admin.hospitals.create')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Create Hospital</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{route('admin.hospitals.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">List Hospital</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
@@ -77,35 +110,14 @@
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
                     <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Setting</span>
-                    <span class="pcoded-badge label label-warning">NEW</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
                     {{--Sub Menu--}}
-                    <li class="pcoded-hasmenu "  dropdown-icon="style3" subitem-icon="style6">
-                        <a href="javascript:void(0)">
-                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
-                            <span class="pcoded-mtext">Vertical</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <ul class="pcoded-submenu thirdSubMenu">
-                            {{--third subMenu--}}
-                            <li class=" ">
-                                <a href="menu-static.html" data-i18n="nav.page_layout.vertical.static-layout">
-                                    <span class="pcoded-micon"><i class="icon-chart"></i></span>
-                                    <span class="pcoded-mtext">Static Layout</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-
-                    {{--Sub Menu--}}
                     <li class=" ">
-                        <a href="menu-rtl.html" target="_blank" data-i18n="nav.page_layout.rtl">
+                        <a href="{{route('admin.categories.index')}}" data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
-                            <span class="pcoded-mtext">RTL</span>
+                            <span class="pcoded-mtext">Category</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>

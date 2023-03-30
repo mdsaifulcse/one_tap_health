@@ -18,8 +18,8 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <i class="icofont icofont-list"></i>
-                        <a href="{{route('admin.categories.index')}}"> Category</a>
+
+                        <a href="{{route('admin.categories.index')}}" class="btn btn-info btn-sm" ><i class="icofont icofont-list"></i> Category</a>
                     </li>
                 </ul>
             </div>

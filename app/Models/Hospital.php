@@ -6,30 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SubCategory extends Model
+class Hospital extends Model
 {
     use HasFactory,SoftDeletes;
+
     const ACTIVE=1;
     const INACTIVE=0;
 
     const YES=1;
     const NO=0;
-    protected $table='sub_categories';
-    protected $fillable=['category_id','sub_category_name','sub_category_name_bn','link','status','sequence','icon_photo','icon_class','short_description','created_by','updated_by'];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class,'category_id','id');
-    }
-
-    public function thirdSubCategory(){
-        return $this->hasMany(ThirdSubCategory::class,'sub_category_id','id')->orderBy('sequence','ASC')
-            ->where(['status'=>ThirdSubCategory::ACTIVE]);
-    }
-
-    public function thirdSubAsThirdSubMenu(){
-        return $this->hasMany(ThirdSubCategory::class,'sub_category_id','id');
-    }
+    protected $table='hospitals';
+    protected $fillable=['name','type','branch','address1','address2','photo','contact','latitude','longitude','service_details',
+        'status','show_home','sequence','created_by','updated_by'];
 
 
 

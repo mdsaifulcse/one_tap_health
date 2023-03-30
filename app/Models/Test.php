@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SubCategory extends Model
+class Test extends Model
 {
     use HasFactory,SoftDeletes;
     const ACTIVE=1;
@@ -14,21 +14,24 @@ class SubCategory extends Model
 
     const YES=1;
     const NO=0;
-    protected $table='sub_categories';
-    protected $fillable=['category_id','sub_category_name','sub_category_name_bn','link','status','sequence','icon_photo','icon_class','short_description','created_by','updated_by'];
 
-    public function category()
+    protected $table='tests';
+    protected $fillable=['title','sub_title','branch','description','icon_photo','icon_class','category_id','subcategory_id','third_category_id',
+        'status','show_home','sequence','created_by','updated_by'];
+
+    public function testCategory()
     {
         return $this->belongsTo(Category::class,'category_id','id');
     }
 
-    public function thirdSubCategory(){
-        return $this->hasMany(ThirdSubCategory::class,'sub_category_id','id')->orderBy('sequence','ASC')
-            ->where(['status'=>ThirdSubCategory::ACTIVE]);
+    public function testSubCategory()
+    {
+        return $this->belongsTo(SubCategory::class,'subcategory_id','id');
     }
 
-    public function thirdSubAsThirdSubMenu(){
-        return $this->hasMany(ThirdSubCategory::class,'sub_category_id','id');
+    public function testThirdCategory()
+    {
+        return $this->belongsTo(ThirdSubCategory::class,'third_category_id','id');
     }
 
 

@@ -19,18 +19,25 @@ use Inertia\Inertia;
  ----------Admin Without-Authentication  -------
 */
 Route::group(['prefix' => 'login','as' => 'login.'],function () {
-    Route::get('/admin',  [\App\Http\Controllers\LoginController::class,'showAdminLoginForm']);
+     Route::get('admin',  [\App\Http\Controllers\LoginController::class,'showAdminLoginForm'])->name('admin');
     Route::post('/admin', 'App\Http\Controllers\LoginController@adminLogin');
 });
+//Route::get('/login/admin',  [\App\Http\Controllers\LoginController::class,'showAdminLoginForm'])->name('login.admin');
 
 
 
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
+
+    Route::resource('hospitals',\App\Http\Controllers\Admin\HospitalController::class );
+    Route::resource('tests',\App\Http\Controllers\Admin\TestController::class );
     // ----------- For Categories, SubCategories ThirdSubCategory----------
     Route::resource('categories',\App\Http\Controllers\Admin\CategoryController::class );
     Route::resource('sub-categories',\App\Http\Controllers\Admin\SubCategoryController::class );
     Route::resource('third-sub-categories',\App\Http\Controllers\Admin\ThirdSubCategoryController::class );
 
+    // ----------- On Change load -----------------
+    Route::get('/load-sub-cat-by-cat/{categoryId}', '\App\CustomFacades\DataLoadController@loadSubCatsByCat');
+    Route::get('/load-third-sub-cat-by-sub-cat/{subCategoryId}', '\App\CustomFacades\DataLoadController@loadThirdSubCatsByCat');
 
     // ----------- For admin & developer ----------
     Route::get('/profile', 'ProfileController@myProfile');
@@ -55,9 +62,11 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
 Route::get('/', function (){
     return redirect('/login');
 });
-Route::get('/login', function (){
-    return redirect('/login/admin');
-});
+
+
+// Route::get('/login', function (){
+//     return redirect('/login/admin');
+// });
 
 //Route::middleware([
 //    'auth:sanctum',

@@ -18,8 +18,8 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <i class="icofont icofont-list"></i>
-                        <a href="#"> Category</a>
+
+                        <a href="#"  class="btn btn-info btn-sm"><i class="icofont icofont-list"></i> Category</a>
                     </li>
                 </ul>
             </div>
@@ -209,7 +209,7 @@
                                             @endif
                                         </td>
 
-                                        <td>{{$data->created_at}}</td>
+                                        <td>{{$data->created_at->diffForHumans()}}</td>
                                         <td>
                                             {!! Form::open(array('route' => ['admin.categories.destroy',$data->id],'method'=>'DELETE','id'=>"deleteForm$data->id")) !!}
                                             <a href="#categoryModal{{$data->id}}" data-toggle="modal" data-target="#categoryModal{{$data->id}}" class="btn btn-success btn-sm"><i class="icofont icofont-edit"></i> </a>
@@ -336,12 +336,12 @@
                                             </div><!--end content-->
 
                                         </div>
+                                        </div>
 
                                         <!-- end::modal -->
 
 
-
-                        </tr>
+                                    </tr>
                         @empty
 
                             <tr>

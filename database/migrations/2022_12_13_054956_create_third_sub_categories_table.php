@@ -32,6 +32,7 @@ class CreateThirdSubCategoriesTable extends Migration
             $table->unsignedBigInteger('updated_by', false)->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('updated_by')->references('id')->on('users')->cascadeOnDelete();
+            $table->softDeletes();
 
             $table->foreign('sub_category_id')->references('id')->on('sub_categories')->cascadeOnDelete();
             $table->timestamps();

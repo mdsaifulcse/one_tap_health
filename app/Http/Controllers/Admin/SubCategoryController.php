@@ -49,7 +49,7 @@ class SubCategoryController extends Controller
 
         try{
             $validator = Validator::make($input, [
-                'sub_category_name' => 'required|max:200',
+                'sub_category_name' => 'required|unique:sub_categories,sub_category_name,NULL,id,deleted_at,NULL',
                 'link' => 'required|unique:sub_categories,link,NULL,id,deleted_at,NULL',
                 'category_id' => 'required|exists:categories,id',
                 'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
@@ -57,8 +57,6 @@ class SubCategoryController extends Controller
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
-            $input['created_by']=\Auth::user()->id;
-
 
             if ($request->hasFile('icon_photo')) {
                 $input['icon_photo']=\MyHelper::photoUpload($request->file('icon_photo'),'images/sub-categories/',100);
@@ -82,10 +80,10 @@ class SubCategoryController extends Controller
     {
         $allData=SubCategory::leftJoin('categories','sub_categories.category_id','=','categories.id')
             ->select('sub_categories.*','categories.category_name','categories.id as category_id')
-            ->where('sub_categories.category_id',$id)->orderBy('sub_categories.id','DESC')->paginate(50);
+            ->where('sub_categories.category_id',$id)->orderBy('sub_categories.sequence','DESC')->paginate(50);
 
         $category=Category::findOrFail($id);
-        $max_serial=SubCategory::where('category_id',$id)->max('serial_num');
+        $max_serial=SubCategory::where('category_id',$id)->max('sequence');
 
         return view('admin.categories.sub-category',compact('allData','category','max_serial'));
     }
@@ -112,17 +110,19 @@ class SubCategoryController extends Controller
     {
 
         $input = $request->all();
+        if (is_null($request->link)) {
+            $input['link']= MyHelper::slugify($request->sub_category_name);
+        }
 
         $validator = Validator::make($input, [
-            'sub_category_name' => 'required',
+            'sub_category_name' => "required|unique:sub_categories,sub_category_name,$id,id,deleted_at,NULL",
             'link' => "required|unique:sub_categories,link,$id,id,deleted_at,NULL",
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->with('error','Something Error found.');
+            return redirect()->back()->with('error','Something Error found.'.$validator->errors()->first());
         }
         $data=SubCategory::findOrFail($id);
-        $input['updated_by']=\Auth::user()->id;
         try{
 
             if ($request->hasFile('icon_photo')) {
@@ -136,18 +136,11 @@ class SubCategoryController extends Controller
 
 
             $data->update($input);
-            $bug=0;
-        }catch(\Exception $e){
-            $bug = $e->errorInfo[1];
-            $bug2=$e->errorInfo[2];
-        }
-        if($bug==0){
             return redirect()->back()->with('success','Data Successfully Updated');
-        }elseif($bug==1062){
-            return redirect()->back()->with('error','The name has already been taken.');
-        }else{
-            return redirect()->back()->with('error','Something Error Found ! '.$bug2);
+        }catch(Exception $e){
+            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
+
     }
 
     /**

@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $allData=Category::orderBy('sequence','DESC')->paginate(200);
+        $allData=Category::orderBy('sequence','DESC')->paginate(50);
         $max_serial=Category::max('sequence');
         return view('admin.categories.index',compact('allData','max_serial'));
     }
@@ -56,27 +56,19 @@ class CategoryController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $input['created_by']=\Auth::user()->id;
 
-        if ($request->hasFile('icon_photo'))
-        {
-            $input['icon_photo']=\MyHelper::photoUpload($request->file('icon_photo'),'images/categories/',250,155);
-        }
-
-        Category::create($input);
         try{
-            $bug=0;
-        }catch(\Exception $e){
-            $bug=$e->errorInfo[1];
-            $bug2=$e->errorInfo[2];
-        }
-        if($bug==0){
+
+            if ($request->hasFile('icon_photo'))
+            {
+                $input['icon_photo']=\MyHelper::photoUpload($request->file('icon_photo'),'images/categories/',250,155);
+            }
+            Category::create($input);
             return redirect()->back()->with('success','Category Successfully Created');
-        }elseif($bug==1062){
-            return redirect()->back()->with('error','The name has already been taken.');
-        }else{
-            return redirect()->back()->with('error','Something Error Found ! '.$bug2);
+        }catch(\Exception $e){
+            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
+
     }
 
     /**
@@ -123,8 +115,8 @@ class CategoryController extends Controller
         }
 
         $validator = Validator::make($input, [
-            'category_name' => 'required',
             'sequence' => 'required',
+            'category_name' => "required|unique:categories,category_name,$id,id,deleted_at,NULL",
             'link' => "required|unique:categories,link,$id,id,deleted_at,NULL",
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
         ]);

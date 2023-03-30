@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
+use App\Models\Test;
 use App\Models\ThirdSubCategory;
 use Illuminate\Http\Request;
 use DB,Auth,Validator,MyHelper;
@@ -46,7 +47,7 @@ class ThirdSubCategoryController extends Controller
 
 
         $validator = Validator::make($input, [
-            'third_sub_category' => 'required|max:200',
+            'third_sub_category' => 'required|unique:third_sub_categories,third_sub_category,NULL,id,deleted_at,NULL',
             'link' => 'required|unique:third_sub_categories,link,NULL,id,deleted_at,NULL',
             'sub_category_id' => 'required|exists:sub_categories,id',
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
@@ -65,20 +66,13 @@ class ThirdSubCategoryController extends Controller
             }
 
             ThirdSubCategory::create($input);
-            $bug=0;
-        }catch(\Exception $e){
-            $bug=$e->errorInfo[1];
-            $bug2=$e->errorInfo[2];
-        }
-        if($bug==0)
-        {
             return redirect()->back()->with('success','Data Successfully Inserted');
-        }elseif($bug==1062)
-        {
-            return redirect()->back()->with('error','The name has already been taken.');
-        }else{
-            return redirect()->back()->with('error','Something Error Found ! '.$bug2);
+        }catch(\Exception $e){
+            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
+
+
+
     }
 
     /**
@@ -90,9 +84,10 @@ class ThirdSubCategoryController extends Controller
     public function show( $id)
     {
         $sutCategory=SubCategory::with('category')->findOrFail($id);
-        $allData=ThirdSubCategory::with('subCategory')->where('sub_category_id',$id)->orderBy('id','DESC')->paginate(50);
+        $allData=ThirdSubCategory::with('subCategory')->where('sub_category_id',$id)->orderBy('sequence','DESC')
+            ->paginate(50);
 
-        $max_serial=ThirdSubCategory::where('sub_category_id',$id)->max('serial_num');
+        $max_serial=ThirdSubCategory::where('sub_category_id',$id)->max('sequence');
 
         return view('admin.categories.third-sub-category',compact('allData','sutCategory','max_serial'));
     }
@@ -105,7 +100,6 @@ class ThirdSubCategoryController extends Controller
      */
     public function edit(ThirdSubCategory $thirdSubCategory)
     {
-        //
     }
 
     /**
@@ -118,10 +112,13 @@ class ThirdSubCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        if (is_null($request->link))
+        {
+            $input['link']= MyHelper::slugify($request->third_sub_category);
+        }
 
         $validator = Validator::make($input, [
-
-            'third_sub_category' => 'required|max:200',
+            'third_sub_category' => "required|unique:third_sub_categories,third_sub_category,$id,id,deleted_at,NULL",
             'link' => "required|unique:third_sub_categories,link,$id,id,deleted_at,NULL",
             'sub_category_id' => 'required|exists:sub_categories,id',
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
@@ -148,19 +145,9 @@ class ThirdSubCategoryController extends Controller
 
 
             $data->update($input);
-            $bug=0;
-        }catch(\Exception $e){
-            $bug = $e->errorInfo[1];
-            $bug2=$e->errorInfo[2];
-        }
-        if($bug==0)
-        {
             return redirect()->back()->with('success','Data Successfully Updated');
-        }elseif($bug==1062)
-        {
-            return redirect()->back()->with('error','The name has already been taken.');
-        }else{
-            return redirect()->back()->with('error','Something Error Found ! '.$bug2);
+        }catch(\Exception $e){
+            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
     }
 

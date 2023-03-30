@@ -1,7 +1,7 @@
 @extends('layouts.login-app')
 
 @section('title')
-    Login to your account
+   Admin Login to your account
     @endsection
 
 @section('login-content')
@@ -13,7 +13,7 @@
                     <form class="md-float-material"  method="POST" action="{{ url('/login') }}">
                         @csrf
                         <div class="text-center">
-                            <h1>Login your account</h1>
+                            <h1></h1>
                             {{--<img src="{{'admin/assets/images/auth/logo.png'}}" alt="logo.png">--}}
                         </div>
                         <div class="auth-box">
