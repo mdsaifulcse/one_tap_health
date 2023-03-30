@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Publisher extends Model
+class HospitalWiseTestPrice extends Model
 {
     use HasFactory,SoftDeletes;
 
@@ -15,19 +15,25 @@ class Publisher extends Model
 
     const YES=1;
     const NO=0;
-    protected $table='publishers';
-    protected $fillable=['name','email','phone','contact','photo','address1','address2','bio','establish','sequence','status','created_by','updated_by'];
 
+    protected $table='hospital_wise_test_prices';
+    protected $fillable=['test_id','hospital_id','price','vat_percent','status','created_by','updated_by'];
+
+
+
+
+    // TODO :: boot
+    // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
     public static function boot(){
         parent::boot();
         static::creating(function($query){
             if(\Auth::check()){
-                $query->created_by = @\Auth::user()->id;
+                $query->created_by = \Auth::user()->id;
             }
         });
         static::updating(function($query){
             if(\Auth::check()){
-                $query->updated_by = @\Auth::user()->id;
+                $query->updated_by = \Auth::user()->id;
             }
         });
     }

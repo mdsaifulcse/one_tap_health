@@ -55,7 +55,7 @@ p { font-size: 13px; }
 .card .card-header .card-header-right { border-radius: 0px 0px 0px 5px; right: 0; top: 0; background: #f6f7f7; display: inline-block; float: right; padding: 7px 0; position: absolute; }
 .card .card-header .card-header-right i { margin: 0 20px; cursor: pointer; }
 .card .card-header span { color: #9f9f9f; display: block; font-size: 13px; margin-top: 5px; }
-.card h5 { margin-bottom: 0; color: #757575; font-size: 16px; font-weight: 600; text-transform: uppercase; display: inline-block; margin-right: 10px; }
+.card h5 { margin-bottom: 0; color: #757575; font-size: 16px; font-weight: 600; text-transform: capitalize; display: inline-block; margin-right: 10px; }
 .card .card-block table tr { padding-bottom: 20px; }
 .card .card-block .sub-title { font-size: 14px; font-weight: 600; letter-spacing: 1px; }
 .card .card-block code { background-color: #eee; }

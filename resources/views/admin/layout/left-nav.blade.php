@@ -44,7 +44,7 @@
 
                     {{--Sub Menu--}}
                     <li class=" ">
-                        <a href="{{route('admin.tests.create')}}" " data-i18n="nav.page_layout.rtl">
+                        <a href="{{route('admin.tests.create')}}" data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
                             <span class="pcoded-mtext">Create Test</span>
                             <span class="pcoded-mcaret"></span>

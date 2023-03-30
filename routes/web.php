@@ -28,6 +28,8 @@ Route::group(['prefix' => 'login','as' => 'login.'],function () {
 
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
 
+    Route::resource('set-test-price',\App\Http\Controllers\Admin\HospitalWiseTestPriceController::class );
+
     Route::resource('hospitals',\App\Http\Controllers\Admin\HospitalController::class );
     Route::resource('tests',\App\Http\Controllers\Admin\TestController::class );
     // ----------- For Categories, SubCategories ThirdSubCategory----------

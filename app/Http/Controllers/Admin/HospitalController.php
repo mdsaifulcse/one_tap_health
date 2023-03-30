@@ -16,7 +16,7 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $hospitals=Hospital::orderBy('sequence','DESC')->paginate(50);
+        $hospitals=Hospital::withCount('hospitalTestPrice')->orderBy('sequence','DESC')->paginate(50);
         return view('admin.hospitals.index',compact('hospitals'));
     }
 

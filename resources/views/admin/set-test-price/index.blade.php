@@ -55,7 +55,7 @@
                                     </thead>
                                     <tbody>
                                     <?php $i=1; ?>
-                                    @forelse($tests as $data)
+                                    @forelse($hospitals as $data)
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$data->title}}</td>
@@ -72,6 +72,12 @@
                                             <td>{{$data->created_at->diffForHumans()}}</td>
                                             <td>
                                                 {!! Form::open(array('route' => ['admin.tests.destroy',$data->id],'method'=>'DELETE','id'=>"deleteForm$data->id")) !!}
+                                                @if($data->testPriceCount==0)
+                                                <a href="{{route('admin.set-hospital-wise-price.create',$data->id) }}" class="btn btn-info btn-sm" title="Click to set hospital Price"><i class="icofont icofont-money-bag icofont-2x"></i> </a>
+                                                @else
+                                                    <a href="{{route('admin.set-hospital-wise-price.edit',$data->id) }}" class="btn btn-warning btn-sm" title="Click to set hospital Price"><i class="icofont icofont-money-bag icofont-2x"></i> </a>
+
+                                                @endif
                                                 <a href="{{route('admin.tests.edit',$data->id) }}" class="btn btn-success btn-sm" title="Click to Edit"><i class="icofont icofont-edit"></i> </a>
                                                 <button type="button" class="btn btn-danger btn-sm" onclick='return deleteConfirm("deleteForm{{$data->id}}")' title="Click to Delete"><i class="icofont icofont-trash"></i></button>
                                                 {!! Form::close() !!}
@@ -86,7 +92,7 @@
 
                                     </tbody>
                                 </table>
-                                {{$tests->links()}}
+                                {{$hospitals->links()}}
                             </div>
                         </div>
                     </div>

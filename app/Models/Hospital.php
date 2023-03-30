@@ -20,6 +20,10 @@ class Hospital extends Model
     protected $fillable=['name','type','branch','address1','address2','photo','contact','latitude','longitude','service_details',
         'status','show_home','sequence','created_by','updated_by'];
 
+    public function hospitalTestPrice(){
+        return $this->belongsToMany(Test::class,'hospital_wise_test_prices')
+            ->whereNull('hospital_wise_test_prices.deleted_at');
+    }
 
 
     // TODO :: boot
