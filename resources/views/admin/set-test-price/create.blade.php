@@ -105,7 +105,7 @@
 
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{url('admin/set-test-price')}}" class="btn btn-secondary pull-right">Cancel</a>
+                                    <a href="{{url('admin/hospitals')}}" class="btn btn-secondary pull-right">Cancel</a>
                                 </div>
                             </div>
 
@@ -127,11 +127,14 @@
         function openTestPriceBox(testId) {
 
             var readonlyProp=$('#test_price_'+testId).prop('readonly')
-            if(readonlyProp===true){
+
+            if(readonlyProp===true){ // make price inbox writable  ----
                 $('#test_price_'+testId).prop('readonly',false)
-            }else {
+                $('#test_price_'+testId).attr('required',true)
+            }else {// make price input readonly  ----
                 $('#test_price_'+testId).prop('readonly',true)
                 $('#test_price_'+testId).val('')
+                $('#test_price_'+testId).attr('required',false)
             }
 
             //$('#test_price_'+testId).prop('readonly',false)

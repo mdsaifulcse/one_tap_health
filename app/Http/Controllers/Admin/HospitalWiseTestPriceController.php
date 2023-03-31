@@ -46,6 +46,7 @@ class HospitalWiseTestPriceController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
+            "hospital_id"    => "required|exists:hospitals,id",
             "test_id"    => "required|array|min:1",
             "test_id.*"  => "required|min:1|max:999999",
 
@@ -60,13 +61,15 @@ class HospitalWiseTestPriceController extends Controller
         try{
 
             foreach ($request->test_id as $key=>$testId){
-                $testPricesHospitalWise[]=[
-                    'hospital_id'=>$request->hospital_id,
-                    'price'=>$request->test_price[$testId],
-                    'test_id'=>$testId,
-                    'created_by'=>auth()->user()->id,
-                    'updated_by'=>auth()->user()->id,
-                ];
+                if (!empty($request->test_price[$testId])) {
+                    $testPricesHospitalWise[] = [
+                        'hospital_id' => $request->hospital_id,
+                        'price' => $request->test_price[$testId],
+                        'test_id' => $testId,
+                        'created_by' => auth()->user()->id,
+                        'updated_by' => auth()->user()->id,
+                    ];
+                }
             }
 
             HospitalWiseTestPrice::insert($testPricesHospitalWise);
@@ -87,7 +90,7 @@ class HospitalWiseTestPriceController extends Controller
      */
     public function show($id) // $id==hospital id
     {
-        $hospital=Hospital::find($id);
+        $hospital=Hospital::findOrFail($id);
         $activeTests=Test::with('testCategory','testSubCategory','testThirdCategory')->where(['status'=>Test::ACTIVE])
             ->orderBy('sequence','DESC')->get();
         $hospitalTestPrice=HospitalWiseTestPrice::where(['hospital_id'=>$id])->pluck('price','test_id')->toArray();
@@ -112,7 +115,7 @@ class HospitalWiseTestPriceController extends Controller
      */
     public function edit($id) // $id==hospital id
     {
-        $hospital=Hospital::find($id);
+        $hospital=Hospital::findorFail($id);
         $activeTests=Test::with('testCategory','testSubCategory','testThirdCategory')->where(['status'=>Test::ACTIVE])
             ->orderBy('sequence','DESC')->get();
         $hospitalTestPrice=HospitalWiseTestPrice::where(['hospital_id'=>$id])->pluck('price','test_id')->toArray();
@@ -141,6 +144,7 @@ class HospitalWiseTestPriceController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
+            "hospital_id"    => "required|exists:hospitals,id",
             "test_id"    => "required|array|min:1",
             "test_id.*"  => "required|min:1|max:999999",
 
@@ -155,13 +159,15 @@ class HospitalWiseTestPriceController extends Controller
         try{
 
             foreach ($request->test_id as $key=>$testId){
-                $testPricesHospitalWise[]=[
-                    'hospital_id'=>$request->hospital_id,
-                    'price'=>$request->test_price[$testId],
-                    'test_id'=>$testId,
-                    'created_by'=>auth()->user()->id,
-                    'updated_by'=>auth()->user()->id,
-                ];
+                if (!empty($request->test_price[$testId])) {
+                    $testPricesHospitalWise[] = [
+                        'hospital_id' => $request->hospital_id,
+                        'price' => $request->test_price[$testId],
+                        'test_id' => $testId,
+                        'created_by' => auth()->user()->id,
+                        'updated_by' => auth()->user()->id,
+                    ];
+                }
             }
 
             // Delete old test price data -------
