@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hospital;
+use App\Models\HospitalWiseTestPrice;
 use Illuminate\Http\Request;
 use Validator,MyHelper,DB;
 
@@ -139,6 +140,11 @@ class HospitalController extends Controller
     public function destroy(Hospital $hospital)
     {
         try{
+            // Delete old test price data -------
+            $hospitalWiseTestPrice=HospitalWiseTestPrice::where(['hospital_id'=>$hospital->id])->first();
+            if (!empty($hospitalWiseTestPrice)){
+                HospitalWiseTestPrice::where(['hospital_id'=>$hospital->id])->delete();
+            }
 
             $hospital->delete();
             return redirect()->back()->with('success','Data has been Successfully Deleted!');

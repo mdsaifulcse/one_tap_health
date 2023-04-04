@@ -54,28 +54,8 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::resource('/quizzes', \App\Http\Controllers\Admin\QuizController::class );
 });
 
-//Route::group(['middleware' => ['auth']], function() {
-//    // ----------- For General user ----------
-//    Route::get('/user-dashboard', [\App\Http\Controllers\Client\DashboardController::class,'dashboard'] );
-//    Route::resource('/user-quiz', \App\Http\Controllers\Client\QuizController::class );
-//    Route::get('/user-quiz-answer', [\App\Http\Controllers\Client\QuizAnswerController::class,'index'] );
-//});
 
 Route::get('/', function (){
     return redirect('/login');
 });
 
-
-// Route::get('/login', function (){
-//     return redirect('/login/admin');
-// });
-
-//Route::middleware([
-//    'auth:sanctum',
-//    config('jetstream.auth_session'),
-//    'verified',
-//])->group(function () {
-//    Route::get('/dashboard', function () {
-//        return Inertia::render('Dashboard');
-//    })->name('dashboard');
-//});

@@ -21,7 +21,7 @@ class CategoryResource extends JsonResource
             'show_home'=>$this->show_home,
             'status'=>$this->status,
             'sequence'=>$this->sequence,
-            //'icon_photo'=>$this->icon_photo?url($this->icon_photo):'',
+            'icon_photo'=>$this->icon_photo?url($this->icon_photo):'',
         ];
     }
 }

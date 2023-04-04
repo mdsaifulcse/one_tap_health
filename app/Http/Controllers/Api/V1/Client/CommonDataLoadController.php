@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\Api\V1\Client;
+
+use App\Http\Controllers\Controller;
+use App\Http\Traits\ApiResponseTrait;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CategoryResourceCollection;
+use App\Http\Resources\SubCategoryResource;
+use App\Http\Resources\SubCategoryResourceCollection;
+use App\Http\Resources\ThirdSubCategoryResource;
+use App\Http\Resources\ThirdSubCategoryResourceCollection;
+use App\Models\Author;
+use App\Models\Item;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Image,DB,Auth,Validator,MyHelper,Route,DataLoad;
+
+class CommonDataLoadController extends Controller
+{
+    use ApiResponseTrait;
+
+    public function activeItemSearch(Request $request)
+    {
+        if ($request->q && !empty($request->q)){
+            return Item::select('title','id')
+                ->where('title', 'like', '%' .$request->q. '%')->get();
+        }else{
+            return [];
+        }
+    }
+
+    public function activeGeneralUserListList(){
+        try{
+            $generalUsers=DataLoad::generalUserList();
+            return $this->respondWithSuccess('Active General User List',$generalUsers,Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }  public function activeMembershipPlanList(){
+        try{
+            $membershipPlans=DataLoad::membershipPlanList();
+            return $this->respondWithSuccess('Active Membership Plan list',$membershipPlans,Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+
+    public function activeCategoryList(){
+        try{
+
+            $categories=DataLoad::activeCategoryForApi();
+            return $this->respondWithSuccess('Active Category list',CategoryResourceCollection::make($categories),Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    public function activeSubcategoryList($categoryId=null){
+        try{
+            $subCategories=DataLoad::subCatForApi($categoryId);
+            return $this->respondWithSuccess('Active Sub Category list',SubCategoryResourceCollection::make($subCategories),Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    public function activeThirdSubcategoryList($subCategoryId=null){
+        try{
+            $thirdCategories=DataLoad::thirdSubCatForApi($subCategoryId);
+            return $this->respondWithSuccess('Active Third Sub Category list',ThirdSubCategoryResourceCollection::make($thirdCategories),Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+}

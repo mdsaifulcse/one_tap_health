@@ -33,6 +33,32 @@
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation" menu-title-theme="theme5">Navigation</div>
 
         <ul class="pcoded-item pcoded-left-item">
+            <li class="pcoded-hasmenu pcoded-trigger" dropdown-icon="style3" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Hospital</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    {{--Sub Menu--}}
+                    <li class=" ">
+                        <a href="{{route('admin.hospitals.create')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Create Hospital</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{route('admin.hospitals.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">List Hospital</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
             {{--Main Menu--}}
             <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
@@ -79,32 +105,7 @@
 
                 </ul>
             </li>
-            <li class="pcoded-hasmenu pcoded-trigger" dropdown-icon="style3" subitem-icon="style6">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Hospital</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
 
-                    {{--Sub Menu--}}
-                    <li class=" ">
-                        <a href="{{route('admin.hospitals.create')}}" data-i18n="nav.page_layout.rtl">
-                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
-                            <span class="pcoded-mtext">Create Hospital</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" ">
-                        <a href="{{route('admin.hospitals.index')}}" data-i18n="nav.page_layout.rtl">
-                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
-                            <span class="pcoded-mtext">List Hospital</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
             {{--Main Menu--}}
             <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">

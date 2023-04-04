@@ -41,7 +41,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::6qodMnxJBO9q2hg9',
+            '_route' => 'generated::j2BVl5BBmSFJTYbl',
           ),
           1 => NULL,
           2 => 
@@ -151,7 +151,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oT390M0jfBDIzMEU',
+            '_route' => 'generated::tgz1w2I0UTCQDzyR',
           ),
           1 => NULL,
           2 => 
@@ -208,7 +208,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::HaZcGVvtcc8RQW9f',
+            '_route' => 'generated::FMF6vSBgelhbnIVj',
           ),
           1 => NULL,
           2 => 
@@ -281,7 +281,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::G8C6TZjbnyrSZb6N',
+            '_route' => 'generated::opaId9AP8luGMBWY',
           ),
           1 => NULL,
           2 => 
@@ -411,7 +411,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::bMOFnTitQ38mS3FI',
+            '_route' => 'generated::pdAiacmVAmwwB70p',
           ),
           1 => NULL,
           2 => 
@@ -450,7 +450,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::zRLOrVu0aH34mBjT',
+            '_route' => 'generated::s6hKHphQPHNZeKRG',
           ),
           1 => NULL,
           2 => 
@@ -464,45 +464,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/login/client' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'login.',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/login/register' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'login.generated::bnjwhSoZLduaknfG',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/client/logout' => 
+      '/api/v1/client/active-category-list' => 
       array (
         0 => 
         array (
@@ -513,7 +475,8 @@ app('router')->setCompiledRoutes(
           1 => NULL,
           2 => 
           array (
-            'POST' => 0,
+            'GET' => 0,
+            'HEAD' => 1,
           ),
           3 => NULL,
           4 => false,
@@ -521,13 +484,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/client/my-profile' => 
+      '/api/v1/client/active-country-list' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'client.generated::B9gGIpbXK4AJZVi5',
+            '_route' => 'client.generated::A1TvDeVrSSXkCU5o',
           ),
           1 => NULL,
           2 => 
@@ -541,70 +504,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/client/my-profile-update' => 
+      '/api/v1/client/active-language-list' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'client.generated::JahszSLf8TCMxbSG',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'PUT' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/client/my-password-change' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'client.generated::6teKxgnjXJpaQJvH',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'PUT' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/login/admin' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'login.generated::sqAiY1CiSKdLwMDq',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/login/test-data' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'login.generated::C7x9ch8dvJohqmwk',
+            '_route' => 'client.generated::jE8ZToXc3xoZ3wFE',
           ),
           1 => NULL,
           2 => 
@@ -618,13 +524,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/app-admin/category-list' => 
+      '/api/v1/client/active-author-list' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.',
+            '_route' => 'client.generated::adeYtSwsnkRIE6oI',
           ),
           1 => NULL,
           2 => 
@@ -638,13 +544,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/app-admin/active-country-list' => 
+      '/api/v1/client/active-publisher-list' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.generated::wCWg1F5F4nMQaVLL',
+            '_route' => 'client.generated::wgQHxy9cvwO3yzba',
           ),
           1 => NULL,
           2 => 
@@ -658,13 +564,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/app-admin/active-language-list' => 
+      '/api/v1/client/active-vendors-list' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.generated::n7tQqcNgNsvSqEkq',
+            '_route' => 'client.generated::5lti8MBWZziv5xdf',
           ),
           1 => NULL,
           2 => 
@@ -678,13 +584,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/app-admin/active-author-list' => 
+      '/api/v1/client/active-item-search' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.generated::zxqaD4lbl4IbYGx2',
+            '_route' => 'client.generated::gnRv0UfdAHb36ick',
           ),
           1 => NULL,
           2 => 
@@ -698,13 +604,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/app-admin/active-publisher-list' => 
+      '/api/v1/client/active-membership-plan' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.generated::DK5eXvCcB6QjQaJ8',
+            '_route' => 'client.generated::U86zrwT7dczxv5VN',
           ),
           1 => NULL,
           2 => 
@@ -718,1090 +624,19 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/api/v1/app-admin/active-vendors-list' => 
+      '/api/v1/client/active-general-users' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.generated::Cj2gsyph49RMR1My',
+            '_route' => 'client.generated::49LrpmyNqeUFblZG',
           ),
           1 => NULL,
           2 => 
           array (
             'GET' => 0,
             'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/active-item-search' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::MWWaUE4itgNfbkhn',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/active-membership-plan' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::qDplDCrP5720ACKi',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/active-general-users' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::mIXGvCr5W2jgwRn8',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-returns' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-returns.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-returns.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-return-num' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::JmfQloQeBbq0NChd',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-rentals' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-rentals.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-rentals.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-rental-num' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::eFbn0Vwk2FsDTiZx',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/vendor-payments' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendor-payments.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendor-payments.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/vendor-payment-num' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::xzpJ88IYfu5HRtgN',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-received' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-received.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-received.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-received-num' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::l7nSX3ZgmDNFCjXX',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-orders' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-orders.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-orders.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-order-num' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::h6zA6b399XbYgvdh',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/items' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.items.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.items.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/items-inventory-stock' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::mTDyEDgB2gZXeHM6',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/item-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::34VqJGEzlAgLmJV6',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/vendors' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendors.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendors.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/vendor-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::xVMJd3YLj9tkv7di',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/categories' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.categories.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.categories.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/category-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::mn89GlzCF8vligcY',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/sub-categories' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.sub-categories.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.sub-categories.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/sub-category-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::PYonys121UlNylbs',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/third-sub-categories' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.third-sub-categories.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.third-sub-categories.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/third-sub-categories-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::S5EncugolEiL3OIZ',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/authors' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.authors.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.authors.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/author-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::ZXGYEqYhuWpo9jTq',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/login-user' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::mHrYATpPucnjzC1c',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/countries' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.countries.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.countries.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/country-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::omOkwsgnGXb6RdqM',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/languages' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.languages.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.languages.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/language-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::BiwJbYuXJdSL8Dk4',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/publishers' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.publishers.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.publishers.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/publisher-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::rA5t7FqaY9P1lRdh',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/user-membership' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.user-membership.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.user-membership.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/membership-plans' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.membership-plans.index',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.membership-plans.store',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/membership-plans-max-sequence' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::7zhdFoc10HInVPWd',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/register' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::N1HP9jFGsAnk4vrl',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/logout' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::6a8hgXa5tZOAzi2m',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'POST' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/my-profile' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::bQn2emAEnkqyhA7L',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/my-profile-update' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::kwLpWZuTM6XkdmSL',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'PUT' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => false,
-          6 => NULL,
-        ),
-      ),
-      '/api/v1/app-admin/my-password-change' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::DiOXFCqU0wyuDGl9',
-          ),
-          1 => NULL,
-          2 => 
-          array (
-            'PUT' => 0,
           ),
           3 => NULL,
           4 => false,
@@ -1832,7 +667,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'login.generated::bUeE2vMNOfySx9dv',
+            '_route' => 'login.',
           ),
           1 => NULL,
           2 => 
@@ -2187,7 +1022,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'admin.generated::tacjyrRxv66UR66D',
+            '_route' => 'admin.generated::jX6Yb6bAshQY2Ptf',
           ),
           1 => NULL,
           2 => 
@@ -2207,7 +1042,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'admin.generated::ObukKGwucmQDm9kw',
+            '_route' => 'admin.generated::crG3DzRXhJ9yMYjx',
           ),
           1 => NULL,
           2 => 
@@ -2227,7 +1062,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'admin.generated::fqcLeBwgycvqxbhn',
+            '_route' => 'admin.generated::d90KNjsmxCdOMOZr',
           ),
           1 => NULL,
           2 => 
@@ -2266,7 +1101,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'admin.generated::m3RYkH82pxQsUMMn',
+            '_route' => 'admin.generated::HHZWqlYccdxKy1Lz',
           ),
           1 => NULL,
           2 => 
@@ -2417,7 +1252,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::fFljBtgiXMUASoRt',
+            '_route' => 'generated::NdN6NfcCwwfmTtJe',
           ),
           1 => NULL,
           2 => 
@@ -2434,7 +1269,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/reset\\-password/([^/]++)(*:32)|/a(?|pi/v1/app\\-admin/(?|sub\\-categor(?|y\\-list(?:/([^/]++))?(*:100)|ies/([^/]++)(?|(*:123)))|a(?|ctive\\-third\\-sub\\-category\\-list(?:/([^/]++))?(*:184)|uthors/([^/]++)(?|(*:210)))|item(?|\\-(?|re(?|turns/([^/]++)(?|(*:254))|ntals/([^/]++)(?|(*:280))|ceived/([^/]++)(?|(*:307)))|orders/([^/]++)(?|(*:335)))|s/([^/]++)(?|(*:358)))|returnAbleRentalItemByRentalId/([^/]++)(*:407)|vendor(?|\\-payments/([^/]++)(?|(*:446))|PaymentsByReceivedId/([^/]++)(*:484)|s/([^/]++)(?|(*:505)))|p(?|ayableReceivedOrderByReceivedId/([^/]++)(*:559)|ublishers/([^/]++)(?|(*:588)))|u(?|nreceivedOrderByOrderId/([^/]++)(*:634)|ser(?|\\-(?|membership/([^/]++)(?|(*:675))|by\\-id/([^/]++)(*:699)|update/([^/]++)(*:722))|s(?:/([^/]++))?(*:746))|pdate\\-user\\-password/([^/]++)(*:785))|c(?|ategories/([^/]++)(?|(*:819))|ountries/([^/]++)(?|(*:848)))|third\\-sub\\-categories/([^/]++)(?|(*:892))|languages/([^/]++)(?|(*:922))|membership\\-plans/([^/]++)(?|(*:960))|delete\\-user/([^/]++)(*:990))|dmin/(?|s(?|et\\-test\\-price/([^/]++)(?|(*:1038)|/edit(*:1052)|(*:1061))|ub\\-categories/([^/]++)(?|(*:1097)|/edit(*:1111)|(*:1120)))|hospitals/([^/]++)(?|(*:1152)|/edit(*:1166)|(*:1175))|t(?|ests/([^/]++)(?|(*:1205)|/edit(*:1219)|(*:1228))|hird\\-sub\\-categories/([^/]++)(?|(*:1271)|/edit(*:1285)|(*:1294)))|categories/([^/]++)(?|(*:1327)|/edit(*:1341)|(*:1350))|load\\-(?|sub\\-cat\\-by\\-cat/([^/]++)(*:1395)|third\\-sub\\-cat\\-by\\-sub\\-cat/([^/]++)(*:1442))|users/([^/]++)(?|(*:1469)|/edit(*:1483)|(*:1492))|quizzes/([^/]++)(?|(*:1521)|/edit(*:1535)|(*:1544)))))/?$}sDu',
+      0 => '{^(?|/reset\\-password/([^/]++)(*:32)|/a(?|pi/v1/client/active\\-(?|sub\\-category\\-list(?:/([^/]++))?(*:101)|third\\-sub\\-category\\-list(?:/([^/]++))?(*:149))|dmin/(?|s(?|et\\-test\\-price/([^/]++)(?|(*:197)|/edit(*:210)|(*:218))|ub\\-categories/([^/]++)(?|(*:253)|/edit(*:266)|(*:274)))|hospitals/([^/]++)(?|(*:305)|/edit(*:318)|(*:326))|t(?|ests/([^/]++)(?|(*:355)|/edit(*:368)|(*:376))|hird\\-sub\\-categories/([^/]++)(?|(*:418)|/edit(*:431)|(*:439)))|categories/([^/]++)(?|(*:471)|/edit(*:484)|(*:492))|load\\-(?|sub\\-cat\\-by\\-cat/([^/]++)(*:536)|third\\-sub\\-cat\\-by\\-sub\\-cat/([^/]++)(*:582))|users/([^/]++)(?|(*:608)|/edit(*:621)|(*:629))|quizzes/([^/]++)(?|(*:657)|/edit(*:670)|(*:678)))))/?$}sDu',
     ),
     3 => 
     array (
@@ -2461,13 +1296,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      100 => 
+      101 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.generated::Ckbjm7ChTU6bsj6u',
+            '_route' => 'client.generated::VeJRCZYflFVYeO4o',
             'categoryId' => NULL,
           ),
           1 => 
@@ -2485,75 +1320,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      123 => 
+      149 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'app-admin.sub-categories.show',
-          ),
-          1 => 
-          array (
-            0 => 'sub_category',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.sub-categories.update',
-          ),
-          1 => 
-          array (
-            0 => 'sub_category',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.sub-categories.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'sub_category',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      184 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::XsZogGq59e8xxEt5',
+            '_route' => 'client.generated::ljNGvJerVm3gER5S',
             'subCategoryId' => NULL,
           ),
           1 => 
@@ -2571,1142 +1344,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      210 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.authors.show',
-          ),
-          1 => 
-          array (
-            0 => 'author',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.authors.update',
-          ),
-          1 => 
-          array (
-            0 => 'author',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.authors.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'author',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      254 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-returns.show',
-          ),
-          1 => 
-          array (
-            0 => 'item_return',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-returns.update',
-          ),
-          1 => 
-          array (
-            0 => 'item_return',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-returns.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'item_return',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      280 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-rentals.show',
-          ),
-          1 => 
-          array (
-            0 => 'item_rental',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-rentals.update',
-          ),
-          1 => 
-          array (
-            0 => 'item_rental',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-rentals.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'item_rental',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      307 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-received.show',
-          ),
-          1 => 
-          array (
-            0 => 'item_received',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-received.update',
-          ),
-          1 => 
-          array (
-            0 => 'item_received',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-received.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'item_received',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      335 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-orders.show',
-          ),
-          1 => 
-          array (
-            0 => 'item_order',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-orders.update',
-          ),
-          1 => 
-          array (
-            0 => 'item_order',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.item-orders.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'item_order',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      358 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.items.show',
-          ),
-          1 => 
-          array (
-            0 => 'item',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.items.update',
-          ),
-          1 => 
-          array (
-            0 => 'item',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.items.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'item',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      407 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::FYApVIcshEJsvFCk',
-          ),
-          1 => 
-          array (
-            0 => 'rentalId',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      446 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendor-payments.show',
-          ),
-          1 => 
-          array (
-            0 => 'vendor_payment',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendor-payments.update',
-          ),
-          1 => 
-          array (
-            0 => 'vendor_payment',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendor-payments.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'vendor_payment',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      484 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::OKJ2ZN0JApFpWvFO',
-          ),
-          1 => 
-          array (
-            0 => 'receivedId',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      505 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendors.show',
-          ),
-          1 => 
-          array (
-            0 => 'vendor',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendors.update',
-          ),
-          1 => 
-          array (
-            0 => 'vendor',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.vendors.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'vendor',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      559 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::40O43NYgy9OBIuSX',
-          ),
-          1 => 
-          array (
-            0 => 'receivedId',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      588 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.publishers.show',
-          ),
-          1 => 
-          array (
-            0 => 'publisher',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.publishers.update',
-          ),
-          1 => 
-          array (
-            0 => 'publisher',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.publishers.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'publisher',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      634 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::rsDLiKzo5nAZ1iXH',
-          ),
-          1 => 
-          array (
-            0 => 'orderId',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      675 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.user-membership.show',
-          ),
-          1 => 
-          array (
-            0 => 'user_membership',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.user-membership.update',
-          ),
-          1 => 
-          array (
-            0 => 'user_membership',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.user-membership.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'user_membership',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      699 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::CORYHvbBYjoVDRpc',
-          ),
-          1 => 
-          array (
-            0 => 'useId',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      722 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::UxiLh6TaNKMBDxIr',
-          ),
-          1 => 
-          array (
-            0 => 'useId',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      746 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::nbOZQfGvibjsZFo6',
-            'roleType' => NULL,
-          ),
-          1 => 
-          array (
-            0 => 'roleType',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      785 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::blTPOyLf7UTgYv4A',
-          ),
-          1 => 
-          array (
-            0 => 'useId',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      819 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.categories.show',
-          ),
-          1 => 
-          array (
-            0 => 'category',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.categories.update',
-          ),
-          1 => 
-          array (
-            0 => 'category',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.categories.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'category',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      848 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.countries.show',
-          ),
-          1 => 
-          array (
-            0 => 'country',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.countries.update',
-          ),
-          1 => 
-          array (
-            0 => 'country',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.countries.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'country',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      892 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.third-sub-categories.show',
-          ),
-          1 => 
-          array (
-            0 => 'third_sub_category',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.third-sub-categories.update',
-          ),
-          1 => 
-          array (
-            0 => 'third_sub_category',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.third-sub-categories.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'third_sub_category',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      922 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.languages.show',
-          ),
-          1 => 
-          array (
-            0 => 'language',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.languages.update',
-          ),
-          1 => 
-          array (
-            0 => 'language',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.languages.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'language',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      960 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.membership-plans.show',
-          ),
-          1 => 
-          array (
-            0 => 'membership_plan',
-          ),
-          2 => 
-          array (
-            'GET' => 0,
-            'HEAD' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        1 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.membership-plans.update',
-          ),
-          1 => 
-          array (
-            0 => 'membership_plan',
-          ),
-          2 => 
-          array (
-            'PUT' => 0,
-            'PATCH' => 1,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.membership-plans.destroy',
-          ),
-          1 => 
-          array (
-            0 => 'membership_plan',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      990 => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            '_route' => 'app-admin.generated::vwB4BrnrVBHR7Gej',
-          ),
-          1 => 
-          array (
-            0 => 'useId',
-          ),
-          2 => 
-          array (
-            'DELETE' => 0,
-          ),
-          3 => NULL,
-          4 => false,
-          5 => true,
-          6 => NULL,
-        ),
-      ),
-      1038 => 
+      197 => 
       array (
         0 => 
         array (
@@ -3729,7 +1367,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1052 => 
+      210 => 
       array (
         0 => 
         array (
@@ -3752,7 +1390,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1061 => 
+      218 => 
       array (
         0 => 
         array (
@@ -3794,7 +1432,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1097 => 
+      253 => 
       array (
         0 => 
         array (
@@ -3817,7 +1455,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1111 => 
+      266 => 
       array (
         0 => 
         array (
@@ -3840,7 +1478,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1120 => 
+      274 => 
       array (
         0 => 
         array (
@@ -3882,7 +1520,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1152 => 
+      305 => 
       array (
         0 => 
         array (
@@ -3905,7 +1543,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1166 => 
+      318 => 
       array (
         0 => 
         array (
@@ -3928,7 +1566,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1175 => 
+      326 => 
       array (
         0 => 
         array (
@@ -3970,7 +1608,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1205 => 
+      355 => 
       array (
         0 => 
         array (
@@ -3993,7 +1631,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1219 => 
+      368 => 
       array (
         0 => 
         array (
@@ -4016,7 +1654,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1228 => 
+      376 => 
       array (
         0 => 
         array (
@@ -4058,7 +1696,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1271 => 
+      418 => 
       array (
         0 => 
         array (
@@ -4081,7 +1719,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1285 => 
+      431 => 
       array (
         0 => 
         array (
@@ -4104,7 +1742,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1294 => 
+      439 => 
       array (
         0 => 
         array (
@@ -4146,7 +1784,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1327 => 
+      471 => 
       array (
         0 => 
         array (
@@ -4169,7 +1807,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1341 => 
+      484 => 
       array (
         0 => 
         array (
@@ -4192,7 +1830,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1350 => 
+      492 => 
       array (
         0 => 
         array (
@@ -4234,7 +1872,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1395 => 
+      536 => 
       array (
         0 => 
         array (
@@ -4257,13 +1895,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1442 => 
+      582 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'admin.generated::3kBz4Y5r868wQcXy',
+            '_route' => 'admin.generated::You95Rv7PlTUkjsO',
           ),
           1 => 
           array (
@@ -4280,7 +1918,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1469 => 
+      608 => 
       array (
         0 => 
         array (
@@ -4303,7 +1941,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1483 => 
+      621 => 
       array (
         0 => 
         array (
@@ -4326,7 +1964,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1492 => 
+      629 => 
       array (
         0 => 
         array (
@@ -4368,7 +2006,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1521 => 
+      657 => 
       array (
         0 => 
         array (
@@ -4391,7 +2029,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1535 => 
+      670 => 
       array (
         0 => 
         array (
@@ -4414,7 +2052,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      1544 => 
+      678 => 
       array (
         0 => 
         array (
@@ -4510,7 +2148,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::6qodMnxJBO9q2hg9' => 
+    'generated::j2BVl5BBmSFJTYbl' => 
     array (
       'methods' => 
       array (
@@ -4533,7 +2171,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::6qodMnxJBO9q2hg9',
+        'as' => 'generated::j2BVl5BBmSFJTYbl',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4779,7 +2417,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oT390M0jfBDIzMEU' => 
+    'generated::tgz1w2I0UTCQDzyR' => 
     array (
       'methods' => 
       array (
@@ -4801,7 +2439,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::oT390M0jfBDIzMEU',
+        'as' => 'generated::tgz1w2I0UTCQDzyR',
       ),
       'fallback' => false,
       'defaults' => 
@@ -4893,7 +2531,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::HaZcGVvtcc8RQW9f' => 
+    'generated::FMF6vSBgelhbnIVj' => 
     array (
       'methods' => 
       array (
@@ -4916,7 +2554,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::HaZcGVvtcc8RQW9f',
+        'as' => 'generated::FMF6vSBgelhbnIVj',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5048,7 +2686,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::G8C6TZjbnyrSZb6N' => 
+    'generated::opaId9AP8luGMBWY' => 
     array (
       'methods' => 
       array (
@@ -5071,7 +2709,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::G8C6TZjbnyrSZb6N',
+        'as' => 'generated::opaId9AP8luGMBWY',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5324,7 +2962,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::bMOFnTitQ38mS3FI' => 
+    'generated::pdAiacmVAmwwB70p' => 
     array (
       'methods' => 
       array (
@@ -5347,7 +2985,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::bMOFnTitQ38mS3FI',
+        'as' => 'generated::pdAiacmVAmwwB70p',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5403,7 +3041,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::zRLOrVu0aH34mBjT' => 
+    'generated::s6hKHphQPHNZeKRG' => 
     array (
       'methods' => 
       array (
@@ -5424,79 +3062,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'as' => 'generated::zRLOrVu0aH34mBjT',
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'login.' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/login/client',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@login',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@login',
-        'as' => 'login.',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
-        'prefix' => 'api/v1/login',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'login.generated::bnjwhSoZLduaknfG' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/login/register',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@generalUserRegister',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@generalUserRegister',
-        'as' => 'login.generated::bnjwhSoZLduaknfG',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
-        'prefix' => 'api/v1/login',
-        'where' => 
-        array (
-        ),
+        'as' => 'generated::s6hKHphQPHNZeKRG',
       ),
       'fallback' => false,
       'defaults' => 
@@ -5516,18 +3082,18 @@ app('router')->setCompiledRoutes(
     array (
       'methods' => 
       array (
-        0 => 'POST',
+        0 => 'GET',
+        1 => 'HEAD',
       ),
-      'uri' => 'api/v1/client/logout',
+      'uri' => 'api/v1/client/active-category-list',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@logout',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\AuthController@logout',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeCategoryList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeCategoryList',
         'as' => 'client.',
         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
         'prefix' => 'api/v1/client',
@@ -5549,24 +3115,23 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'client.generated::B9gGIpbXK4AJZVi5' => 
+    'client.generated::VeJRCZYflFVYeO4o' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/client/my-profile',
+      'uri' => 'api/v1/client/active-sub-category-list/{categoryId?}',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\ProfileController@profileInfo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\ProfileController@profileInfo',
-        'as' => 'client.generated::B9gGIpbXK4AJZVi5',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeSubcategoryList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeSubcategoryList',
+        'as' => 'client.generated::VeJRCZYflFVYeO4o',
         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
         'prefix' => 'api/v1/client',
         'where' => 
@@ -5587,23 +3152,23 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'client.generated::JahszSLf8TCMxbSG' => 
+    'client.generated::ljNGvJerVm3gER5S' => 
     array (
       'methods' => 
       array (
-        0 => 'PUT',
+        0 => 'GET',
+        1 => 'HEAD',
       ),
-      'uri' => 'api/v1/client/my-profile-update',
+      'uri' => 'api/v1/client/active-third-sub-category-list/{subCategoryId?}',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\ProfileController@profileUpdate',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\ProfileController@profileUpdate',
-        'as' => 'client.generated::JahszSLf8TCMxbSG',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeThirdSubcategoryList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeThirdSubcategoryList',
+        'as' => 'client.generated::ljNGvJerVm3gER5S',
         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
         'prefix' => 'api/v1/client',
         'where' => 
@@ -5624,23 +3189,23 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'client.generated::6teKxgnjXJpaQJvH' => 
+    'client.generated::A1TvDeVrSSXkCU5o' => 
     array (
       'methods' => 
       array (
-        0 => 'PUT',
+        0 => 'GET',
+        1 => 'HEAD',
       ),
-      'uri' => 'api/v1/client/my-password-change',
+      'uri' => 'api/v1/client/active-country-list',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\ProfileController@changeMyPassword',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\ProfileController@changeMyPassword',
-        'as' => 'client.generated::6teKxgnjXJpaQJvH',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeCountryList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeCountryList',
+        'as' => 'client.generated::A1TvDeVrSSXkCU5o',
         'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
         'prefix' => 'api/v1/client',
         'where' => 
@@ -5661,289 +3226,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'login.generated::sqAiY1CiSKdLwMDq' => 
+    'client.generated::jE8ZToXc3xoZ3wFE' => 
     array (
       'methods' => 
       array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/login/admin',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthController@login',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthController@login',
-        'as' => 'login.generated::sqAiY1CiSKdLwMDq',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/login',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'login.generated::C7x9ch8dvJohqmwk' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/login/test-data',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@testData',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@testData',
-        'as' => 'login.generated::C7x9ch8dvJohqmwk',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/login',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/category-list',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeCategoryList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeCategoryList',
-        'as' => 'app-admin.',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::Ckbjm7ChTU6bsj6u' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/sub-category-list/{categoryId?}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeSubcategoryList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeSubcategoryList',
-        'as' => 'app-admin.generated::Ckbjm7ChTU6bsj6u',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::XsZogGq59e8xxEt5' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/active-third-sub-category-list/{subCategoryId?}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeThirdSubcategoryList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeThirdSubcategoryList',
-        'as' => 'app-admin.generated::XsZogGq59e8xxEt5',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::wCWg1F5F4nMQaVLL' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/active-country-list',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeCountryList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeCountryList',
-        'as' => 'app-admin.generated::wCWg1F5F4nMQaVLL',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::n7tQqcNgNsvSqEkq' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/active-language-list',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeLanguageList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeLanguageList',
-        'as' => 'app-admin.generated::n7tQqcNgNsvSqEkq',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::zxqaD4lbl4IbYGx2' => 
-    array (
-      'methods' => 
-      array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/app-admin/active-author-list',
+      'uri' => 'api/v1/client/active-language-list',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeAuthorList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeAuthorList',
-        'as' => 'app-admin.generated::zxqaD4lbl4IbYGx2',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeLanguageList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeLanguageList',
+        'as' => 'client.generated::jE8ZToXc3xoZ3wFE',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -5962,26 +3263,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'app-admin.generated::DK5eXvCcB6QjQaJ8' => 
+    'client.generated::adeYtSwsnkRIE6oI' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/app-admin/active-publisher-list',
+      'uri' => 'api/v1/client/active-author-list',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activePublisherList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activePublisherList',
-        'as' => 'app-admin.generated::DK5eXvCcB6QjQaJ8',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeAuthorList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeAuthorList',
+        'as' => 'client.generated::adeYtSwsnkRIE6oI',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -6000,26 +3300,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'app-admin.generated::Cj2gsyph49RMR1My' => 
+    'client.generated::wgQHxy9cvwO3yzba' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/app-admin/active-vendors-list',
+      'uri' => 'api/v1/client/active-publisher-list',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeVendorsList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeVendorsList',
-        'as' => 'app-admin.generated::Cj2gsyph49RMR1My',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activePublisherList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activePublisherList',
+        'as' => 'client.generated::wgQHxy9cvwO3yzba',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -6038,26 +3337,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'app-admin.generated::MWWaUE4itgNfbkhn' => 
+    'client.generated::5lti8MBWZziv5xdf' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/app-admin/active-item-search',
+      'uri' => 'api/v1/client/active-vendors-list',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeItemSearch',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeItemSearch',
-        'as' => 'app-admin.generated::MWWaUE4itgNfbkhn',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeVendorsList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeVendorsList',
+        'as' => 'client.generated::5lti8MBWZziv5xdf',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -6076,26 +3374,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'app-admin.generated::qDplDCrP5720ACKi' => 
+    'client.generated::gnRv0UfdAHb36ick' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/app-admin/active-membership-plan',
+      'uri' => 'api/v1/client/active-item-search',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeMembershipPlanList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeMembershipPlanList',
-        'as' => 'app-admin.generated::qDplDCrP5720ACKi',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeItemSearch',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeItemSearch',
+        'as' => 'client.generated::gnRv0UfdAHb36ick',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -6114,26 +3411,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'app-admin.generated::mIXGvCr5W2jgwRn8' => 
+    'client.generated::U86zrwT7dczxv5VN' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'api/v1/app-admin/active-general-users',
+      'uri' => 'api/v1/client/active-membership-plan',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeGeneralUserListList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CommonDataLoadController@activeGeneralUserListList',
-        'as' => 'app-admin.generated::mIXGvCr5W2jgwRn8',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeMembershipPlanList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeMembershipPlanList',
+        'as' => 'client.generated::U86zrwT7dczxv5VN',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -6152,4166 +3448,25 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'app-admin.item-returns.index' => 
+    'client.generated::49LrpmyNqeUFblZG' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-returns',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-returns.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-returns.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/item-returns',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-returns.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-returns.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-returns/{item_return}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-returns.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-returns.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/item-returns/{item_return}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-returns.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-returns.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/item-returns/{item_return}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-returns.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::JmfQloQeBbq0NChd' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-return-num',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@generateItemReturnNo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@generateItemReturnNo',
-        'as' => 'app-admin.generated::JmfQloQeBbq0NChd',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::FYApVIcshEJsvFCk' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/returnAbleRentalItemByRentalId/{rentalId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@returnAbleRentalItemByRentalId',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReturnController@returnAbleRentalItemByRentalId',
-        'as' => 'app-admin.generated::FYApVIcshEJsvFCk',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-rentals.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-rentals',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-rentals.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-rentals.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/item-rentals',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-rentals.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-rentals.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-rentals/{item_rental}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-rentals.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-rentals.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/item-rentals/{item_rental}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-rentals.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-rentals.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/item-rentals/{item_rental}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-rentals.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::eFbn0Vwk2FsDTiZx' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-rental-num',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@generateItemRentalNo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemRentalController@generateItemRentalNo',
-        'as' => 'app-admin.generated::eFbn0Vwk2FsDTiZx',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendor-payments.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-payments',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendor-payments.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendor-payments.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-payments',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendor-payments.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendor-payments.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-payments/{vendor_payment}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendor-payments.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendor-payments.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-payments/{vendor_payment}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendor-payments.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendor-payments.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-payments/{vendor_payment}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendor-payments.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::xzpJ88IYfu5HRtgN' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-payment-num',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@generateVendorPaymentNo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@generateVendorPaymentNo',
-        'as' => 'app-admin.generated::xzpJ88IYfu5HRtgN',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::OKJ2ZN0JApFpWvFO' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendorPaymentsByReceivedId/{receivedId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@vendorPaymentsByReceivedId',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@vendorPaymentsByReceivedId',
-        'as' => 'app-admin.generated::OKJ2ZN0JApFpWvFO',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::40O43NYgy9OBIuSX' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/payableReceivedOrderByReceivedId/{receivedId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@payableReceivedOrderByReceivedId',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorPaymentController@payableReceivedOrderByReceivedId',
-        'as' => 'app-admin.generated::40O43NYgy9OBIuSX',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-received.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-received',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-received.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-received.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/item-received',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-received.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-received.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-received/{item_received}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-received.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-received.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/item-received/{item_received}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-received.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-received.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/item-received/{item_received}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-received.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::l7nSX3ZgmDNFCjXX' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-received-num',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@generateItemReceiveNo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@generateItemReceiveNo',
-        'as' => 'app-admin.generated::l7nSX3ZgmDNFCjXX',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::rsDLiKzo5nAZ1iXH' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/unreceivedOrderByOrderId/{orderId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@unReceivedOrderByOrderId',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemReceiveController@unReceivedOrderByOrderId',
-        'as' => 'app-admin.generated::rsDLiKzo5nAZ1iXH',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-orders.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-orders',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-orders.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-orders.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/item-orders',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-orders.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-orders.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-orders/{item_order}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-orders.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-orders.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/item-orders/{item_order}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-orders.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.item-orders.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/item-orders/{item_order}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.item-orders.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::h6zA6b399XbYgvdh' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-order-num',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@generateOrderInvoiceNo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemOrderController@generateOrderInvoiceNo',
-        'as' => 'app-admin.generated::h6zA6b399XbYgvdh',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.items.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/items',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.items.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.items.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/items',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.items.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.items.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/items/{item}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.items.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.items.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/items/{item}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.items.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.items.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/items/{item}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.items.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::mTDyEDgB2gZXeHM6' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/items-inventory-stock',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@itemsInventoryStock',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@itemsInventoryStock',
-        'as' => 'app-admin.generated::mTDyEDgB2gZXeHM6',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::34VqJGEzlAgLmJV6' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/item-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ItemController@getMaxSequence',
-        'as' => 'app-admin.generated::34VqJGEzlAgLmJV6',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendors.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendors',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendors.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendors.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/vendors',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendors.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendors.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendors/{vendor}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendors.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendors.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/vendors/{vendor}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendors.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.vendors.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/vendors/{vendor}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.vendors.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::xVMJd3YLj9tkv7di' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/vendor-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\VendorController@getMaxSequence',
-        'as' => 'app-admin.generated::xVMJd3YLj9tkv7di',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.categories.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.categories.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.categories.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.categories.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.categories.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/categories/{category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.categories.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.categories.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/categories/{category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.categories.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.categories.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/categories/{category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.categories.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::mn89GlzCF8vligcY' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/category-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CategoryController@getMaxSequence',
-        'as' => 'app-admin.generated::mn89GlzCF8vligcY',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.sub-categories.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/sub-categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.sub-categories.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.sub-categories.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/sub-categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.sub-categories.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.sub-categories.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/sub-categories/{sub_category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.sub-categories.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.sub-categories.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/sub-categories/{sub_category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.sub-categories.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.sub-categories.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/sub-categories/{sub_category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.sub-categories.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::PYonys121UlNylbs' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/sub-category-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\SubCategoryController@getMaxSequence',
-        'as' => 'app-admin.generated::PYonys121UlNylbs',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.third-sub-categories.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/third-sub-categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.third-sub-categories.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.third-sub-categories.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/third-sub-categories',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.third-sub-categories.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.third-sub-categories.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/third-sub-categories/{third_sub_category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.third-sub-categories.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.third-sub-categories.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/third-sub-categories/{third_sub_category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.third-sub-categories.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.third-sub-categories.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/third-sub-categories/{third_sub_category}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.third-sub-categories.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::S5EncugolEiL3OIZ' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/third-sub-categories-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ThirdSubCategoryController@getMaxSequence',
-        'as' => 'app-admin.generated::S5EncugolEiL3OIZ',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.authors.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/authors',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.authors.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.authors.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/authors',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.authors.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.authors.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/authors/{author}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.authors.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.authors.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/authors/{author}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.authors.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.authors.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/authors/{author}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.authors.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::ZXGYEqYhuWpo9jTq' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/author-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@getMaxSequence',
-        'as' => 'app-admin.generated::ZXGYEqYhuWpo9jTq',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::mHrYATpPucnjzC1c' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/login-user',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@loginCustom',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthorController@loginCustom',
-        'as' => 'app-admin.generated::mHrYATpPucnjzC1c',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.countries.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/countries',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.countries.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.countries.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/countries',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.countries.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.countries.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/countries/{country}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.countries.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.countries.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/countries/{country}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.countries.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.countries.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/countries/{country}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.countries.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::omOkwsgnGXb6RdqM' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/country-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\CountryController@getMaxSequence',
-        'as' => 'app-admin.generated::omOkwsgnGXb6RdqM',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.languages.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/languages',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.languages.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.languages.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/languages',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.languages.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.languages.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/languages/{language}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.languages.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.languages.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/languages/{language}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.languages.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.languages.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/languages/{language}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.languages.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::BiwJbYuXJdSL8Dk4' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/language-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\LanguageController@getMaxSequence',
-        'as' => 'app-admin.generated::BiwJbYuXJdSL8Dk4',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.publishers.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/publishers',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.publishers.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.publishers.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/publishers',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.publishers.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.publishers.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/publishers/{publisher}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.publishers.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.publishers.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/publishers/{publisher}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.publishers.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.publishers.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/publishers/{publisher}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.publishers.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::rA5t7FqaY9P1lRdh' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/publisher-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\PublisherController@getMaxSequence',
-        'as' => 'app-admin.generated::rA5t7FqaY9P1lRdh',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.user-membership.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/user-membership',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.user-membership.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.user-membership.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/user-membership',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.user-membership.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.user-membership.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/user-membership/{user_membership}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.user-membership.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.user-membership.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/user-membership/{user_membership}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.user-membership.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.user-membership.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/user-membership/{user_membership}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.user-membership.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserMembershipController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.membership-plans.index' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/membership-plans',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.membership-plans.index',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@index',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@index',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.membership-plans.store' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/membership-plans',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.membership-plans.store',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@store',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@store',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.membership-plans.show' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/membership-plans/{membership_plan}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.membership-plans.show',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@show',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@show',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.membership-plans.update' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-        1 => 'PATCH',
-      ),
-      'uri' => 'api/v1/app-admin/membership-plans/{membership_plan}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.membership-plans.update',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@update',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@update',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.membership-plans.destroy' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/membership-plans/{membership_plan}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'as' => 'app-admin.membership-plans.destroy',
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@destroy',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin/',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::7zhdFoc10HInVPWd' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/membership-plans-max-sequence',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@getMaxSequence',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\MembershipController@getMaxSequence',
-        'as' => 'app-admin.generated::7zhdFoc10HInVPWd',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::nbOZQfGvibjsZFo6' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/users/{roleType?}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@allUserList',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@allUserList',
-        'as' => 'app-admin.generated::nbOZQfGvibjsZFo6',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::CORYHvbBYjoVDRpc' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/user-by-id/{useId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@userInfoById',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@userInfoById',
-        'as' => 'app-admin.generated::CORYHvbBYjoVDRpc',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::UxiLh6TaNKMBDxIr' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-      ),
-      'uri' => 'api/v1/app-admin/user-update/{useId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@userUpdateById',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@userUpdateById',
-        'as' => 'app-admin.generated::UxiLh6TaNKMBDxIr',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::blTPOyLf7UTgYv4A' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-      ),
-      'uri' => 'api/v1/app-admin/update-user-password/{useId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@userChangePassword',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@userChangePassword',
-        'as' => 'app-admin.generated::blTPOyLf7UTgYv4A',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::vwB4BrnrVBHR7Gej' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'DELETE',
-      ),
-      'uri' => 'api/v1/app-admin/delete-user/{useId}',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@destroy',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@destroy',
-        'as' => 'app-admin.generated::vwB4BrnrVBHR7Gej',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::N1HP9jFGsAnk4vrl' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/register',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@adminRegister',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\UserController@adminRegister',
-        'as' => 'app-admin.generated::N1HP9jFGsAnk4vrl',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::6a8hgXa5tZOAzi2m' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'POST',
-      ),
-      'uri' => 'api/v1/app-admin/logout',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthController@logout',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\AuthController@logout',
-        'as' => 'app-admin.generated::6a8hgXa5tZOAzi2m',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::bQn2emAEnkqyhA7L' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'GET',
-        1 => 'HEAD',
-      ),
-      'uri' => 'api/v1/app-admin/my-profile',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ProfileController@profileInfo',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ProfileController@profileInfo',
-        'as' => 'app-admin.generated::bQn2emAEnkqyhA7L',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::kwLpWZuTM6XkdmSL' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
-      ),
-      'uri' => 'api/v1/app-admin/my-profile-update',
-      'action' => 
-      array (
-        'middleware' => 
-        array (
-          0 => 'api',
-          1 => 'auth:sanctum',
-        ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ProfileController@profileUpdate',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ProfileController@profileUpdate',
-        'as' => 'app-admin.generated::kwLpWZuTM6XkdmSL',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
-        'where' => 
-        array (
-        ),
-      ),
-      'fallback' => false,
-      'defaults' => 
-      array (
-      ),
-      'wheres' => 
-      array (
-      ),
-      'bindingFields' => 
-      array (
-      ),
-      'lockSeconds' => NULL,
-      'waitSeconds' => NULL,
-      'withTrashed' => false,
-    ),
-    'app-admin.generated::DiOXFCqU0wyuDGl9' => 
-    array (
-      'methods' => 
-      array (
-        0 => 'PUT',
       ),
-      'uri' => 'api/v1/app-admin/my-password-change',
+      'uri' => 'api/v1/client/active-general-users',
       'action' => 
       array (
         'middleware' => 
         array (
           0 => 'api',
-          1 => 'auth:sanctum',
         ),
-        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ProfileController@changeMyPassword',
-        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Admin\\ProfileController@changeMyPassword',
-        'as' => 'app-admin.generated::DiOXFCqU0wyuDGl9',
-        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Admin',
-        'prefix' => 'api/v1/app-admin',
+        'uses' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeGeneralUserListList',
+        'controller' => 'App\\Http\\Controllers\\Api\\V1\\Client\\CommonDataLoadController@activeGeneralUserListList',
+        'as' => 'client.generated::49LrpmyNqeUFblZG',
+        'namespace' => 'App\\Http\\Controllers\\Api\\V1\\Client',
+        'prefix' => 'api/v1/client',
         'where' => 
         array (
         ),
@@ -10367,7 +3522,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'login.generated::bUeE2vMNOfySx9dv' => 
+    'login.' => 
     array (
       'methods' => 
       array (
@@ -10382,7 +3537,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'App\\Http\\Controllers\\LoginController@adminLogin',
         'controller' => 'App\\Http\\Controllers\\LoginController@adminLogin',
-        'as' => 'login.generated::bUeE2vMNOfySx9dv',
+        'as' => 'login.',
         'namespace' => NULL,
         'prefix' => '/login',
         'where' => 
@@ -12068,7 +5223,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'admin.generated::3kBz4Y5r868wQcXy' => 
+    'admin.generated::You95Rv7PlTUkjsO' => 
     array (
       'methods' => 
       array (
@@ -12086,7 +5241,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => '\\App\\CustomFacades\\DataLoadController@loadThirdSubCatsByCat',
         'controller' => '\\App\\CustomFacades\\DataLoadController@loadThirdSubCatsByCat',
-        'as' => 'admin.generated::3kBz4Y5r868wQcXy',
+        'as' => 'admin.generated::You95Rv7PlTUkjsO',
         'namespace' => NULL,
         'prefix' => '/admin',
         'where' => 
@@ -12107,7 +5262,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'admin.generated::tacjyrRxv66UR66D' => 
+    'admin.generated::jX6Yb6bAshQY2Ptf' => 
     array (
       'methods' => 
       array (
@@ -12125,7 +5280,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'ProfileController@myProfile',
         'controller' => 'ProfileController@myProfile',
-        'as' => 'admin.generated::tacjyrRxv66UR66D',
+        'as' => 'admin.generated::jX6Yb6bAshQY2Ptf',
         'namespace' => NULL,
         'prefix' => '/admin',
         'where' => 
@@ -12146,7 +5301,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'admin.generated::ObukKGwucmQDm9kw' => 
+    'admin.generated::crG3DzRXhJ9yMYjx' => 
     array (
       'methods' => 
       array (
@@ -12164,7 +5319,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@dashboard',
         'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@dashboard',
-        'as' => 'admin.generated::ObukKGwucmQDm9kw',
+        'as' => 'admin.generated::crG3DzRXhJ9yMYjx',
         'namespace' => NULL,
         'prefix' => '/admin',
         'where' => 
@@ -12185,7 +5340,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'admin.generated::fqcLeBwgycvqxbhn' => 
+    'admin.generated::d90KNjsmxCdOMOZr' => 
     array (
       'methods' => 
       array (
@@ -12203,7 +5358,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'App\\Http\\Controllers\\Admin\\ProfileController@editMyProfile',
         'controller' => 'App\\Http\\Controllers\\Admin\\ProfileController@editMyProfile',
-        'as' => 'admin.generated::fqcLeBwgycvqxbhn',
+        'as' => 'admin.generated::d90KNjsmxCdOMOZr',
         'namespace' => NULL,
         'prefix' => '/admin',
         'where' => 
@@ -12262,7 +5417,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'admin.generated::m3RYkH82pxQsUMMn' => 
+    'admin.generated::HHZWqlYccdxKy1Lz' => 
     array (
       'methods' => 
       array (
@@ -12280,7 +5435,7 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'App\\Http\\Controllers\\Admin\\ProfileController@changeMyPassword',
         'controller' => 'App\\Http\\Controllers\\Admin\\ProfileController@changeMyPassword',
-        'as' => 'admin.generated::m3RYkH82pxQsUMMn',
+        'as' => 'admin.generated::HHZWqlYccdxKy1Lz',
         'namespace' => NULL,
         'prefix' => '/admin',
         'where' => 
@@ -12881,7 +6036,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::fFljBtgiXMUASoRt' => 
+    'generated::NdN6NfcCwwfmTtJe' => 
     array (
       'methods' => 
       array (
@@ -12897,13 +6052,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:266:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:48:"function (){
     return \\redirect(\'/login\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000032570ae70000000050c841a3";}";s:4:"hash";s:44:"xHerqa6z8t86nQUvYJC++T4R38gCYtyq8FhVjRztj/4=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000078901e5000000005267d3b8";}";s:4:"hash";s:44:"NvOTOuYFTVoY2ewGoin2v7i54+Di29i5kUI8Q1PR270=";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::fFljBtgiXMUASoRt',
+        'as' => 'generated::NdN6NfcCwwfmTtJe',
       ),
       'fallback' => false,
       'defaults' => 

@@ -16,13 +16,13 @@ class ThirdSubCategoryResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'category_id'=>$this->suCategory->category_id ,
             'sub_category_id'=>$this->sub_category_id,
-            'sub_category_name'=>$this->suCategory->name ,
-            'name'=>$this->name,
+            'sub_category_name'=>$this->subCategory->sub_category_name ,
+            'name'=>$this->third_sub_category,
             'description'=>$this->description,
             'status'=>$this->status,
             'sequence'=>$this->sequence,
+            'icon_photo'=>$this->icon_photo?url($this->icon_photo):'',
         ];
     }
 }

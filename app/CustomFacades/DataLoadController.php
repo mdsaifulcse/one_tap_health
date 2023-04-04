@@ -83,9 +83,32 @@ class DataLoadController
        return Category::select('category_name','id')->orderBy('sequence','ASC')->where('status',Category::ACTIVE)->pluck('category_name','id');
     }
 
-    public function categoryForApi()
+    public function activeCategoryForApi()
     {
-       return Category::select('category_name','id')->orderBy('sequence','ASC')->where('status',Category::ACTIVE)->get();
+       return Category::orderBy('sequence','ASC')->where('status',Category::ACTIVE)->get();
+    }
+    public function subCatForApi($categoryId=null)
+    {
+        if ($categoryId!=null)
+        {
+            return SubCategory::orderBy('sequence','ASC')->where(['category_id'=>$categoryId,'status'=>SubCategory::ACTIVE])->get();
+
+        }else{
+
+            return SubCategory::orderBy('sequence','ASC')->where(['status'=>SubCategory::ACTIVE])->get();
+        }
+    }
+
+    public function thirdSubCatForApi($subCategoryId=null)
+    {
+        if ($subCategoryId!=null)
+        {
+            return ThirdSubCategory::orderBy('sequence','ASC')->where(['sub_category_id'=>$subCategoryId,'status'=>ThirdSubCategory::ACTIVE])->get();
+
+        }else{
+
+            return ThirdSubCategory::orderBy('sequence','ASC')->where(['status'=>ThirdSubCategory::ACTIVE])->get();
+        }
     }
 
     public function subCatForWeb($categoryId=null)
@@ -99,17 +122,8 @@ class DataLoadController
             return SubCategory::select('sub_category_name','id','category_id')->orderBy('sequence','ASC')->where(['status'=>SubCategory::ACTIVE])->pluck('sub_category_name','id');
         }
     }
-    public function subCatForApi($categoryId=null)
-    {
-        if ($categoryId!=null)
-        {
-            return SubCategory::select('sub_category_name','id','category_id')->orderBy('sequence','ASC')->where(['category_id'=>$categoryId,'status'=>SubCategory::ACTIVE])->get();
 
-        }else{
 
-            return SubCategory::select('sub_category_name','id','category_id')->orderBy('sequence','ASC')->where(['status'=>SubCategory::ACTIVE])->get();
-        }
-    }
 
     public function thirdSubCatForWeb($subCategoryId=null)
     {
@@ -122,17 +136,7 @@ class DataLoadController
             return ThirdSubCategory::select('third_sub_category','id')->orderBy('sequence','ASC')->where(['status'=>ThirdSubCategory::ACTIVE])->pluck('third_sub_category','id');
         }
     }
-    public function thirdSubCatForApi($subCategoryId=null)
-    {
-        if ($subCategoryId!=null)
-        {
-            return ThirdSubCategory::select('third_sub_category','id')->orderBy('sequence','ASC')->where(['sub_category_id'=>$subCategoryId,'status'=>ThirdSubCategory::ACTIVE])->get('third_sub_category','id');
 
-        }else{
-
-            return ThirdSubCategory::select('third_sub_category','id')->orderBy('sequence','ASC')->where(['status'=>ThirdSubCategory::ACTIVE])->get('third_sub_category','id');
-        }
-    }
 
     public function loadPurchaseNumbersByVendor($vendorId)
     {
