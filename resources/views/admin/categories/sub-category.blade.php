@@ -8,7 +8,7 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="page-header-title">
-                <h4>Sub Categories Create & List </h4>
+                <h4>Sub Categories Create & List for <b>{{$category->category_name}}</b> </h4>
             </div>
             <div class="page-header-breadcrumb">
                 <ul class="breadcrumb-title">
@@ -32,7 +32,7 @@
                     {!! Form::open(array('route' => 'admin.sub-categories.store','class'=>'','files'=>true)) !!}
                     <div class="card">
                         <div class="card-header">
-                            <h5> Create New Sub Categories</h5>
+                            <h5> Create New Sub Categories for <b>{{$category->category_name}}</b></h5>
                             <span></span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>

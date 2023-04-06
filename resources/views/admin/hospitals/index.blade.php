@@ -62,7 +62,7 @@
                                         <th>Address</th>
                                         <th>Status</th>
                                         <th>Created At</th>
-                                        <th>Action</th>
+                                        <th>Set Price & Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -120,7 +120,7 @@
 
     <!-- Modal -->
     <div id="testPriceModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg" >
 
             <!-- Modal content-->
             <div class="modal-content" id="testPriceModalContent">

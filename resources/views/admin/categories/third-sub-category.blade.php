@@ -182,7 +182,7 @@
                                                         <div class="form-group row {{ $errors->has('third_sub_category') ? 'has-error' : '' }}">
                                                             {{Form::label('third_sub_category', 'Third Sub-category Name', array('class' => 'col-md-3 control-label'))}}
                                                             <div class="col-md-7">
-                                                                {{Form::text('third_sub_category',$value=old('third_sub_category',$data->third_sub_category),array('class'=>'form-control','placeholder'=>'Fourth Sub-category Name','required','autofocus'))}}
+                                                                {{Form::text('third_sub_category',$value=old('third_sub_category',$data->third_sub_category),array('class'=>'form-control','placeholder'=>'Third Sub-Category','required','autofocus'))}}
 
                                                                 <input type="hidden" name="sub_category_id" value="{{$sutCategory->id}}">
 
@@ -201,7 +201,7 @@
                                                         <div class="form-group row">
                                                             {{Form::label('short_description', 'Short Description', array('class' => 'col-md-3 control-label'))}}
                                                             <div class="col-md-9">
-                                                                {{Form::textArea('description',$value=old('description',$data->description), ['class' => 'form-control','rows'=>'2','placeholder'=>'Short Description for Home Page'])}}
+                                                                {{Form::textArea('description',$value=old('description',$data->description), ['class' => 'form-control','rows'=>'2','placeholder'=>'Short Description'])}}
                                                             </div>
                                                         </div>
 
@@ -235,7 +235,7 @@
                                                             </div>
                                                             <?php $max=$max_serial+1; ?>
                                                             <div class="col-md-2">
-                                                                {{Form::number('sequence',$data->serial_num, ['min'=>'1','max'=>$max,'class' => 'form-control','required'])}}
+                                                                {{Form::number('sequence',$data->sequence, ['min'=>'1','max'=>$max,'class' => 'form-control','required'])}}
                                                                 <span>Serial</span>
                                                             </div>
                                                         </div>

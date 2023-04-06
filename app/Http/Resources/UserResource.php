@@ -20,8 +20,10 @@ class UserResource extends JsonResource
             'name'=>$this->name,
             'email'=>$this->email,
             'phone'=>$this->phone,
+            'address'=>$this->address,
             'user_role'=>$this->user_role,
-            'status'=>$this->status,
+            'birth_date'=>$this->birth_date?date('Y-m-d',strtotime($this->birth_date)):'',
+            //'status'=>$this->status,
             'profile_photo_url'=>$this->profile_photo_path?url($this->profile_photo_path):null
         ];
         //return parent::toArray($request);

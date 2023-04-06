@@ -35,7 +35,7 @@
                                     </td>
                                     <td>
                                         <label>
-                                            <input type="checkbox" class="check" value="{{$data->id}}" {{$data->price>0?'checked':''}} id="test_id_{{$data->id}}" onclick="openTestPriceBox({{$data->id}})"  name="test_id[]"/> {{$data->title}}
+                                            <input type="checkbox" class="check" value="{{$data->id}}" {{$data->price>0?'checked':''}} readonly id="test_id_{{$data->id}}" onclick="openTestPriceBox({{$data->id}})"  name="test_id[]"/> {{$data->title}}
                                         </label>
                                     </td>
                                     <td>{{$data->sub_title}}</td>

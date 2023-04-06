@@ -38,13 +38,16 @@ class User extends Authenticatable
     const DEVELOPER=1;
     const SUPERADMIN=2;
     const ADMIN=3;
-    const LIBRARIAN=4;
-    const GENERALUSER=5;
+    const USER=4;
+    const HOSPITAL=5;
 
     protected $fillable = [
         'name',
         'email',
         'phone',
+        'birth_date',
+        'address',
+        'firebase_token',
         'status',
         'profile_photo_path',
         'user_role',

@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('name',80);
             $table->string('email',100)->nullable();
             $table->string('phone',25)->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('address')->nullable();
             $table->tinyInteger('user_role',false,2)->default(\App\Models\User::GENERALUSER)->comment('1=Developer,2=Super Admin,3=Admin,4=Librarian,5=General User');
+            $table->string('firebase_token',300)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('status')->default(\App\Models\User::PENDING)->comment('0=REJECTED,1=APPROVED,2=PENDING');

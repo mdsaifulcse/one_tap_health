@@ -33,7 +33,7 @@
         <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation" menu-title-theme="theme5">Navigation</div>
 
         <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu pcoded-trigger" dropdown-icon="style3" subitem-icon="style6">
+            <li class="pcoded-hasmenu " dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
                     <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Hospital</span>

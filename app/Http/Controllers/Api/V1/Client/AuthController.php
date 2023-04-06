@@ -32,7 +32,9 @@ class AuthController extends Controller
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'phone'=>$request->phone,
-                'user_role'=>$this->user::GENERALUSER,
+                'address'=>$request->address?$request->address:'',
+                'firebase_token'=>$request->firebase_token?$request->firebase_token:'',
+                'user_role'=>$request->user_role,
                 'status'=>$this->user::APPROVED,
                 'password'=>Hash::make($request->password)
             ];
@@ -43,6 +45,9 @@ class AuthController extends Controller
                 $avatarPath=\MyHelper::photoUpload($request->file('photo'),'images/user-photo',150);
                 $input['profile_photo_path']=$avatarPath;
             }
+
+            $input['birth_date']=$request->birth_date?date('Y-m-d',strtotime($request->birth_date)):null;
+
             $user = $this->user->create($input);
 
             //$user->assignRole($request->input('roles'));
@@ -60,6 +65,9 @@ class AuthController extends Controller
             'name' => 'required|max:100',
             'email'  => "nullable|unique:users,email,NULL,id,deleted_at,NULL|email|max:100",
             'phone'  => "nullable|unique:users,phone,NULL,id,deleted_at,NULL|max:15",
+            'user_role' => 'required|in:3,4,5',
+            'birth_date' => 'date',
+            'address' => 'nullable|max:250',
             'password' => 'required|same:confirm_password',
             'photo' => 'image|mimes:jpeg,jpg,png,gif|nullable|max:4048',
         ];
@@ -81,7 +89,7 @@ class AuthController extends Controller
                 ->orWhere('email',$request->username)
                 //->orWhere('username',$request->username)
                 //->where('user_role',User::ADMIN)
-                ->activeUser([$this->user::GENERALUSER])
+                ->activeUser([$this->user::USER])
                 ->first();
 
             if (!$user) {

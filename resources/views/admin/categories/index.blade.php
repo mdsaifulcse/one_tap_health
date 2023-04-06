@@ -165,10 +165,9 @@
                                 <tr class="">
                                     <th>SL</th>
                                     <th>Name</th>
-                                    <th>URL</th>
                                     <th>Sub Category</th>
                                     <th>Status</th>
-                                    <th>Show Home page</th>
+                                    {{--<th>Show Home page</th>--}}
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -179,7 +178,6 @@
                                     <tr>
                                         <td>{{$data->serial_num}}</td>
                                         <td><a href="{{route('admin.categories.edit',$data->id)}}"><i class="{{$data->icon_class}}"></i> {{$data->category_name}}</a></td>
-                                        <td>{{$data->link}}</td>
 
                                         <td>
 
@@ -199,15 +197,7 @@
                                                 <i class="fa fa-bolt text-info"></i> Other
                                             @endif
                                         </td>
-                                        <td>
-                                            @if($data->show_home==\App\Models\Category::YES)
-                                                <i class="icofont icofont-check-circled text-success"></i> Yes
-                                            @elseif($data->show_home==\App\Models\Category::NO)
-                                                <i class="icofont icofont-ui-close text-danger"></i> No
-                                            @elseif($data->show_home==\App\Models\Category::OTHER)
-                                                <i class="fa fa-bolt text-info"></i> Other
-                                            @endif
-                                        </td>
+
 
                                         <td>{{$data->created_at->diffForHumans()}}</td>
                                         <td>
