@@ -17,7 +17,7 @@ class HospitalWiseTestPrice extends Model
     const NO=0;
 
     protected $table='hospital_wise_test_prices';
-    protected $fillable=['test_id','hospital_id','price','vat_percent','status','created_by','updated_by'];
+    protected $fillable=['test_id','hospital_id','price','discount','vat_percent','status','created_by','updated_by'];
 
 
 

@@ -61,6 +61,7 @@
                                     <thead>
                                     <tr class="">
                                         <th>Set Price</th>
+                                        <th>Discount</th>
                                         <th>Test Title</th>
                                         <th>Sub Title</th>
                                         <th>Category</th>
@@ -74,7 +75,10 @@
                                     @forelse($activeTests as $data)
                                         <tr>
                                             <td>
-                                                <input type="number" name="test_price[{{$data->id}}]" value="" class="form-control" id="test_price_{{$data->id}}" min="1" max="999999" placeholder="{{$data->title}} price here" readonly="" />
+                                                <input type="number" name="test_price[{{$data->id}}]" class="form-control" id="test_price_{{$data->id}}" min="1" max="999999" placeholder="price for {{$data->title}}" readonly="" />
+                                            </td>
+                                            <td>
+                                                <input type="number" name="test_discount[{{$data->id}}]" class="form-control" value="0" id="test_discount_{{$data->id}}" min="0" max="99999" placeholder="discount for {{$data->title}}" readonly="" />
                                             </td>
                                             <td>
                                                 <label>
@@ -131,10 +135,15 @@
             if(readonlyProp===true){ // make price inbox writable  ----
                 $('#test_price_'+testId).prop('readonly',false)
                 $('#test_price_'+testId).attr('required',true)
+                $('#test_discount_'+testId).prop('readonly',false)
+                //$('#test_discount_'+testId).attr('required',true)
             }else {// make price input readonly  ----
                 $('#test_price_'+testId).prop('readonly',true)
                 $('#test_price_'+testId).val('')
                 $('#test_price_'+testId).attr('required',false)
+
+                $('#test_discount_'+testId).prop('readonly',true)
+                $('#test_discount_'+testId).val(0)
             }
 
             //$('#test_price_'+testId).prop('readonly',false)

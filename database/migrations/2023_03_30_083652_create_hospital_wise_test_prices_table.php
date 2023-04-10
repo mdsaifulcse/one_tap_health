@@ -19,8 +19,9 @@ class CreateHospitalWiseTestPricesTable extends Migration
             $table->unsignedBigInteger('hospital_id')->nullable();
 
             $table->integer('price',false,6)->default(0);
+            $table->integer('discount',false,6)->default(0);
             $table->float('vat_percent',3,1)->default(0.0);
-            $table->string('status')->default(\App\Models\Test::ACTIVE);
+            $table->string('status')->default(\App\Models\HospitalWiseTestPrice::ACTIVE);
 
             $table->foreign('test_id')->references('id')->on('tests')->cascadeOnDelete();
             $table->foreign('hospital_id')->references('id')->on('hospitals')->cascadeOnDelete();

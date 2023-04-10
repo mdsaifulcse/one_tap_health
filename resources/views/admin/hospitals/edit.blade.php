@@ -95,13 +95,35 @@
                                         </div>
                                     </div>
                                 <div class="form-group row">
-                                    {{Form::label('short_description', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
+                                    {{Form::label('address1', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
                                     <div class="col-md-9">
                                         {{Form::textArea('address1',$value=old('address1',$data->address1), ['class' => 'form-control','rows'=>'2','placeholder'=>'Hospital Address','required'=>true])}}
                                         @if ($errors->has('address'))
                                             <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('address') }}</strong>
                                             </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-2 text-right"></label>
+                                    <div class="col-5">
+                                        <input type="number" name="latitude" value="{{old('latitude',$data->latitude)}}" step="any" autocomplete="off" class="form-control" placeholder="Enter latitude">
+                                        <label class="col-form-label col-2 text-right">Latitude</label>
+                                        @if ($errors->has('latitude'))
+                                            <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('latitude') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="number" name="longitude" value="{{old('longitude',$data->longitude)}}" step="any" autocomplete="off" class="form-control" placeholder="Enter longitude">
+                                        <label class="col-form-label col-2 text-right">Longitude</label>
+                                        @if ($errors->has('longitude'))
+                                            <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('longitude') }}</strong>
+                                        </span>
                                         @endif
                                     </div>
                                 </div>

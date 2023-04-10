@@ -43,7 +43,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
     Route::get('/active-membership-plan', 'CommonDataLoadController@activeMembershipPlanList');
     Route::get('/active-general-users', 'CommonDataLoadController@activeGeneralUserListList');
 
-    // ------------- User Profile -----------------
+    // ------------- User Profile ----------------------------
     Route::post('/logout', 'AuthController@logout');
     Route::get('/my-profile', 'ProfileController@profileInfo');
     Route::put('/my-profile-update', 'ProfileController@profileUpdate');

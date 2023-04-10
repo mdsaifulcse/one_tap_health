@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <h4 class="modal-title">Test Price For Detials</h4>
+    <h4 class="modal-title">Test Price For Details</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">
@@ -17,6 +17,7 @@
                             <thead>
                             <tr class="">
                                 <th>Set Price</th>
+                                <th>Discount</th>
                                 <th>Test Title</th>
                                 <th>Sub Title</th>
                                 <th>Category</th>
@@ -31,7 +32,9 @@
                                 <tr>
                                     <td>
                                         <input type="number" name="test_price[{{$data->id}}]" value="{{$data->price}}" readonly class="form-control" id="test_price_{{$data->id}}" min="1" max="999999" placeholder="{{$data->title}} price here"  />
-                                        <input type="hidden" value="{{$data->price}}" id="old_test_price_{{$data->id}}">
+                                    </td>
+                                    <td>
+                                        <input type="number" name="test_discount[{{$data->id}}]" value="{{$data->discount}}" readonly class="form-control" id="test_discount_{{$data->id}}" min="1" max="999999" placeholder="{{$data->title}} price here"  />
                                     </td>
                                     <td>
                                         <label>

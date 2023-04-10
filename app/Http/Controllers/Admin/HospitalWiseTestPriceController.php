@@ -64,7 +64,8 @@ class HospitalWiseTestPriceController extends Controller
                 if (!empty($request->test_price[$testId])) {
                     $testPricesHospitalWise[] = [
                         'hospital_id' => $request->hospital_id,
-                        'price' => $request->test_price[$testId],
+                        'price' => $request->test_price[$testId]?$request->test_price[$testId]:0,
+                        'discount' => $request->test_discount[$testId]?$request->test_discount[$testId]:0,
                         'test_id' => $testId,
                         'created_by' => auth()->user()->id,
                         'updated_by' => auth()->user()->id,
@@ -75,7 +76,7 @@ class HospitalWiseTestPriceController extends Controller
             HospitalWiseTestPrice::insert($testPricesHospitalWise);
 
             DB::commit();
-            return redirect()->back()->with('success','Test Price Successfully Created');
+            return redirect('admin/hospitals')->with('success','Test Price Successfully Created');
         }catch(\Exception $e){
             DB::rollback();
             return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
@@ -98,9 +99,12 @@ class HospitalWiseTestPriceController extends Controller
         foreach ($activeTests as $activeTest){
 
             if (array_key_exists($activeTest->id,$hospitalTestPrice)){
-                $activeTest['price']=$hospitalTestPrice[$activeTest->id];
+                $testPrice=HospitalWiseTestPrice::where(['hospital_id'=>$id,'test_id'=>$activeTest->id])->first();
+                $activeTest['price']=$testPrice->price;
+                $activeTest['discount']=$testPrice->discount;
             }else{
                 $activeTest['price']=null;
+                $activeTest['discount']=0;
             }
         }
 
@@ -123,11 +127,15 @@ class HospitalWiseTestPriceController extends Controller
         foreach ($activeTests as $activeTest){
 
             if (array_key_exists($activeTest->id,$hospitalTestPrice)){
-                $activeTest['price']=$hospitalTestPrice[$activeTest->id];
+                $testPrice=HospitalWiseTestPrice::where(['hospital_id'=>$id,'test_id'=>$activeTest->id])->first();
+                $activeTest['price']=$testPrice->price;
+                $activeTest['discount']=$testPrice->discount;
             }else{
                 $activeTest['price']=null;
+                $activeTest['discount']=0;
             }
         }
+
 
         return view('admin.set-test-price.edit',compact('hospital','activeTests'));
     }
@@ -162,7 +170,8 @@ class HospitalWiseTestPriceController extends Controller
                 if (!empty($request->test_price[$testId])) {
                     $testPricesHospitalWise[] = [
                         'hospital_id' => $request->hospital_id,
-                        'price' => $request->test_price[$testId],
+                        'price' => $request->test_price[$testId]?$request->test_price[$testId]:0,
+                        'discount' => $request->test_discount[$testId]?$request->test_discount[$testId]:0,
                         'test_id' => $testId,
                         'created_by' => auth()->user()->id,
                         'updated_by' => auth()->user()->id,
