@@ -47,7 +47,7 @@
                                         <th>Title</th>
                                         <th>Sub Title</th>
                                         <th>Category</th>
-                                        <th>SubCategory</th>
+                                        {{--<th>SubCategory</th>--}}
                                         <th>Status</th>
                                         <th>Created At</th>
                                         <th>Action</th>
@@ -61,7 +61,7 @@
                                             <td>{{$data->title}}</td>
                                             <td>{{$data->sub_title}}</td>
                                             <td>{{$data->testCategory->category_name}}</td>
-                                            <td>{{$data->testSubCategory?$data->testSubCategory->sub_category_name:''}}</td>
+                                            {{--<td>{{$data->testSubCategory?$data->testSubCategory->sub_category_name:''}}</td>--}}
                                             <td>
                                                 @if($data->status==\App\Models\Test::ACTIVE)
                                                     <i class="icofont icofont-check-circled icofont-2x text-success"></i> Active

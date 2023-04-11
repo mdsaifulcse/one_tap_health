@@ -65,8 +65,7 @@
                                         <th>Test Title</th>
                                         <th>Sub Title</th>
                                         <th>Category</th>
-                                        <th>Sub Category</th>
-                                        <th>Third Sub Cat</th>
+                                        {{--<th>Sub Category</th>--}}
 
                                     </tr>
                                     </thead>
@@ -89,8 +88,8 @@
                                             </td>
                                             <td>{{$data->sub_title}}</td>
                                             <td>{{$data->testCategory->category_name}}</td>
-                                            <td>{{$data->testSubCategory?$data->testSubCategory->sub_category_name:'N/A'}}</td>
-                                            <td>{{$data->testThirdCategory?$data->testThirdCategory->third_sub_category:'N/A'}}</td>
+                                            {{--<td>{{$data->testSubCategory?$data->testSubCategory->sub_category_name:'N/A'}}</td>--}}
+                                            {{--<td>{{$data->testThirdCategory?$data->testThirdCategory->third_sub_category:'N/A'}}</td>--}}
                                         </tr>
                                     @empty
                                         <tr>

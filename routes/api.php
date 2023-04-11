@@ -34,13 +34,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
     Route::get('/active-sub-category-list/{categoryId?}', 'CommonDataLoadController@activeSubcategoryList');
     Route::get('/active-third-sub-category-list/{subCategoryId?}', 'CommonDataLoadController@activeThirdSubcategoryList');
 
-    Route::get('/active-country-list', 'CommonDataLoadController@activeCountryList');
-    Route::get('/active-language-list', 'CommonDataLoadController@activeLanguageList');
-    Route::get('/active-author-list', 'CommonDataLoadController@activeAuthorList');
-    Route::get('/active-publisher-list', 'CommonDataLoadController@activePublisherList');
-    Route::get('/active-vendors-list', 'CommonDataLoadController@activeVendorsList');
-    Route::get('/active-item-search', 'CommonDataLoadController@activeItemSearch');
-    Route::get('/active-membership-plan', 'CommonDataLoadController@activeMembershipPlanList');
+    Route::get('/category-wise-active-test-list/{categoryId}', 'CommonDataLoadController@categoryWiseActiveTestList');
+
     Route::get('/active-general-users', 'CommonDataLoadController@activeGeneralUserListList');
 
     // ------------- User Profile ----------------------------

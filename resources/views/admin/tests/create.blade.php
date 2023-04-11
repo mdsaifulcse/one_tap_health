@@ -46,13 +46,8 @@
                             <div class="">
 
                                     <div class="form-group row">
-
-                                        <div class="col-2">
-                                        </div>
-                                        <div class="col-3">
-
-                                            <label for="example-text-input" class="col-form-label">{{__('admin.Category Name')}}<sup class="text-danger">*</sup></label>
-
+                                        <label for="example-text-input" class="col-2 text-right col-form-label">{{__('admin.Category Name')}}<sup class="text-danger">*</sup></label>
+                                        <div class="col-7">
                                             {!! Form::select('category_id',$categories,[], ['id'=>'loadSubCategory','placeholder' => '--Select Category --','class' => 'form-control select2tags','required'=>true]) !!}
 
                                             @if ($errors->has('category_id'))
@@ -60,35 +55,47 @@
                                                 <strong class="text-danger">{{ $errors->first('category_id') }}</strong>
                                             </span>
                                             @endif
-
                                         </div>
-                                        <div class="col-3">
+                                        {{--<div class="col-4">--}}
 
-                                            <label for="example-text-input" class="col-form-label">{{__('admin.Sub Category Name')}}<sup class="text-danger">*</sup></label>
-                                            <div class="" id="subCategoryList">
-                                                {!! Form::select('subcategory_id',[],[], ['id'=>'loadThirdSubCategory','placeholder' => 'First Select Category','class' => 'form-control select2tags','required'=>true]) !!}
+                                            {{--<label for="example-text-input" class="col-form-label">{{__('admin.Category Name')}}<sup class="text-danger">*</sup></label>--}}
 
-                                                @if ($errors->has('subcategory_id'))
-                                                    <span class="help-block">
-                                            <strong class="text-danger">{{ $errors->first('subcategory_id') }}</strong>
-                                            </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                            {{--{!! Form::select('category_id',$categories,[], ['id'=>'loadSubCategory','placeholder' => '--Select Category --','class' => 'form-control select2tags','required'=>true]) !!}--}}
+
+                                            {{--@if ($errors->has('category_id'))--}}
+                                                {{--<span class="help-block">--}}
+                                                {{--<strong class="text-danger">{{ $errors->first('category_id') }}</strong>--}}
+                                            {{--</span>--}}
+                                            {{--@endif--}}
+
+                                        {{--</div>--}}
+                                        {{--<div class="col-5">--}}
+
+                                            {{--<label for="example-text-input" class="col-form-label">{{__('admin.Sub Category Name')}}<sup class="text-danger">*</sup></label>--}}
+                                            {{--<div class="" id="subCategoryList">--}}
+                                                {{--{!! Form::select('subcategory_id',[],[], ['id'=>'loadThirdSubCategory','placeholder' => 'First Select Category','class' => 'form-control select2tags','required'=>true]) !!}--}}
+
+                                                {{--@if ($errors->has('subcategory_id'))--}}
+                                                    {{--<span class="help-block">--}}
+                                            {{--<strong class="text-danger">{{ $errors->first('subcategory_id') }}</strong>--}}
+                                            {{--</span>--}}
+                                                {{--@endif--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
 
 
-                                        <div class="col-3">
-                                            <label for="example-text-input" class="col-form-label">{{__('admin.Third Sub-Category')}}</label>
-                                            <div class="" id="thirdSubCategoryList">
-                                                {!! Form::select('third_category_id',[],[], ['id'=>'loadFourthSubCategory','placeholder' => 'First Sub-Category','class' => 'form-control','required'=>false]) !!}
+                                        {{--<div class="col-3">--}}
+                                            {{--<label for="example-text-input" class="col-form-label">{{__('admin.Third Sub-Category')}}</label>--}}
+                                            {{--<div class="" id="thirdSubCategoryList">--}}
+                                                {{--{!! Form::select('third_category_id',[],[], ['id'=>'loadFourthSubCategory','placeholder' => 'First Sub-Category','class' => 'form-control','required'=>false]) !!}--}}
 
-                                                @if ($errors->has('third_category_id'))
-                                                    <span class="help-block">
-                                                <strong class="text-danger">{{ $errors->first('third_category_id') }}</strong>
-                                            </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                                {{--@if ($errors->has('third_category_id'))--}}
+                                                    {{--<span class="help-block">--}}
+                                                {{--<strong class="text-danger">{{ $errors->first('third_category_id') }}</strong>--}}
+                                            {{--</span>--}}
+                                                {{--@endif--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
 
                                     </div> <!-- end row-->
 

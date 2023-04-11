@@ -49,7 +49,7 @@ class TestController extends Controller
             'sub_title' => 'nullable|max: 150',
             'description' => 'nullable|max: 200',
             'category_id'=>'required|exists:categories,id',
-            'subcategory_id'=>'required|exists:sub_categories,id',
+            'subcategory_id'=>'nullable|exists:sub_categories,id',
             'third_category_id'=>'nullable|exists:third_sub_categories,id',
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
 
@@ -116,7 +116,7 @@ class TestController extends Controller
             'sub_title' => 'nullable|max: 150',
             'description' => 'nullable|max: 200',
             'category_id'=>'required|exists:categories,id',
-            'subcategory_id'=>'required|exists:sub_categories,id',
+            'subcategory_id'=>'nullable|exists:sub_categories,id',
             'third_category_id'=>'nullable|exists:third_sub_categories,id',
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
 

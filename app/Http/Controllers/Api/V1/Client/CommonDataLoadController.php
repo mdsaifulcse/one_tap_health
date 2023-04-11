@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TestResourceCollection;
 use App\Http\Traits\ApiResponseTrait;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\CategoryResourceCollection;
@@ -12,6 +13,7 @@ use App\Http\Resources\ThirdSubCategoryResource;
 use App\Http\Resources\ThirdSubCategoryResourceCollection;
 use App\Models\Author;
 use App\Models\Item;
+use App\Models\Test;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Image,DB,Auth,Validator,MyHelper,Route,DataLoad;
@@ -37,11 +39,14 @@ class CommonDataLoadController extends Controller
         }catch(\Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-    }  public function activeMembershipPlanList(){
+    }
+    public function categoryWiseActiveTestList($categoryId){
         try{
-            $membershipPlans=DataLoad::membershipPlanList();
-            return $this->respondWithSuccess('Active Membership Plan list',$membershipPlans,Response::HTTP_OK);
-        }catch(\Exception $e){
+
+            $categoryActiveTests=Test::with('testCategory')->where(['category_id'=>$categoryId,'status'=>Test::ACTIVE])->latest('sequence','ASC')->get();
+
+            return $this->respondWithSuccess('Category Wise Active Test list',TestResourceCollection::make($categoryActiveTests),Response::HTTP_OK);
+        }catch(Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

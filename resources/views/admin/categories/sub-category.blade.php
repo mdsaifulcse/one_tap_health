@@ -135,7 +135,7 @@
                                     <th>SL</th>
                                     <th>Sub Category</th>
                                     <th>Category</th>
-                                    <th>Third Sub-Category</th>
+                                    {{--<th>Third Sub-Category</th>--}}
                                     <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -149,11 +149,11 @@
                                         <td> {{$data->sub_category_name}}</td>
                                         <td><a href="#"><i class="{{$data->icon_class}}"></i> {{$data->category_name}}</a></td>
 
-                                        <td>
+                                        {{--<td>--}}
                                             {{--@can('third-sub-categories')--}}
-                                            <a class="btn btn-sm btn-sm btn-info" href='{{route('admin.third-sub-categories.show',$data->id)}}'>Third Sub Category ({{$data->thirdSubCategory->count()}})</a>
+                                            {{--<a class="btn btn-sm btn-sm btn-info" href='{{route('admin.third-sub-categories.show',$data->id)}}'>Third Sub Category ({{$data->thirdSubCategory->count()}})</a>--}}
                                             {{--@endcan--}}
-                                        </td>
+                                        {{--</td>--}}
 
                                         <td><i class="{{($data->status==\App\Models\SubCategory::ACTIVE)? 'icofont icofont-check-circled icofont-2x text-success' : 'icofont icofont-ui-close icofont-2x text-danger'}}"></i></td>
 
