@@ -29,14 +29,16 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'cli
 */
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => ['auth:sanctum'],'prefix' => 'client','as' => 'client.'],function (){
 
-    /*--------- Common Data load api --------*/
-    Route::get('/active-category-list', 'CommonDataLoadController@activeCategoryList');
-    Route::get('/active-sub-category-list/{categoryId?}', 'CommonDataLoadController@activeSubcategoryList');
-    Route::get('/active-third-sub-category-list/{subCategoryId?}', 'CommonDataLoadController@activeThirdSubcategoryList');
+    /*--------- Pathology Test api --------*/
+    Route::get('/active-category-list', 'PathologyTestController@activeCategoryList');
+    Route::get('/active-sub-category-list/{categoryId?}', 'PathologyTestController@activeSubcategoryList');
+    Route::get('/active-third-sub-category-list/{subCategoryId?}', 'PathologyTestController@activeThirdSubcategoryList');
 
-    Route::get('/category-wise-active-test-list/{categoryId}', 'CommonDataLoadController@categoryWiseActiveTestList');
+    Route::get('/category-wise-active-test-list/{categoryId}', 'PathologyTestController@categoryWiseActiveTestList');
 
-    Route::get('/active-general-users', 'CommonDataLoadController@activeGeneralUserListList');
+    Route::get('/cost-of-hospitals-test/{testId}', 'PathologyTestController@costOfHospitalsTest');
+
+    Route::get('/active-general-users', 'PathologyTestController@activeGeneralUserListList');
 
     // ------------- User Profile ----------------------------
     Route::post('/logout', 'AuthController@logout');

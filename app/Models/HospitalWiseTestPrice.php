@@ -19,6 +19,10 @@ class HospitalWiseTestPrice extends Model
     protected $table='hospital_wise_test_prices';
     protected $fillable=['test_id','hospital_id','price','discount','vat_percent','status','created_by','updated_by'];
 
+    public function hospital(){
+        return $this->belongsTo(Hospital::class,'hospital_id','id');
+    }
+
 
 
 

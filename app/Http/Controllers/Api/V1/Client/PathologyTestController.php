@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CostOfHospitalTestCollection;
 use App\Http\Resources\TestResourceCollection;
 use App\Http\Traits\ApiResponseTrait;
 use App\Http\Resources\CategoryResource;
@@ -12,13 +13,14 @@ use App\Http\Resources\SubCategoryResourceCollection;
 use App\Http\Resources\ThirdSubCategoryResource;
 use App\Http\Resources\ThirdSubCategoryResourceCollection;
 use App\Models\Author;
+use App\Models\HospitalWiseTestPrice;
 use App\Models\Item;
 use App\Models\Test;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Image,DB,Auth,Validator,MyHelper,Route,DataLoad;
 
-class CommonDataLoadController extends Controller
+class PathologyTestController extends Controller
 {
     use ApiResponseTrait;
 
@@ -40,6 +42,20 @@ class CommonDataLoadController extends Controller
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function costOfHospitalsTest($testId){
+        try{
+
+            $test=Test::findOrfail($testId);
+
+            $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where(['test_id'=>$testId])->paginate(1);
+
+            return $this->respondWithSuccess('Cost of hospital test',CostOfHospitalTestCollection::make($costOfHospitalTest),Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function categoryWiseActiveTestList($categoryId){
         try{
 

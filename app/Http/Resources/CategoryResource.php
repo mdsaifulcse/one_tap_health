@@ -16,10 +16,8 @@ class CategoryResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=>$this->name,
+            'name'=>$this->category_name,
             'description'=>$this->description,
-            'show_home'=>$this->show_home,
-            'status'=>$this->status,
             'sequence'=>$this->sequence,
             'icon_photo'=>$this->icon_photo?url($this->icon_photo):'',
         ];

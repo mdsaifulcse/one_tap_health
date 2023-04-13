@@ -16,11 +16,10 @@ class SubCategoryResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'category_id'=>$this->category_id,
-            'category_name'=>$this->category?$this->category->name:'',
-            'name'=>$this->name,
+            'sub_category_name'=>$this->sub_category_name,
+//            'category_id'=>$this->category_id,
+//            'category_name'=>$this->category?$this->category->name:'',
             'description'=>$this->description,
-            'status'=>$this->status,
             'sequence'=>$this->sequence,
             'icon_photo'=>$this->icon_photo?url($this->icon_photo):'',
         ];
