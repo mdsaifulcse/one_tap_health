@@ -48,7 +48,7 @@ class PathologyTestController extends Controller
 
             $test=Test::findOrfail($testId);
 
-            $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where(['test_id'=>$testId])->paginate(1);
+            $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where(['test_id'=>$testId])->paginate(10);
 
             return $this->respondWithSuccess('Cost of hospital test',CostOfHospitalTestCollection::make($costOfHospitalTest),Response::HTTP_OK);
         }catch(Exception $e){
