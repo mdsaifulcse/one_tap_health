@@ -29,6 +29,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'cli
 */
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => ['auth:sanctum'],'prefix' => 'client','as' => 'client.'],function (){
 
+    /*--------- Doctor api --------*/
+    Route::get('/active-doctors-list', 'DoctorApiController@activeDoctorsList');
+
     /*--------- Pathology Test api --------*/
     Route::get('/active-category-list', 'PathologyTestController@activeCategoryList');
     Route::get('/active-sub-category-list/{categoryId?}', 'PathologyTestController@activeSubcategoryList');

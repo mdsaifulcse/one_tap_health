@@ -94,60 +94,9 @@
                                             @endif
                                         </div>
                                     </div>
-                                <div class="form-group row">
-                                    {{Form::label('address1', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
-                                    <div class="col-md-9">
-                                        {{Form::textArea('address1',$value=old('address1',$data->address1), ['class' => 'form-control','rows'=>'2','placeholder'=>'Hospital Address','required'=>true])}}
-                                        @if ($errors->has('address'))
-                                            <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('address') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-form-label col-2 text-right"></label>
-                                    <div class="col-5">
-                                        <input type="number" name="latitude" value="{{old('latitude',$data->latitude)}}" step="any" autocomplete="off" class="form-control" placeholder="Enter latitude">
-                                        <label class="col-form-label col-2 text-right">Latitude</label>
-                                        @if ($errors->has('latitude'))
-                                            <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('latitude') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-                                    <div class="col-4">
-                                        <input type="number" name="longitude" value="{{old('longitude',$data->longitude)}}" step="any" autocomplete="off" class="form-control" placeholder="Enter longitude">
-                                        <label class="col-form-label col-2 text-right">Longitude</label>
-                                        @if ($errors->has('longitude'))
-                                            <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('longitude') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </div>
 
                                 <div class="form-group row {{ $errors->has('icon_photo') ? 'has-error' : '' }}">
-                                    {{Form::label('icon_photo', 'Photo', array('class' => 'col-md-2 control-label text-right'))}}
-                                    <div class="col-md-2">
-                                        <label class="upload_photo upload icon_upload" for="file">
-                                            <!--  -->
-                                            @if(!empty($data->photo))
-                                                <img id="image_load" src="{{asset($data->photo)}}" style="max-width: 120px;border: 2px dashed #2783bb; cursor: pointer">
-
-                                            @else
-                                                <img id="image_load" src="{{asset('images/default/default.png')}}" style="max-width: 120px;border: 2px dashed #2783bb; cursor: pointer">
-                                            @endif
-                                            {{--<i class="upload_hover ion ion-ios-camera-outline"></i>--}}
-                                        </label>
-                                        <input type="file" id="file" style="display: none;" name="photo" accept="image/*" onchange="photoLoad(this, this.id)" />
-                                        @if ($errors->has('photo'))
-                                            <span class="help-block" style="display:block">
-                            <strong>{{ $errors->first('photo') }}</strong>
-                        </span>
-                                        @endif
-                                    </div>
+                                    <label class="col-md-2 control-label text-right">&nbsp;</label>
                                     <div class="col-3">
 
                                         {{Form::select('status', [\App\Models\Category::ACTIVE  => 'Active' , \App\Models\Category::INACTIVE  => 'Inactive',
@@ -166,7 +115,52 @@
                                         {{Form::number('sequence', $value=old('sequence',$data->sequence), ['min'=>'1','max'=>$max,'class' => 'form-control','required'])}}
                                         <span>Hospital Sequence</span>
                                     </div>
+
+                                    <div class="col-md-2">
+                                        <label class="upload_photo upload icon_upload" for="file">
+                                            <!--  -->
+                                            @if(!empty($data->photo))
+                                                <img id="image_load" src="{{asset($data->photo)}}" style="max-width: 120px;border: 2px dashed #2783bb; cursor: pointer">
+
+                                            @else
+                                                <img id="image_load" src="{{asset('images/default/default.png')}}" style="max-width: 120px;border: 2px dashed #2783bb; cursor: pointer">
+                                            @endif
+                                            {{--<i class="upload_hover ion ion-ios-camera-outline"></i>--}}
+                                        </label>
+                                        <input type="file" id="file" style="display: none;" name="photo" accept="image/*" onchange="photoLoad(this, this.id)" />
+                                        @if ($errors->has('photo'))
+                                            <span class="help-block" style="display:block">
+                            <strong>{{ $errors->first('photo') }}</strong>
+                        </span>
+                                        @endif
+                                    </div>
+
                                 </div>
+
+                                <div class="form-group row">
+                                    {{Form::label('address1', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
+                                    <div class="col-md-9">
+                                        {{Form::textArea('address1',$value=old('address1',$data->address1), ['class' => 'form-control','rows'=>'2','placeholder'=>'Hospital Address','required'=>true])}}
+                                        @if ($errors->has('address'))
+                                            <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('address') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    {{Form::label('Map', 'Map', array('class' => 'col-md-2 control-label text-right'))}}
+                                    <div class="col-9">
+                                        <div id="map" style="height: 400px;">
+
+
+                                        </div>
+                                        <input type="hidden" name="latitude" value="{{old('latitude',$data->latitude)}}" id="lat" step="any" />
+                                        <input type="hidden" name="longitude" value="{{old('longitude',$data->longitude)}}" id="lng" step="any"/>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="card-footer">
@@ -194,6 +188,46 @@
 @endsection
 
 @section('script')
+
+    <script type="text/javascript">
+        function initialize() {
+
+            let defaultLatLon={ lat: {{$data->latitude??'23.81887249514827'}}, lng: {{$data->longitude??'90.4096518108767'}} };
+            let map = new google.maps.Map(document.getElementById("map"), {
+                center: defaultLatLon,
+                zoom: 10,
+            });
+
+            // Show default marker ----------------
+            let marker=new google.maps.Marker({
+                position: defaultLatLon,
+                map,
+                title: "",
+                zoom:10
+            });
+
+            // get Lat, Lng on Click ------------------------
+            map.addListener('click',(mapsMouseEvent)=>{
+                // get & set lan, Lng for saving -------
+                let selectedLatLon=mapsMouseEvent.latLng.toJSON();
+            $('#lat').val((selectedLatLon.lat))
+            $('#lng').val((selectedLatLon.lng))
+
+            // change marker position ----------
+            var latlng = new google.maps.LatLng(selectedLatLon.lat, selectedLatLon.lng);
+
+            marker.setPosition(latlng);
+
+        })
+
+
+        }
+
+        //initialize();
+    </script>
+    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&region=BD&language=en&libraries=places&callback=initialize"  > </script>
+
+
     <script type="text/javascript">
 
         function photoLoad(input,image_load) {

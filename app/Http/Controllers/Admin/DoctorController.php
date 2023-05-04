@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Hospital;
-use App\Models\HospitalWiseTestPrice;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Validator,MyHelper,DB;
-
-class HospitalController extends Controller
+class DoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,8 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $hospitals=Hospital::withCount('hospitalTestPrice')->orderBy('sequence','DESC')->paginate(20);
-        return view('admin.hospitals.index',compact('hospitals'));
+        $doctors=Doctor::orderBy('sequence','DESC')->paginate(20);
+        return view('admin.doctors.index',compact('doctors'));
     }
 
     /**
@@ -28,8 +26,10 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        $maxSerial=Hospital::max('sequence');
-        return view('admin.hospitals.create',compact('maxSerial'));
+        $degrees=Doctor::degree();
+        $department=Doctor::department();
+        $maxSerial=Doctor::max('sequence');
+        return view('admin.doctors.create',compact('maxSerial','degrees','department'));
     }
 
     /**
@@ -43,10 +43,14 @@ class HospitalController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'name' => 'required|max: 180',
-            'address1' => 'required|max: 240',
-            'branch' => 'required|unique:hospitals,branch,NULL,id,deleted_at,NULL',
-            'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
+            'name' => 'required|max: 150',
+            'email' => 'nullable|max: 100',
+            'mobile' => 'required|max: 15',
+            'bio' => 'nullable|max: 500',
+            'address' => 'nullable|max: 250',
+            'degree' => 'required|max: 100',
+            'department' => 'required|max: 120',
+            'photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:8120',
 
         ]);
         if ($validator->fails()) {
@@ -58,10 +62,10 @@ class HospitalController extends Controller
 
             if ($request->hasFile('photo'))
             {
-                $input['photo']=\MyHelper::photoUpload($request->file('photo'),'images/hospital/',250,155);
+                $input['photo']=\MyHelper::photoUpload($request->file('photo'),'images/doctor/',250,155);
             }
-            Hospital::create($input);
-            return redirect()->back()->with('success','Hospital Successfully Created');
+            Doctor::create($input);
+            return redirect()->back()->with('success','Doctor Created Successfully');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
@@ -70,10 +74,10 @@ class HospitalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hospital  $hospital
+     * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show(Hospital $hospital)
+    public function show(Doctor $doctor)
     {
         //
     }
@@ -81,33 +85,39 @@ class HospitalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Hospital  $hospital
+     * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hospital $hospital)
+    public function edit(Doctor $doctor)
     {
-        $data=$hospital;
-        $maxSerial=Hospital::max('sequence');
-        return view('admin.hospitals.edit',compact('data','maxSerial'));
+        $data=$doctor;
+        $maxSerial=Doctor::max('sequence');
+        $degrees=Doctor::degree();
+        $department=Doctor::department();
+        return view('admin.doctors.edit',compact('data','maxSerial','degrees','department'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hospital  $hospital
+     * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hospital $hospital)
+    public function update(Request $request, Doctor $doctor)
     {
         $input = $request->all();
-        $id=$hospital->id;
+        $id=$doctor->id;
 
         $validator = Validator::make($input, [
-            'name' => 'required|max: 180',
-            'address1' => 'required|max: 240',
-            'branch' => "required|unique:hospitals,branch,$id,id,deleted_at,NULL",
-            'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
+            'name' => 'required|max: 150',
+            'email' => 'nullable|max: 100',
+            'mobile' => 'required|max: 15',
+            'bio' => 'nullable|max: 500',
+            'address' => 'nullable|max: 250',
+            'degree' => 'required|max: 100',
+            'department' => 'required|max: 120',
+            'photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:8120',
 
         ]);
         if ($validator->fails()) {
@@ -118,14 +128,14 @@ class HospitalController extends Controller
         try{
 
             if ($request->hasFile('photo')) {
-                $input['photo']=\MyHelper::photoUpload($request->file('photo'),'images/hospital/',250,155);
+                $input['photo']=\MyHelper::photoUpload($request->file('photo'),'images/doctor/',250,155);
 
-                if($hospital->photo!=null and file_exists($hospital->photo)){
-                    unlink($hospital->photo);
+                if($doctor->photo!=null and file_exists($doctor->photo)){
+                    unlink($doctor->photo);
                 }
             }
-            $hospital->update($input);
-            return redirect()->back()->with('success','Hospital Successfully Updated');
+            $doctor->update($input);
+            return redirect()->back()->with('success','Hospital Updated Successfully');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
@@ -134,19 +144,13 @@ class HospitalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hospital  $hospital
+     * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hospital $hospital)
+    public function destroy(Doctor $doctor)
     {
         try{
-            // Delete old test price data -------
-            $hospitalWiseTestPrice=HospitalWiseTestPrice::where(['hospital_id'=>$hospital->id])->first();
-            if (!empty($hospitalWiseTestPrice)){
-                HospitalWiseTestPrice::where(['hospital_id'=>$hospital->id])->delete();
-            }
-
-            $hospital->delete();
+            $doctor->delete();
             return redirect()->back()->with('success','Data has been Successfully Deleted!');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());

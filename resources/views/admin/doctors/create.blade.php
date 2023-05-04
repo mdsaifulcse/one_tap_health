@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-   Create Hospital | Dashboard
+   Create Doctor | Dashboard
 @endsection
 
 @section('main-content')
@@ -8,7 +8,7 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="page-header-title">
-                <h4>Create Hospital </h4>
+                <h4>Create Doctor </h4>
             </div>
             <div class="page-header-breadcrumb">
                 <ul class="breadcrumb-title">
@@ -19,7 +19,7 @@
                     </li>
                     <li class="breadcrumb-item">
 
-                        <a href="{{route('admin.hospitals.index')}}" class="btn btn-info btn-sm"  title="Hospital List here"><i class="icofont icofont-list"></i> Hospital List</a>
+                        <a href="{{route('admin.doctors.index')}}" class="btn btn-info btn-sm"  title="Hospital List here"><i class="icofont icofont-list"></i> Doctor List</a>
                     </li>
                 </ul>
             </div>
@@ -30,11 +30,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 ">
                     <!-- Form -->
-                        {!! Form::open(array('route' => 'admin.hospitals.store','class'=>'','files'=>true)) !!}
+                        {!! Form::open(array('route' => 'admin.doctors.store','class'=>'','files'=>true)) !!}
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>Create new hospital</h5>
+                            <h5>Create new Doctor</h5>
                             <span></span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>
@@ -47,9 +47,9 @@
                             <div class="login-card0 auth-body0">
 
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Name</label>
+                                        <label class="col-form-label col-2 text-right">Name <sup class="text-danger">*</sup></label>
                                         <div class="col-9">
-                                            <input type="text" name="name" value="{{old('name')}}" required autocomplete="off" class="form-control" placeholder="Hospital Name">
+                                            <input type="text" name="name" value="{{old('name')}}" required autocomplete="off" class="form-control" placeholder="Doctor Name">
                                             @if ($errors->has('name'))
                                                 <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('name') }}</strong>
@@ -59,12 +59,23 @@
 
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Branch</label>
+                                        <label class="col-form-label col-2 text-right">Mobile<sup class="text-danger">*</sup></label>
                                         <div class="col-9">
-                                            <input type="text" name="branch" value="{{old('branch')}}" required autocomplete="off" class="form-control" placeholder="Hospital Branch">
-                                            @if ($errors->has('branch'))
+                                            <input type="text" name="mobile" value="{{old('mobile')}}" required autocomplete="off" class="form-control" placeholder="Doctor mobile">
+                                            @if ($errors->has('mobile'))
                                                 <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('branch') }}</strong>
+                                            <strong class="text-danger text-center">{{ $errors->first('mobile') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-2 text-right">Email</label>
+                                        <div class="col-9">
+                                            <input type="email" name="email" value="{{old('email')}}" autocomplete="off" class="form-control" placeholder="Doctor email">
+                                            @if ($errors->has('email'))
+                                                <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('email') }}</strong>
                                         </span>
                                             @endif
                                         </div>
@@ -82,25 +93,85 @@
                                             @endif
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Service Details</label>
+                                        <label class="col-form-label col-2 text-right">Institute</label>
+                                        <div class="col-9">
+                                            <input type="text" name="institute" value="{{old('institute')}}"  autocomplete="off" class="form-control" placeholder="Doctor Institute">
+                                            @if ($errors->has('institute'))
+                                                <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('institute') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-2 text-right">Designation</label>
+                                        <div class="col-9">
+                                            <input type="text" name="designation" value="{{old('designation')}}"  autocomplete="off" class="form-control" placeholder="Doctor designation">
+                                            @if ($errors->has('designation'))
+                                                <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('designation') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-2 text-right">Degree <sup class="text-danger">*</sup></label>
+                                        <div class="col-9">
+                                            {{Form::select('degree', $degrees,[], ['class' => 'form-control','placeholder'=>'Select one','required'=>true])}}
+
+                                            @if ($errors->has('degree'))
+                                                <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('degree') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-2 text-right">Department <sup class="text-danger">*</sup></label>
+                                        <div class="col-9">
+                                            {{Form::select('department', $department,[], ['class' => 'form-control','placeholder'=>'Select one','required'=>true])}}
+
+                                            @if ($errors->has('department'))
+                                                <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('department') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-2 text-right">Doctor bio</label>
                                         <div class="col-9">
 
-                                            <textarea rows="4" placeholder="Service of Hospital " class="form-control"  name="service_details" cols="50"></textarea>
-                                            @if ($errors->has('service_details'))
+                                            <textarea rows="4" placeholder="Doctor bio " class="form-control"  name="bio" cols="50"></textarea>
+                                            @if ($errors->has('bio'))
                                                 <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('service_details') }}</strong>
+                                            <strong class="text-danger text-center">{{ $errors->first('bio') }}</strong>
                                             </span>
                                             @endif
                                         </div>
                                     </div>
 
+                                <div class="form-group row">
+                                    {{Form::label('address', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
+                                    <div class="col-md-9">
+                                        {{Form::textArea('address',$value=old('address'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Doctor Address','required'=>false])}}
+                                        @if ($errors->has('address'))
+                                            <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('address') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group row {{ $errors->has('photo') ? 'has-error' : '' }}">
 
                                     <label class="col-md-2 control-label text-right">&nbsp;</label>
                                     <div class="col-3">
-                                        {{Form::select('status', [\App\Models\Category::ACTIVE  => 'Active' , \App\Models\Category::INACTIVE  => 'Inactive',
-                                     \App\Models\Category::OTHER  => 'Other'],[], ['class' => 'form-control'])}}
+                                        {{Form::select('status', [\App\Models\Doctor::ACTIVE  => 'Active' , \App\Models\Doctor::INACTIVE  => 'Inactive'],[], ['class' => 'form-control'])}}
                                         <span>Status</span>
 
                                         @if ($errors->has('status'))
@@ -131,29 +202,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    {{Form::label('address1', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
-                                    <div class="col-md-9">
-                                        {{Form::textArea('address1',$value=old('address1'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Hospital Address','required'=>true])}}
-                                        @if ($errors->has('address'))
-                                            <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('address') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    {{Form::label('Map', 'Map', array('class' => 'col-md-2 control-label text-right'))}}
-                                    <div class="col-9">
-                                      <div id="map" style="height: 400px;">
-
-
-                                      </div>
-                                        <input type="hidden" name="latitude" value="{{old('latitude')}}" id="lat" step="any" />
-                                        <input type="hidden" name="longitude" value="{{old('longitude')}}" id="lng" step="any"/>
-                                    </div>
-                                </div>
 
                             </div>
                         </div>
@@ -165,7 +213,7 @@
 
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{url('admin/hospitals')}}" class="btn btn-secondary pull-right">Cancel</a>
+                                    <a href="{{url('admin/doctors')}}" class="btn btn-secondary pull-right">Cancel</a>
                                 </div>
                             </div>
 
@@ -182,45 +230,6 @@
 @endsection
 
 @section('script')
-
-
-    <script type="text/javascript">
-         function initialize() {
-
-           let defaultLatLon={ lat: 23.81887249514827, lng: 90.4096518108767 };
-           let map = new google.maps.Map(document.getElementById("map"), {
-                center: defaultLatLon,
-                zoom: 10,
-            });
-
-           // Show default marker ----------------
-             let marker=new google.maps.Marker({
-                 position: defaultLatLon,
-                 map,
-                 title: "",
-                 zoom:10
-             });
-
-             // get Lat, Lng on Click ------------------------
-            map.addListener('click',(mapsMouseEvent)=>{
-                // get & set lan, Lng for saving -------
-                 let selectedLatLon=mapsMouseEvent.latLng.toJSON();
-                 $('#lat').val((selectedLatLon.lat))
-                 $('#lng').val((selectedLatLon.lng))
-
-                 // change marker position ----------
-                 var latlng = new google.maps.LatLng(selectedLatLon.lat, selectedLatLon.lng);
-
-                 marker.setPosition(latlng);
-
-             })
-
-
-        }
-
-        //initialize();
-    </script>
-    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&region=BD&language=en&libraries=places&callback=initialize"  > </script>
 
     <script type="text/javascript">
 
