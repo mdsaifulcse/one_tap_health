@@ -184,7 +184,7 @@
                                     <?php $max=$maxSerial+1; ?>
                                     <div class="col-md-3">
                                         {{Form::number('sequence',$max, ['min'=>'1','max'=>$max,'class' => 'form-control','required'])}}
-                                        <span>Hospital Sequence</span>
+                                        <span>Sequence</span>
                                     </div>
 
                                     <div class="col-md-2">
