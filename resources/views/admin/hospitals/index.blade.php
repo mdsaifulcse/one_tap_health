@@ -97,13 +97,11 @@
                                                             <a href="{{route('admin.set-test-price.create',['hospitalId'=>$data->id]) }}" class="btn btn-info btn-sm" title="Click to set Test Price">Set test price <i class="icofont icofont-money-bag icofont-2x"></i> </a>
                                                         @endif
                                                     </li>
-                                                    <li><a href="{{route('admin.hospitals.edit',$data->id) }}" class="btn btn-success btn-sm" title="Click here for edit hospital data">Edit <i class="icofont icofont-edit"></i> </a></li>
+                                                    <li><a href="{{route('admin.hospital-wise-doctor-schedule.index',['hospital_id'=>$data->id]) }}" class="btn btn-info btn-sm" title="Click here to Add Doctor" target="_blank">Add Doctor <i class="icofont icofont-plus"></i> </a></li>
+                                                    <li><a href="{{route('admin.hospitals.edit',$data->id) }}" class="btn btn-success btn-sm" title="Click here for editing hospital data">Edit <i class="icofont icofont-edit"></i> </a></li>
                                                     <li>
                                                         {!! Form::open(array('route' => ['admin.hospitals.destroy',$data->id],'method'=>'DELETE','id'=>"deleteForm$data->id")) !!}
-
-
                                                         <button type="button" class="btn btn-danger btn-sm" onclick='return deleteConfirm("deleteForm{{$data->id}}")'>Delete <i class="icofont icofont-trash"></i></button>
-
                                                         {!! Form::close() !!}
                                                     </li>
                                                 </ul>

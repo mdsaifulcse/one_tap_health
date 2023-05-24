@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/admin/assets/pages/dashboard/amchart/css/amchart.css')}}">
 <!-- flag icon framework css -->
 <link rel="stylesheet" type="text/css" href="{{asset('/admin/assets/pages/flag-icon/flag-icon.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('/admin/assets/bower_components/select2/dist/css/select2.min.css')}}">
 <!-- Style.css -->
 <link rel="stylesheet" type="text/css" href="{{asset('/admin/assets/css/style.css')}}">
 <!--color css-->

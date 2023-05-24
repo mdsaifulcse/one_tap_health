@@ -14,7 +14,7 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//HospitalWiseTestPrice
 /*
  ----------Admin Without-Authentication  -------
 */
@@ -28,6 +28,7 @@ Route::group(['prefix' => 'login','as' => 'login.'],function () {
 
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
 
+    Route::resource('hospital-wise-doctor-schedule',\App\Http\Controllers\Admin\HospitalWiseDoctorScheduleController::class );
     Route::resource('set-test-price',\App\Http\Controllers\Admin\HospitalWiseTestPriceController::class );
 
     Route::resource('doctors',\App\Http\Controllers\Admin\DoctorController::class );
