@@ -23,6 +23,7 @@ class DoctorResource extends JsonResource
             'department'=>$this->department,
             'bio'=>$this->bio,
             'photo'=>$this->photo?url($this->photo):'',
+            'schedule'=>DoctorHospitalWiseScheduleResourceCollection::make($this->whenLoaded('doctorSchedules')),
         ];
     }
 }

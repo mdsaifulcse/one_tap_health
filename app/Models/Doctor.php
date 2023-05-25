@@ -53,6 +53,10 @@ class Doctor extends Model
        ];
     }
 
+    public function doctorSchedules(){
+        return $this->hasMany(HospitalWiseDoctorSchedule::class,'doctor_id','id');
+    }
+
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
     public static function boot(){
