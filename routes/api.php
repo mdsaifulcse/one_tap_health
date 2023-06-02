@@ -25,6 +25,16 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'cli
 /*
 
 /*
+ ----------client without authentication --- Token ----
+*/
+
+Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'client','as' => 'client.'],function (){
+    Route::get('/search-active-doctors', 'DoctorApiController@searchActiveDoctors');
+});
+
+
+
+/*
  ----------client with authentication --- Token ----
 */
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => ['auth:sanctum'],'prefix' => 'client','as' => 'client.'],function (){

@@ -21,7 +21,7 @@ class HospitalWiseDoctorScheduleController extends Controller
     public function index(Request $request)
     {
         $hospital=Hospital::select('id','name','branch','address1')->findOrFail($request->hospital_id);
-        $doctors=Doctor::pluck('name','id');
+        $doctors=Doctor::latest()->pluck('name','id');
         $availableDys=HospitalWiseDoctorSchedule::availableDays();
 
         $hospitalWiseDoctors=HospitalWiseDoctorSchedule::with('doctor')->where(['hospital_id'=>$request->hospital_id])->latest()->paginate(15);
@@ -124,7 +124,7 @@ class HospitalWiseDoctorScheduleController extends Controller
     public function edit($id) // $id==hospital id
     {
         $hospitalWiseDoctor=HospitalWiseDoctorSchedule::with('doctor','hospital')->findOrFail($id);
-        $doctors=Doctor::pluck('name','id');
+        $doctors=Doctor::latest()->pluck('name','id');
         $availableDys=HospitalWiseDoctorSchedule::availableDays();
 
         return view('admin.doctor-schedule.edit',compact('hospitalWiseDoctor','doctors','availableDys'));
@@ -143,7 +143,7 @@ class HospitalWiseDoctorScheduleController extends Controller
 
         $validator = Validator::make($input, [
             "hospital_id"    => "required|exists:hospitals,id",
-            "doctor_id"    => "required|exists:doctors,id",
+            "doctor_id"    => "nullable|exists:doctors,id",
             "doctor_fee"    => "required|numeric",
             "available_from"    => "required",
             "available_to"    => "required",
@@ -161,7 +161,7 @@ class HospitalWiseDoctorScheduleController extends Controller
             //return $request;
             $hospitalWiseDoctorSchedule->update([
                 'hospital_id' => $request->hospital_id,
-                'doctor_id' => $request->doctor_id,
+                'doctor_id' => $request->doctor_id??$hospitalWiseDoctorSchedule->doctor_id,
                 'doctor_fee' => $request->doctor_fee,
                 'discount' => $request->discount??0,
                 'available_from' => $request->available_from,

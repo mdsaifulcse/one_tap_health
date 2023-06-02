@@ -9,6 +9,9 @@
             background-color: white;
             color: #000000;
         }
+        .select2-results__option:first-child{
+            display: none;
+        }
     </style>
     @endsection
 @section('main-content')
@@ -28,7 +31,7 @@
                     </li>
                     <li class="breadcrumb-item">
 
-                        <a href="{{route('admin.hospital-wise-doctor-schedule.index',['hospital_id'=>$hospitalWiseDoctor->id])}}" class="btn btn-info btn-sm"  title="Back"><i class="icofont icofont-double-left"></i> Back</a>
+                        <a href="{{route('admin.hospital-wise-doctor-schedule.index',['hospital_id'=>$hospitalWiseDoctor->hospital_id])}}" class="btn btn-info btn-sm"  title="Back"><i class="icofont icofont-double-left"></i> Back</a>
                     </li>
                 </ul>
             </div>
@@ -60,8 +63,8 @@
                                     <div class="col-10">
                                         <label class="col-form-label text-right">Doctor <sup class="text-danger">*</sup></label>
                                         <input type="hidden" name="hospital_id" value="{{$hospitalWiseDoctor->hospital->id}}"/>
-                                        {{Form::select('doctor_id', $doctors,$hospitalWiseDoctor->doctor_id, ['class' => 'form-control select2','placeholder'=>'Select one','required'=>true])}}
 
+                                        {{Form::select('doctor_id', [],[], ['class' => 'form-control js-data-example-ajax','placeholder'=>'Select one','required'=>false])}}
                                         @if ($errors->has('doctor_id'))
                                             <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('doctor_id') }}</strong>
@@ -151,7 +154,7 @@
 
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{route('admin.hospital-wise-doctor-schedule.index',['hospital_id'=>$hospitalWiseDoctor->id])}}" class="btn btn-secondary pull-right">Cancel</a>
+                                    <a href="{{route('admin.hospital-wise-doctor-schedule.index',['hospital_id'=>$hospitalWiseDoctor->hospital_id])}}" class="btn btn-secondary pull-right">Cancel</a>
                                 </div>
                             </div>
 
@@ -171,8 +174,54 @@
     <script type="text/javascript" src="{{asset('admin/assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
     <!-- Multiselect js -->
     <script>
-        $('.select2').select2({
-            placeholder: 'Select an option'
+        "use strict";
+        $(document).ready(function(){
+            $('.select2').select2({
+                placeholder: 'Select an option'
+            });
+
+            $(".js-data-example-ajax").select2(
+                {
+                tags: true,
+                closeOnSelect: true,
+                multiple:false,
+               // select:'Doctor 1',
+                ajax: {
+                    url: "{{url('/api/v1/client/search-active-doctors')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term, // search term
+                        };
+                    },
+                    processResults: function(data, params) {
+                        //return console.log(params)
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+                        return {
+                            results: data.result,
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function(markup) {
+                    return markup;
+                }, // let our custom formatter work
+                minimumInputLength: 1,
+                templateResult: function(result) {
+                    if (result.loading) return 'Loading';
+                    var markup ="<div class='select2-result-repository__title'>" + result.name + "</div>";
+                    return markup;
+                },
+                templateSelection: function(result) {
+                    return result.name || "{{$hospitalWiseDoctor->doctor->name}}";
+                }
+            });
+
+
         });
     </script>
 

@@ -77,7 +77,7 @@ class AuthController extends Controller
     public function login(Request $request){
 
         $rules=$this->loginValidationRules($request);
-        $validator = Validator::make($request->json()->all(), $rules);
+        $validator = Validator::make($request->all(), $rules); //$request->json()->all()
 
         if ($validator->fails()) {
             return $this->respondWithValidation('Validation Fail',$validator->errors()->first(),Response::HTTP_BAD_REQUEST);

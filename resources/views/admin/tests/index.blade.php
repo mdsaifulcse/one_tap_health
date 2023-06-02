@@ -60,7 +60,7 @@
                                             <td>{{$i++}}</td>
                                             <td>{{$data->title}}</td>
                                             <td>{{$data->sub_title}}</td>
-                                            <td>{{$data->testCategory->category_name}}</td>
+                                            <td>{{$data->testCategory?$data->testCategory->category_name:'N/A'}}</td>
                                             {{--<td>{{$data->testSubCategory?$data->testSubCategory->sub_category_name:''}}</td>--}}
                                             <td>
                                                 @if($data->status==\App\Models\Test::ACTIVE)
