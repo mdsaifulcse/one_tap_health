@@ -39,11 +39,13 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'cli
 */
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => ['auth:sanctum'],'prefix' => 'client','as' => 'client.'],function (){
 
-    /*--------- Doctor api --------*/
+    /*--------- Test Order Api --------*/
+    Route::apiResource('/test-order', 'TestOrderController');
+    /*--------- Doctor Api --------*/
     Route::get('/active-doctors-list', 'DoctorApiController@activeDoctorsList');
     Route::get('/doctor-schedules/{doctorId}', 'DoctorApiController@doctorWiseScheduleForHospital');
 
-    /*--------- Pathology Test api --------*/
+    /*--------- Pathology Test Api --------*/
     Route::get('/active-category-list', 'PathologyTestController@activeCategoryList');
     Route::get('/active-sub-category-list/{categoryId?}', 'PathologyTestController@activeSubcategoryList');
     Route::get('/active-third-sub-category-list/{subCategoryId?}', 'PathologyTestController@activeThirdSubcategoryList');

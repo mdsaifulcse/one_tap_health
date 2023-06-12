@@ -88,6 +88,7 @@ return array(
     'App\\Models\\Test' => $baseDir . '/app/Models/Test.php',
     'App\\Models\\TestOrder' => $baseDir . '/app/Models/TestOrder.php',
     'App\\Models\\TestOrderDetail' => $baseDir . '/app/Models/TestOrderDetail.php',
+    'App\\Models\\TestOrderPaymentHistory' => $baseDir . '/app/Models/TestOrderPaymentHistory.php',
     'App\\Models\\ThirdSubCategory' => $baseDir . '/app/Models/ThirdSubCategory.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\UserMembership' => $baseDir . '/app/Models/UserMembership.php',

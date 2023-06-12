@@ -25,7 +25,7 @@ class CreateTestOrdersTable extends Migration
             $table->string('patient_name',150);
             $table->string('patient_mobile',20)->nullable();
             $table->string('patient_address',20)->nullable();
-            $table->timestamp('order_date');
+            $table->timestamp('test_date')->comment('when a Patient wants to be tested');
             $table->tinyInteger('approval_status',false,2)->default(\App\Models\TestOrder::PENDING);
             $table->tinyInteger('visit_status',false,1)->default(\App\Models\TestOrder::NO);
             $table->tinyInteger('payment_status',false,1)->default(\App\Models\TestOrder::PENDING);

@@ -19,8 +19,8 @@ class CreateTestOrderDetailsTable extends Migration
             $table->unsignedBigInteger('hospital_id');
             $table->unsignedBigInteger('test_id');
             $table->double('price',7,1);
-            $table->tinyInteger('approval_status',false,2)->default(\App\Models\TestOrder::PENDING);
-            $table->tinyInteger('delivery_status',false,2)->default(\App\Models\TestOrder::PROCESSION);
+            $table->tinyInteger('approval_status',false,2)->default(\App\Models\TestOrderDetail::PENDING);
+            $table->tinyInteger('delivery_status',false,2)->default(\App\Models\TestOrderDetail::PROCESSION);
             $table->timestamp('delivery_date')->nullable();
 
             $table->foreign('test_order_id')->references('id')->on('test_orders')->cascadeOnDelete();

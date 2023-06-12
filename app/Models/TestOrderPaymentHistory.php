@@ -6,21 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TestOrderDetail extends Model
+class TestOrderPaymentHistory extends Model
 {
     use HasFactory,SoftDeletes;
-
-    const PROCESSION=0;
-    const PARTIALDELIVERED=2;
-    const DELIVERED=3;
-
-    const PENDING=0;
-    const APPROVE=1;
-    const CANCEL=2;
-
-    protected $table='test_order_details';
-    protected $fillable=['test_order_id','hospital_id','test_id','price','approval_status','delivery_status','delivery_date','created_by','updated_by'];
-
+    const CASHONDELIVERY='Cash On Delivery';
+    const ONLINEPAYMENT='Online Payment';
 
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
