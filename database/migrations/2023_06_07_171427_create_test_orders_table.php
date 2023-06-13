@@ -17,6 +17,7 @@ class CreateTestOrdersTable extends Migration
             $table->id();
             $table->string('order_no',20);
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('hospital_id');
             $table->double('amount',8,1)->default(0);
             $table->double('discount',7,1)->default(0);
             $table->double('service_charge',7,1)->default(0);
@@ -33,6 +34,7 @@ class CreateTestOrdersTable extends Migration
             $table->timestamp('delivery_date')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('hospital_id')->references('id')->on('hospitals')->cascadeOnDelete();
             $table->unsignedBigInteger('created_by', false);
             $table->unsignedBigInteger('updated_by', false)->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
@@ -51,6 +53,7 @@ class CreateTestOrdersTable extends Migration
     {
         Schema::table('test_orders',function (Blueprint $table){
             $table->dropForeign(['user_id']);
+            $table->dropForeign(['hospital_id']);
             $table->dropForeign(['created_by']);
             $table->dropForeign(['updated_by']);
         });

@@ -61,6 +61,7 @@ class TestOrderController extends Controller
                 [
                  'order_no'=>$orderNo,
                  'user_id'=>\Auth::user()->id,
+                 'hospital_id' => $request->hospital_id,
                  'patient_name'=>$request->patient_name,
                  'patient_mobile'=>$request->patient_mobile,
                  'patient_address'=>$request->patient_address,
