@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <h4 class="modal-title">Test Price For Details</h4>
+    <h4 class="modal-title">Test Price Details</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">

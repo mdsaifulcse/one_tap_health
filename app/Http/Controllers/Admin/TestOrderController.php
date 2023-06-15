@@ -18,7 +18,6 @@ class TestOrderController extends Controller
      */
     public function index()
     {
-        $testOrders=TestOrder::orderBy('created_at','DESC')->paginate(20);
 
         if (request()->ajax()) {
             $allData=TestOrder::with('hospital');
@@ -52,11 +51,25 @@ class TestOrderController extends Controller
                 ->addColumn('created_at','
                     {{date(\'M-d-Y\',strtotime($created_at))}}
                 ')
-                ->rawColumns(['hospitals_name','test_date','visit_status','payment_status','created_at'])
+                ->addColumn('control','
+                    <span class=\'dropdown\'>
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Details <i class="icofont icofont-eye"></i> </a></li>
+                            <li>
+                                {{--{!! Form::open(array(\'route\' => [\'admin.test-orders.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
+                                <button type="button" class="btn btn-danger btn-sm" onclick=\'return deleteConfirm("deleteForm{{$id}}")\'>Delete <i class="icofont icofont-trash"></i></button>
+                                {!! Form::close() !!}--}}
+                            </li>
+                        </ul>
+                    </span>
+                ')
+                ->rawColumns(['hospitals_name','test_date','visit_status','payment_status','created_at','control'])
                 ->toJson();
         }
 
-        return view('admin.test-orders.index',compact('testOrders'));
+        return view('admin.test-orders.index');
     }
 
     /**
@@ -111,9 +124,10 @@ class TestOrderController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function show(Hospital $hospital)
+    public function show(TestOrder $testOrder)
     {
-        //
+         $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,approval_status,delivery_status,delivery_date','testOrderDetails.test:id,title','hospital:id,name,branch,address1']);
+        return view('admin.test-orders.show',compact('testOrder'));
     }
 
     /**

@@ -32,6 +32,7 @@ class CreateTestOrdersTable extends Migration
             $table->tinyInteger('payment_status',false,1)->default(\App\Models\TestOrder::PENDING);
             $table->tinyInteger('delivery_status',false,2)->default(\App\Models\TestOrder::PROCESSION);
             $table->timestamp('delivery_date')->nullable();
+            $table->text('note')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('hospital_id')->references('id')->on('hospitals')->cascadeOnDelete();

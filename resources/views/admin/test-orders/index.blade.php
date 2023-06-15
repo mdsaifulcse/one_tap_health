@@ -17,6 +17,11 @@
         /*#dom-jqry_filter{*/
             /*margin-top:-28px;*/
         /*}*/
+        @media (min-width: 1200px) {
+            .modal-xlg {
+                width: 90%;
+            }
+        }
     </style>
 @endsection
 @section('main-content')
@@ -65,11 +70,12 @@
                                         <th>Hospital</th>
                                         <th>Patient Name</th>
                                         <th>Patient Mobile</th>
-                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Test Date</th>
                                         <th>Visit</th>
                                         <th>Payment</th>
                                         <th>Created At</th>
-                                        {{--<th>Action</th>--}}
+                                        <th>Control</th>
                                     </tr>
                                     </thead>
                                     {{--<tbody>--}}
@@ -132,11 +138,11 @@
 
 
     <!-- Modal -->
-    <div id="testPriceModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg" >
+    <div id="testOrderDetailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
-            <div class="modal-content" id="testPriceModalContent">
+            <div class="modal-content" id="modalContent">
               <!-- content-->
             </div>
 
@@ -164,29 +170,32 @@
                         console.log(d)
                     },
                 },
-                order: [[8, "desc"]],
+                order: [[9, "DESC"]],
                 columns: [
                     { data: 'DT_RowIndex',orderable:false},
                     { data: 'order_no',name:'test_orders.order_no'},
                     { data: 'hospitals_name'},
                     { data: 'patient_name',name:'test_orders.patient_name'},
                     { data: 'patient_mobile',name:'test_orders.patient_mobile'},
+                    { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
                     { data: 'test_date',name:'test_orders.test_date'},
                     { data: 'visit_status',name:'test_orders.visit_status'},
                     { data: 'payment_status',name:'test_orders.payment_status'},
                     { data: 'created_at',name:'test_orders.created_at'},
+                    { data: 'control'},
                 ]
             });
         });
     </script>
 
     <script type="text/javascript">
-        function showTestPriceModal(hospitalId) {
+        function showTestOrderDetailsModal(testOrderId) {
+            console.log(testOrderId);
 
-            $('#testPriceModalContent').html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
-                    .load('{{URL::to("admin/set-test-price")}}/'+hospitalId);
+            $('#modalContent').html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
+                .load('{{URL::to("admin/test-orders")}}/'+testOrderId);
 
-            $('#testPriceModal').modal('show')
+            $('#testOrderDetailsModal').modal('show')
         }
 
     </script>

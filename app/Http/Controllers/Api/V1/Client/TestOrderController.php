@@ -71,6 +71,7 @@ class TestOrderController extends Controller
                  'amount'=>$this->calculateTestOrderAmount($request)['amount']??0,
                  'total_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
                  'reconciliation_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
+                 'note' => $request->note??'',
                  'created_by' => \Auth::user()->id,
                 ]);
 
