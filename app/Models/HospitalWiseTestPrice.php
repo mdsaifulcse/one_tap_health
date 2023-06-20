@@ -22,6 +22,9 @@ class HospitalWiseTestPrice extends Model
     public function hospital(){
         return $this->belongsTo(Hospital::class,'hospital_id','id');
     }
+    public function test(){
+        return $this->belongsTo(Test::class,'test_id','id');
+    }
 
 
 

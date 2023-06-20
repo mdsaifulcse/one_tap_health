@@ -43,6 +43,13 @@
 
                     {{--Sub Menu--}}
                     <li class=" ">
+                        <a href="{{route('admin.test-orders.create')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Create Test Order</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
                         <a href="{{route('admin.test-orders.index')}}" data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
                             <span class="pcoded-mtext">Test Order List</span>

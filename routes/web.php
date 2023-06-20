@@ -29,6 +29,7 @@ Route::group(['prefix' => 'login','as' => 'login.'],function () {
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
 
     Route::resource('test-orders',\App\Http\Controllers\Admin\TestOrderController::class );
+    Route::get('load-hospital-wise-test-details/{hospitalId}','App\Http\Controllers\Admin\TestOrderController@createTestOrderDetails' );
     Route::resource('hospital-wise-doctor-schedule',\App\Http\Controllers\Admin\HospitalWiseDoctorScheduleController::class );
     Route::resource('set-test-price',\App\Http\Controllers\Admin\HospitalWiseTestPriceController::class );
 

@@ -1,14 +1,29 @@
 @extends('admin.layout.app')
 @section('title')
-   Create Hospital | Dashboard
+   Create Test Order | Dashboard
 @endsection
+
+@section('style')
+    <style>
+        #dom-jqry_filter{
+            margin-top:-28px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered{
+            background-color: white;
+            color: #000000;
+        }
+        .select2-results__option:first-child{
+            display: none;
+        }
+    </style>
+    @endsection
 
 @section('main-content')
     <div class="page-wrapper">
         <!-- Page-header start -->
         <div class="page-header">
             <div class="page-header-title">
-                <h4>Create Hospital </h4>
+                <h4>Create Test Order </h4>
             </div>
             <div class="page-header-breadcrumb">
                 <ul class="breadcrumb-title">
@@ -19,7 +34,7 @@
                     </li>
                     <li class="breadcrumb-item">
 
-                        <a href="{{route('admin.hospitals.index')}}" class="btn btn-info btn-sm"  title="Hospital List here"><i class="icofont icofont-list"></i> Hospital List</a>
+                        <a href="{{route('admin.test-orders.index')}}" class="btn btn-info btn-sm"  title="Hospital List here"><i class="icofont icofont-list"></i> Test Order List</a>
                     </li>
                 </ul>
             </div>
@@ -30,16 +45,16 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 ">
                     <!-- Form -->
-                        {!! Form::open(array('route' => 'admin.hospitals.store','class'=>'','files'=>true)) !!}
+                        {!! Form::open(array('route' => 'admin.test-orders.store','class'=>'','files'=>true)) !!}
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>Create new hospital</h5>
+                            <h5>Create new Test Order</h5>
                             <span></span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>
                                 <i class="icofont icofont-refresh"></i>
-                                <i class="icofont icofont-close-circled"></i>
+                                {{--<i class="icofont icofont-close-circled"></i>--}}
                             </div>
                         </div>
                         <div class="card-block ">
@@ -47,113 +62,75 @@
                             <div class="login-card0 auth-body0">
 
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Name</label>
+                                        <label class="col-form-label col-2 text-right">Patient Name</label>
                                         <div class="col-9">
-                                            <input type="text" name="name" value="{{old('name')}}" required autocomplete="off" class="form-control" placeholder="Hospital Name">
-                                            @if ($errors->has('name'))
+                                            <input type="text" name="patient_name" value="{{old('patient_name')}}" required autocomplete="off" class="form-control" placeholder="Patient Name">
+                                            @if ($errors->has('patient_name'))
                                                 <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('name') }}</strong>
-                                        </span>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Branch</label>
-                                        <div class="col-9">
-                                            <input type="text" name="branch" value="{{old('branch')}}" required autocomplete="off" class="form-control" placeholder="Hospital Branch">
-                                            @if ($errors->has('branch'))
-                                                <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('branch') }}</strong>
+                                            <strong class="text-danger text-center">{{ $errors->first('patient_name') }}</strong>
                                         </span>
                                             @endif
                                         </div>
                                     </div>
-
 
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Contact no</label>
+                                        <label class="col-form-label col-2 text-right">Patient Mobile</label>
                                         <div class="col-9">
-                                            <input type="text" name="contact" value="{{old('contact')}}"  autocomplete="off" class="form-control" placeholder="Your contact">
-                                            @if ($errors->has('contact'))
+                                            <input type="text" name="patient_mobile" value="{{old('patient_mobile')}}" required autocomplete="off" class="form-control" placeholder="Patient Mobile">
+                                            @if ($errors->has('patient_mobile'))
                                                 <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('contact') }}</strong>
+                                            <strong class="text-danger text-center">{{ $errors->first('patient_mobile') }}</strong>
                                         </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        {{Form::label('patient_address', 'Patient Address', array('class' => 'col-md-2 control-label text-right'))}}
+                                        <div class="col-md-9">
+                                            {{Form::textArea('patient_address',$value=old('patient_address'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Hospital Address','required'=>true])}}
+                                            @if ($errors->has('patient_address'))
+                                                <span class="help-block">
+                                                <strong class="text-danger text-center">{{ $errors->first('patient_address') }}</strong>
+                                                </span>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Service Details</label>
-                                        <div class="col-9">
-
-                                            <textarea rows="4" placeholder="Service of Hospital " class="form-control"  name="service_details" cols="50"></textarea>
-                                            @if ($errors->has('service_details'))
+                                        {{Form::label('Test Date', 'Test Date', array('class' => 'col-md-2 control-label text-right'))}}
+                                        <div class="col-md-9">
+                                            {{Form::date('test_date',$value=old('test_date'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Test Date','required'=>true])}}
+                                            @if ($errors->has('test_date'))
                                                 <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('service_details') }}</strong>
-                                            </span>
+                                                <strong class="text-danger text-center">{{ $errors->first('test_date') }}</strong>
+                                                </span>
                                             @endif
                                         </div>
                                     </div>
-
-                                <div class="form-group row {{ $errors->has('photo') ? 'has-error' : '' }}">
-
-                                    <label class="col-md-2 control-label text-right">&nbsp;</label>
-                                    <div class="col-3">
-                                        {{Form::select('status', [\App\Models\Category::ACTIVE  => 'Active' , \App\Models\Category::INACTIVE  => 'Inactive',
-                                     \App\Models\Category::OTHER  => 'Other'],[], ['class' => 'form-control'])}}
-                                        <span>Status</span>
-
-                                        @if ($errors->has('status'))
-                                            <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('status') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-
-                                    <?php $max=$maxSerial+1; ?>
-                                    <div class="col-md-3">
-                                        {{Form::number('sequence',$max, ['min'=>'1','max'=>$max,'class' => 'form-control','required'])}}
-                                        <span>Hospital Sequence</span>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <label class="upload_photo upload icon_upload" for="file">
-                                            <!--  -->
-                                            <img id="image_load" src="{{asset('images/default/default.png')}}"  style="max-width: 120px;border: 2px dashed #2783bb; cursor: pointer">
-                                            {{--<i class="upload_hover ion ion-ios-camera-outline"></i>--}}
-                                        </label>
-                                        <input type="file" id="file" style="display: none;" name="photo" accept="image/*" onchange="photoLoad(this, this.id)" />
-                                        @if ($errors->has('photo'))
-                                            <span class="help-block" style="display:block">
-                            <strong>{{ $errors->first('photo') }}</strong>
-                        </span>
-                                        @endif
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
-                                    {{Form::label('address1', 'Address', array('class' => 'col-md-2 control-label text-right'))}}
-                                    <div class="col-md-9">
-                                        {{Form::textArea('address1',$value=old('address1'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Hospital Address','required'=>true])}}
-                                        @if ($errors->has('address'))
-                                            <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('address') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    {{Form::label('Map', 'Map', array('class' => 'col-md-2 control-label text-right'))}}
+                                    {{Form::label('Hospital', 'Hospital', array('class' => 'col-md-2 control-label text-right'))}}
                                     <div class="col-9">
-                                      <div id="map" style="height: 400px;">
 
+                                        {{Form::select('hospital_id',[],[], ['class' => 'form-control js-data-example-ajax','id'=>'hospitalId','placeholder'=>'Select one','multiple'=>false,'required'=>true])}}
 
-                                      </div>
-                                        <input type="hidden" name="latitude" value="{{old('latitude')}}" id="lat" step="any" />
-                                        <input type="hidden" name="longitude" value="{{old('longitude')}}" id="lng" step="any"/>
+                                        @if ($errors->has('doctor_id'))
+                                            <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('doctor_id') }}</strong>
+                                        </span>
+                                        @endif
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    {{Form::label('Test Details', 'Test Details', array('class' => 'col-md-2 control-label text-right'))}}
+                                    <div class="col-9">
+                                        <div class="table-responsive" id="hospitalWiseTestDetails">
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                             </div>
                         </div>
@@ -165,7 +142,7 @@
 
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{url('admin/hospitals')}}" class="btn btn-secondary pull-right">Cancel</a>
+                                    <a href="{{url('admin/test-orders')}}" class="btn btn-secondary pull-right">Cancel</a>
                                 </div>
                             </div>
 
@@ -182,59 +159,75 @@
 @endsection
 
 @section('script')
+    <script type="text/javascript" src="{{asset('admin/assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+    <!-- Multiselect js -->
+    <script>
 
-
-    <script type="text/javascript">
-         function initialize() {
-
-           let defaultLatLon={ lat: 23.81887249514827, lng: 90.4096518108767 };
-           let map = new google.maps.Map(document.getElementById("map"), {
-                center: defaultLatLon,
-                zoom: 10,
+        "use strict";
+        $(document).ready(function(){
+            $('.select2').select2({
+                placeholder: 'Select an option'
             });
 
-           // Show default marker ----------------
-             let marker=new google.maps.Marker({
-                 position: defaultLatLon,
-                 map,
-                 title: "",
-                 zoom:10
-             });
+            $(".js-data-example-ajax").select2({
+                tags: true,
+                closeOnSelect: true,
+                multiple:false,
+                placeholder: 'Select an option',
+                ajax: {
+                    url: "{{url('/api/v1/client/search-active-hospitals')}}",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        console.log(params)
+                        return {
+                            q: params.term, // search term
+                        };
+                    },
+                    processResults: function(data, params) {
+                        //return console.log(params)
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+                        //params.page = params.page || 1;
+                        console.log(data.result);
+                        return {
+                            results: data.result,
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function(markup) {
+                    return markup;
+                }, // let our custom formatter work
+                minimumInputLength: 1,
+                templateResult: function(result) {
+                    if (result.loading) return 'Loading';
 
-             // get Lat, Lng on Click ------------------------
-            map.addListener('click',(mapsMouseEvent)=>{
-                // get & set lan, Lng for saving -------
-                 let selectedLatLon=mapsMouseEvent.latLng.toJSON();
-                 $('#lat').val((selectedLatLon.lat))
-                 $('#lng').val((selectedLatLon.lng))
-
-                 // change marker position ----------
-                 var latlng = new google.maps.LatLng(selectedLatLon.lat, selectedLatLon.lng);
-
-                 marker.setPosition(latlng);
-
-             })
+                    var markup ="<div class='select2-result-repository__title'>" + result.name +' ('+result.branch +')' + "</div>";
+                    return markup;
+                },
+                templateSelection: function(result) {
+                    return result.name || 'Search Hospital';
+                }
+            });
 
 
-        }
+        });
 
-        //initialize();
+
     </script>
-    <script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&region=BD&language=en&libraries=places&callback=initialize"  > </script>
 
-    <script type="text/javascript">
-
-        function photoLoad(input,image_load) {
-            var target_image='#'+$('#'+image_load).prev().children().attr('id');
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $(target_image).attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+    <script>
+        "use strict";
+        $(document).ready(function(){
+            var hospitalId=0;
+           $('#hospitalId').on('change',function () {
+               hospitalId=$('#hospitalId').val();
+               $('#hospitalWiseTestDetails').empty().html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
+                   .load('{{URL::to("admin/load-hospital-wise-test-details")}}/'+hospitalId);
+           })
+        });
     </script>
 @endsection

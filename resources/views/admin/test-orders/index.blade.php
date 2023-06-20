@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>
+                        <a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>
                         {{--<a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>--}}
                     </li>
                 </ul>
@@ -78,50 +78,6 @@
                                         <th>Control</th>
                                     </tr>
                                     </thead>
-                                    {{--<tbody>--}}
-                                    {{--<?php $i=1; ?>--}}
-                                    {{--@forelse($testOrders as $data)--}}
-                                        {{--<tr>--}}
-                                            {{--<td>{{$i++}}</td>--}}
-                                            {{--<td>{{$data->order_no}}</td>--}}
-                                            {{--<td>{{$data->hospital->name}}</td>--}}
-                                            {{--<td>{{$data->patient_name}}</td>--}}
-                                            {{--<td>{{$data->patient_mobile}}</td>--}}
-                                            {{--<td>{{$data->test_date}}</td>--}}
-                                            {{--<td>visit s</td>--}}
-                                            {{--<td>Payment s</td>--}}
-                                            {{--<td>{{$data->created_at->diffForHumans()}} </td>--}}
-                                            {{--<td class="dropdown">--}}
-                                                {{--<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">--}}
-                                                    {{--<span class="caret"></span></button>--}}
-                                                {{--<ul class="dropdown-menu">--}}
-                                                    {{--<li>--}}
-                                                        {{--@if($data->hospital_test_price_count>0)--}}
-                                                            {{--<a href="{{route('admin.set-test-price.edit',$data->id) }}" class="btn btn-warning btn-sm" title="Click to Update Test Price">Edit test price <i class="icofont icofont-money-bag"></i> </a><br>--}}
-                                                            {{--<a href="javascript:void(0)" class="btn btn-info btn-sm" title="Click to View Test Price" onclick="showTestPriceModal({{$data->id}})">View test price <i class="icofont icofont-eye-alt"></i> </a>--}}
-                                                        {{--@else--}}
-                                                            {{--<a href="{{route('admin.set-test-price.create',['hospitalId'=>$data->id]) }}" class="btn btn-info btn-sm" title="Click to set Test Price">Set test price <i class="icofont icofont-money-bag icofont-2x"></i> </a>--}}
-                                                        {{--@endif--}}
-                                                    {{--</li>--}}
-                                                    {{--<li><a href="{{route('admin.hospital-wise-doctor-schedule.index',['hospital_id'=>$data->id]) }}" class="btn btn-info btn-sm" title="Click here to Add Doctor" target="_blank">Add Doctor <i class="icofont icofont-plus"></i> </a></li>--}}
-                                                    {{--<li><a href="{{route('admin.hospitals.edit',$data->id) }}" class="btn btn-success btn-sm" title="Click here for editing hospital data">Edit <i class="icofont icofont-edit"></i> </a></li>--}}
-                                                    {{--<li>--}}
-                                                        {{--{!! Form::open(array('route' => ['admin.hospitals.destroy',$data->id],'method'=>'DELETE','id'=>"deleteForm$data->id")) !!}--}}
-                                                        {{--<button type="button" class="btn btn-danger btn-sm" onclick='return deleteConfirm("deleteForm{{$data->id}}")'>Delete <i class="icofont icofont-trash"></i></button>--}}
-                                                        {{--{!! Form::close() !!}--}}
-                                                    {{--</li>--}}
-                                                {{--</ul>--}}
-
-                                            {{--</td>--}}
-                                        {{--</tr>--}}
-                                        {{--@empty--}}
-                                        {{--<tr>--}}
-                                            {{--<td colspan="8" class="text-center"> No Data Found! </td>--}}
-                                        {{--</tr>--}}
-                                    {{--@endforelse--}}
-
-
-                                    {{--</tbody>--}}
                                 </table>
                                 {{--{{$testOrders->links()}}--}}
                             </div>

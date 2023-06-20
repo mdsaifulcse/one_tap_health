@@ -72,6 +72,7 @@ class TestOrderController extends Controller
                  'total_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
                  'reconciliation_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
                  'note' => $request->note??'',
+                 'source' => TestOrder::SOURCEAPI,
                  'created_by' => \Auth::user()->id,
                 ]);
 
@@ -83,12 +84,12 @@ class TestOrderController extends Controller
            }
 
             DB::commit();
-            Log::info('Test order Place');
+            Log::info('Test order Place from api');
             return $this->respondWithSuccess('Order has been Placed successful',['order_no'=>$testOrder->order_no],Response::HTTP_OK);
 
         }catch(Exception $e){
             DB::rollback();
-            Log::info('Test order '.$e->getMessage());
+            Log::info('Test order error api: '.$e->getMessage());
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
