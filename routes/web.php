@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::resource('hospital-wise-doctor-schedule',\App\Http\Controllers\Admin\HospitalWiseDoctorScheduleController::class );
     Route::resource('set-test-price',\App\Http\Controllers\Admin\HospitalWiseTestPriceController::class );
 
+    Route::resource('patients',\App\Http\Controllers\Admin\PatientController::class );
     Route::resource('doctors',\App\Http\Controllers\Admin\DoctorController::class );
     Route::resource('hospitals',\App\Http\Controllers\Admin\HospitalController::class );
     Route::resource('tests',\App\Http\Controllers\Admin\TestController::class );

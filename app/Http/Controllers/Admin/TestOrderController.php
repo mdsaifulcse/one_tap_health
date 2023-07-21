@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Hospital;
 use App\Models\HospitalWiseTestPrice;
+use App\Models\Patient;
 use App\Models\TestOrder;
 use App\Models\TestOrderDetail;
 use Illuminate\Http\Request;
@@ -22,13 +23,19 @@ class TestOrderController extends Controller
     {
 
         if (request()->ajax()) {
-            $allData=TestOrder::with('hospital');
+            $allData=TestOrder::with('hospital','patient');
 
             return  DataTables::of($allData)
                 ->addIndexColumn()
                 ->addColumn('DT_RowIndex','')
                 ->addColumn('hospitals_name',function (TestOrder $testOrder){
                     return $testOrder->hospital->name;
+                })
+                ->addColumn('patient_name',function (TestOrder $testOrder){
+                    return $testOrder->patient->name;
+                })
+                ->addColumn('patient_mobile',function (TestOrder $testOrder){
+                    return $testOrder->patient->mobile;
                 })
                 ->addColumn('test_date','
                     {{date(\'M-d-Y\',strtotime($test_date))}}
@@ -60,14 +67,15 @@ class TestOrderController extends Controller
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Details <i class="icofont icofont-eye"></i> </a></li>
                             <li>
-                                {{--{!! Form::open(array(\'route\' => [\'admin.test-orders.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
+                                {!! Form::open(array(\'route\' => [\'admin.test-orders.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
                                 <button type="button" class="btn btn-danger btn-sm" onclick=\'return deleteConfirm("deleteForm{{$id}}")\'>Delete <i class="icofont icofont-trash"></i></button>
-                                {!! Form::close() !!}--}}
+                                {!! Form::close() !!}
                             </li>
+                            
                         </ul>
                     </span>
                 ')
-                ->rawColumns(['hospitals_name','test_date','visit_status','payment_status','created_at','control'])
+                ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','visit_status','payment_status','created_at','control'])
                 ->toJson();
         }
 
@@ -101,20 +109,24 @@ class TestOrderController extends Controller
             return redirect()->back()->with('error',$validator->errors()->first());
         }
 
-//        if (count(array_unique($request->hospital_id))>1){
-//            return $this->respondWithValidation('Validation Fail',"select test from same hospital at a tiem",Response::HTTP_BAD_REQUEST);
-//        }
 
         DB::beginTransaction();
         try{
+
+            // generate patient id
+            if ($request->patient_state=='existing_patient'){
+                $patientId=$request->patient_id;
+            }else{ // for new patient ------------
+                $patientId=$this->storeNewPatient($request)->id;
+            }
+
+
             $testOrder=TestOrder::create(
                 [
                     'order_no'=>$orderNo,
-                    'user_id'=>\Auth::user()->id,
+                    'refer_by_id'=>$request->refer_by_id??null,
+                    'patient_id' => $patientId,
                     'hospital_id' => $request->hospital_id,
-                    'patient_name'=>$request->patient_name,
-                    'patient_mobile'=>$request->patient_mobile,
-                    'patient_address'=>$request->patient_address,
                     'test_date'=>date('Y-m-d',strtotime($request->test_date)),
                     'discount'=>$request->discount??0,
                     'service_charge'=>$request->service_charge??0,
@@ -146,10 +158,15 @@ class TestOrderController extends Controller
 
     public function testOrderValidationRules($request){
         $rules=[
+            'patient_no' => 'unique:patients,patient_no,NULL,id,deleted_at,NULL',
+            'patient_id'  => "required_if:patient_state,==,existing_patient",
+            'patient_name'  => 'required_if:patient_state,==,new_patient|max:100',
+            'patient_age'  => 'required_if:patient_state,==,new_patient|max:50',
+            'patient_address'  => 'required_if:patient_state,==,new_patient|max:150',
+            'patient_mobile'  => "nullable|max:15",
+            'patient_email'  => "nullable|max:15",
+
             'order_no' => 'unique:test_orders,order_no,NULL,id,deleted_at,NULL',
-            'patient_name'  => "required|max:100",
-            'patient_mobile'  => "required|max:15",
-            'patient_address'  => "required|max:150",
             'test_date'  => "required|date",
             'amount'  => "numeric|numeric|digits_between:1,9999999|min:1|max:9999999",
             'discount'  => "numeric|numeric|digits_between:1,99999|max:9999",
@@ -157,12 +174,22 @@ class TestOrderController extends Controller
 
             "test_id"   => "required|array|min:1",
             'test_id.*' => "exists:tests,id",
-
             'hospital_id' => "exists:hospitals,id",
             //"hospital_id"   => "required|array|min:1",
         ];
         return $rules;
     }
+
+    public function storeNewPatient($request){
+       return Patient::create([
+            'patient_no'=>Patient::generatePatientId(),
+            'name'=>$request->patient_name,
+            'age'=>$request->patient_age,
+            'mobile'=>$request->patient_mobile,
+            'address'=>$request->patient_address,
+        ]);
+    }
+
     public function generateOrderInvoiceNo(){
 
         $lastOrderNo=TestOrder::max('order_no');
@@ -212,12 +239,13 @@ class TestOrderController extends Controller
 
             $hospitalTestPrice=HospitalWiseTestPrice::where(['test_id'=>$request->test_id[$key],'hospital_id'=>$request->hospital_id])->first();
             if($hospitalTestPrice) {
-                $testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
+                //$testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
                 $testOrderDetails[] = [
                     'test_order_id' => $testOrderId,
                     'test_id' => $request->test_id[$key],
                     'hospital_id' => $request->hospital_id,
-                    'price' => $testPrice,
+                    'price' => $hospitalTestPrice->price,
+                    'discount' => $hospitalTestPrice->discount,
                     'created_by' => \Auth::user()->id,
                 ];
             }
@@ -240,7 +268,7 @@ class TestOrderController extends Controller
      */
     public function show(TestOrder $testOrder)
     {
-         $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,approval_status,delivery_status,delivery_date','testOrderDetails.test:id,title','hospital:id,name,branch,address1']);
+         $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date','testOrderDetails.test:id,title','hospital:id,name,branch,address1']);
         return view('admin.test-orders.show',compact('testOrder'));
     }
 
@@ -266,35 +294,7 @@ class TestOrderController extends Controller
      */
     public function update(Request $request, Hospital $hospital)
     {
-        $input = $request->all();
-        $id=$hospital->id;
 
-        $validator = Validator::make($input, [
-            'name' => 'required|max: 180',
-            'address1' => 'required|max: 240',
-            'branch' => "required|unique:hospitals,branch,$id,id,deleted_at,NULL",
-            'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
-
-        ]);
-        if ($validator->fails()) {
-            //return $validator->errors()->first();
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        try{
-
-            if ($request->hasFile('photo')) {
-                $input['photo']=\MyHelper::photoUpload($request->file('photo'),'images/hospital/',250,155);
-
-                if($hospital->photo!=null and file_exists($hospital->photo)){
-                    unlink($hospital->photo);
-                }
-            }
-            $hospital->update($input);
-            return redirect()->back()->with('success','Hospital Successfully Updated');
-        }catch(\Exception $e){
-            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
-        }
     }
 
     /**
@@ -303,16 +303,14 @@ class TestOrderController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hospital $hospital)
+    public function destroy(TestOrder $testOrder)
     {
         try{
-            // Delete old test price data -------
-            $hospitalWiseTestPrice=HospitalWiseTestPrice::where(['hospital_id'=>$hospital->id])->first();
-            if (!empty($hospitalWiseTestPrice)){
-                HospitalWiseTestPrice::where(['hospital_id'=>$hospital->id])->delete();
-            }
-
-            $hospital->delete();
+            $testOrder->load('testOrderDetails');
+           foreach ($testOrder->testOrderDetails as $testOrderDetail){
+               $testOrderDetail->delete();
+           }
+            $testOrder->delete();
             return redirect()->back()->with('success','Data has been Successfully Deleted!');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());

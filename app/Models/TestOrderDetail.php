@@ -21,8 +21,14 @@ class TestOrderDetail extends Model
     protected $table='test_order_details';
     protected $fillable=['test_order_id','hospital_id','test_id','price','approval_status','delivery_status','delivery_date','created_by','updated_by'];
 
+    protected $appends=['price_after_discount'];
+
     public function test(){
         return $this->belongsTo(Test::class,'test_id','id');
+    }
+
+    public function getPriceAfterDiscountAttribute(){
+        return $this->price-$this->discount;
     }
 
     // TODO :: boot

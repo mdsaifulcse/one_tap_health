@@ -26,8 +26,12 @@
     </tbody>
 </table>
 <br>
-<div class="row justify-content-end">
-    <div class="col-7">
+<div class="row justify-content">
+
+    <div class="col-4">
+        {{Form::textArea('note',$value=old('note'), ['class' => 'form-control','rows'=>'9','placeholder'=>'Special Notes','required'=>false])}}
+    </div>
+    <div class="col-8">
         <table class="table table-striped table-hover table-bordered center_table">
             <thead>
             <tr class="">

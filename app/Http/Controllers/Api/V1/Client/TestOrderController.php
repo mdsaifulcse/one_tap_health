@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api\V1\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\HospitalWiseTestPrice;
+use App\Models\Patient;
 use App\Models\TestOrder;
 use App\Models\TestOrderDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,14 +59,24 @@ class TestOrderController extends Controller
 
         DB::beginTransaction();
         try{
+            // generate patient id
+            if ($request->order_for_other_patient==0){
+                $request['patient_name']=auth()->user()->name;
+                $request['patient_mobile']=auth()->user()->phone;
+                $request['patient_age']=auth()->user()->address;
+                $request['patient_address']=auth()->user()->address;
+
+                $patientId=$this->storeNewPatient($request)->id;
+            }else{ // for new patient ------------
+                $patientId=$this->storeNewPatient($request)->id;
+            }
+
             $testOrder=TestOrder::create(
                 [
                  'order_no'=>$orderNo,
-                 'user_id'=>\Auth::user()->id,
+                 'refer_by_id'=>$request->refer_by_id??\Auth::user()->id,
                  'hospital_id' => $request->hospital_id,
-                 'patient_name'=>$request->patient_name,
-                 'patient_mobile'=>$request->patient_mobile,
-                 'patient_address'=>$request->patient_address,
+                 'patient_id' => $patientId,
                  'test_date'=>date('Y-m-d',strtotime($request->test_date)),
                  'discount'=>$request->discount??0,
                  'service_charge'=>$request->service_charge??0,
@@ -72,7 +84,7 @@ class TestOrderController extends Controller
                  'total_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
                  'reconciliation_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
                  'note' => $request->note??'',
-                 'source' => TestOrder::SOURCEAPI,
+                 'source' => TestOrder::SOURCEMOBILE,
                  'created_by' => \Auth::user()->id,
                 ]);
 
@@ -96,10 +108,14 @@ class TestOrderController extends Controller
 
     public function testOrderValidationRules($request){
         $rules=[
+            'order_for_other_patient' => 'required|numeric|in:0,1',
             'order_no' => 'unique:test_orders,order_no,NULL,id,deleted_at,NULL',
-            'patient_name'  => "required|max:100",
-            'patient_mobile'  => "required|max:15",
-            'patient_address'  => "required|max:150",
+            'patient_name'  => 'required_if:order_for_other_patient,==,1|max:100',
+            'patient_age'  => 'required_if:order_for_other_patient,==,1|max:50',
+            'patient_address'  => 'required_if:order_for_other_patient,==,1|max:150',
+            'patient_mobile'  => "nullable|max:15",
+            'patient_email'  => "nullable|max:15",
+
             'test_date'  => "required|date",
             'discount'  => "numeric|numeric|digits_between:1,99999|max:9999",
             'service_charge'  => "numeric|digits_between:1,6",
@@ -112,6 +128,30 @@ class TestOrderController extends Controller
         ];
         return $rules;
     }
+
+    public function storeNewPatient($request){
+
+        $patient=Patient::where(function ($query)use($request){
+            $query->where('mobile',$request->patient_mobile)
+                ->where('name','like', '%'.$request->patient_name.'%');
+                //->orWhere('address','like', '%'.$request->patient_address.'%');
+        })->first();
+
+        if ($patient){
+            return $patient;
+        }else{
+           return $patient= Patient::create([
+                'patient_no'=>Patient::generatePatientId(),
+                'name'=>$request->patient_name,
+                'age'=>$request->patient_age??18,
+                'mobile'=>$request->patient_mobile,
+                'address'=>$request->patient_address,
+            ]);
+        }
+
+
+    }
+
     public function generateOrderInvoiceNo(){
 
         $lastOrderNo=TestOrder::max('order_no');
@@ -161,12 +201,13 @@ class TestOrderController extends Controller
 
             $hospitalTestPrice=HospitalWiseTestPrice::where(['test_id'=>$request->test_id[$key],'hospital_id'=>$request->hospital_id])->first();
             if($hospitalTestPrice) {
-                $testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
+               // $testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
                 $testOrderDetails[] = [
                     'test_order_id' => $testOrderId,
                     'test_id' => $request->test_id[$key],
                     'hospital_id' => $request->hospital_id,
-                    'price' => $testPrice,
+                    'price' => $hospitalTestPrice->price,
+                    'discount' => $hospitalTestPrice->discount,
                     'created_by' => \Auth::user()->id,
                 ];
             }

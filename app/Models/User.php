@@ -45,6 +45,7 @@ class User extends Authenticatable
         'name',
         'email',
         'phone',
+        'age',
         'birth_date',
         'address',
         'firebase_token',

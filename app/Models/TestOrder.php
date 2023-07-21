@@ -23,16 +23,19 @@ class TestOrder extends Model
     const PARTIALPAYMENT=1;
     const FULLPAYMENT=2;
     // Source
-    const SOURCEAPI='Api';
+    const SOURCEMOBILE='Mobile';
     const SOURCEWEBSITE='Website';
     const SOURCEADMIN='Admin';
 
     const YES=1;
     const NO=0;
     protected $table='test_orders';
-    protected $fillable=['order_no','user_id','hospital_id','amount','discount','service_charge','total_amount','reconciliation_amount','patient_name',
-        'patient_mobile','patient_address','test_date','approval_status','visit_status','payment_status','delivery_status','delivery_date','source','note','created_by','updated_by'];
+    protected $fillable=['order_no','refer_by_id','hospital_id','amount','discount','service_charge','total_amount','reconciliation_amount','patient_name',
+        'patient_id','test_date','approval_status','visit_status','payment_status','delivery_status','delivery_date','source','note','created_by','updated_by'];
 
+    public function patient(){
+        return $this->belongsTo(Patient::class,'patient_id','id');
+    }
     public function hospital(){
         return $this->belongsTo(Hospital::class,'hospital_id','id');
     }

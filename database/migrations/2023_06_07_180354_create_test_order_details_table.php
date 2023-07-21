@@ -19,6 +19,7 @@ class CreateTestOrderDetailsTable extends Migration
             $table->unsignedBigInteger('hospital_id');
             $table->unsignedBigInteger('test_id');
             $table->double('price',7,1);
+            $table->integer('discount',false,6)->default(0);
             $table->tinyInteger('approval_status',false,2)->default(\App\Models\TestOrderDetail::PENDING);
             $table->tinyInteger('delivery_status',false,2)->default(\App\Models\TestOrderDetail::PROCESSION);
             $table->timestamp('delivery_date')->nullable();

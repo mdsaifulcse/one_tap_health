@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name',80);
             $table->string('email',100)->nullable();
             $table->string('phone',25)->nullable();
+            $table->string('age',30)->default(30)->nullable();
             $table->date('birth_date')->nullable();
             $table->string('address')->nullable();
             $table->tinyInteger('user_role',false,2)->default(\App\Models\User::GENERALUSER)->comment('1=Developer,2=Super Admin,3=Admin,4=Librarian,5=General User');

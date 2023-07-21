@@ -53,7 +53,8 @@
                                 <th width="4">SL.</th>
                                 <th>Test</th>
                                 <th>Price</th>
-
+                                <th>Discount</th>
+                                <th>Total</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -63,6 +64,8 @@
                                     <td>{{$i++}}</td>
                                     <td>{{$testOrderDetail->test->title}}</td>
                                     <td>{{$testOrderDetail->price}}</td>
+                                    <td>{{$testOrderDetail->discount}}</td>
+                                    <td>{{$testOrderDetail->price_after_discount}}</td>
                                 </tr>
                             @empty
                                 <tr>

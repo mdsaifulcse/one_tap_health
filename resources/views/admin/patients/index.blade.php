@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-    Test Order List
+    Patient List
 @endsection
 
 @section('style')
@@ -29,7 +29,7 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="page-header-title">
-                <h4>Test Order List </h4>
+                <h4>Patient List </h4>
             </div>
             <div class="page-header-breadcrumb">
                 <ul class="breadcrumb-title">
@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>
+                        <a href="{{route('admin.patients.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Patient</a>
                         {{--<a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>--}}
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>All Test Order List</h5>
+                            <h5>All Patient List</h5>
                             <span> </span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>
@@ -66,14 +66,12 @@
                                     <thead>
                                     <tr class="">
                                         <th>SL</th>
-                                        <th>Order No.</th>
-                                        <th>Hospital</th>
-                                        <th>Patient Name</th>
-                                        <th>Patient Mobile</th>
-                                        <th>Amount</th>
-                                        <th>Test Date</th>
-                                        <th>Visit</th>
-                                        <th>Payment</th>
+                                        <th>Patient ID.</th>
+                                        <th>Name</th>
+                                        <th>Mobile</th>
+                                        <th>Email</th>
+                                        <th>Age</th>
+                                        <th>Status</th>
                                         <th>Created At</th>
                                         <th>Control</th>
                                     </tr>
@@ -126,18 +124,16 @@
                         console.log(d)
                     },
                 },
-                order: [[9, "DESC"]],
+                order: [[6, "DESC"]],
                 columns: [
                     { data: 'DT_RowIndex',orderable:false},
-                    { data: 'order_no',name:'test_orders.order_no'},
-                    { data: 'hospitals_name'},
-                    { data: 'patient_name',name:'patient.name'},
-                    { data: 'patient_mobile',name:'patient.mobile'},
-                    { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
-                    { data: 'test_date',name:'test_orders.test_date'},
-                    { data: 'visit_status',name:'test_orders.visit_status'},
-                    { data: 'payment_status',name:'test_orders.payment_status'},
-                    { data: 'created_at',name:'test_orders.created_at'},
+                    { data: 'patient_no',name:'patients.patient_no'},
+                    { data: 'name',name:'patients.name'},
+                    { data: 'mobile',name:'patients.mobile'},
+                    { data: 'email',name:'patients.email'},
+                    { data: 'age',name:'patients.age'},
+                    { data: 'status',name:'patients.status'},
+                    { data: 'created_at',name:'patients.created_at'},
                     { data: 'control'},
                 ]
             });
@@ -149,7 +145,7 @@
             console.log(testOrderId);
 
             $('#modalContent').html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
-                .load('{{URL::to("admin/test-orders")}}/'+testOrderId);
+                .load('{{URL::to("admin/patients")}}/'+testOrderId);
 
             $('#testOrderDetailsModal').modal('show')
         }

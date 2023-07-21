@@ -6,32 +6,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class HospitalWiseTestPrice extends Model
+class Patient extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
+    const PATIENTIDLENGTH=8;
     const ACTIVE=1;
     const INACTIVE=0;
 
-    const YES=1;
-    const NO=0;
+    protected $table='patients';
+    protected $fillable=['patient_no','name','email','mobile','age','address','details','status','sequence','created_by','updated_by'];
 
-    protected $table='hospital_wise_test_prices';
-    protected $fillable=['test_id','hospital_id','price','discount','vat_percent','status','created_by','updated_by'];
-    protected $appends=['price_after_discount'];
-
-    public function hospital(){
-        return $this->belongsTo(Hospital::class,'hospital_id','id');
-    }
-    public function test(){
-        return $this->belongsTo(Test::class,'test_id','id');
+    public function createdBy(){
+        return $this->belongsTo(User::class,'created_by','id');
     }
 
-    public function getPriceAfterDiscountAttribute(){
-        return $this->price-$this->discount;
+    public static function generatePatientId(){
+        $patientId=Patient::max('patient_no');
+        if (empty($patientId)){
+            $patientId=1;
+        }else{
+            $patientId+=1;
+        }
+
+        $invoiceLength= env('PATIENT_ID_LENGTH',Patient::PATIENTIDLENGTH);
+        return str_pad($patientId,$invoiceLength,"0",false);
     }
-
-
 
 
     // TODO :: boot

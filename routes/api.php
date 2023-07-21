@@ -29,6 +29,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'cli
 */
 
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'client','as' => 'client.'],function (){
+    Route::get('/search-active-users', 'SearchController@searchActiveUsers');
+    Route::get('/search-active-patients', 'SearchController@searchActivePatients');
     Route::get('/search-active-doctors', 'SearchController@searchActiveDoctors');
     Route::get('/search-active-hospitals', 'SearchController@searchActiveHospitals');
 });

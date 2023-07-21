@@ -56,16 +56,36 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    {{--<li class=" ">--}}
-                        {{--<a href="#" data-i18n="nav.page_layout.rtl">--}}
-                            {{--<span class="pcoded-micon"><i class="icon-pie-chart"></i></span>--}}
-                            {{--<span class="pcoded-mtext">Create Test Order</span>--}}
-                            {{--<span class="pcoded-mcaret"></span>--}}
-                        {{--</a>--}}
-                    {{--</li>--}}
+                </ul>
+            </li>
+
+            <li class="pcoded-hasmenu " dropdown-icon="style3" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Patients</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    {{--Sub Menu--}}
+                    <li class=" ">
+                        <a href="{{route('admin.patients.create')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Create Patients</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{route('admin.patients.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">List Patients</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
 
                 </ul>
             </li>
+
             <li class="pcoded-hasmenu " dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
@@ -92,6 +112,7 @@
 
                 </ul>
             </li>
+
             <li class="pcoded-hasmenu " dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
