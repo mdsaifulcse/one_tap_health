@@ -15,7 +15,7 @@ class Patient extends Model
     const INACTIVE=0;
 
     protected $table='patients';
-    protected $fillable=['patient_no','name','email','mobile','age','address','details','status','sequence','created_by','updated_by'];
+    protected $fillable=['user_id','patient_no','name','email','mobile','age','address','details','status','sequence','refer_by_id','created_by','updated_by'];
 
     public function createdBy(){
         return $this->belongsTo(User::class,'created_by','id');

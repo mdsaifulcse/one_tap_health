@@ -46,12 +46,12 @@ class PathologyTestController extends Controller
     public function costOfHospitalsTest($testId){
         try{
 
-            $test=Test::findOrfail($testId);
+            Test::findOrfail($testId);
 
             $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where(['test_id'=>$testId])->paginate(10);
 
-            return $this->respondWithSuccess('Cost of hospital test',CostOfHospitalTestCollection::make($costOfHospitalTest),Response::HTTP_OK);
-        }catch(Exception $e){
+            return $this->respondWithSuccess('Cost of test for hospital',CostOfHospitalTestCollection::make($costOfHospitalTest),Response::HTTP_OK);
+        }catch(\Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

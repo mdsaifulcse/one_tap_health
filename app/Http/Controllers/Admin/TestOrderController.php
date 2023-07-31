@@ -29,13 +29,13 @@ class TestOrderController extends Controller
                 ->addIndexColumn()
                 ->addColumn('DT_RowIndex','')
                 ->addColumn('hospitals_name',function (TestOrder $testOrder){
-                    return $testOrder->hospital->name;
+                    return $testOrder->hospital->name??'N/A';
                 })
                 ->addColumn('patient_name',function (TestOrder $testOrder){
-                    return $testOrder->patient->name;
+                    return $testOrder->patient->name??'N/A';
                 })
                 ->addColumn('patient_mobile',function (TestOrder $testOrder){
-                    return $testOrder->patient->mobile;
+                    return $testOrder->patient->mobile??'N/A';
                 })
                 ->addColumn('test_date','
                     {{date(\'M-d-Y\',strtotime($test_date))}}

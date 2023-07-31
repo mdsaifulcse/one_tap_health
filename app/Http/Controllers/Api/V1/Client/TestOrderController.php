@@ -63,10 +63,10 @@ class TestOrderController extends Controller
             if ($request->order_for_other_patient==0){
                 $request['patient_name']=auth()->user()->name;
                 $request['patient_mobile']=auth()->user()->phone;
-                $request['patient_age']=auth()->user()->address;
+                $request['patient_age']=auth()->user()->age;
                 $request['patient_address']=auth()->user()->address;
 
-                $patientId=$this->storeNewPatient($request)->id;
+                $patientId=$this->storeNewPatient($request,auth()->user()->id)->id;
             }else{ // for new patient ------------
                 $patientId=$this->storeNewPatient($request)->id;
             }
@@ -99,7 +99,7 @@ class TestOrderController extends Controller
             Log::info('Test order Place from api');
             return $this->respondWithSuccess('Order has been Placed successful',['order_no'=>$testOrder->order_no],Response::HTTP_OK);
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             DB::rollback();
             Log::info('Test order error api: '.$e->getMessage());
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -129,23 +129,30 @@ class TestOrderController extends Controller
         return $rules;
     }
 
-    public function storeNewPatient($request){
+    public function storeNewPatient($request,$userId=null){
+        $patient=new Patient();
+        if ($userId!=null){
+            $patient=$patient->where('user_id',$userId);
+        }else{
+            $patient=$patient->where(function ($query)use($request){
+                $query->where('mobile',$request->patient_mobile)
+                    ->where('name','like', '%'.$request->patient_name.'%');
+            });
+        }
 
-        $patient=Patient::where(function ($query)use($request){
-            $query->where('mobile',$request->patient_mobile)
-                ->where('name','like', '%'.$request->patient_name.'%');
-                //->orWhere('address','like', '%'.$request->patient_address.'%');
-        })->first();
+        $patient=$patient->first();
 
         if ($patient){
             return $patient;
         }else{
            return $patient= Patient::create([
+                'user_id'=>$userId,
                 'patient_no'=>Patient::generatePatientId(),
                 'name'=>$request->patient_name,
                 'age'=>$request->patient_age??18,
                 'mobile'=>$request->patient_mobile,
                 'address'=>$request->patient_address,
+                'refer_by_id'=>auth()->user()->id,
             ]);
         }
 
