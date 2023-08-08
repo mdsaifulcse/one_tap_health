@@ -16,14 +16,16 @@ class CreateTestOrdersTable extends Migration
         Schema::create('test_orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_no',20);
-            $table->unsignedBigInteger('refer_by_id')->comment('User table id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable()->comment('User table id')->nullable();
+            $table->unsignedBigInteger('refer_by_id')->nullable()->comment('User table id')->nullable();
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('hospital_id');
             $table->double('amount',8,1)->default(0);
             $table->double('discount',7,1)->default(0);
             $table->double('service_charge',7,1)->default(0);
-            $table->double('total_amount',7,1)->default(0)->comment('(amount-discount)+service charge');
-            $table->double('reconciliation_amount',7,1)->default(0)->comment('This is the final payable amount');
+            $table->double('total_amount',8,1)->default(0)->comment('(amount-discount)+service charge');
+            $table->double('reconciliation_amount',8,1)->default(0)->comment('This is the final payable amount');
+            $table->double('system_commission',8,1)->default(0)->comment(' That amount system (company earn)');
             $table->timestamp('test_date')->comment('when a Patient wants to be tested');
             $table->tinyInteger('approval_status',false,2)->default(\App\Models\TestOrder::PENDING);
             $table->tinyInteger('visit_status',false,1)->default(\App\Models\TestOrder::NO);
@@ -33,8 +35,9 @@ class CreateTestOrdersTable extends Migration
             $table->string('source')->default(\App\Models\TestOrder::SOURCEMOBILE);
             $table->text('note')->nullable();
 
-            $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('refer_by_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();
             $table->foreign('hospital_id')->references('id')->on('hospitals')->cascadeOnDelete();
             $table->unsignedBigInteger('created_by', false);
             $table->unsignedBigInteger('updated_by', false)->nullable();

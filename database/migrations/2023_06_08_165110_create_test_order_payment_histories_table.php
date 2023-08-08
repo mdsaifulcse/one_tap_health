@@ -19,10 +19,13 @@ class CreateTestOrderPaymentHistoriesTable extends Migration
             $table->unsignedBigInteger('test_order_id');
             $table->timestamp('payment_date');
             $table->double('payment_amount',8,1)->default(0);
+            $table->double('store_amount',8,1)->default(0);
             $table->string('payment_type',100)->default(\App\Models\TestOrderPaymentHistory::CASHONDELIVERY)->comment('cash or online payment');
-            $table->string('transaction_id',100)->nullable();
             $table->string('payment_track',200)->nullable();
             $table->string('payment_gateway',100)->nullable();
+            $table->string('transaction_id',100)->nullable();
+            $table->string('currency',5)->nullable();
+            $table->tinyInteger('payment_status',false,1)->default(\App\Models\TestOrderPaymentHistory::INITIATE);
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('test_order_id')->references('id')->on('test_orders')->cascadeOnDelete();

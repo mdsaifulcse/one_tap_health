@@ -89,7 +89,7 @@ class TestOrderController extends Controller
      */
     public function create()
     {
-        $lastOrderNo=$this->generateOrderInvoiceNo();
+        $lastOrderNo=TestOrder::generateOrderInvoiceNo();
         return view('admin.test-orders.create',compact('lastOrderNo'));
     }
 
@@ -101,7 +101,7 @@ class TestOrderController extends Controller
 
     public function store(Request $request)
     {
-        $orderNo=$this->generateOrderInvoiceNo();
+        $orderNo=TestOrder::generateOrderInvoiceNo();
         $request['order_no']=$orderNo;
         $rules=$this->testOrderValidationRules($request);
         $validator = Validator::make( $request->all(), $rules);
@@ -188,19 +188,6 @@ class TestOrderController extends Controller
             'mobile'=>$request->patient_mobile,
             'address'=>$request->patient_address,
         ]);
-    }
-
-    public function generateOrderInvoiceNo(){
-
-        $lastOrderNo=TestOrder::max('order_no');
-        if (empty($lastOrderNo)){
-            $lastOrderNo=1;
-        }else{
-            $lastOrderNo+=1;
-        }
-
-        $invoiceLength= env('INVOICE_LENGTH',TestOrder::INVOICENOLENGTH);
-        return str_pad($lastOrderNo,$invoiceLength,"0",false);
     }
 
     public function calculateTestOrderAmount($request){

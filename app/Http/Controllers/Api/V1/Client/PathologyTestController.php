@@ -62,7 +62,7 @@ class PathologyTestController extends Controller
             $categoryActiveTests=Test::with('testCategory')->where(['category_id'=>$categoryId,'status'=>Test::ACTIVE])->latest('sequence','ASC')->get();
 
             return $this->respondWithSuccess('Category Wise Active Test list',TestResourceCollection::make($categoryActiveTests),Response::HTTP_OK);
-        }catch(Exception $e){
+        }catch(\Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

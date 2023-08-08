@@ -7,6 +7,7 @@ use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
 use App\Models\TestOrder;
 use App\Models\TestOrderDetail;
+use App\Models\TestOrderPaymentHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -45,7 +46,7 @@ class TestOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $orderNo=$this->generateOrderInvoiceNo();
+        $orderNo=TestOrder::generateOrderInvoiceNo();
         $request['order_no']=$orderNo;
         $rules=$this->testOrderValidationRules($request);
         $validator = Validator::make( $request->all(), $rules);
@@ -74,6 +75,7 @@ class TestOrderController extends Controller
             $testOrder=TestOrder::create(
                 [
                  'order_no'=>$orderNo,
+                 'user_id'=>\Auth::user()->id,
                  'refer_by_id'=>$request->refer_by_id??\Auth::user()->id,
                  'hospital_id' => $request->hospital_id,
                  'patient_id' => $patientId,
@@ -97,7 +99,7 @@ class TestOrderController extends Controller
 
             DB::commit();
             Log::info('Test order Place from api');
-            return $this->respondWithSuccess('Order has been Placed successful',['order_no'=>$testOrder->order_no],Response::HTTP_OK);
+            return $this->respondWithSuccess('Order has been Placed successful',['test_order_id'=>$testOrder->id,'order_no'=>$testOrder->order_no],Response::HTTP_OK);
 
         }catch(\Exception $e){
             DB::rollback();
@@ -117,7 +119,7 @@ class TestOrderController extends Controller
             'patient_email'  => "nullable|max:15",
 
             'test_date'  => "required|date",
-            'discount'  => "numeric|numeric|digits_between:1,99999|max:9999",
+            'discount'  => "nullable|numeric|digits_between:1,99999|max:9999",
             'service_charge'  => "numeric|digits_between:1,6",
 
             "test_id"   => "required|array|min:1",
@@ -159,18 +161,6 @@ class TestOrderController extends Controller
 
     }
 
-    public function generateOrderInvoiceNo(){
-
-        $lastOrderNo=TestOrder::max('order_no');
-        if (empty($lastOrderNo)){
-            $lastOrderNo=1;
-        }else{
-            $lastOrderNo+=1;
-        }
-
-        $invoiceLength= env('INVOICE_LENGTH',TestOrder::INVOICENOLENGTH);
-        return str_pad($lastOrderNo,$invoiceLength,"0",false);
-    }
 
     public function calculateTestOrderAmount($request){
 

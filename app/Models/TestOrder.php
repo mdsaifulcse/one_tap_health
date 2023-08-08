@@ -30,7 +30,7 @@ class TestOrder extends Model
     const YES=1;
     const NO=0;
     protected $table='test_orders';
-    protected $fillable=['order_no','refer_by_id','hospital_id','amount','discount','service_charge','total_amount','reconciliation_amount','patient_name',
+    protected $fillable=['order_no','user_id','refer_by_id','hospital_id','amount','discount','service_charge','total_amount','reconciliation_amount','system_commission','patient_name',
         'patient_id','test_date','approval_status','visit_status','payment_status','delivery_status','delivery_date','source','note','created_by','updated_by'];
 
     public function patient(){
@@ -44,6 +44,20 @@ class TestOrder extends Model
         return $this->hasMany(TestOrderDetail::class,'test_order_id','id');
     }
 
+    public static function generateOrderInvoiceNo(){
+        $testOrderPrefix='ton-';
+
+        $lastOrderNo=TestOrder::max('order_no');
+        if (empty($lastOrderNo)){
+            $lastOrderNo=1;
+        }else{
+            $lastOrderNo=str_replace($testOrderPrefix,'',$lastOrderNo);
+            $lastOrderNo+=1;
+        }
+
+        $invoiceLength= env('INVOICE_LENGTH',TestOrder::INVOICENOLENGTH);
+        return $testOrderPrefix.str_pad($lastOrderNo,$invoiceLength,"0",false);
+    }
 
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'

@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+/*
+ ----------SSL Commerce ----
+*/
+
+Route::group(['namespace'=>'App\Http\Controllers\SSLCommerz','prefix' => 'sslPay','as' => 'sslPay.'],function (){
+    Route::POST('/pay',  'PublicSslCommerzPaymentController@index');
+    Route::POST('/success', 'PublicSslCommerzPaymentController@success');
+    Route::POST('/fail', 'PublicSslCommerzPaymentController@fail');
+    Route::POST('/cancel', 'PublicSslCommerzPaymentController@cancel');
+    Route::POST('/ipn', 'PublicSslCommerzPaymentController@ipn');
+
+});
+
+
+
 /*
  ---------- Client Without-Authentication -------
 */
@@ -44,6 +60,11 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
 
     /*--------- Test Order Api --------*/
     Route::apiResource('/test-order', 'TestOrderController');
+
+    /*--------- Hospital Api --------*/
+    Route::get('/active-hospital-list', 'HospitalApiController@activeHospitalsList');
+    Route::get('hospital-wise-test-details/{hospitalId}', 'HospitalApiController@hospitalWiseTestDetails');
+
     /*--------- Doctor Api --------*/
     Route::get('/active-doctors-list', 'DoctorApiController@activeDoctorsList');
     Route::get('/doctor-schedules/{doctorId}', 'DoctorApiController@doctorWiseScheduleForHospital');

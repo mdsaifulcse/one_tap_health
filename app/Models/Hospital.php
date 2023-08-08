@@ -22,7 +22,7 @@ class Hospital extends Model
 
     public function hospitalTestPrice(){
         return $this->belongsToMany(Test::class,'hospital_wise_test_prices')
-            ->whereNull('hospital_wise_test_prices.deleted_at');
+            ->whereNull('hospital_wise_test_prices.deleted_at')->withPivot('price','discount','vat_percent');
     }
 
 
