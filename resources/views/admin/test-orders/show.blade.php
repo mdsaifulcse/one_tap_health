@@ -14,28 +14,28 @@
                             Order No.: #{{$testOrder->order_no}} <br>
                             Test Date.: {{date('d-M-Y',strtotime($testOrder->test_date))}} <br>
                             Amount: Tk.{{$testOrder->reconciliation_amount}} <br>
-                            Patient Name: {{$testOrder->patient_name}} <br>
-                            Patient Mobile: {{$testOrder->patient_mobile}} <br>
-                            Patient Address: {{$testOrder->patient_address}} <br>
+                            Patient Name: {{$testOrder->patient->name}} <br>
+                            Patient Mobile: {{$testOrder->patient->mobile}} <br>
+                            Patient Address: {{$testOrder->patient->address}} <br>
                         </div>
                         <div class="col-6">
                             <div class="text-right">
 
                                 Payment Status:
                                 @if($testOrder->payment_status==\App\Models\TestOrder::PARTIALPAYMENT)
-                                    <span class="badge badge-warning ">Partial Payment</span>
+                                    <b class="badge badge-warning ">Partial Payment</b>
 
                                 @elseif($testOrder->payment_status==\App\Models\TestOrder::FULLPAYMENT)
-                                    <span class="badge badge-success ">Full Paid</span>
+                                    <b class="badge badge-primary">Full Paid</b>
                                 @else
-                                    <span class="badge badge-danger ">Due</span>
+                                    <b class="badge badge-danger ">Due</b>
                                 @endif
                                 <br>
                                 Visit Status:
                                 @if($testOrder->visit_status==\App\Models\TestOrder::YES)
-                                    <span class="badge btn-success ">Yes</span>
+                                    <b class="badge btn-success ">Yes</b>
                                 @else
-                                    <span class="badge btn-warning ">No</span>
+                                    <b class="badge btn-warning ">No</b>
                                 @endif
                                 <br>
                                 Hospital: {{$testOrder->hospital->name}} <br>

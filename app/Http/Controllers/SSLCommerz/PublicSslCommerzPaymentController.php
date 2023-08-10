@@ -26,6 +26,7 @@ class PublicSslCommerzPaymentController extends Controller
 
     public function index(Request $request)
     {
+
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "order_id","order_status" field contain status of the transaction, "grand_total" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
@@ -179,7 +180,7 @@ class PublicSslCommerzPaymentController extends Controller
                     $testOrderId=$testOrderPaymentHistory->test_order_id;
 
                     $testOrder=TestOrder::findOrFail($testOrderId);
-                    $totalPaymentAmount=TestOrderPaymentHistory::where(['test_order_id'=>$testOrderId,'payment_status'=>TestOrderPaymentHistory::COMPLETE])->sum('payment_amount');
+                    $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
 
                     if ($totalPaymentAmount<$testOrder->reconciliation_amount){
                         $testOrder->update(['payment_status'=>TestOrder::PARTIALPAYMENT]);
@@ -221,7 +222,7 @@ class PublicSslCommerzPaymentController extends Controller
                 $testOrderId=$testOrderPaymentHistory->test_order_id;
 
                 $testOrder=TestOrder::findOrFail($testOrderId);
-                $totalPaymentAmount=TestOrderPaymentHistory::where(['test_order_id'=>$testOrderId,'payment_status'=>TestOrderPaymentHistory::COMPLETE])->sum('payment_amount');
+                $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
 
                 if ($totalPaymentAmount<$testOrder->reconciliation_amount){
                     $testOrder->update(['payment_status'=>TestOrder::PARTIALPAYMENT]);

@@ -8,6 +8,8 @@ use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
 use App\Models\TestOrder;
 use App\Models\TestOrderDetail;
+use App\Models\TestOrderPaymentHistory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Validator,MyHelper,DB,Yajra\DataTables\DataTables;
@@ -48,6 +50,7 @@ class TestOrderController extends Controller
                         @endif
                 ')
                 ->addColumn('payment_status','
+                <a href="{{url(\'admin/test-order-manual-payment/\'.$id)}}" target="_blank" data-toggle="tooltip" title="Click Here For Payment"> 
                      @if($payment_status==\App\Models\TestOrder::PARTIALPAYMENT)
                         <button class="btn btn-warning btn-sm">Partial</button>
                         
@@ -56,6 +59,7 @@ class TestOrderController extends Controller
                             @else
                             <button class="btn btn-danger btn-sm">Due</button>
                         @endif
+                 </a>
                 ')
                 ->addColumn('created_at','
                     {{date(\'M-d-Y\',strtotime($created_at))}}
@@ -65,7 +69,8 @@ class TestOrderController extends Controller
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Details <i class="icofont icofont-eye"></i> </a></li>
+                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-info btn-sm" title="Click here for order details">Payment Details <i class="icofont icofont-eye"></i> </a></li>
+                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Order Details <i class="icofont icofont-eye"></i> </a></li>
                             <li>
                                 {!! Form::open(array(\'route\' => [\'admin.test-orders.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
                                 <button type="button" class="btn btn-danger btn-sm" onclick=\'return deleteConfirm("deleteForm{{$id}}")\'>Delete <i class="icofont icofont-trash"></i></button>
@@ -168,7 +173,7 @@ class TestOrderController extends Controller
 
             'order_no' => 'unique:test_orders,order_no,NULL,id,deleted_at,NULL',
             'test_date'  => "required|date",
-            'amount'  => "numeric|numeric|digits_between:1,9999999|min:1|max:9999999",
+            'amount'  => "numeric|digits_between:1,9999999|min:1|max:9999999",
             'discount'  => "numeric|numeric|digits_between:1,99999|max:9999",
             'service_charge'  => "numeric|digits_between:1,6",
 
@@ -255,7 +260,8 @@ class TestOrderController extends Controller
      */
     public function show(TestOrder $testOrder)
     {
-         $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date','testOrderDetails.test:id,title','hospital:id,name,branch,address1']);
+        $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date',
+            'testOrderDetails.test:id,title','hospital:id,name,branch,address1','patient:id,name,mobile,address']);
         return view('admin.test-orders.show',compact('testOrder'));
     }
 
@@ -293,14 +299,86 @@ class TestOrderController extends Controller
     public function destroy(TestOrder $testOrder)
     {
         try{
-            $testOrder->load('testOrderDetails');
+            $testOrder->load('testOrderDetails','testOrderPaymentHistories');
+            // Delete test order Details
            foreach ($testOrder->testOrderDetails as $testOrderDetail){
                $testOrderDetail->delete();
            }
+           // Delete Payment history
+           foreach ($testOrder->testOrderPaymentHistories as $testOrderPaymentHistory){
+               $testOrderPaymentHistory->delete();
+           }
+
+
             $testOrder->delete();
             return redirect()->back()->with('success','Data has been Successfully Deleted!');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
+        }
+    }
+
+    public function testOrderManualPayment($testOrderId){
+
+        $testOrder=TestOrder::with(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date',
+           'testOrderDetails.test:id,title','hospital:id,name,branch,address1','patient:id,name,mobile,address'])
+        ->findOrFail($testOrderId);
+        $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
+        return view('admin.test-orders.test-order-manual-payment',compact('testOrder','totalPaymentAmount'));
+    }
+
+    public function testOrderManualPaymentSave(Request $request){
+
+        // Validate ---------
+        $validator = Validator::make( $request->all(), ['test_order_id' => "exists:test_orders,id",'payment_amount' => "required|numeric",]);
+        if ($validator->fails()) {
+            return redirect()->back()->with('error',$validator->errors()->first());
+        }
+
+        $testOrderId=$request->test_order_id;
+        $testOrder=TestOrder::findOrFail($testOrderId);
+
+        if ($testOrder->payment_status==TestOrder::FULLPAYMENT){
+            return redirect()->back()->with('error','Already full payment is done');
+        }
+
+
+        DB::beginTransaction();
+        try{
+
+            $tranId=TestOrderPaymentHistory::generateTestOrderTrxID($testOrderId);
+            $totalAmount=$request->payment_amount;
+
+            // Create payment ------------
+            TestOrderPaymentHistory::create([
+                'test_order_id'=>$testOrderId,
+                'transaction_id'=>$tranId,
+                'payment_date'=>Carbon::now(),
+                'payment_amount'=>$totalAmount,
+                'payment_type'=>TestOrderPaymentHistory::OFFLINEPAYMENT,
+                'currency'=>'BDT',
+                'payment_status'=>TestOrderPaymentHistory::COMPLETE,
+            ]);
+
+            $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
+
+            if ($totalPaymentAmount<$testOrder->reconciliation_amount){
+                $testOrder->update(['payment_status'=>TestOrder::PARTIALPAYMENT]);
+
+            }elseif ($totalPaymentAmount>=$testOrder->reconciliation_amount){
+                $testOrder->update(['payment_status'=>TestOrder::FULLPAYMENT]);
+
+            }else{
+                $testOrder->update(['payment_status'=>TestOrder::PENDING]);
+            }
+
+            Log::info('Test order payment web admin: trxId: '.$tranId);
+            DB::commit();
+            return redirect()->back()->with('success','Payment has been saved successfully');
+
+        }catch(\Exception $e){
+            DB::rollback();
+            Log::info('Test order payment web admin: '.$e->getMessage());
+            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
     }
 }

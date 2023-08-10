@@ -24,7 +24,7 @@ class TestOrderDetail extends Model
     protected $appends=['price_after_discount'];
 
     public function test(){
-        return $this->belongsTo(Test::class,'test_id','id');
+        return $this->belongsTo(Test::class,'test_id','id')->withTrashed();
     }
 
     public function getPriceAfterDiscountAttribute(){

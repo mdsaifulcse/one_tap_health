@@ -71,6 +71,7 @@
                                         <th>Patient Name</th>
                                         <th>Patient Mobile</th>
                                         <th>Amount</th>
+                                        <th>Paid</th>
                                         <th>Test Date</th>
                                         <th>Visit</th>
                                         <th>Payment</th>
@@ -134,6 +135,7 @@
                     { data: 'patient_name',name:'patient.name'},
                     { data: 'patient_mobile',name:'patient.mobile'},
                     { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
+                    { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
                     { data: 'test_date',name:'test_orders.test_date'},
                     { data: 'visit_status',name:'test_orders.visit_status'},
                     { data: 'payment_status',name:'test_orders.payment_status'},
@@ -154,5 +156,11 @@
             $('#testOrderDetailsModal').modal('show')
         }
 
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 @endsection

@@ -34,14 +34,17 @@ class TestOrder extends Model
         'patient_id','test_date','approval_status','visit_status','payment_status','delivery_status','delivery_date','source','note','created_by','updated_by'];
 
     public function patient(){
-        return $this->belongsTo(Patient::class,'patient_id','id');
+        return $this->belongsTo(Patient::class,'patient_id','id')->withTrashed();
     }
     public function hospital(){
-        return $this->belongsTo(Hospital::class,'hospital_id','id');
+        return $this->belongsTo(Hospital::class,'hospital_id','id')->withTrashed();
     }
 
     public function testOrderDetails(){
         return $this->hasMany(TestOrderDetail::class,'test_order_id','id');
+    }
+    public function testOrderPaymentHistories(){
+        return $this->hasMany(TestOrderPaymentHistory::class,'test_order_id','id');
     }
 
     public static function generateOrderInvoiceNo(){
