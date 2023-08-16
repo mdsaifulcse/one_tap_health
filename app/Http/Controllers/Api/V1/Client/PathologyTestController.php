@@ -43,16 +43,53 @@ class PathologyTestController extends Controller
         }
     }
 
-    public function costOfHospitalsTest($testId){
+    public function costOfHospitalsTest(Request $request){
         try{
+            if (!is_array($request->test_ids) || !isset($request->test_ids)){
+                return $this->respondWithValidation('Validation Fail','Query params must be test_ids & array',Response::HTTP_BAD_REQUEST);
+            }
 
-            Test::findOrfail($testId);
 
-            $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where(['test_id'=>$testId])->paginate(10);
+           //return $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where('test_id',3)->paginate(50);
 
-            return $this->respondWithSuccess('Cost of test for hospital',CostOfHospitalTestCollection::make($costOfHospitalTest),Response::HTTP_OK);
+            $groupByTests=HospitalWiseTestPrice::with('test:id,title')->select('test_id')->whereIn('test_id',$request->test_ids)
+                ->groupBy('test_id')->get();
+
+            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude')->whereIn('test_id',$request->test_ids)
+                ->orderBy('test_id')->get();
+
+            foreach ($groupByTests as $i=>$groupByTest){
+
+                $hospitalArray=[];
+                foreach ($testWiseHospitals as $j=>$testWiseHospital){
+
+                    if ($groupByTest->test_id==$testWiseHospital->test_id){
+
+                        $hospitalArray[]=[
+                            'test_id'=>$testWiseHospital->test->id,
+                            'test_title'=>$testWiseHospital->test->title,
+                            'hospital_name'=>$testWiseHospital->hospital->name,
+                            'hospital_branch'=>$testWiseHospital->hospital->branch,
+                            'latitude'=>$testWiseHospital->hospital->latitude?$testWiseHospital->hospital->latitude:'',
+                            'longitude'=>$testWiseHospital->hospital->longitude?$testWiseHospital->hospital->longitude:'',
+                            'hospital_photo'=>$testWiseHospital->hospital->photo?url($testWiseHospital->hospital->photo):'',
+                            'price'=>$testWiseHospital->price,
+                            'discount'=>$testWiseHospital->discount,
+                            'price_after_discount'=>$testWiseHospital->price_after_discount,
+                        ];
+                    }
+
+
+                }
+
+                $groupByTest['hospitals']=$hospitalArray;
+            }
+
+            return $this->respondWithSuccess('Cost of test for hospital list',$groupByTests,Response::HTTP_OK);
+            //return $this->respondWithSuccess('Cost of test for hospital',CostOfHospitalTestCollection::make($testWiseHospitals),Response::HTTP_OK);
+
         }catch(\Exception $e){
-            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->respondWithError('Something went wrong, Try again later '.$e->getMessage(),'',Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

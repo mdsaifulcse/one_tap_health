@@ -14,8 +14,8 @@ class Doctor extends Model
     const INACTIVE=0;
 
     protected $table='doctors';
-    protected $fillable=['name','email','mobile','contact','address','photo','bio','institute','designation','degree','department',
-        'specialist','status','sequence'];
+    protected $fillable=['name','email','mobile','contact','address','current_chamber','photo','bio','institute','designation','degree','department',
+        'specialist','bmdc_no','status','sequence'];
 
     public static function department(){
        return [

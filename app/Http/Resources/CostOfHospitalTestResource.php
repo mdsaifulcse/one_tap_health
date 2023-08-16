@@ -14,10 +14,12 @@ class CostOfHospitalTestResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
-            'id'=>$this->id,
             'price'=>$this->price,
             'discount'=>$this->discount,
+            'test_id'=>$this->test->id,
+            'test_title'=>$this->test->title,
             'hospital_id'=>$this->hospital->id,
             'hospital_name'=>$this->hospital->name,
             'hospital_branch'=>$this->hospital->branch,

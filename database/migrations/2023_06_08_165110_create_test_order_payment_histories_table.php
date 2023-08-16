@@ -21,7 +21,7 @@ class CreateTestOrderPaymentHistoriesTable extends Migration
             $table->double('payment_amount',8,1)->default(0);
             $table->double('store_amount',8,1)->default(0);
             $table->string('payment_type',100)->default(\App\Models\TestOrderPaymentHistory::CASHONDELIVERY)->comment('cash or online payment');
-            $table->string('payment_track',200)->nullable();
+            $table->text('payment_track')->nullable();
             $table->string('payment_gateway',100)->nullable();
             $table->string('transaction_id',100)->nullable();
             $table->string('currency',5)->nullable();

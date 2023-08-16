@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class HospitalWiseDoctorSchedule extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $appends = ['doctorAvailableDay'];
+    protected $appends = ['doctorAvailableDay','fee_after_discount'];
     const ACTIVE=1;
     const INACTIVE=0;
 
@@ -17,20 +17,14 @@ class HospitalWiseDoctorSchedule extends Model
     const NO=0;
 
     protected $table='hospital_wise_doctor_schedules';
-    protected $fillable=['doctor_id','hospital_id','doctor_fee','discount','available_from','available_to','available_day','status','created_by','updated_by'];
+    protected $fillable=['doctor_id','hospital_id','doctor_fee','discount','available_from','available_to','available_day','chamber_no','status','created_by','updated_by'];
 
     public function doctor(){
-        return $this->belongsTo(Doctor::class,'doctor_id','id');
+        return $this->belongsTo(Doctor::class,'doctor_id','id')->withTrashed();
     }
     public function hospital(){
-        return $this->belongsTo(Hospital::class,'hospital_id','id');
+        return $this->belongsTo(Hospital::class,'hospital_id','id')->withTrashed();
     }
-
-    public function getDoctorAvailableDayAttribute()
-    {
-        return ucwords(implode(', ',json_decode($this->available_day,true)));
-    }
-
     public static function availableDays(){
         return [
             'saturday'=>'Saturday',
@@ -42,6 +36,16 @@ class HospitalWiseDoctorSchedule extends Model
             'friday'=>'Friday',
         ];
     }
+
+    public function getDoctorAvailableDayAttribute()
+    {
+        return ucwords(implode(', ',json_decode($this->available_day,true)));
+    }
+
+    public function getFeeAfterDiscountAttribute(){
+        return $this->doctor_fee-$this->discount;
+    }
+
 
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'

@@ -34,6 +34,11 @@ class Test extends Model
         return $this->belongsTo(ThirdSubCategory::class,'third_category_id','id');
     }
 
+    public function testWiseHospitals(){
+        return $this->belongsToMany(Hospital::class,'hospital_wise_test_prices')
+            ->whereNull('hospital_wise_test_prices.deleted_at')->withPivot('price','discount','vat_percent')->withTrashed();
+    }
+
 
 
     // TODO :: boot

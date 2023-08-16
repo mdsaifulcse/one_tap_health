@@ -76,7 +76,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
 
     Route::get('/category-wise-active-test-list/{categoryId}', 'PathologyTestController@categoryWiseActiveTestList');
 
-    Route::get('/cost-of-hospitals-test/{testId}', 'PathologyTestController@costOfHospitalsTest');
+    Route::get('/cost-of-hospitals-test', 'PathologyTestController@costOfHospitalsTest');
 
     Route::get('/active-general-users', 'PathologyTestController@activeGeneralUserListList');
 

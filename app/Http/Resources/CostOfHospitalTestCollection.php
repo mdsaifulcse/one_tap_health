@@ -15,19 +15,19 @@ class CostOfHospitalTestCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'costOfHospitalsTest'=>$this->collection,
-                'pagination'=>[
-                'first_page_url' => $this->path().'?page=1',
-                'last_page' => $this->lastPage(),
-                'last_page_url' => $this->path().'?page='.$this->lastPage(),
-                'next_page_url' => $this->nextPageUrl(),
-                'path' => $this->path(),
-                'per_page' => $this->perPage(),
-                'prev_page_url' => $this->previousPageUrl(),
-                'total' => $this->total(),
-                'count' => $this->count(),
-                'current_page' => $this->currentPage(),
-            ]
+            'testWiseHospital'=>$this->collection,
+//                'pagination'=>[
+//                'first_page_url' => $this->path().'?page=1',
+//                'last_page' => $this->lastPage(),
+//                'last_page_url' => $this->path().'?page='.$this->lastPage(),
+//                'next_page_url' => $this->nextPageUrl(),
+//                'path' => $this->path(),
+//                'per_page' => $this->perPage(),
+//                'prev_page_url' => $this->previousPageUrl(),
+//                'total' => $this->total(),
+//                'count' => $this->count(),
+//                'current_page' => $this->currentPage(),
+//            ]
         ];
     }
 }

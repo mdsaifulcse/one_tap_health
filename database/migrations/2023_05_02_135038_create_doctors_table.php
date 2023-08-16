@@ -22,11 +22,13 @@ class CreateDoctorsTable extends Migration
             $table->string('photo')->nullable();
             $table->text('bio')->nullable();
             $table->text('address')->nullable();
+            $table->text('current_chamber')->nullable();
             $table->string('institute')->nullable();
             $table->string('designation')->nullable();
             $table->string('degree')->nullable();
             $table->string('department')->nullable();
             $table->string('specialist')->nullable();
+            $table->integer('bmdc_no',false,6)->nullable();
             $table->integer('sequence',false,4)->default(0);
             $table->string('status')->default(\App\Models\Doctor::ACTIVE);
 

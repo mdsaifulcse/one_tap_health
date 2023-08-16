@@ -28,7 +28,7 @@ class DoctorApiController extends Controller
             $doctorSchedules=Doctor::with('doctorSchedules')->findOrFail($doctorId);
             return $this->respondWithSuccess('Doctor hospital wise schedules',new DoctorResource($doctorSchedules),Response::HTTP_OK);
         }catch(\Exception $e){
-            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->respondWithError('Something went wrong, Try again later '.$e->getMessage(),'',Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
