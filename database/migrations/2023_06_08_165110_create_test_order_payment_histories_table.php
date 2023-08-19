@@ -29,7 +29,7 @@ class CreateTestOrderPaymentHistoriesTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('test_order_id')->references('id')->on('test_orders')->cascadeOnDelete();
-            $table->unsignedBigInteger('created_by', false);
+            $table->unsignedBigInteger('created_by', false)->nullable();
             $table->unsignedBigInteger('updated_by', false)->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('updated_by')->references('id')->on('users')->cascadeOnDelete();
@@ -45,6 +45,12 @@ class CreateTestOrderPaymentHistoriesTable extends Migration
      */
     public function down()
     {
+        Schema::table('test_order_payment_histories',function (Blueprint $table){
+            $table->dropForeign(['test_order_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+        });
         Schema::dropIfExists('test_order_payment_histories');
     }
 }

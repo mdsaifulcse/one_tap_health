@@ -17,6 +17,12 @@ class DoctorHospitalWiseScheduleResource extends JsonResource
         return [
             'id'=>$this->id,
             'hospital'=>$this->hospital->name,
+            'branch'=>$this->hospital->branch,
+            'address'=>$this->hospital->address1,
+            'doctor_fee'=>$this->doctor_fee,
+            'discount'=>$this->discount,
+            'fee_after_discount'=>$this->fee_after_discount,
+            'doctorAvailableDay'=>$this->doctorAvailableDay,
             'start_time'=>date('h:i:s a', strtotime($this->available_from)),
             'end_time'=>date('h:i:s a', strtotime($this->available_to)),
             'active'=>$this->status==1?true:false,

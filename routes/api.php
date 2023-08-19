@@ -58,6 +58,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'cli
 */
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => ['auth:sanctum'],'prefix' => 'client','as' => 'client.'],function (){
 
+    /*--------- Doctor Appointment Api --------*/
+    Route::apiResource('/doctor-appointment', 'DoctorAppointmentController');
+
     /*--------- Test Order Api --------*/
     Route::apiResource('/test-order', 'TestOrderController');
 

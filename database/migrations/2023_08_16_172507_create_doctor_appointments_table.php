@@ -20,7 +20,6 @@ class CreateDoctorAppointmentsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable()->comment('User table id')->nullable();
             $table->unsignedBigInteger('refer_by_id')->nullable()->comment('User table id')->nullable();
             $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('hospital_id');
             $table->double('amount',8,1)->default(0);
             $table->double('discount',7,1)->default(0);
             $table->double('service_charge',7,1)->default(0);
@@ -37,7 +36,6 @@ class CreateDoctorAppointmentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('refer_by_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();
-            $table->foreign('hospital_id')->references('id')->on('hospitals')->cascadeOnDelete();
             $table->unsignedBigInteger('created_by', false);
             $table->unsignedBigInteger('updated_by', false)->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
@@ -57,7 +55,6 @@ class CreateDoctorAppointmentsTable extends Migration
         Schema::table('doctor_appointments',function (Blueprint $table){
             $table->dropForeign(['user_id']);
             $table->dropForeign(['patient_id']);
-            $table->dropForeign(['hospital_id']);
             $table->dropForeign(['refer_by_id']);
             $table->dropForeign(['created_by']);
             $table->dropForeign(['updated_by']);

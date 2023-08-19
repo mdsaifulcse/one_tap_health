@@ -48,14 +48,15 @@ class PathologyTestController extends Controller
             if (!is_array($request->test_ids) || !isset($request->test_ids)){
                 return $this->respondWithValidation('Validation Fail','Query params must be test_ids & array',Response::HTTP_BAD_REQUEST);
             }
+            $testIds=$request->test_ids;
 
 
            //return $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where('test_id',3)->paginate(50);
 
-            $groupByTests=HospitalWiseTestPrice::with('test:id,title')->select('test_id')->whereIn('test_id',$request->test_ids)
+            $groupByTests=HospitalWiseTestPrice::with('test:id,title')->select('test_id')->whereIn('test_id',$testIds)
                 ->groupBy('test_id')->get();
 
-            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude')->whereIn('test_id',$request->test_ids)
+            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude')->whereIn('test_id',$testIds)
                 ->orderBy('test_id')->get();
 
             foreach ($groupByTests as $i=>$groupByTest){

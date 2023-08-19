@@ -29,7 +29,22 @@ class DoctorAppointment extends Model
     const YES=1;
     const NO=0;
     protected $table='doctor_appointments';
-    protected $fillable=['appointment_no','user_id','refer_by_id','hospital_id','amount','discount','service_charge','total_amount','reconciliation_amount','system_commission',
+    protected $fillable=['appointment_no','user_id','refer_by_id','amount','discount','service_charge','total_amount','reconciliation_amount','system_commission',
         'patient_id','appointment_date','approval_status','appointment_status','payment_status','source','note','created_by','updated_by'];
+
+    public static function generateAppointmentInvoiceNo(){
+        $prefix='dan-';
+
+        $lastAppointmentNo=DoctorAppointment::max('appointment_no');
+        if (empty($lastAppointmentNo)){
+            $lastAppointmentNo=1;
+        }else{
+            $lastAppointmentNo=str_replace($prefix,'',$lastAppointmentNo);
+            $lastAppointmentNo+=1;
+        }
+
+        $invoiceLength= env('INVOICE_LENGTH',DoctorAppointment::INVOICENOLENGTH);
+        return $prefix.str_pad($lastAppointmentNo,$invoiceLength,"0",false);
+    }
 
 }

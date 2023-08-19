@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\V1\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\DoctorAppointment;
+use App\Models\DoctorAppointmentDetail;
+use App\Models\HospitalWiseDoctorSchedule;
 use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
 use App\Models\TestOrder;
@@ -15,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Http\Traits\ApiResponseTrait;
 use DB,Validator,Auth;
 
-class TestOrderController extends Controller
+class DoctorAppointmentController extends Controller
 {
     use ApiResponseTrait;
     /**
@@ -46,12 +49,21 @@ class TestOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $orderNo=TestOrder::generateOrderInvoiceNo();
-        $request['order_no']=$orderNo;
-        $rules=$this->testOrderValidationRules($request);
+        $appointmentNo=DoctorAppointment::generateAppointmentInvoiceNo();
+        $request['appointment_no']=$appointmentNo;
+        $rules=$this->validationRules($request);
         $validator = Validator::make( $request->all(), $rules);
         if ($validator->fails()) {
             return $this->respondWithValidation('Validation Fail',$validator->errors()->first(),Response::HTTP_BAD_REQUEST);
+        }
+
+        $appointmentDay=strtolower(date('l',strtotime($request->appointment_date)));
+
+        $hospitalWiseDoctorSchedule=HospitalWiseDoctorSchedule::where(['status'=>HospitalWiseDoctorSchedule::ACTIVE])->findOrFail($request->schedule_id);
+        $availableDay=json_decode($hospitalWiseDoctorSchedule->available_day);
+
+         if (!in_array($appointmentDay,$availableDay)) {
+            return $this->respondWithValidation('Validation Fail',"Appointment date must be according to $hospitalWiseDoctorSchedule->doctorAvailableDay",Response::HTTP_BAD_REQUEST);
         }
 
 //        if (count(array_unique($request->hospital_id))>1){
@@ -61,7 +73,7 @@ class TestOrderController extends Controller
         DB::beginTransaction();
         try{
             // generate patient id
-            if ($request->order_for_other_patient==0){
+            if ($request->appointment_for_other_patient==0){
                 $request['patient_name']=auth()->user()->name;
                 $request['patient_mobile']=auth()->user()->phone;
                 $request['patient_age']=auth()->user()->age;
@@ -72,60 +84,56 @@ class TestOrderController extends Controller
                 $patientId=$this->storeNewPatient($request)->id;
             }
 
-            $testOrder=TestOrder::create(
+
+            $doctorAppointment=DoctorAppointment::create(
                 [
-                 'order_no'=>$orderNo,
+                 'appointment_no'=>$appointmentNo,
                  'user_id'=>\Auth::user()->id,
                  'refer_by_id'=>$request->refer_by_id??null,
-                 'hospital_id' => $request->hospital_id,
                  'patient_id' => $patientId,
-                 'test_date'=>date('Y-m-d',strtotime($request->test_date)),
+                 'appointment_date'=>date('Y-m-d',strtotime($request->appointment_date)),
                  'discount'=>$request->discount??0,
                  'service_charge'=>$request->service_charge??0,
-                 'amount'=>$this->calculateTestOrderAmount($request)['amount']??0,
-                 'total_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
-                 'reconciliation_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
+                 'amount'=>$this->calculateDoctorAppointmentAmount($request)['amount']??0,
+                 'total_amount'=>$this->calculateDoctorAppointmentAmount($request)['total_amount']??0,
+                 'reconciliation_amount'=>$this->calculateDoctorAppointmentAmount($request)['total_amount']??0,
                  'note' => $request->note??'',
-                 'source' => TestOrder::SOURCEMOBILE,
+                 'source' => DoctorAppointment::SOURCEMOBILE,
                  'created_by' => \Auth::user()->id,
                 ]);
 
-           $saveStatus= $this->saveTestOrderDetails($request,$testOrder->id); //result true Or false
+           $saveStatus= $this->saveDoctorAppointmentDetails($request,$doctorAppointment->id); //result true Or false
            if ($saveStatus==false){
                DB::rollback();
-               Log::info('Test order details did not save');
-               return $this->respondWithError('Hospital wise test price not found',[],Response::HTTP_NOT_FOUND);
+               Log::info('Hospital wise doctor schedule not found, schedule_id:'.$request->schedule_id);
+               return $this->respondWithError('Hospital wise doctor schedule not found, schedule_id:'.$request->schedule_id,[],Response::HTTP_NOT_FOUND);
            }
 
             DB::commit();
-            Log::info('Test order Place from api');
-            return $this->respondWithSuccess('Order has been Placed successful',['test_order_id'=>$testOrder->id,'order_no'=>$testOrder->order_no],Response::HTTP_OK);
+            Log::info('Doctor Appointment Place from api');
+            return $this->respondWithSuccess('Doctor Appointment has been Placed successful',['doctor_appointment_id'=>$doctorAppointment->id,'appointment_no'=>$doctorAppointment->appointment_no],Response::HTTP_OK);
 
-        }catch(\Exception $e){
+        }catch(Exception $e){
             DB::rollback();
-            Log::info('Test order error api: '.$e->getMessage());
-            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+            Log::info('Doctor Appointment error api: '.$e->getMessage());
+            return $this->respondWithError('Something went wrong, Try again later '.$e->getMessage(),'',Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
-    public function testOrderValidationRules($request){
+    public function validationRules($request){
         $rules=[
-            'order_for_other_patient' => 'required|numeric|in:0,1',
-            'order_no' => 'unique:test_orders,order_no,NULL,id,deleted_at,NULL',
+            'appointment_for_other_patient' => 'required|numeric|in:0,1',
+            'appointment_no' => 'unique:doctor_appointments,appointment_no,NULL,id,deleted_at,NULL',
             'patient_name'  => 'required_if:order_for_other_patient,==,1|max:100',
             'patient_age'  => 'required_if:order_for_other_patient,==,1|max:50',
             'patient_address'  => 'required_if:order_for_other_patient,==,1|max:150',
             'patient_mobile'  => "nullable|max:15",
             'patient_email'  => "nullable|max:15",
 
-            'test_date'  => "required|date",
+            'appointment_date'  => "required|date",
             'discount'  => "nullable|numeric|digits_between:1,99999|max:9999",
             'service_charge'  => "numeric|digits_between:1,6",
-
-            "test_id"   => "required|array|min:1",
-            'test_id.*' => "exists:tests,id",
-
-            'hospital_id' => "exists:hospitals,id",
+            'schedule_id' => "exists:hospital_wise_doctor_schedules,id",
             //"hospital_id"   => "required|array|min:1",
         ];
         return $rules;
@@ -162,19 +170,18 @@ class TestOrderController extends Controller
     }
 
 
-    public function calculateTestOrderAmount($request){
+    public function calculateDoctorAppointmentAmount($request){
 
         $amount=0;
         $totalAmount=0;
-        foreach ($request->test_id as $key=>$item){
-            $hospitalTestPrice=HospitalWiseTestPrice::where(['test_id'=>$request->test_id[$key],'hospital_id'=>$request->hospital_id])->first();
 
-            if($hospitalTestPrice) {
+        $hospitalWiseDoctorSchedule=HospitalWiseDoctorSchedule::where(['id'=>$request->schedule_id,'status'=>HospitalWiseDoctorSchedule::ACTIVE])->first();
+
+            if($hospitalWiseDoctorSchedule) {
                 // actual test price after discount -----
-                $testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
-                $amount+=$testPrice;
+                $doctorFee=$hospitalWiseDoctorSchedule->doctor_fee-$hospitalWiseDoctorSchedule->discount;
+                $amount+=$doctorFee;
             }
-        }
 
 
         $totalAmount=$amount;
@@ -191,27 +198,28 @@ class TestOrderController extends Controller
         return ['amount'=>$amount,'total_amount'=>$totalAmount];
     }
 
-    public function saveTestOrderDetails($request,$testOrderId ){
+    public function saveDoctorAppointmentDetails($request,$appointmentId ){
 
-        $testOrderDetails=[];
-        foreach ($request->test_id as $key=>$item){
+        $doctorAppointmentDetails='';
 
-            $hospitalTestPrice=HospitalWiseTestPrice::where(['test_id'=>$request->test_id[$key],'hospital_id'=>$request->hospital_id])->first();
-            if($hospitalTestPrice) {
-               // $testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
-                $testOrderDetails[] = [
-                    'test_order_id' => $testOrderId,
-                    'test_id' => $request->test_id[$key],
-                    'hospital_id' => $request->hospital_id,
-                    'price' => $hospitalTestPrice->price,
-                    'discount' => $hospitalTestPrice->discount,
+            $hospitalWiseDoctorSchedule=HospitalWiseDoctorSchedule::where(['id'=>$request->schedule_id,'status'=>HospitalWiseDoctorSchedule::ACTIVE])->first();
+            if($hospitalWiseDoctorSchedule) {
+                $doctorAppointmentDetails=DoctorAppointmentDetail::create( [
+                    'doctor_appointment_id' => $appointmentId,
+                    'doctor_id' => $hospitalWiseDoctorSchedule->doctor_id,
+                    'hospital_id' => $hospitalWiseDoctorSchedule->hospital_id,
+                    'time_slot' => "$hospitalWiseDoctorSchedule->available_from,$hospitalWiseDoctorSchedule->available_to",
+                    'appointment_day' => date('l',strtotime($request->appointment_date)),
+                    'doctor_fee' => $hospitalWiseDoctorSchedule->doctor_fee,
+                    'discount' => $hospitalWiseDoctorSchedule->discount,
+                    'chamber_no' => $hospitalWiseDoctorSchedule->chamber_no,
+                    'doctor_schedule_details' => json_encode($hospitalWiseDoctorSchedule),
                     'created_by' => \Auth::user()->id,
-                ];
+                ]);
             }
-        }
 
-        if (count($testOrderDetails)>0){
-            TestOrderDetail::insert($testOrderDetails);
+
+        if (!empty($doctorAppointmentDetails)){
             return true;
         }else{
             return false;

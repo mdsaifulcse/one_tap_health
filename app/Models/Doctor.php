@@ -54,7 +54,7 @@ class Doctor extends Model
     }
 
     public function doctorSchedules(){
-        return $this->hasMany(HospitalWiseDoctorSchedule::class,'doctor_id','id');
+        return $this->hasMany(HospitalWiseDoctorSchedule::class,'doctor_id','id')->where(['status'=>HospitalWiseDoctorSchedule::ACTIVE]);
     }
 
     // TODO :: boot

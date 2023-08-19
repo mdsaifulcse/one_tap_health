@@ -18,16 +18,17 @@ class CreateDoctorAppointmentDetailsTable extends Migration
             $table->unsignedBigInteger('doctor_appointment_id');
             $table->unsignedBigInteger('hospital_id');
             $table->unsignedBigInteger('doctor_id');
-            $table->string('time_slot');
-            $table->string('appointment_day')->nullable()->comment('Sun,Mon,Fri');
+            $table->string('time_slot',50);
+            $table->string('appointment_day',10)->nullable()->comment('Sun,Mon,Fri');
             $table->integer('doctor_fee',false,6)->default(0);
             $table->integer('discount',false,6)->default(0);
             $table->string('chamber_no',10)->nullable();
+            $table->string('serial_no',10)->nullable();
             $table->text('doctor_schedule_details')->nullable();
 
-            $table->foreign('doctor_appointment_id')->references('id')->on('test_orders')->cascadeOnDelete();
+            $table->foreign('doctor_appointment_id')->references('id')->on('doctor_appointments')->cascadeOnDelete();
             $table->foreign('hospital_id')->references('id')->on('hospitals')->cascadeOnDelete();
-            $table->foreign('doctor_id')->references('id')->on('tests')->cascadeOnDelete();
+            $table->foreign('doctor_id')->references('id')->on('doctors')->cascadeOnDelete();
             $table->unsignedBigInteger('created_by', false);
             $table->unsignedBigInteger('updated_by', false)->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
