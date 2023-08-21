@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api\V1\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DoctorAppointmentResource;
+use App\Http\Resources\DoctorAppointmentResourceCollection;
+use App\Http\Resources\TestOrderResource;
+use App\Http\Resources\TestOrderResourceCollection;
 use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
 use App\Models\TestOrder;
@@ -25,7 +29,14 @@ class TestOrderController extends Controller
      */
     public function index()
     {
-        //
+        try{
+
+            $myTestOrders=TestOrder::with('patient','hospital')->where(['user_id'=>auth()->user()->id])->latest()->paginate(10);
+
+            return $this->respondWithSuccess('My Test Orders List',TestOrderResourceCollection::make($myTestOrders),Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -35,7 +46,6 @@ class TestOrderController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -226,9 +236,17 @@ class TestOrderController extends Controller
      * @param  \App\Models\TestOrder  $testOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(TestOrder $testOrder)
+    public function show($id)
     {
-        //
+        try{
+
+            $myTestOrder=TestOrder::with('patient','hospital','testOrderDetails','testOrderDetails.hospital','testOrderDetails.test')
+                ->where(['user_id'=>auth()->user()->id])->findOrFail($id);
+
+            return $this->respondWithSuccess('Single Test Orders Details',new TestOrderResource($myTestOrder),Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -260,8 +278,22 @@ class TestOrderController extends Controller
      * @param  \App\Models\TestOrder  $testOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestOrder $testOrder)
+    public function destroy($id)
     {
-        //
+        try{
+            $userId=auth()->user()->id;
+
+            $myTestOrder=TestOrder::with('testOrderDetails')->where(['user_id'=>$userId])->findOrFail($id);
+
+            $myTestOrder->testOrderDetails->each(function ($detail){
+                $detail->delete();
+            });
+            $myTestOrder->delete();
+            Log::info('Delete my Test Order ID:'.$id.', UserId: '.$userId);
+
+            return $this->respondWithSuccess('Delete my Test Order','',Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

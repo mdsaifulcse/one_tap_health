@@ -45,7 +45,7 @@ class DoctorController extends Controller
         $validator = Validator::make($input, [
             'name' => 'required|max: 150',
             'email' => 'nullable|max: 100',
-            'mobile' => 'required|max: 15',
+            'mobile' => 'nullable|max: 15',
             'bio' => 'nullable|max: 500',
             'address' => 'nullable|max: 250',
             'degree' => 'required|max: 100',
@@ -112,7 +112,7 @@ class DoctorController extends Controller
         $validator = Validator::make($input, [
             'name' => 'required|max: 150',
             'email' => 'nullable|max: 100',
-            'mobile' => 'required|max: 15',
+            'mobile' => 'nullable|max: 15',
             'bio' => 'nullable|max: 500',
             'address' => 'nullable|max: 250',
             'degree' => 'required|max: 100',

@@ -23,6 +23,9 @@ class TestOrderDetail extends Model
 
     protected $appends=['price_after_discount'];
 
+    public function hospital(){
+        return $this->belongsTo(Hospital::class,'hospital_id','id')->withTrashed();
+    }
     public function test(){
         return $this->belongsTo(Test::class,'test_id','id')->withTrashed();
     }

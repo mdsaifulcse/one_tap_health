@@ -59,9 +59,9 @@
 
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Mobile<sup class="text-danger">*</sup></label>
+                                        <label class="col-form-label col-2 text-right">Mobile</label>
                                         <div class="col-9">
-                                            <input type="text" name="mobile" value="{{old('mobile')}}" required autocomplete="off" class="form-control" placeholder="Doctor mobile">
+                                            <input type="text" name="mobile" value="{{old('mobile')}}" autocomplete="off" class="form-control" placeholder="Doctor mobile">
                                             @if ($errors->has('mobile'))
                                                 <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('mobile') }}</strong>
@@ -83,12 +83,12 @@
 
 
                                     <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Contact no</label>
+                                        <label class="col-form-label col-2 text-right">BMDC NO.</label>
                                         <div class="col-9">
-                                            <input type="text" name="contact" value="{{old('contact')}}"  autocomplete="off" class="form-control" placeholder="Your contact">
-                                            @if ($errors->has('contact'))
+                                            <input type="text" name="bmdc_no" value="{{old('bmdc_no')}}"  autocomplete="off" class="form-control" placeholder="Doctor BMDC(Bangladesh Medical & Dental Council) Number">
+                                            @if ($errors->has('bmdc_no'))
                                                 <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('contact') }}</strong>
+                                            <strong class="text-danger text-center">{{ $errors->first('bmdc_no') }}</strong>
                                         </span>
                                             @endif
                                         </div>

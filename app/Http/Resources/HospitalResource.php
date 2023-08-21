@@ -23,6 +23,7 @@ class HospitalResource extends JsonResource
             'longitude'=>$this->longitude,
             'photo'=>$this->photo?url($this->photo):'',
             'tests_price'=>HospitalTestPriceResourceCollection::make($this->whenLoaded('hospitalTestPrice')),
+            'schedule'=>DoctorHospitalWiseScheduleResourceCollection::make($this->whenLoaded('doctorSchedules')),
         ];
     }
 }

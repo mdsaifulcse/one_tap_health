@@ -26,6 +26,12 @@ class Hospital extends Model
     }
 
 
+    public function doctorSchedules(){
+        return $this->hasMany(HospitalWiseDoctorSchedule::class,'hospital_id','id')
+            ->where(['status'=>HospitalWiseDoctorSchedule::ACTIVE]);
+    }
+
+
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
     public static function boot(){

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DoctorAppointmentResource;
+use App\Http\Resources\DoctorAppointmentResourceCollection;
 use App\Models\DoctorAppointment;
 use App\Models\DoctorAppointmentDetail;
 use App\Models\HospitalWiseDoctorSchedule;
@@ -28,7 +30,13 @@ class DoctorAppointmentController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $myDoctorAppointments=DoctorAppointment::with('patient')->where(['user_id'=>auth()->user()->id])->latest()->paginate(10);
+
+            return $this->respondWithSuccess('My Doctor Appointment List',DoctorAppointmentResourceCollection::make($myDoctorAppointments),Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -234,9 +242,16 @@ class DoctorAppointmentController extends Controller
      * @param  \App\Models\TestOrder  $testOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(TestOrder $testOrder)
+    public function show($id)
     {
-        //
+        try{
+
+            $myDoctorAppointment=DoctorAppointment::with('patient','doctorAppointmentDetails','doctorAppointmentDetails.doctor','doctorAppointmentDetails.hospital')->where(['user_id'=>auth()->user()->id])->findOrFail($id);
+
+            return $this->respondWithSuccess('Single Doctor Appointment Details',new DoctorAppointmentResource($myDoctorAppointment),Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -268,8 +283,20 @@ class DoctorAppointmentController extends Controller
      * @param  \App\Models\TestOrder  $testOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestOrder $testOrder)
+    public function destroy($id)
     {
-        //
+        try{
+            $userId=auth()->user()->id;
+            $myDoctorAppointments=DoctorAppointment::with('doctorAppointmentDetails')->where(['user_id'=>$userId])->findOrFail($id);
+            $myDoctorAppointments->doctorAppointmentDetails->each(function ($detail){
+                $detail->delete();
+            });
+            $myDoctorAppointments->delete();
+            Log::info('Delete my Doctor Appointment ID:'.$id.', UserId: '.$userId);
+
+            return $this->respondWithSuccess('Delete Doctor Appointment','',Response::HTTP_OK);
+        }catch(Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 }

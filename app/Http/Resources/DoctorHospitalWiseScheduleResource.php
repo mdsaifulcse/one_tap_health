@@ -16,9 +16,12 @@ class DoctorHospitalWiseScheduleResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'hospital'=>$this->hospital->name,
-            'branch'=>$this->hospital->branch,
-            'address'=>$this->hospital->address1,
+            'hospital_name'=>$this->hospital->name,
+            'hospital_branch'=>$this->hospital->branch,
+            'hospital_address'=>$this->hospital->address1,
+            'doctor_name'=>$this->doctor->name,
+            'doctor_degree'=>$this->doctor->degree,
+            'doctor_department'=>$this->doctor->department,
             'doctor_fee'=>$this->doctor_fee,
             'discount'=>$this->discount,
             'fee_after_discount'=>$this->fee_after_discount,

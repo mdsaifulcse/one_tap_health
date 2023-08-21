@@ -74,7 +74,7 @@
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$data->name}}</td>
-                                            <td>{{$data->Branch}}</td>
+                                            <td>{{$data->branch}}</td>
                                             <td>{{$data->contact}}</td>
                                             <td>{{$data->address1}}</td>
                                             <td>

@@ -32,6 +32,14 @@ class DoctorAppointment extends Model
     protected $fillable=['appointment_no','user_id','refer_by_id','amount','discount','service_charge','total_amount','reconciliation_amount','system_commission',
         'patient_id','appointment_date','approval_status','appointment_status','payment_status','source','note','created_by','updated_by'];
 
+    public function patient(){
+        return $this->belongsTo(Patient::class,'patient_id','id')->withTrashed();
+    }
+
+    public function doctorAppointmentDetails(){
+        return $this->hasMany(DoctorAppointmentDetail::class,'doctor_appointment_id','id');
+    }
+
     public static function generateAppointmentInvoiceNo(){
         $prefix='dan-';
 

@@ -43,6 +43,7 @@ class TestOrder extends Model
     public function testOrderDetails(){
         return $this->hasMany(TestOrderDetail::class,'test_order_id','id');
     }
+
     public function testOrderPaymentHistories(){
         return $this->hasMany(TestOrderPaymentHistory::class,'test_order_id','id');
     }

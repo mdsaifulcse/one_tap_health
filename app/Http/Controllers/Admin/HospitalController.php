@@ -45,7 +45,7 @@ class HospitalController extends Controller
         $validator = Validator::make($input, [
             'name' => 'required|max: 180',
             'address1' => 'required|max: 240',
-            'branch' => 'required|unique:hospitals,branch,NULL,id,deleted_at,NULL',
+            'branch' => 'required|max:150',
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
 
         ]);
@@ -106,7 +106,7 @@ class HospitalController extends Controller
         $validator = Validator::make($input, [
             'name' => 'required|max: 180',
             'address1' => 'required|max: 240',
-            'branch' => "required|unique:hospitals,branch,$id,id,deleted_at,NULL",
+            'branch' => 'required|max:150',
             'icon_photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:5120',
 
         ]);
