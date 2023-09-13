@@ -53,6 +53,7 @@
     49 => 'App\\Providers\\DataLoadServiceProvider',
     50 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     51 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    52 => 'App\\Providers\\AdminDashboardServiceProvider',
   ),
   'eager' => 
   array (
@@ -93,6 +94,7 @@
     34 => 'App\\Providers\\DataLoadServiceProvider',
     35 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     36 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    37 => 'App\\Providers\\AdminDashboardServiceProvider',
   ),
   'deferred' => 
   array (

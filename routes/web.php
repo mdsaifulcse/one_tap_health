@@ -28,6 +28,9 @@ Route::group(['prefix' => 'login','as' => 'login.'],function () {
 
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
 
+    Route::resource('doctor-appointments',\App\Http\Controllers\Admin\DoctorAppointmentController::class );
+
+
     Route::resource('test-orders',\App\Http\Controllers\Admin\TestOrderController::class );
     Route::get('test-order-manual-payment/{testOrderId}','\App\Http\Controllers\Admin\TestOrderController@testOrderManualPayment');
     Route::post('test-order-manual-payment','\App\Http\Controllers\Admin\TestOrderController@testOrderManualPaymentSave')->name('test-order-manual-payment');
@@ -41,10 +44,11 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::resource('doctors',\App\Http\Controllers\Admin\DoctorController::class );
     Route::resource('hospitals',\App\Http\Controllers\Admin\HospitalController::class );
     Route::resource('tests',\App\Http\Controllers\Admin\TestController::class );
-    // ----------- For Categories, SubCategories ThirdSubCategory----------
+    // ----------- For Categories, SubCategories ThirdSubCategory * Biggapon----------
     Route::resource('categories',\App\Http\Controllers\Admin\CategoryController::class );
     Route::resource('sub-categories',\App\Http\Controllers\Admin\SubCategoryController::class );
     Route::resource('third-sub-categories',\App\Http\Controllers\Admin\ThirdSubCategoryController::class );
+    Route::resource('biggapons',\App\Http\Controllers\Admin\BiggaponController::class );
 
     // ----------- On Change load -----------------
     Route::get('/load-sub-cat-by-cat/{categoryId}', '\App\CustomFacades\DataLoadController@loadSubCatsByCat');

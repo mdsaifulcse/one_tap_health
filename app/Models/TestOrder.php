@@ -63,6 +63,13 @@ class TestOrder extends Model
         return $testOrderPrefix.str_pad($lastOrderNo,$invoiceLength,"0",false);
     }
 
+    public static function countPendingTestOrder(){
+        return self::where(['payment_status'=>self::PENDING])->count();
+    }
+    public static function countPaidTestOrder(){
+        return self::where('payment_status','!=',self::PENDING)->count();
+    }
+
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
     public static function boot(){

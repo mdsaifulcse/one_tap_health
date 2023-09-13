@@ -26,9 +26,16 @@ class Hospital extends Model
     }
 
 
-    public function doctorSchedules(){
+    public  function doctorSchedules(){
         return $this->hasMany(HospitalWiseDoctorSchedule::class,'hospital_id','id')
             ->where(['status'=>HospitalWiseDoctorSchedule::ACTIVE]);
+    }
+
+    public static function countActiveHospital(){
+        return self::where(['status'=>self::ACTIVE])->count();
+    }
+    public static function countInactiveHospital(){
+        return self::where(['status'=>self::INACTIVE])->count();
     }
 
 

@@ -202,6 +202,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li class=" ">
+                        <a href="{{route('admin.biggapons.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Biggapon</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
 
                 </ul>
             </li>

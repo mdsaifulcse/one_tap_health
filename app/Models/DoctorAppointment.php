@@ -55,4 +55,11 @@ class DoctorAppointment extends Model
         return $prefix.str_pad($lastAppointmentNo,$invoiceLength,"0",false);
     }
 
+    public static function countPendingAppointment(){
+        return self::where(['payment_status'=>self::PENDING])->count();
+    }
+    public static function countPaidAppointment(){
+        return self::where('payment_status','!=',self::PENDING)->count();
+    }
+
 }

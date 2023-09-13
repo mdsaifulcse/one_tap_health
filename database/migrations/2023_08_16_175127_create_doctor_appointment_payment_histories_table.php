@@ -28,7 +28,7 @@ class CreateDoctorAppointmentPaymentHistoriesTable extends Migration
             $table->tinyInteger('payment_status',false,1)->default(\App\Models\TestOrderPaymentHistory::INITIATE);
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('doctor_appointment_id')->references('id')->on('doctor_appointments')->cascadeOnDelete();
+            //$table->foreign('doctor_appointment_id')->references('id')->on('doctor_appointments')->cascadeOnDelete();
             $table->unsignedBigInteger('created_by', false)->nullable();
             $table->unsignedBigInteger('updated_by', false)->nullable();
             $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();

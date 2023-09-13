@@ -96,6 +96,11 @@ class AuthController extends Controller
                 return $this->respondWithError('Credentials do not match',['Credentials do not match'],Response::HTTP_NOT_FOUND);
             }
 
+            // Update fcm_token for new device login -------
+            if ($request->filled('fcm_token') && $user->fcm_token!=$request->fcm_token){
+                $user->update(['fcm_token'=>$request->fcm_token]);
+            }
+
             return $this->clientLogin('You have successfully logged in',new UserResource($user),'client-login',$request->password);
         }catch(\Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\DoctorAppointment;
 use App\Models\Hospital;
 use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Validator,MyHelper,DB,Yajra\DataTables\DataTables;
 
-class TestOrderController extends Controller
+class DoctorAppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,7 @@ class TestOrderController extends Controller
     {
 
         if (request()->ajax()) {
-            $allData=TestOrder::with('hospital','patient');
+            $allData=DoctorAppointment::with('hospital','patient');
 
             return  DataTables::of($allData)
                 ->addIndexColumn()
@@ -74,7 +75,7 @@ class TestOrderController extends Controller
                            
                             @if($payment_status==\App\Models\TestOrder::PENDING)
                             <li>
-                                {!! Form::open(array(\'route\' => [\'admin.test-orders.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
+                                {!! Form::open(array(\'route\' => [\'admin.doctor-appointments.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
                                 <button type="button" class="btn btn-danger btn-sm" onclick=\'return deleteConfirm("deleteForm{{$id}}")\'>Delete <i class="icofont icofont-trash"></i></button>
                                 {!! Form::close() !!}
                             </li>
@@ -87,7 +88,7 @@ class TestOrderController extends Controller
                 ->toJson();
         }
 
-        return view('admin.test-orders.index');
+        return view('admin.doctor-appointments.index');
     }
 
     /**
@@ -98,12 +99,12 @@ class TestOrderController extends Controller
     public function create()
     {
         $lastOrderNo=TestOrder::generateOrderInvoiceNo();
-        return view('admin.test-orders.create',compact('lastOrderNo'));
+        return view('admin.doctor-appointments.create',compact('lastOrderNo'));
     }
 
     public function createTestOrderDetails($hospitalId){
         $hospitalWiseTests=HospitalWiseTestPrice::with('test')->where(['hospital_id'=>$hospitalId])->get();
-        return view('admin.test-orders.load-hospital-wise-test-details',compact('hospitalWiseTests'));
+        return view('admin.doctor-appointments.load-hospital-wise-test-details',compact('hospitalWiseTests'));
     }
 
 
@@ -265,7 +266,7 @@ class TestOrderController extends Controller
     {
         $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date',
             'testOrderDetails.test:id,title','hospital:id,name,branch,address1','patient:id,name,mobile,address']);
-        return view('admin.test-orders.show',compact('testOrder'));
+        return view('admin.doctor-appointments.show',compact('testOrder'));
     }
 
     /**
@@ -278,7 +279,7 @@ class TestOrderController extends Controller
     {
         $data=$hospital;
         $maxSerial=Hospital::max('sequence');
-        return view('admin.test-orders.edit',compact('data','maxSerial'));
+        return view('admin.doctor-appointments.edit',compact('data','maxSerial'));
     }
 
     /**
@@ -296,92 +297,23 @@ class TestOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hospital  $hospital
+     * @param  \App\Models\DoctorAppointment  $doctorAppointment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestOrder $testOrder)
+    public function destroy($id)
     {
         try{
-            $testOrder->load('testOrderDetails','testOrderPaymentHistories');
-            // Delete test order Details
-           foreach ($testOrder->testOrderDetails as $testOrderDetail){
-               $testOrderDetail->delete();
-           }
-           // Delete Payment history
-           foreach ($testOrder->testOrderPaymentHistories as $testOrderPaymentHistory){
-               $testOrderPaymentHistory->delete();
-           }
+            $userId=auth()->user()->id;
+            $myDoctorAppointments=DoctorAppointment::with('doctorAppointmentDetails')->findOrFail($id);
+            $myDoctorAppointments->doctorAppointmentDetails->each(function ($detail){
+                $detail->delete();
+            });
+            $myDoctorAppointments->delete();
+            Log::info('From Admin, Delete Doctor Appointment ID:'.$id.', UserId: '.$userId);
 
-
-            $testOrder->delete();
-            return redirect()->back()->with('success','Data has been Successfully Deleted!');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
         }
     }
 
-    public function testOrderManualPayment($testOrderId){
-
-        $testOrder=TestOrder::with(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date',
-           'testOrderDetails.test:id,title','hospital:id,name,branch,address1','patient:id,name,mobile,address'])
-        ->findOrFail($testOrderId);
-        $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
-        return view('admin.test-orders.test-order-manual-payment',compact('testOrder','totalPaymentAmount'));
-    }
-
-    public function testOrderManualPaymentSave(Request $request){
-
-        // Validate ---------
-        $validator = Validator::make( $request->all(), ['test_order_id' => "exists:test_orders,id",'payment_amount' => "required|numeric",]);
-        if ($validator->fails()) {
-            return redirect()->back()->with('error',$validator->errors()->first());
-        }
-
-        $testOrderId=$request->test_order_id;
-        $testOrder=TestOrder::findOrFail($testOrderId);
-
-        if ($testOrder->payment_status==TestOrder::FULLPAYMENT){
-            return redirect()->back()->with('error','Already full payment is done');
-        }
-
-
-        DB::beginTransaction();
-        try{
-
-            $tranId=TestOrderPaymentHistory::generateTestOrderTrxID($testOrderId);
-            $totalAmount=$request->payment_amount;
-
-            // Create payment ------------
-            TestOrderPaymentHistory::create([
-                'test_order_id'=>$testOrderId,
-                'transaction_id'=>$tranId,
-                'payment_date'=>Carbon::now(),
-                'payment_amount'=>$totalAmount,
-                'payment_type'=>TestOrderPaymentHistory::OFFLINEPAYMENT,
-                'currency'=>'BDT',
-                'payment_status'=>TestOrderPaymentHistory::COMPLETE,
-            ]);
-
-            $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
-
-            if ($totalPaymentAmount<$testOrder->reconciliation_amount){
-                $testOrder->update(['payment_status'=>TestOrder::PARTIALPAYMENT]);
-
-            }elseif ($totalPaymentAmount>=$testOrder->reconciliation_amount){
-                $testOrder->update(['payment_status'=>TestOrder::FULLPAYMENT]);
-
-            }else{
-                $testOrder->update(['payment_status'=>TestOrder::PENDING]);
-            }
-
-            Log::info('Test order payment web admin: trxId: '.$tranId);
-            DB::commit();
-            return redirect()->back()->with('success','Payment has been saved successfully');
-
-        }catch(\Exception $e){
-            DB::rollback();
-            Log::info('Test order payment web admin: '.$e->getMessage());
-            return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
-        }
-    }
 }

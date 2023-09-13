@@ -117,7 +117,6 @@
 
                                     </tbody>
                                 </table>
-                                {{$hospitals->links()}}
                             </div>
                         </div>
                     </div>

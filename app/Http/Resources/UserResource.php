@@ -23,7 +23,7 @@ class UserResource extends JsonResource
             'address'=>$this->address,
             'user_role'=>$this->user_role,
             'birth_date'=>$this->birth_date?date('Y-m-d',strtotime($this->birth_date)):'',
-            //'status'=>$this->status,
+            'fcm_token'=>$this->fcm_token,
             'profile_photo_url'=>$this->profile_photo_path?url($this->profile_photo_path):null
         ];
         //return parent::toArray($request);

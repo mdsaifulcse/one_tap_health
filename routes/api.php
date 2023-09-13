@@ -74,6 +74,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
     Route::get('/doctors-by-hospital/{hospitalId}', 'DoctorApiController@doctorsByHospital');
 
     /*--------- Pathology Test Api --------*/
+    Route::get('/active-banner-list', 'BannerApiController@activeBannerList');
+
+    /*--------- Pathology Test Api --------*/
     Route::get('/active-category-list', 'PathologyTestController@activeCategoryList');
     Route::get('/active-sub-category-list/{categoryId?}', 'PathologyTestController@activeSubcategoryList');
     Route::get('/active-third-sub-category-list/{subCategoryId?}', 'PathologyTestController@activeThirdSubcategoryList');

@@ -57,6 +57,13 @@ class Doctor extends Model
         return $this->hasMany(HospitalWiseDoctorSchedule::class,'doctor_id','id')->where(['status'=>HospitalWiseDoctorSchedule::ACTIVE]);
     }
 
+    public static function countActiveDoctor(){
+       return self::where(['status'=>self::ACTIVE])->count();
+    }
+    public static function countInactiveDoctor(){
+       return self::where(['status'=>self::INACTIVE])->count();
+    }
+
     // TODO :: boot
     // boot() function used to insert logged user_id at 'created_by' & 'updated_by'
     public static function boot(){
