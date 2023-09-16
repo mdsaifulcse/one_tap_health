@@ -15,6 +15,12 @@ use Inertia\Inertia;
 |
 */
 //HospitalWiseTestPrice
+
+/*-- Frontend --*/
+    Route::get('/',  [\App\Http\Controllers\Frontend\HomeController::class,'index'])->name('index');
+    Route::get('/terms-condition',  [\App\Http\Controllers\Frontend\HomeController::class,'termAndCondition'])->name('term-condition');
+    Route::get('/privacy-policy',  [\App\Http\Controllers\Frontend\HomeController::class,'privacyPolicy'])->name('privacy-policy');
+
 /*
  ----------Admin Without-Authentication  -------
 */
@@ -67,8 +73,4 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::resource('/quizzes', \App\Http\Controllers\Admin\QuizController::class );
 });
 
-
-Route::get('/', function (){
-    return redirect('/login');
-});
 

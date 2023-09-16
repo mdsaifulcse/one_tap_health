@@ -1,0 +1,19 @@
+.w-48{
+width: 12rem;
+}
+
+.ptb-100 {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.footer-area ul li{
+	display: block;
+	padding-bottom: 15px;
+    font-size: 20px;
+}
+}
+
+.footer-area ul li::before{
+	display: none !important;
+	content: none;
+}

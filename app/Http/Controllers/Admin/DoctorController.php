@@ -15,7 +15,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors=Doctor::orderBy('sequence','DESC')->paginate(20);
+        $doctors=Doctor::orderBy('sequence','DESC')->get();
         return view('admin.doctors.index',compact('doctors'));
     }
 
