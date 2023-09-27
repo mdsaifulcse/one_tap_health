@@ -15,7 +15,11 @@ class HomeController extends Controller
     public function termAndCondition(){
         return view('client.terms-condition');
     }
+
     public function privacyPolicy(){
         return view('client.privacy-policy');
+    }
+    public function refundPolicy(){
+        return view('client.refund-policy');
     }
 }

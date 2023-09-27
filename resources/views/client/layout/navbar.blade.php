@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-12 col-lg-2 col-md-3 text-right">
-                <a href="#appointment" class="appointment-btn">Appointment</a>
+                {{--<a href="#appointment" class="appointment-btn">Appointment</a>--}}
             </div>
         </div>
     </div>

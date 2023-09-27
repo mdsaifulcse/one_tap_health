@@ -50,6 +50,7 @@ class Settings extends Migration
             $table->string('google_redirect')->nullable();
 
             $table->string('default_lan')->default('en');
+            $table->integer('appointment_service_charge')->default('0');
 
             $table->softDeletes();
 

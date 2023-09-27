@@ -5,9 +5,10 @@
                 <p><a href="#" target="_blank">
                         <img src="{{asset('/client/')}}/assets/img/logo/logo1.png" alt="logo" style="max-width: 180px;"></a></p>
                 <br>
-                <p><i class="icofont-phone icofont-2x" title="Phone"></i> : 01457856421</p>
-                <p><i class="icofont-email icofont-2x" title="Email"></i> : some@some.com</p>
-                <p><i class="icofont-google-map icofont-2x" title="Email"></i> Address : Dhaka, Bangladesh</p>
+                <p><i class="icofont-phone icofont-1x" title="Phone"></i> : +880 1753-410009</p>
+                <p><i class="icofont-email icofont-1x" title="Email"></i> : info@onetaphealth.com</p>
+                <p><i class="icofont-license icofont-1x" title="Trade license"></i> Trade license :  01727</p>
+                <p><i class="icofont-google-map icofont-1x" title="Office Address"></i> Office : Sobuj Para Nilphamari Sadar, Nilphamari</p>
             </div>
 
             <div class="col-lg-3 col-md-3">
@@ -16,8 +17,9 @@
                 <ul>
                     <li><i class="icofont-curved-double-right"></i> <a href="{{url('/terms-condition')}}">Terms & Conditions</a></li>
                     <li><i class="icofont-curved-double-right"></i> <a href="{{url('/privacy-policy')}}">Privacy Policy</a></li>
-                    <li><i class="icofont-curved-double-right"></i> <a href="#contact">Contact Us</a></li>
-                    <li><i class="icofont-curved-double-right"></i> <a href="#about">About Us</a></li>
+                    <li><i class="icofont-curved-double-right"></i> <a href="{{url('/refund-policy')}}">Refund Policy</a></li>
+                    <li><i class="icofont-curved-double-right"></i> <a href="{{url('/#contact')}}">Contact Us</a></li>
+                    <li><i class="icofont-curved-double-right"></i> <a href="{{url('/#about')}}">About Us</a></li>
                 </ul>
             </div>
 
@@ -56,8 +58,8 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 copyright-w">
                 <div class="copyright0">
-                    <h5 class="copyright-title text-center">Copyright © 2023 <a href="#" target="_blank" > <img src="{{asset('/client/')}}/assets/img/logo/icon.png" alt="One Tab Health logo" style="max-width: 25px;"> One Tab Health. </a> All rights reserved.
-                    </h5>
+                {{--<h5 class="copyright-title text-center">Copyright © 2023 <a href="#" target="_blank" > <img src="{{asset('/client/')}}/assets/img/logo/icon.png" alt="OneTapHealth logo" style="max-width: 25px;"> OneTapHealth. </a> All rights reserved.</h5>--}}
+                <h5 class="copyright-title text-center">  Powered by - KhotianIT. Copyright © <?php echo date('Y')?> All rights reserved.</h5>
                 </div>
             </div>
 

@@ -14,19 +14,16 @@
                             <div class="hero-slides owl-carousel owl-theme">
                                 <div class="hero-content">
                                     <img src="{{asset('/client/')}}/assets/img/logo/theme.jpeg" alt="logo">
-                                    <a href="#" class="btn">Appointment Now</a>
+                                    {{--<a href="#" class="btn">Appointment Now</a>--}}
                                 </div>
+
 
                                 <div class="hero-content">
                                     <h1>Providing Quality Health Care. Your Health is Our Top Priority with <span>Comprehensive</span></h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                                    <a href="#" class="btn">Appointment Now</a>
-                                </div>
-
-                                <div class="hero-content">
-                                    <h1>Providing Quality Health Care. Your Health is Our Top Priority with <span>Comprehensive</span></h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                                    <a href="#" class="btn">Appointment Now</a>
+                                    <p>
+                                        Welcome to One Tap Health, where your well-being is our top priority. Our dedicated team of healthcare professionals is committed to providing concerned care and Medical Services. Are you looking for a trusted and experienced doctor or a safe and hygienic pathology test place, we're here to support you with all health-related services and a journey to better health.
+                                    </p>
+                                    {{--<a href="#" class="btn">Appointment Now</a>--}}
                                 </div>
                             </div>
                         </div>
@@ -52,7 +49,7 @@
                     <div class="single-box">
                         <i class="icofont-ambulance-cross"></i>
                         <h3>Pathology Test</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Explore our advanced pathology tests for precise diagnostics and a deeper understanding of your health. Trust our expertise.</p>
                     </div>
                 </div>
 
@@ -60,7 +57,7 @@
                     <div class="single-box">
                         <i class="icofont-doctor"></i>
                         <h3>Qualified Doctors</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Meet our highly skilled and certified doctors dedicated to your well-being and providing exceptional healthcare based on your needs and health.</p>
                     </div>
                 </div>
 
@@ -68,7 +65,7 @@
                     <div class="single-box">
                         <i class="icofont-ambulance-cross"></i>
                         <h3>Hospital</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Discover our modern, patient-centered hospital equipped with advanced technology and dedicated staff for your health and care.</p>
                     </div>
                 </div>
 
@@ -76,7 +73,7 @@
                     <div class="single-box">
                         <i class="icofont-operation-theater"></i>
                         <h3>Medicine</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Explore a wide range of pharmaceuticals and medications, ensuring your health and well-being and managing various health conditions effectively.</p>
                     </div>
                 </div>
 
@@ -149,21 +146,22 @@
 
                 <div class="col-lg-6 col-md-12">
                     <div class="section-title">
-                        <h3>Why Choose <b> One Tab Health </b></h3>
+                        <h3>Why Choose <b> OneTapHealth </b></h3>
                         <span>Read About Us</span>
                     </div>
 
                     <div class="why-choose-us-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum ultrices gravida. Risus commodo viverra maecenas accumsan facilisis.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>At One Tap Health, we are dedicated to your well-being. With a legacy of excellence and a commitment to care, we offer complete healthcare services.
+                            Our team of experienced professionals is driven by a shared passion for providing quality care to our patients.</p>
+
 
                         <ul>
-                            <li>We provide high-quality services for the whole family.</li>
-                            <li>Risus commodo viverra maecenas</li>
-                            <li>Your health is our top priority</li>
-                            <li>Affordable medical, dental and women's health care.</li>
-                            <li>Quis ipsum suspendisse ultrices gravida.</li>
-                            <li>We provide high-quality services for the whole family.</li>
+                            <li>Your health is our priority, and we tailor our services to your unique needs.</li>
+                            <li>Our skilled healthcare professionals bring years of experience and expertise to every patient interaction.</li>
+                            <li>We embrace the latest advancements in medical technology to ensure accurate diagnoses and effective treatments.</li>
+                            <li>We maintain the highest standards of medical care, ensuring your safety and satisfaction.</li>
+                            <li>Our aim is to make healthcare accessible to all, offering suitable locations and over-phone options.</li>
+                            <li>We believe in partnering with you to achieve your health goals and provide a supportive healthcare environment.</li>
                         </ul>
 
                         <a href="#" class="btn">Our Work</a>
@@ -185,8 +183,8 @@
                     </div>
 
                     <div class="who-we-are-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan facilisis.</p>
-                        <a href="#" class="btn">Appointment Now</a>
+                        <p>Know about our experienced doctors, specialists, and consultants who are here to provide you with the highest standard of medical care. With a passion for healing, a commitment to care, and a focus on your individual needs, we are here to guide you on your journey to recovery. Get to know the faces behind your healthcare at One Tap Health. </p>
+                        {{--<a href="#" class="btn">Appointment Now</a>--}}
                     </div>
                 </div>
 
@@ -345,7 +343,7 @@
             <div class="section-title">
                 <h3>Our Departments</h3>
                 <span>Which Services We Provide</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>We offer all-inclusive medical departments to meet your healthcare needs. Our dedicated team of specialists and professionals is committed to providing you with top-quality care in a variety of fields.</p>
             </div>
 
             <div class="row">
@@ -401,14 +399,15 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="tabs_item_content">
                                             <h3>Welcome to Pathology Test</h3>
-                                            <p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>
+                                            {{--<p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>--}}
                                             <ul>
-                                                <li>Electrocardiogram (ECG)</li>
-                                                <li>Echocardiograms (ultrasound scan of the heart)</li>
-                                                <li>24-hour blood pressure tests</li>
-                                                <li>Electrocardiogram (ECG)</li>
+                                                <li>Accurate diagnostics are crucial. Our pathology tests deliver precise results, aiding in informed healthcare decisions. </li>
+                                                <li>Precise diagnostics with advanced technology.</li>
+                                                <li>Comprehensive range of tests.</li>
+                                                <li>Accurate results for informed healthcare decisions.</li>
+                                                <li>Dedicated team of experienced pathologists</li>
                                             </ul>
-                                            <a href="#" class="btn">Appointment Now</a>
+                                            {{--<a href="#" class="btn">Appointment Now</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -424,15 +423,16 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="tabs_item_content">
-                                            <h3>Welcome to Neurology Department</h3>
-                                            <p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>
+                                            <h3>Our Doctors are</h3>
+                                            {{--<p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>--}}
                                             <ul>
-                                                <li>Electrocardiogram (ECG)</li>
-                                                <li>Echocardiograms (ultrasound scan of the heart)</li>
-                                                <li>24-hour blood pressure tests</li>
-                                                <li>Electrocardiogram (ECG)</li>
+                                                <li>Our dedicated doctors prioritize your health. With expertise, they provide individual care to ensure your better treatment.</li>
+                                                <li>Experienced healthcare professionals.</li>
+                                                <li>Compassionate care tailored to you.</li>
+                                                <li>Trusted expertise in various specialties.</li>
+                                                <li>Your partners in health and well-being.</li>
                                             </ul>
-                                            <a href="#" class="btn">Appointment Now</a>
+                                            {{--<a href="#" class="btn">Appointment Now</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -448,15 +448,16 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="tabs_item_content">
-                                            <h3>Welcome to Orthopedics Department</h3>
-                                            <p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>
+                                            <h3>Our Hospital Provide</h3>
+                                            {{--<p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>--}}
                                             <ul>
-                                                <li>Electrocardiogram (ECG)</li>
-                                                <li>Echocardiograms (ultrasound scan of the heart)</li>
-                                                <li>24-hour blood pressure tests</li>
-                                                <li>Electrocardiogram (ECG)</li>
+                                                <li>Experience exceptional care at our modern hospital. Advanced facilities, skilled medical staff, and patient-centric approach for your well-being.</li>
+                                                <li>Advanced medical facilities and technology.</li>
+                                                <li>Skilled and experienced healthcare professionals.</li>
+                                                <li>Patient-focused approach for personalized care.</li>
+                                                <li> commitment to your health and well-being.</li>
                                             </ul>
-                                            <a href="#" class="btn">Appointment Now</a>
+                                            {{--<a href="#" class="btn">Appointment Now</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -472,15 +473,16 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="tabs_item_content">
-                                            <h3>Welcome to Radiology Department</h3>
-                                            <p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>
+                                            <h3>Welcome to Medicine Department</h3>
+                                            {{--<p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>--}}
                                             <ul>
-                                                <li>Electrocardiogram (ECG)</li>
-                                                <li>Echocardiograms (ultrasound scan of the heart)</li>
-                                                <li>24-hour blood pressure tests</li>
-                                                <li>Electrocardiogram (ECG)</li>
+                                                <li>Explore our trusted medicines. Expertly prescribed for your well-being, providing effective solutions for various health conditions. Your health is our priority.</li>
+                                                <li>Trusted medications for various conditions.</li>
+                                                <li>Ensuring your health and well-being.</li>
+                                                <li>Effective and safe for managing various health conditions.</li>
+                                                <li>Quality assured for optimal results.</li>
                                             </ul>
-                                            <a href="#" class="btn">Appointment Now</a>
+                                            {{--<a href="#" class="btn">Appointment Now</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -496,15 +498,16 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="tabs_item_content">
-                                            <h3>Welcome to Surgery Department</h3>
-                                            <p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>
+                                            <h3>Welcome to Ambulance Department</h3>
+                                            {{--<p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>--}}
                                             <ul>
-                                                <li>Electrocardiogram (ECG)</li>
-                                                <li>Echocardiograms (ultrasound scan of the heart)</li>
-                                                <li>24-hour blood pressure tests</li>
-                                                <li>Electrocardiogram (ECG)</li>
+                                                <li>Our expert team ensures swift, safe transport, and immediate care during medical emergencies. Your health matters.</li>
+                                                <li>Swift response during emergencies.</li>
+                                                <li>Highly trained medical teams.</li>
+                                                <li>Timely and safe patient transport.</li>
+                                                <li>Saving lives is our mission.</li>
                                             </ul>
-                                            <a href="#" class="btn">Appointment Now</a>
+                                            {{--<a href="#" class="btn">Appointment Now</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -520,15 +523,16 @@
 
                                     <div class="col-lg-6 col-md-12">
                                         <div class="tabs_item_content">
-                                            <h3>Welcome to Urology Department</h3>
-                                            <p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>
+                                            <h3>Welcome to Blood Donation</h3>
+                                            {{--<p>This department provides medical care to patients who have problems with their heart or circulation. It treats people on an inpatient and outpatient basis.</p>--}}
                                             <ul>
-                                                <li>Electrocardiogram (ECG)</li>
-                                                <li>Echocardiograms (ultrasound scan of the heart)</li>
-                                                <li>24-hour blood pressure tests</li>
-                                                <li>Electrocardiogram (ECG)</li>
+                                                <li>Give the gift of life through blood donation. Join us in saving lives and making a meaningful impact in our community.</li>
+                                                <li>Donate to save lives</li>
+                                                <li>Community support</li>
+                                                <li>Easy process</li>
+                                                <li>Join us in making a difference</li>
                                             </ul>
-                                            <a href="#" class="btn">Appointment Now</a>
+                                            {{--<a href="#" class="btn">Appointment Now</a>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -542,106 +546,106 @@
     <!-- End Departments Area -->
 
     <!-- Start Make an Appointment Area -->
-    <section id="appointment" class="appointment-area ptb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="section-title">
-                        <h3>Make an Appointment</h3>
-                        <span>Visit Your Primary Care Physician</span>
-                    </div>
+    {{--<section id="appointment" class="appointment-area ptb-100">--}}
+        {{--<div class="container">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col-lg-6 col-md-6">--}}
+                    {{--<div class="section-title">--}}
+                        {{--<h3>Make an Appointment</h3>--}}
+                        {{--<span>Visit Your Primary Care Physician</span>--}}
+                    {{--</div>--}}
 
-                    <div class="faq">
-                        <ul class="accordion">
-                            <li class="accordion-item">
-                                <a class="accordion-title active" href="javascript:void(0)">What is One Tap Health? <i class="icofont-plus"></i></a>
-                                <p class="accordion-content show">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
-                            </li>
+                    {{--<div class="faq">--}}
+                        {{--<ul class="accordion">--}}
+                            {{--<li class="accordion-item">--}}
+                                {{--<a class="accordion-title active" href="javascript:void(0)">What is One Tap Health? <i class="icofont-plus"></i></a>--}}
+                                {{--<p class="accordion-content show">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>--}}
+                            {{--</li>--}}
 
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">What is One Tap Health? <i class="icofont-plus"></i></a>
-                                <p class="accordion-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
-                            </li>
+                            {{--<li class="accordion-item">--}}
+                                {{--<a class="accordion-title" href="javascript:void(0)">What is One Tap Health? <i class="icofont-plus"></i></a>--}}
+                                {{--<p class="accordion-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>--}}
+                            {{--</li>--}}
 
-                            <li class="accordion-item">
-                                <a class="accordion-title" href="javascript:void(0)">What is One Tap Health? <i class="icofont-plus"></i></a>
-                                <p class="accordion-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                            {{--<li class="accordion-item">--}}
+                                {{--<a class="accordion-title" href="javascript:void(0)">What is One Tap Health? <i class="icofont-plus"></i></a>--}}
+                                {{--<p class="accordion-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse.</p>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <div class="col-lg-6 col-md-6">
-                    <div class="appointment-form">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                </div>
+                {{--<div class="col-lg-6 col-md-6">--}}
+                    {{--<div class="appointment-form">--}}
+                        {{--<form>--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col-lg-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<input type="text" class="form-control" placeholder="Name">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
+                                {{--<div class="col-lg-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<input type="email" class="form-control" placeholder="Email">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone Number">
-                                    </div>
-                                </div>
+                                {{--<div class="col-lg-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<input type="text" class="form-control" placeholder="Phone Number">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option>Department</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                {{--<div class="col-lg-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<select class="form-control">--}}
+                                            {{--<option>Department</option>--}}
+                                            {{--<option>1</option>--}}
+                                            {{--<option>2</option>--}}
+                                            {{--<option>3</option>--}}
+                                            {{--<option>4</option>--}}
+                                            {{--<option>5</option>--}}
+                                        {{--</select>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option>Doctor</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                {{--<div class="col-lg-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<select class="form-control">--}}
+                                            {{--<option>Doctor</option>--}}
+                                            {{--<option>1</option>--}}
+                                            {{--<option>2</option>--}}
+                                            {{--<option>3</option>--}}
+                                            {{--<option>4</option>--}}
+                                            {{--<option>5</option>--}}
+                                        {{--</select>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input type="text" id="datepicker" class="form-control" placeholder="Booking Date">
-                                        <span><i class="icofont-calendar"></i></span>
-                                    </div>
-                                </div>
+                                {{--<div class="col-lg-6">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<input type="text" id="datepicker" class="form-control" placeholder="Booking Date">--}}
+                                        {{--<span><i class="icofont-calendar"></i></span>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" cols="30" rows="4" placeholder="Message"></textarea>
-                                    </div>
-                                </div>
+                                {{--<div class="col-lg-12">--}}
+                                    {{--<div class="form-group">--}}
+                                        {{--<textarea class="form-control" cols="30" rows="4" placeholder="Message"></textarea>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
 
-                                <div class="col-lg-12">
-                                    <button type="submit" class="btn">Book Now</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                                {{--<div class="col-lg-12">--}}
+                                    {{--<button type="submit" class="btn">Book Now</button>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</section>--}}
     <!-- End Make an Appointment Area -->
 
     <!-- Start Services Area -->
@@ -650,7 +654,7 @@
             <div class="section-title">
                 <h3>Our Services</h3>
                 <span>Which Services We Provide</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Explore our comprehensive healthcare services, including diagnostics, treatments, and wellness programs, designed to support your well-being at every stage of life.</p>
             </div>
 
             <div class="row">
@@ -658,8 +662,8 @@
                     <div class="single-services">
                         <i class="icofont-surgeon"></i>
                         <h3>Plastic Surgery</h3>
-                        <p>Our talented, board-certified and fellowship-trained plastic surgeons have more than 42 years of combined experience helping patients look and feel their best.</p>
-                        <a href="#" class="icofont-paper-plane"></a>
+                        <p>Discover the art of transformation with our board-certified plastic surgeons. Achieve your desired look with safe, expert procedures to achieve your unique goals.</p>
+                        {{--<a href="#" class="icofont-paper-plane"></a>--}}
                     </div>
                 </div>
 
@@ -667,8 +671,8 @@
                     <div class="single-services">
                         <i class="icofont-nurse"></i>
                         <h3>Breast Screening</h3>
-                        <p>Our talented, board-certified and fellowship-trained plastic surgeons have more than 42 years of combined experience helping patients look and feel their best.</p>
-                        <a href="#" class="icofont-paper-plane"></a>
+                        <p>Prioritize your breast health with our advanced screening services. Early detection is key our specialized screenings empower you with knowledge and peace of mind.</p>
+                        {{--<a href="#" class="icofont-paper-plane"></a>--}}
                     </div>
                 </div>
 
@@ -676,8 +680,8 @@
                     <div class="single-services">
                         <i class="icofont-herbal"></i>
                         <h3>Nutrition and Dietetics</h3>
-                        <p>Our talented, board-certified and fellowship-trained plastic surgeons have more than 42 years of combined experience helping patients look and feel their best.</p>
-                        <a href="#" class="icofont-paper-plane"></a>
+                        <p>Optimize your health with personalized nutrition plans. Our registered dietitians empower you to make informed choices, fostering well-being through balanced eating. </p>
+                        {{--<a href="#" class="icofont-paper-plane"></a>--}}
                     </div>
                 </div>
 
@@ -685,8 +689,8 @@
                     <div class="single-services">
                         <i class="icofont-icu"></i>
                         <h3>Occupational Therapy</h3>
-                        <p>Our talented, board-certified and fellowship-trained plastic surgeons have more than 42 years of combined experience helping patients look and feel their best.</p>
-                        <a href="#" class="icofont-paper-plane"></a>
+                        <p>Enhance your daily life and independence. Our skilled occupational therapists provide personalized strategies to overcome challenges, promoting a fulfilling, meaningful life.</p>
+                        {{--<a href="#" class="icofont-paper-plane"></a>--}}
                     </div>
                 </div>
             </div>
@@ -740,7 +744,7 @@
             <div class="section-title">
                 <h3>Photo Gallery</h3>
                 <span>Which Services We Provide</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Explore our photo gallery showcasing our healthcare facilities, compassionate staff, advanced technology, and the positive impact on our community's well-being.</p>
             </div>
 
             <div class="row">
@@ -942,7 +946,7 @@
             <div class="section-title">
                 <h3>Testimonials</h3>
                 <span>Our Patient Feedback</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Exceptional care, compassionate staff, and life-changing results. Discover why our healthcare is trusted by many.</p>
             </div>
 
             <div class="row">
@@ -952,11 +956,11 @@
                             <div class="img">
                                 <img src="{{asset('/client/')}}/assets/img/client-avatar1.jpg" alt="client">
                             </div>
-                            <h4>Josh Buttler</h4>
-                            <span>Web Developer</span>
+                            <h4>Sadia Afroz Mouri</h4>
+                            <span>Teacher</span>
                         </div>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                        <p>I am always grateful to 'OneTap Health' team for providing such a wonderful service</p>
 
                         <i class="icofont-quote-right"></i>
                     </div>
@@ -968,11 +972,11 @@
                             <div class="img">
                                 <img src="{{asset('/client/')}}/assets/img/client-avatar2.jpg" alt="client">
                             </div>
-                            <h4>Josh Buttler</h4>
-                            <span>Web Developer</span>
+                            <h4>Mehedi Hasan</h4>
+                            <span>Doctor</span>
                         </div>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                        <p>As a Son who works as a doctor, I am relieved to see that this services have been a great help for my Parents and he is able to get proper treatment, thanks to 'OneTapHealth' team.</p>
 
                         <i class="icofont-quote-right"></i>
                     </div>
@@ -984,63 +988,16 @@
                             <div class="img">
                                 <img src="{{asset('/client/')}}/assets/img/client-avatar3.jpg" alt="client">
                             </div>
-                            <h4>Josh Buttler</h4>
-                            <span>Web Developer</span>
+                            <h4>Mrs.Samira</h4>
+                            <span>Student</span>
                         </div>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                        <p>I am very happy to have this kind of service</p>
 
                         <i class="icofont-quote-right"></i>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-feedback">
-                        <div class="client-info">
-                            <div class="img">
-                                <img src="{{asset('/client/')}}/assets/img/client-avatar1.jpg" alt="client">
-                            </div>
-                            <h4>Josh Buttler</h4>
-                            <span>Web Developer</span>
-                        </div>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-
-                        <i class="icofont-quote-right"></i>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-feedback">
-                        <div class="client-info">
-                            <div class="img">
-                                <img src="{{asset('/client/')}}/assets/img/client-avatar2.jpg" alt="client">
-                            </div>
-                            <h4>Josh Buttler</h4>
-                            <span>Web Developer</span>
-                        </div>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-
-                        <i class="icofont-quote-right"></i>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-feedback">
-                        <div class="client-info">
-                            <div class="img">
-                                <img src="{{asset('/client/')}}/assets/img/client-avatar3.jpg" alt="client">
-                            </div>
-                            <h4>Josh Buttler</h4>
-                            <span>Web Developer</span>
-                        </div>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-
-                        <i class="icofont-quote-right"></i>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1056,7 +1013,7 @@
                 <div class="col-lg-4 col-md-12">
                     <div class="get-in-touch">
                         <h3>Get in Touch</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                        <p>Have questions or need assistance? Contact our caring team for personalized support, appointments, or inquiries. We're here to help you. </p>
                         <ul>
                             <li><a href="#"><i class="icofont-facebook"></i></a></li>
                             <li><a href="#"><i class="icofont-twitter"></i></a></li>

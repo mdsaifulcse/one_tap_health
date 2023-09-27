@@ -14,12 +14,12 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//HospitalWiseTestPrice
 
 /*-- Frontend --*/
     Route::get('/',  [\App\Http\Controllers\Frontend\HomeController::class,'index'])->name('index');
     Route::get('/terms-condition',  [\App\Http\Controllers\Frontend\HomeController::class,'termAndCondition'])->name('term-condition');
     Route::get('/privacy-policy',  [\App\Http\Controllers\Frontend\HomeController::class,'privacyPolicy'])->name('privacy-policy');
+    Route::get('/refund-policy',  [\App\Http\Controllers\Frontend\HomeController::class,'refundPolicy'])->name('refund-policy');
 
 /*
  ----------Admin Without-Authentication  -------
@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::put('/update-my-password', [\App\Http\Controllers\Admin\ProfileController::class,'updateMyPassword'] )->name('update-my-password');
 
     Route::resource('/users', \App\Http\Controllers\Admin\UserController::class );
+    Route::resource('setting','SettingController')->middleware('permission:setting');
     Route::resource('/quizzes', \App\Http\Controllers\Admin\QuizController::class );
 });
 
