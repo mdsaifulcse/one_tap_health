@@ -86,7 +86,6 @@
 
                                     </tbody>
                                 </table>
-                                {{$tests->links()}}
                             </div>
                         </div>
                     </div>

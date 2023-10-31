@@ -69,7 +69,7 @@
                         <i class="checkmark">✓</i>
                     </div>
                     <h1 class="success">Success</h1>
-                    <p>We received your Payment <b>TK.{{$data['payment_amount']}}</b><br/> Thank you for you order!</p>
+                    <p>We have received your Payment <b>TK.{{$data['payment_amount']}}</b><br/> Thank you for your order!</p>
 
                 @elseif($data['status']=='canceled')
                     <div style="border-radius:200px; height:200px; width:200px; margin:0 auto;">

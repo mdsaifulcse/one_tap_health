@@ -16,9 +16,17 @@ class DoctorApiController extends Controller
 {
     use ApiResponseTrait;
 
+    public function activeDoctorDepartmentsList(){
+        try{
+            $activeDoctorDepartments=Doctor::department();
+            return $this->respondWithSuccess('Active Doctor Departments List',$activeDoctorDepartments,Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
     public function activeDoctorsList(){
         try{
-            $activeDoctors=Doctor::where(['status'=>Doctor::ACTIVE])->paginate(10);
+            $activeDoctors=Doctor::where(['status'=>Doctor::ACTIVE])->paginate(500);
             return $this->respondWithSuccess('Active Doctors List',DoctorResourceCollection::make($activeDoctors),Response::HTTP_OK);
         }catch(\Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);

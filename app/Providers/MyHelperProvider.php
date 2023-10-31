@@ -6,9 +6,12 @@ namespace App\Providers;
 use App\Models\MasterExamResult;
 use App\Models\PrimaryInfo;
 use App\Models\VisitorTrack;
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Image,Auth;
 use App\User;
+use GuzzleHttp\Client as GuzzleClient;
 
 class MyHelperProvider extends ServiceProvider
 {
@@ -452,5 +455,38 @@ class MyHelperProvider extends ServiceProvider
 
      public static function info(){
         return PrimaryInfo::first();
+    }
+
+    public static function sendConfirmationSMS($receiver,$smsBody){
+
+        try {
+
+
+            $html = (new GuzzleClient())
+                ->post(env("SMS_API_URL"),
+                [
+                    "json"=>  [
+                        "sender_id"=>env('SENDER_ID'),
+                        "receiver"=>$receiver,
+                        "message"=>$smsBody,
+                        "remove_duplicate"=>true
+                    ],
+                    "timeout"=> 120,
+                    "headers"=> [
+                    "Authorization"=>env('AUTHORIZATION'),
+                    "content-type"=> 'application/json',
+                    ]
+
+                ]
+                )
+                ->getBody()
+                ->getContents();
+            Log::info('SMS queued successfully : receiver :'.$receiver.' message :'.$smsBody);
+           return $response = $html;
+        }
+        catch (Exception $exception) {
+            Log::error('Confirmation sms error :'.$exception->getMessage());
+           return $lastExceptionMessage = $exception->getMessage();
+        }
     }
 }

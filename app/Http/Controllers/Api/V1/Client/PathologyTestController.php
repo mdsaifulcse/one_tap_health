@@ -97,7 +97,7 @@ class PathologyTestController extends Controller
     public function categoryWiseActiveTestList($categoryId){
         try{
 
-            $categoryActiveTests=Test::with('testCategory')->where(['category_id'=>$categoryId,'status'=>Test::ACTIVE])->latest('sequence','ASC')->get();
+            $categoryActiveTests=Test::with('testCategory')->where(['category_id'=>$categoryId,'status'=>Test::ACTIVE])->orderBy('title','ASC')->get();
 
             return $this->respondWithSuccess('Category Wise Active Test list',TestResourceCollection::make($categoryActiveTests),Response::HTTP_OK);
         }catch(\Exception $e){

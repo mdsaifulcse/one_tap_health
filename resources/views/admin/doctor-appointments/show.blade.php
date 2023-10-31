@@ -1,6 +1,6 @@
 
 <div class="modal-header">
-    <h4 class="modal-title">Test Order Details</h4>
+    <h4 class="modal-title">Doctor Appointment Details</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 <div class="modal-body">
@@ -11,36 +11,36 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            Order No.: #{{$testOrder->order_no}} <br>
-                            Test Date.: {{date('d-M-Y',strtotime($testOrder->test_date))}} <br>
-                            Amount: Tk.{{$testOrder->reconciliation_amount}} <br>
-                            Patient Name: {{$testOrder->patient->name}} <br>
-                            Patient Mobile: {{$testOrder->patient->mobile}} <br>
-                            Patient Address: {{$testOrder->patient->address}} <br>
+                            Appointment No.: #{{$doctorAppointment->appointment_no}} <br>
+                            Appointment Date.: {{date('d-M-Y',strtotime($doctorAppointment->appointment_date))}} <br>
+                            Amount: Tk.{{$doctorAppointment->reconciliation_amount}} <br>
+                            Patient Name: {{$doctorAppointment->patient->name}} <br>
+                            Patient Mobile: {{$doctorAppointment->patient->mobile}} <br>
+                            Patient Address: {{$doctorAppointment->patient->address}} <br>
                         </div>
                         <div class="col-6">
                             <div class="text-right">
-
+                                <b class="text-success"> <i class="icofont icofont-check-circled text-success"></i> Service Charge: {{$doctorAppointment->service_charge}}</b>
+                                <br>
                                 Payment Status:
-                                @if($testOrder->payment_status==\App\Models\TestOrder::PARTIALPAYMENT)
+                                @if($doctorAppointment->payment_status==\App\Models\DoctorAppointment::PARTIALPAYMENT)
                                     <b class="badge badge-warning ">Partial Payment</b>
 
-                                @elseif($testOrder->payment_status==\App\Models\TestOrder::FULLPAYMENT)
+                                @elseif($doctorAppointment->payment_status==\App\Models\DoctorAppointment::FULLPAYMENT)
                                     <b class="badge badge-primary">Full Paid</b>
                                 @else
                                     <b class="badge badge-danger ">Due</b>
                                 @endif
                                 <br>
-                                Visit Status:
-                                @if($testOrder->visit_status==\App\Models\TestOrder::YES)
-                                    <b class="badge btn-success ">Yes</b>
+                                Appointment Status:
+                                @if($doctorAppointment->appointment_status==\App\Models\DoctorAppointment::APPOINTMENTCOMPLETED)
+                                    <b class="badge badge-success ">Complete</b>
+
+                                @elseif($doctorAppointment->appointment_status==\App\Models\DoctorAppointment::APPOINTMENTPROCESSED)
+                                    <b class="badge badge-primary">Processed</b>
                                 @else
-                                    <b class="badge btn-warning ">No</b>
+                                    <b class="badge badge-info ">New</b>
                                 @endif
-                                <br>
-                                Hospital: {{$testOrder->hospital->name}} <br>
-                                Branch: {{$testOrder->hospital->branch}} <br>
-                                Address: {{$testOrder->hospital->address1}} <br>
                             </div>
                         </div>
                     </div>
@@ -51,21 +51,23 @@
                             <thead>
                             <tr class="">
                                 <th width="4">SL.</th>
-                                <th>Test</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Total</th>
+                                <th>Doctor</th>
+                                <th>Hospital</th>
+                                <th>Day</th>
+                                <th>Time Slot</th>
+                                <th>Fee</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php $i=1; ?>
-                            @forelse($testOrder->testOrderDetails as $testOrderDetail)
+                            @forelse($doctorAppointment->doctorAppointmentDetails as $doctorAppointmentDetail)
                                 <tr>
                                     <td>{{$i++}}</td>
-                                    <td>{{$testOrderDetail->test->title}}</td>
-                                    <td>{{$testOrderDetail->price}}</td>
-                                    <td>{{$testOrderDetail->discount}}</td>
-                                    <td>{{$testOrderDetail->price_after_discount}}</td>
+                                    <td>{{$doctorAppointmentDetail->doctor?$doctorAppointmentDetail->doctor->name:''}}</td>
+                                    <td>{{$doctorAppointmentDetail->hospital?$doctorAppointmentDetail->hospital->name:''}}</td>
+                                    <td>{{$doctorAppointmentDetail->appointment_day}}</td>
+                                    <td>{{$doctorAppointmentDetail->appointment_time_slot}}</td>
+                                    <td>{{$doctorAppointmentDetail->fee_after_discount}}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -84,19 +86,19 @@
                                      <thead>
                                      <tr class="">
                                          <th>Amount</th>
-                                         <th>{{$testOrder->amount}}</th>
+                                         <th>{{$doctorAppointment->amount}}</th>
                                      </tr>
                                      <tr class="">
                                          <th>Discount (-)</th>
-                                         <th>{{$testOrder->discount}}</th>
+                                         <th>{{$doctorAppointment->discount}}</th>
                                      </tr>
                                      <tr class="">
-                                         <th>Service Charge (+)</th>
-                                         <th>{{$testOrder->service_charge}}</th>
+                                         <th class="text-success">Service Charge (+)</th>
+                                         <th>{{$doctorAppointment->service_charge}}</th>
                                      </tr>
                                      <tr class="">
                                          <th>Total Amount</th>
-                                         <th>{{$testOrder->reconciliation_amount}}</th>
+                                         <th>{{$doctorAppointment->reconciliation_amount}}</th>
                                      </tr>
                                      </thead>
                                  </table>

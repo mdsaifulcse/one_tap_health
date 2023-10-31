@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class DoctorAppointmentDetail extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $appends=['fee_after_discount'];
+    protected $appends=['fee_after_discount','appointment_time_slot'];
     protected $table='doctor_appointment_details';
     protected $fillable=['doctor_appointment_id','hospital_id','doctor_id','doctor_fee','discount','time_slot','appointment_day','chamber_no','doctor_schedule_details','created_by','updated_by'];
 
@@ -23,6 +23,16 @@ class DoctorAppointmentDetail extends Model
 
     public function doctor(){
         return $this->belongsTo(Doctor::class,'doctor_id','id')->withTrashed();
+    }
+
+    public function getAppointmentTimeSlotAttribute(){
+
+        $timeSlot=explode(',',$this->time_slot);
+
+        $availAbleFrom=date('h:i A', strtotime($timeSlot[0]));
+        $availAbleTo=date('h:i A', strtotime($timeSlot[1]));
+        return $availAbleFrom.' To '.$availAbleTo;
+
     }
 
 

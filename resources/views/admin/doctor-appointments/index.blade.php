@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{route('admin.doctor-appointments.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>
+                        <a href="#" class="btn btn-info btn-sm" title="Create New Appointment"><i class="icofont icofont-plus"></i> Appointment</a>
                         {{--<a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>--}}
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>All Test Order List</h5>
+                            <h5>All Doctor Appointments List</h5>
                             <span> </span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>
@@ -66,14 +66,14 @@
                                     <thead>
                                     <tr class="">
                                         <th>SL</th>
-                                        <th>Order No.</th>
+                                        <th>Appointment No.</th>
                                         <th>Hospital</th>
+                                        <th>Doctor</th>
                                         <th>Patient Name</th>
                                         <th>Patient Mobile</th>
                                         <th>Amount</th>
-                                        <th>Paid</th>
-                                        <th>Test Date</th>
-                                        <th>Visit</th>
+                                        <th>Status</th>
+                                        <th>Appointment Date</th>
                                         <th>Payment</th>
                                         <th>Created At</th>
                                         <th>Control</th>
@@ -95,7 +95,7 @@
 
 
     <!-- Modal -->
-    <div id="testOrderDetailsModal" class="modal fade" role="dialog">
+    <div id="doctorAppointmentDetailsModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -127,19 +127,19 @@
                         console.log(d)
                     },
                 },
-                order: [[9, "DESC"]],
+                order: [[10, "DESC"]],
                 columns: [
                     { data: 'DT_RowIndex',orderable:false},
-                    { data: 'order_no',name:'test_orders.order_no'},
+                    { data: 'appointment_no',name:'doctor_appointments.appointment_no'},
                     { data: 'hospitals_name'},
+                    { data: 'doctor_name'},
                     { data: 'patient_name',name:'patient.name'},
                     { data: 'patient_mobile',name:'patient.mobile'},
-                    { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
-                    { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
-                    { data: 'test_date',name:'test_orders.test_date'},
-                    { data: 'visit_status',name:'test_orders.visit_status'},
-                    { data: 'payment_status',name:'test_orders.payment_status'},
-                    { data: 'created_at',name:'test_orders.created_at'},
+                    { data: 'service_charge',name:'doctor_appointments.service_charge'},
+                    { data: 'appointment_status',name:'doctor_appointments.appointment_status'},
+                    { data: 'appointment_date',name:'doctor_appointments.appointment_date'},
+                    { data: 'payment_status',name:'doctor_appointments.payment_status'},
+                    { data: 'created_at',name:'doctor_appointments.created_at'},
                     { data: 'control'},
                 ]
             });
@@ -147,13 +147,12 @@
     </script>
 
     <script type="text/javascript">
-        function showTestOrderDetailsModal(testOrderId) {
-            console.log(testOrderId);
+        function showDoctorAppointmentDetailsModal(doctorAppointmentId ) {
 
             $('#modalContent').html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
-                .load('{{URL::to("admin/test-orders")}}/'+testOrderId);
+                .load('{{URL::to("admin/doctor-appointments")}}/'+doctorAppointmentId );
 
-            $('#testOrderDetailsModal').modal('show')
+            $('#doctorAppointmentDetailsModal').modal('show')
         }
 
     </script>

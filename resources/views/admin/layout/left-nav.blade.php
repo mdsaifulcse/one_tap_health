@@ -36,6 +36,31 @@
             <li class="pcoded-hasmenu " dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Appointment</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    {{--Sub Menu--}}
+                    <li class=" ">
+                        <a href="#" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Create Appointment</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{route('admin.doctor-appointments.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Appointment List</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pcoded-hasmenu " dropdown-icon="style3" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
                     <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Order</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
@@ -206,6 +231,13 @@
                         <a href="{{route('admin.biggapons.index')}}" data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
                             <span class="pcoded-mtext">Biggapon</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="{{route('admin.setting.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Site Setting</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>

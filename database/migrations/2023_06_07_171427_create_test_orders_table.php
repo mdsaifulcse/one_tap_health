@@ -27,6 +27,7 @@ class CreateTestOrdersTable extends Migration
             $table->double('reconciliation_amount',8,1)->default(0)->comment('This is the final payable amount');
             $table->double('system_commission',8,1)->default(0)->comment(' That amount system (company earn)');
             $table->timestamp('test_date')->comment('when a Patient wants to be tested');
+            $table->tinyInteger('order_status',false,1)->default(\App\Models\TestOrder::ORDERNEW);
             $table->tinyInteger('approval_status',false,2)->default(\App\Models\TestOrder::PENDING);
             $table->tinyInteger('visit_status',false,1)->default(\App\Models\TestOrder::NO);
             $table->tinyInteger('payment_status',false,1)->default(\App\Models\TestOrder::PENDING);

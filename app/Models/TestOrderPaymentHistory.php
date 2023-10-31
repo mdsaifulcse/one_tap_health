@@ -31,4 +31,9 @@ class TestOrderPaymentHistory extends Model
        return $query->where(['test_order_id'=>$testOrderId,'payment_status'=>self::COMPLETE])->sum('payment_amount');
     }
 
+
+    public function testOrder(){
+        return $this->hasOne(TestOrder::class,'test_order_id','id');
+    }
+
 }

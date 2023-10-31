@@ -34,7 +34,7 @@
                     </li>
                     <li class="breadcrumb-item">
 
-                        <a href="{{route('admin.test-orders.index')}}" class="btn btn-info btn-sm"  title="Hospital List here"><i class="icofont icofont-list"></i> Test Order List</a>
+                        <a href="{{route('admin.test-orders.index')}}" class="btn btn-info btn-sm"  title="Order List here"><i class="icofont icofont-list"></i> Test Order List</a>
                     </li>
                 </ul>
             </div>

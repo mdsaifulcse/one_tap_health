@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers\SSLCommerz;
 
-define("SSLCZ_STORE_ID", "oneta64bbac1b2fd10"); // It will provide by SSL COMMERZ
-define("SSLCZ_STORE_PASSWD", "oneta64bbac1b2fd10@ssl"); // It will provide by SSL COMMERZ
+define("SSLCZ_STORE_ID", env('SSLCZ_STORE_ID')); // It will provide by SSL COMMERZ
+define("SSLCZ_STORE_PASSWD", env('SSLCZ_STORE_PASSWD')); // It will provide by SSL COMMERZ
 
 # IF SANDBOX TRUE, THEN IT WILL CONNECT WITH SSLCOMMERZ SANDBOX (TEST) SYSTEM
-define("SSLCZ_IS_SANDBOX", true); // TRUE for TEST & FALSE for LIVE
+define("SSLCZ_IS_SANDBOX", env('SSLCZ_IS_SANDBOX')); // TRUE for TEST & FALSE for LIVE
 
 # IF BROWSE FROM LOCAL HOST, KEEP true
-define("SSLCZ_IS_LOCAL_HOST", true); // TRUE for TEST & FALSE for LIVE
+define("SSLCZ_IS_LOCAL_HOST", env('SSLCZ_IS_LOCAL_HOST')); // TRUE for TEST & FALSE for LIVE
 
 class SSLCommerz
 {
@@ -37,6 +37,7 @@ class SSLCommerz
             $post_data['store_passwd'] = $this->store_pass;
 
             $load_sslc = $this->sendRequest($post_data);
+            //$load_sslc = $this->sendRequest($post_data);
 
             if ($load_sslc) {
                 if (isset($this->sslc_data['status']) && $this->sslc_data['status'] == 'SUCCESS') {

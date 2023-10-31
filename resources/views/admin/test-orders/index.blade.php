@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>
+                        <a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Order"><i class="icofont icofont-plus"></i> Test Order</a>
                         {{--<a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>--}}
                     </li>
                 </ul>
@@ -71,7 +71,7 @@
                                         <th>Patient Name</th>
                                         <th>Patient Mobile</th>
                                         <th>Amount</th>
-                                        <th>Paid</th>
+                                        <th>Status</th>
                                         <th>Test Date</th>
                                         <th>Visit</th>
                                         <th>Payment</th>
@@ -127,7 +127,7 @@
                         console.log(d)
                     },
                 },
-                order: [[9, "DESC"]],
+                order: [[10, "DESC"]],
                 columns: [
                     { data: 'DT_RowIndex',orderable:false},
                     { data: 'order_no',name:'test_orders.order_no'},
@@ -135,7 +135,7 @@
                     { data: 'patient_name',name:'patient.name'},
                     { data: 'patient_mobile',name:'patient.mobile'},
                     { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
-                    { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
+                    { data: 'order_status',name:'test_orders.order_status'},
                     { data: 'test_date',name:'test_orders.test_date'},
                     { data: 'visit_status',name:'test_orders.visit_status'},
                     { data: 'payment_status',name:'test_orders.payment_status'},

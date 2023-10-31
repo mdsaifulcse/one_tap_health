@@ -19,6 +19,11 @@ class TestOrder extends Model
     const APPROVE=1;
     const CANCEL=2;
 
+    // Order Status ----
+    const ORDERNEW=0;
+    const ORDERPROCESSED=1;
+    const ORDERCOMPLETED=2;
+
     // payment status -------
     const PARTIALPAYMENT=1;
     const FULLPAYMENT=2;
@@ -31,7 +36,7 @@ class TestOrder extends Model
     const NO=0;
     protected $table='test_orders';
     protected $fillable=['order_no','user_id','refer_by_id','hospital_id','amount','discount','service_charge','total_amount','reconciliation_amount','system_commission',
-        'patient_id','test_date','approval_status','visit_status','payment_status','delivery_status','delivery_date','source','note','created_by','updated_by'];
+        'patient_id','test_date','order_status','approval_status','visit_status','payment_status','delivery_status','delivery_date','source','note','created_by','updated_by'];
 
     public function patient(){
         return $this->belongsTo(Patient::class,'patient_id','id')->withTrashed();

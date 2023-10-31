@@ -10,6 +10,7 @@ use App\Models\DoctorAppointmentDetail;
 use App\Models\HospitalWiseDoctorSchedule;
 use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
+use App\Models\Setting;
 use App\Models\TestOrder;
 use App\Models\TestOrderDetail;
 use App\Models\TestOrderPaymentHistory;
@@ -92,6 +93,8 @@ class DoctorAppointmentController extends Controller
                 $patientId=$this->storeNewPatient($request)->id;
             }
 
+            $siteSetting=Setting::first();
+            $request['service_charge']=$siteSetting->appointment_service_charge??0;
 
             $doctorAppointment=DoctorAppointment::create(
                 [

@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::put('/update-my-password', [\App\Http\Controllers\Admin\ProfileController::class,'updateMyPassword'] )->name('update-my-password');
 
     Route::resource('/users', \App\Http\Controllers\Admin\UserController::class );
-    Route::resource('setting','SettingController')->middleware('permission:setting');
+    Route::resource('setting','\App\Http\Controllers\Admin\SettingController');//->middleware('permission:setting');
     Route::resource('/quizzes', \App\Http\Controllers\Admin\QuizController::class );
 });
 

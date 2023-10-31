@@ -17,6 +17,7 @@ class TestOrderResource extends JsonResource
         return [
             'id'=>$this->id,
             'order_no'=>$this->order_no,
+            'order_status'=>$this->order_status,
             'payment_status'=>$this->payment_status,
             'amount'=>$this->amount,
             'discount'=>$this->discount,

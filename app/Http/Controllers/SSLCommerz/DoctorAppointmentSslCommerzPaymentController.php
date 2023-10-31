@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Controllers\SSLCommerz;
 use App\Http\Traits\ApiResponseTrait;
+use App\Models\DoctorAppointment;
+use App\Models\DoctorAppointmentPaymentHistory;
+use App\Models\Setting;
 use App\Models\TestOrder;
 use App\Models\TestOrderPaymentHistory;
 use Carbon\Carbon;
@@ -9,16 +12,17 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Routing\UrlGenerator;
 use App\Http\Controllers\Controller;
+use PhpParser\Comment\Doc;
 use Symfony\Component\HttpFoundation\Response;
 use DB,Validator,Auth;
-class PublicSslCommerzPaymentController extends Controller
+class DoctorAppointmentSslCommerzPaymentController extends Controller
 {
     use ApiResponseTrait;
 
-    public function testOrderPaymentValidationRules($request){
+    public function validationRules($request){
         $rules=[
-            'payment_amount' => 'nullable|numeric|max:999999',
-            'test_order_id' => "exists:test_orders,id"
+            'doctor_appointment_id' => "exists:doctor_appointments,id",
+            'service_charge' => 'nullable|numeric|max:999999|min:10'
         ];
         return $rules;
     }
@@ -31,32 +35,38 @@ class PublicSslCommerzPaymentController extends Controller
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "order_id","order_status" field contain status of the transaction, "grand_total" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
-// START Test Order Data Validation.
-        $rules=$this->testOrderPaymentValidationRules($request);
+// START Doctor Appointment Data Validation.
+        $rules=$this->validationRules($request);
         $validator = Validator::make( $request->all(), $rules);
         if ($validator->fails()) {
             return $this->respondWithValidation('Validation Fail',$validator->errors()->first(),Response::HTTP_BAD_REQUEST);
         }
 
-        // check test Order payment_status (partial/full payment)
-        $testOrderId=$request->test_order_id;
-        $testOrder=TestOrder::with('patient')->findOrFail($testOrderId);
+        // check Doctor Appointment payment_status (payment_amount=Service Charge)
+        $doctorAppointmentId=$request->doctor_appointment_id;
+        $doctorAppointment=DoctorAppointment::with('patient')->findOrFail($doctorAppointmentId);
 
-        if ($testOrder->payment_status==TestOrder::FULLPAYMENT){
+        if ($doctorAppointment->payment_status==DoctorAppointment::FULLPAYMENT){
             return $this->respondWithValidation('Already full payment is done',$validator->errors()->first(),Response::HTTP_BAD_REQUEST);
         }
 
-// End Test Order Data Validation.
+        // End Doctor Appointment Data Validation.
 
-// START Customized Business Logic.
+        // START Customized Business Logic.
 
 
 
-        $tranId=TestOrderPaymentHistory::generateTestOrderTrxID($testOrderId);
-        $totalAmount=$request->payment_amount??$testOrder->reconciliation_amount;
+        $tranId=DoctorAppointmentPaymentHistory::generateDoctorAppointmentTrxID($doctorAppointmentId);
+        $totalAmount=$request->service_charge??$doctorAppointment->service_charge;
+
+        // update service charge if service charge ---------
+        if ($totalAmount==0){
+            $totalAmount=Setting::first()->value('appointment_service_charge');
+            $doctorAppointment->update(['service_charge'=>$totalAmount]);
+        }
 
         // delete old pending paymentHistory data --------------
-        $oldPendingData=TestOrderPaymentHistory::where(['test_order_id'=>$testOrderId,'payment_status'=>TestOrderPaymentHistory::PENDING])->first();
+        $oldPendingData=DoctorAppointmentPaymentHistory::where(['doctor_appointment_id'=>$doctorAppointmentId,'payment_status'=>DoctorAppointment::PENDING])->first();
 
         if (!empty($oldPendingData)){
             $oldPendingData->delete();
@@ -64,22 +74,22 @@ class PublicSslCommerzPaymentController extends Controller
 
 
         // Create payment initiate ------------
-        TestOrderPaymentHistory::create([
-            'user_id'=>$testOrder->user_id,
-            'test_order_id'=>$testOrderId,
+        DoctorAppointmentPaymentHistory::create([
+            'user_id'=>$doctorAppointment->user_id,
+            'doctor_appointment_id'=>$doctorAppointmentId,
             'transaction_id'=>$tranId,
             'payment_date'=>Carbon::now(),
             'payment_amount'=>$totalAmount,
-            'payment_type'=>TestOrderPaymentHistory::ONLINEPAYMENT,
+            'payment_type'=>DoctorAppointmentPaymentHistory::ONLINEPAYMENT,
             'currency'=>'BDT',
-            'payment_status'=>TestOrderPaymentHistory::PENDING,
+            'payment_status'=>DoctorAppointmentPaymentHistory::PENDING,
         ]);
 
         // Set Customer information ------
-        $custName=$testOrder->patient?$testOrder->patient->name:'customer Name';
-        $custPhone=$testOrder->patient?$testOrder->patient->mobile??'01701000000':'01701000000';
-        $custEmail=$testOrder->patient?$testOrder->patient->email??'cust@customer.com':'cust@customer.com';
-        $custAddress=$testOrder->patient?$testOrder->patient->address??'Dhaka':'Dhaka';
+        $custName=$doctorAppointment->patient?$doctorAppointment->patient->name:'customer Name';
+        $custPhone=$doctorAppointment->patient?$doctorAppointment->patient->mobile??'01701000000':'01701000000';
+        $custEmail=$doctorAppointment->patient?$doctorAppointment->patient->email??'cust@customer.com':'cust@customer.com';
+        $custAddress=$doctorAppointment->patient?$doctorAppointment->patient->address??'Dhaka':'Dhaka';
 
 
 // END of Customized Business Logic.
@@ -100,9 +110,9 @@ class PublicSslCommerzPaymentController extends Controller
 
 
         $server_name=$request->root()."/";
-        $post_data['success_url'] = $server_name ."api/v1/sslPay/"."success";
-        $post_data['fail_url'] = $server_name . "api/v1/sslPay/"."fail";
-        $post_data['cancel_url'] = $server_name . "api/v1/sslPay/"."cancel";
+        $post_data['success_url'] = $server_name ."api/v1/sslPay/doctor-appointment/"."success";
+        $post_data['fail_url'] = $server_name . "api/v1/sslPay/doctor-appointment/"."fail";
+        $post_data['cancel_url'] = $server_name . "api/v1/sslPay/doctor-appointment/"."cancel";
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $custName;
@@ -126,13 +136,8 @@ class PublicSslCommerzPaymentController extends Controller
         $post_data['ship_country'] = "Bangladesh";
 
         # OPTIONAL PARAMETERS
-        if ($request->test_order_id){ // Test order Payment ----------
-            //$_SESSION['payment_values']['pay_for']='test_order_pay';
-            $post_data['value_a'] = "test_order_pay";
-        }elseif (1){
-            $post_data['value_a'] = "doctor_book";
-        }
 
+        $post_data['value_a'] = "doctor_appointment";
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
@@ -159,18 +164,17 @@ class PublicSslCommerzPaymentController extends Controller
         $sslc = new SSLCommerz();
         #Start to received these value from session. which was saved in index function.
         $tran_id =$request->tran_id;
-        $payFor=$request->value_a;
+        //$payFor=$request->value_a;
 
         #End to received these value from session. which was saved in index function.
 
         #Check order status in order table against the transaction id or order id.
-         // ----- For test Order Pay ----------------------------------------------------------------------
-        if ($payFor=='test_order_pay'){
-            $testOrderPaymentHistory=TestOrderPaymentHistory::where(['transaction_id'=>$tran_id])->first();
+         // ----- For Doctor Appointment Pay (service charge) ----------------------------------------------------------------------
+            $doctorAppointmentPaymentHistory=DoctorAppointmentPaymentHistory::where(['transaction_id'=>$tran_id])->first();
 
-            if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING)
+            if($doctorAppointmentPaymentHistory->payment_status==DoctorAppointmentPaymentHistory::PENDING)
             {
-                $validation = $sslc->orderValidate($tran_id, $testOrderPaymentHistory->payment_amount, $testOrderPaymentHistory->currency, $request->all());
+                $validation = $sslc->orderValidate($tran_id, $doctorAppointmentPaymentHistory->payment_amount, $doctorAppointmentPaymentHistory->currency, $request->all());
                 if($validation == TRUE)
                 {
                     /*
@@ -178,32 +182,32 @@ class PublicSslCommerzPaymentController extends Controller
                     in order table as Processing or Complete.
                     Here you can also sent sms or email for successfull transaction to customer
                     */
-                /*-----------------Change status Test order history & Test_order -------------*/
-                    $testOrderPaymentHistory->update([
-                        'payment_status'=>TestOrderPaymentHistory::COMPLETE,
+                /*-----------------Change status Doctor Appointment Payment history & Test_order -------------*/
+                    $doctorAppointmentPaymentHistory->update([
+                        'payment_status'=>DoctorAppointmentPaymentHistory::COMPLETE,
                         'store_amount'=>$request->store_amount,
                         'payment_gateway'=>$request->card_type,
                         'payment_date'=>Carbon::now(),
                         'payment_track'=>json_encode($request->all())
                     ]);
 
-                    $testOrderId=$testOrderPaymentHistory->test_order_id;
+                    $doctorAppointmentId=$doctorAppointmentPaymentHistory->doctor_appointment_id;
 
-                    $testOrder=TestOrder::findOrFail($testOrderId);
-                    $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
+                    $doctorAppointment=DoctorAppointment::findOrFail($doctorAppointmentId);
+                    $totalPaymentAmount=DoctorAppointmentPaymentHistory::totalPaymentAmount($doctorAppointmentId);
 
-                    // Test order status change -------------------
-                    if ($totalPaymentAmount<$testOrder->reconciliation_amount){
-                        $testOrder->update(['payment_status'=>TestOrder::PARTIALPAYMENT]);
+                    // Doctor Appointment Payment status change -------------------
+                    if ($totalPaymentAmount<$doctorAppointment->service_charge){
+                        $doctorAppointment->update(['payment_status'=>DoctorAppointment::PARTIALPAYMENT]);
 
-                    }elseif ($totalPaymentAmount>=$testOrder->reconciliation_amount){
-                        $testOrder->update(['payment_status'=>TestOrder::FULLPAYMENT]);
+                    }elseif ($totalPaymentAmount>=$doctorAppointment->service_charge){
+                        $doctorAppointment->update(['payment_status'=>DoctorAppointment::FULLPAYMENT]);
 
                     }else{
-                        $testOrder->update(['payment_status'=>TestOrder::PENDING]);
+                        $doctorAppointment->update(['payment_status'=>DoctorAppointment::PENDING]);
                     }
 
-                    $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
+                    $data['payment_amount']=$doctorAppointmentPaymentHistory->payment_amount;
                     $data['status']='success';
                     $data['message']="";
 
@@ -216,7 +220,7 @@ class PublicSslCommerzPaymentController extends Controller
                     That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.
                     Here you need to update order status as Failed in order table.
                     */
-                    $testOrderPaymentHistory->update(['payment_status'=>TestOrderPaymentHistory::FAILED]);
+                    $doctorAppointmentPaymentHistory->update(['payment_status'=>DoctorAppointmentPaymentHistory::FAILED]);
 
                     $data['payment_amount']=0;
                     $data['status']='failed';
@@ -226,35 +230,35 @@ class PublicSslCommerzPaymentController extends Controller
                     //return $this->respondWithValidation('validation Fail','validation Fail',Response::HTTP_BAD_REQUEST);
                 }
             }
-            else if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE)
+            else if($doctorAppointmentPaymentHistory->payment_status==DoctorAppointmentPaymentHistory::COMPLETE)
             {
                 /*
                  That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
                  */
                 /*-----------------Change status Test order history & Test_order -------------*/
-                $testOrderPaymentHistory->update([
-                    'payment_status'=>TestOrderPaymentHistory::COMPLETE,
+                $doctorAppointmentPaymentHistory->update([
+                    'payment_status'=>DoctorAppointmentPaymentHistory::COMPLETE,
                     'store_amount'=>$request->store_amount,
                     'payment_gateway'=>$request->card_type,
                     'payment_track'=>json_encode($request->all())
                 ]);
 
-                $testOrderId=$testOrderPaymentHistory->test_order_id;
+                $doctorAppointmentId=$doctorAppointmentPaymentHistory->doctor_appointment_id;
 
-                $testOrder=TestOrder::findOrFail($testOrderId);
-                $totalPaymentAmount=TestOrderPaymentHistory::totalPaymentAmount($testOrderId);
+                $doctorAppointment=DoctorAppointment::findOrFail($doctorAppointmentId);
+                $totalPaymentAmount=DoctorAppointmentPaymentHistory::totalPaymentAmount($doctorAppointmentId);
 
-                if ($totalPaymentAmount<$testOrder->reconciliation_amount){
-                    $testOrder->update(['payment_status'=>TestOrder::PARTIALPAYMENT]);
+                if ($totalPaymentAmount<$doctorAppointment->service_charge){
+                    $doctorAppointment->update(['payment_status'=>DoctorAppointment::PARTIALPAYMENT]);
 
-                }elseif ($totalPaymentAmount>=$testOrder->reconciliation_amount){
-                    $testOrder->update(['payment_status'=>TestOrder::FULLPAYMENT]);
+                }elseif ($totalPaymentAmount>=$doctorAppointment->service_charge){
+                    $doctorAppointment->update(['payment_status'=>DoctorAppointment::FULLPAYMENT]);
 
                 }else{
-                    $testOrder->update(['payment_status'=>TestOrder::PENDING]);
+                    $doctorAppointment->update(['payment_status'=>DoctorAppointment::PENDING]);
                 }
 
-                $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
+                $data['payment_amount']=$doctorAppointmentPaymentHistory->payment_amount;
                 $data['status']='success';
                 $data['message']="Transaction is successfully Complete";
 
@@ -271,27 +275,19 @@ class PublicSslCommerzPaymentController extends Controller
                 #That means something wrong happened. You can redirect customer to your product page.
                // return $this->respondWithValidation('Invalid Transaction','Invalid Transaction',Response::HTTP_BAD_REQUEST);
             }
-        }elseif (1){
-            // ----- For Doctor Book Pay -------------------------------------------------------------------
-            return '';
-        }
-
-
-
-
 
     }
+
     public function fail(Request $request)
     {
         $tran_id =$request->tran_id;
         $payFor=$request->value_a;
 
-        if ($payFor=='test_order_pay') { // Test Order Pay----------------
-            $testOrderPaymentHistory = TestOrderPaymentHistory::where(['transaction_id' => $tran_id])->first();
+            $doctorAppointmentPaymentHistory = DoctorAppointmentPaymentHistory::where(['transaction_id' => $tran_id])->first();
 
-            if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING)
+            if($doctorAppointmentPaymentHistory->payment_status==DoctorAppointmentPaymentHistory::PENDING)
             {
-                $testOrderPaymentHistory->update(['payment_status'=>TestOrderPaymentHistory::FAILED]);
+                $doctorAppointmentPaymentHistory->update(['payment_status'=>DoctorAppointmentPaymentHistory::FAILED]);
 
                 $data['payment_amount']=0;
                 $data['status']='failed';
@@ -301,10 +297,10 @@ class PublicSslCommerzPaymentController extends Controller
 
                 //return $this->respondWithValidation('Transaction is Fail','Transaction is Fail',Response::HTTP_BAD_REQUEST);
             }
-            else if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE)
+            else if($doctorAppointmentPaymentHistory->payment_status==DoctorAppointmentPaymentHistory::COMPLETE)
             {
 
-                $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
+                $data['payment_amount']=$doctorAppointmentPaymentHistory->payment_amount;
                 $data['status']='failed';
                 $data['message']="Transaction is successfully Complete";
 
@@ -321,13 +317,6 @@ class PublicSslCommerzPaymentController extends Controller
                 //return $this->respondWithValidation('Invalid Transaction','Invalid Transaction',Response::HTTP_BAD_REQUEST);
             }
 
-
-        }elseif (1){
-            return 'No';
-        }
-
-
-
     }
 
     public function cancel(Request $request)
@@ -335,13 +324,11 @@ class PublicSslCommerzPaymentController extends Controller
         $tran_id =$request->tran_id;
         $payFor=$request->value_a;
 
-        if ($payFor=='test_order_pay') { // Test Order Pay----------------
-            $testOrderPaymentHistory = TestOrderPaymentHistory::where(['transaction_id' => $tran_id])->first();
+            $doctorAppointmentPaymentHistory = DoctorAppointmentPaymentHistory::where(['transaction_id' => $tran_id])->first();
 
+            if ($doctorAppointmentPaymentHistory->payment_status==DoctorAppointmentPaymentHistory::PENDING) {
 
-            if ($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING) {
-
-                $testOrderPaymentHistory->update(['payment_status' => TestOrderPaymentHistory::CANCELED]);
+                $doctorAppointmentPaymentHistory->update(['payment_status' => DoctorAppointmentPaymentHistory::CANCELED]);
 
                 $data['payment_amount']=0;
                 $data['status']='canceled';
@@ -350,9 +337,9 @@ class PublicSslCommerzPaymentController extends Controller
                 return view('ssl.ssl-web-view',compact('data'));
                 //return $this->respondWithValidation('Transaction is Fail', 'Transaction is Fail', Response::HTTP_BAD_REQUEST);
 
-            } else if ($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE) {
+            } else if ($doctorAppointmentPaymentHistory->payment_status==DoctorAppointmentPaymentHistory::COMPLETE) {
 
-                $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
+                $data['payment_amount']=$doctorAppointmentPaymentHistory->payment_amount;
                 $data['status']='success';
                 $data['message']="Transaction is successfully Complete";
 
@@ -367,12 +354,10 @@ class PublicSslCommerzPaymentController extends Controller
                 return view('ssl.ssl-web-view',compact('data'));
                 //return $this->respondWithValidation('Invalid Transaction', 'Invalid Transaction', Response::HTTP_BAD_REQUEST);
             }
-        }elseif (1){
-            return 'No';
-        }
 
 
     }
+
     public function ipn(Request $request)
     {
         #Received all the payement information from the gateway

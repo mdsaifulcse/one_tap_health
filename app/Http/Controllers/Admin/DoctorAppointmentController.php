@@ -24,38 +24,82 @@ class DoctorAppointmentController extends Controller
      */
     public function index()
     {
-
         if (request()->ajax()) {
-            $allData=DoctorAppointment::with('hospital','patient');
+            $allData=DoctorAppointment::with('doctorAppointmentDetails');
 
             return  DataTables::of($allData)
                 ->addIndexColumn()
                 ->addColumn('DT_RowIndex','')
-                ->addColumn('hospitals_name',function (TestOrder $testOrder){
-                    return $testOrder->hospital->name??'N/A';
+                ->addColumn('hospitals_name',function (DoctorAppointment $appointment){
+                    return $appointment->doctorAppointmentDetails[0]->hospital->name??'N/A';
                 })
-                ->addColumn('patient_name',function (TestOrder $testOrder){
-                    return $testOrder->patient->name??'N/A';
+                ->addColumn('doctor_name',function (DoctorAppointment $appointment){
+                    return $appointment->doctorAppointmentDetails[0]->doctor->name??'N/A';
                 })
-                ->addColumn('patient_mobile',function (TestOrder $testOrder){
-                    return $testOrder->patient->mobile??'N/A';
+                ->addColumn('patient_name',function (DoctorAppointment $appointment){
+                    return $appointment->patient->name??'N/A';
                 })
-                ->addColumn('test_date','
-                    {{date(\'M-d-Y\',strtotime($test_date))}}
+                ->addColumn('patient_mobile',function (DoctorAppointment $appointment){
+                    return $appointment->patient->mobile??'N/A';
+                })
+                ->addColumn('appointment_date','
+                    {{date(\'M-d-Y\',strtotime($appointment_date))}}
                 ')
-                ->addColumn('visit_status','
-                     @if($visit_status==\App\Models\TestOrder::YES)
-                        <button class="btn btn-success btn-sm">Yes</button>
+                ->addColumn('appointment_status','
+                <a href="#"
+                @if($appointment_status!=\App\Models\DoctorAppointment::APPOINTMENTCOMPLETED)
+                 data-toggle="modal" data-target="#myModal{{$id}}" 
+                 @endif
+                 title="Click for changing status"> 
+                     @if($appointment_status==\App\Models\DoctorAppointment::APPOINTMENTPROCESSED)
+                        <button class="btn btn-info btn-sm">Processed</button>
+                        
+                        @elseif($appointment_status==\App\Models\DoctorAppointment::APPOINTMENTCOMPLETED)
+                        <button class="btn btn-success btn-sm">Completed</button>
                             @else
-                            <button class="btn btn-warning btn-sm">No</button>
+                            <button class="btn btn-primary btn-sm">New</button>
                         @endif
+                 </a>
+                 
+                     <!-- Modal -->
+                      <div class="modal fade" id="myModal{{$id}}" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          {!! Form::open(array(\'route\' => [\'admin.doctor-appointments.update\', $id],\'method\'=>\'PUT\',\'class\'=>\'kt-form kt-form--label-right\',\'files\'=>true)) !!}
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class ="modal-title text-danger">Are sure to change Appointment status?</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                               <div class="form-group row">
+                                    
+                                    <div class="col-md-10">
+                                        {{Form::select(\'appointment_status\', 
+                                        [
+                                        \App\Models\DoctorAppointment::APPOINTMENTNEW  => \'New\' ,
+                                         \App\Models\DoctorAppointment::APPOINTMENTPROCESSED  => \'Processed\',
+                                        \App\Models\DoctorAppointment::APPOINTMENTCOMPLETED  => \'Completed\'
+                                        ],[$appointment_status], [\'class\' => \'form-control\'])}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="display:block;">
+                              <button type="submit" class="btn btn-warning pull-left" onclick="return confirm(\'are you sure?\')">Save    </button>
+                            </div>
+                          </div>
+                           {!! Form::close() !!}
+                          
+                        </div>
+                      </div>
                 ')
                 ->addColumn('payment_status','
-                <a href="{{url(\'admin/test-order-manual-payment/\'.$id)}}" target="_blank" data-toggle="tooltip" title="Click Here For Payment"> 
-                     @if($payment_status==\App\Models\TestOrder::PARTIALPAYMENT)
+                <a href="#" data-toggle="tooltip" title="Click Here For Payment"> 
+                     @if($payment_status==\App\Models\DoctorAppointment::PARTIALPAYMENT)
                         <button class="btn btn-warning btn-sm">Partial</button>
                         
-                        @elseif($payment_status==\App\Models\TestOrder::FULLPAYMENT)
+                        @elseif($payment_status==\App\Models\DoctorAppointment::FULLPAYMENT)
                         <button class="btn btn-success btn-sm">Full</button>
                             @else
                             <button class="btn btn-danger btn-sm">Due</button>
@@ -70,10 +114,9 @@ class DoctorAppointmentController extends Controller
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-info btn-sm" title="Click here for order details">Payment Details <i class="icofont icofont-eye"></i> </a></li>
-                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Order Details <i class="icofont icofont-eye"></i> </a></li>
+                            <li><a href="javascript:void(0)" onclick="showDoctorAppointmentDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Appointment Details <i class="icofont icofont-eye"></i> </a></li>
                            
-                            @if($payment_status==\App\Models\TestOrder::PENDING)
+                            @if($payment_status==\App\Models\DoctorAppointment::PENDING)
                             <li>
                                 {!! Form::open(array(\'route\' => [\'admin.doctor-appointments.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
                                 <button type="button" class="btn btn-danger btn-sm" onclick=\'return deleteConfirm("deleteForm{{$id}}")\'>Delete <i class="icofont icofont-trash"></i></button>
@@ -84,7 +127,7 @@ class DoctorAppointmentController extends Controller
                         </ul>
                     </span>
                 ')
-                ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','visit_status','payment_status','created_at','control'])
+                ->rawColumns(['hospitals_name','patient_name','patient_mobile','appointment_date','appointment_status','payment_status','created_at','control'])
                 ->toJson();
         }
 
@@ -262,11 +305,11 @@ class DoctorAppointmentController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function show(TestOrder $testOrder)
+    public function show(DoctorAppointment $doctorAppointment)
     {
-        $testOrder->load(['testOrderDetails:id,test_order_id,test_id,price,discount,approval_status,delivery_status,delivery_date',
-            'testOrderDetails.test:id,title','hospital:id,name,branch,address1','patient:id,name,mobile,address']);
-        return view('admin.doctor-appointments.show',compact('testOrder'));
+         $doctorAppointment->load(['doctorAppointmentDetails',
+            'doctorAppointmentDetails.hospital:id,name,branch,address1','doctorAppointmentDetails.doctor:id,name','patient:id,name,mobile,address']);
+        return view('admin.doctor-appointments.show',compact('doctorAppointment'));
     }
 
     /**
@@ -275,7 +318,7 @@ class DoctorAppointmentController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hospital $hospital)
+    public function edit(DoctorAppointment $doctorAppointment)
     {
         $data=$hospital;
         $maxSerial=Hospital::max('sequence');
@@ -289,9 +332,40 @@ class DoctorAppointmentController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hospital $hospital)
+    public function update(Request $request, DoctorAppointment $doctorAppointment)
     {
+        try{
 
+            //return $request;
+            $doctorAppointment->load('patient');
+
+            $smsInfo='SMS NOT Sent';
+
+            $doctorAppointment->update(['appointment_status'=>$request->appointment_status]);
+
+            // Sending Appointment confirmation -------------
+            if ($request->appointment_status==DoctorAppointment::APPOINTMENTPROCESSED & !empty($doctorAppointment->patient->mobile)){
+                $receiver=$doctorAppointment->patient->mobile;
+                $smsBody="Confirmation message.\r\n".
+                    "Your appointment: $doctorAppointment->appointment_no has been confirmed by OneTapHealth admin.\r\n".
+                    "For any assistance please call: ".env('ANY_ASSISTANCE_CALL');
+
+                 $response= \MyHelper::sendConfirmationSMS($receiver,$smsBody);
+
+
+                if (strpos($response, "200") !== false){
+                    $smsInfo='SMS Sent';
+                }
+
+                Log::info('Appointment SMS successful : receiver: '.$receiver." message : $smsBody");
+            }
+
+
+            return redirect()->back()->with('success',"Appointment Status has been Successfully Updated & ".$smsInfo);
+        }catch(Exception $e){
+            Log::error('Appointment confirmation error:'.$e->getMessage());
+            return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
+        }
     }
 
     /**

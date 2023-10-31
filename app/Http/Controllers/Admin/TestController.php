@@ -17,7 +17,7 @@ class TestController extends Controller
      */
     public function index()
     {
-        $tests=Test::with('testCategory','testSubCategory','testThirdCategory')->orderBy('sequence','DESC')->paginate(50);
+        $tests=Test::with('testCategory','testSubCategory','testThirdCategory')->orderBy('sequence','DESC')->get();
         return view('admin.tests.index',compact('tests'));
     }
 

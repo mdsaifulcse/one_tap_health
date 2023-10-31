@@ -17,7 +17,7 @@ class DoctorAppointmentResource extends JsonResource
         return [
             'id'=>$this->id,
             'appointment_no'=>$this->appointment_no,
-            'payment_status'=>$this->payment_status,
+            'appointment_status'=>$this->appointment_status,
             'amount'=>$this->amount,
             'discount'=>$this->discount,
             'service_charge'=>$this->service_charge,

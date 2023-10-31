@@ -20,11 +20,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace'=>'App\Http\Controllers\SSLCommerz','prefix' => 'sslPay','as' => 'sslPay.'],function (){
+
+    // for test order ssl pay----------------
     Route::POST('/pay',  'PublicSslCommerzPaymentController@index');
     Route::POST('/success', 'PublicSslCommerzPaymentController@success');
     Route::POST('/fail', 'PublicSslCommerzPaymentController@fail');
     Route::POST('/cancel', 'PublicSslCommerzPaymentController@cancel');
     Route::POST('/ipn', 'PublicSslCommerzPaymentController@ipn');
+
+    // for Doctor appointment (service charge) ssl pay----------------
+    Route::POST('doctor-appointment/pay',  'DoctorAppointmentSslCommerzPaymentController@index');
+    Route::POST('doctor-appointment/success', 'DoctorAppointmentSslCommerzPaymentController@success');
+    Route::POST('doctor-appointment/fail', 'DoctorAppointmentSslCommerzPaymentController@fail');
+    Route::POST('doctor-appointment/cancel', 'DoctorAppointmentSslCommerzPaymentController@cancel');
+    Route::POST('doctor-appointment/ipn', 'DoctorAppointmentSslCommerzPaymentController@ipn');
 
 });
 
@@ -69,6 +78,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
     Route::get('hospital-wise-test-details/{hospitalId}', 'HospitalApiController@hospitalWiseTestDetails');
 
     /*--------- Doctor Api --------*/
+    Route::get('/active-doctor-departments', 'DoctorApiController@activeDoctorDepartmentsList');
     Route::get('/active-doctors-list', 'DoctorApiController@activeDoctorsList');
     Route::get('/doctor-schedules/{doctorId}', 'DoctorApiController@doctorWiseScheduleForHospital');
     Route::get('/doctors-by-hospital/{hospitalId}', 'DoctorApiController@doctorsByHospital');

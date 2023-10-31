@@ -61,6 +61,51 @@ class TestOrderController extends Controller
                         @endif
                  </a>
                 ')
+                ->addColumn('order_status','
+                <a href="#"
+                @if($order_status!=\App\Models\TestOrder::ORDERCOMPLETED)
+                 data-toggle="modal" data-target="#myModal{{$id}}" 
+                 @endif
+                 title="Click for changing status"> 
+                     @if($order_status==\App\Models\TestOrder::ORDERPROCESSED)
+                        <button class="btn btn-info btn-sm">Processed</button>
+                        
+                        @elseif($order_status==\App\Models\TestOrder::ORDERCOMPLETED)
+                        <button class="btn btn-success btn-sm">Completed</button>
+                            @else
+                            <button class="btn btn-primary btn-sm">New</button>
+                        @endif
+                 </a>
+                 
+                     <!-- Modal -->
+                      <div class="modal fade" id="myModal{{$id}}" role="dialog">
+                        <div class="modal-dialog">
+                        
+                          <!-- Modal content-->
+                          {!! Form::open(array(\'route\' => [\'admin.test-orders.update\', $id],\'method\'=>\'PUT\',\'class\'=>\'kt-form kt-form--label-right\',\'files\'=>true)) !!}
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class ="modal-title text-danger">Are sure to change order status?</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                               <div class="form-group row">
+                                    
+                                    <div class="col-md-10">
+                                        {{Form::select(\'order_status\', [\App\Models\TestOrder::ORDERNEW  => \'New\' , \App\Models\TestOrder::ORDERPROCESSED  => \'Processed\',
+                                        \App\Models\TestOrder::ORDERCOMPLETED  => \'Completed\'],[$order_status], [\'class\' => \'form-control\'])}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="display:block;">
+                              <button type="submit" class="btn btn-warning pull-left"  onclick="return confirm(\'Are you sure?\')">Save    </button>
+                            </div>
+                          </div>
+                           {!! Form::close() !!}
+                          
+                        </div>
+                      </div>
+                ')
                 ->addColumn('created_at','
                     {{date(\'M-d-Y\',strtotime($created_at))}}
                 ')
@@ -69,7 +114,7 @@ class TestOrderController extends Controller
                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-info btn-sm" title="Click here for order details">Payment Details <i class="icofont icofont-eye"></i> </a></li>
+                           
                             <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Order Details <i class="icofont icofont-eye"></i> </a></li>
                            
                             @if($payment_status==\App\Models\TestOrder::PENDING)
@@ -83,7 +128,7 @@ class TestOrderController extends Controller
                         </ul>
                     </span>
                 ')
-                ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','visit_status','payment_status','created_at','control'])
+                ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','order_status','visit_status','payment_status','created_at','control'])
                 ->toJson();
         }
 
@@ -288,9 +333,37 @@ class TestOrderController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hospital $hospital)
+    public function update(Request $request, TestOrder $testOrder)
     {
 
+        try{
+            $smsInfo='SMS NOT Sent';
+            $testOrder->load('patient');
+            $testOrder->update(['order_status'=>$request->order_status]);
+
+            // Sending Test Order confirmation -------------
+            if ($request->order_status==TestOrder::ORDERPROCESSED & !empty($testOrder->patient->mobile)){
+                $receiver=$testOrder->patient->mobile;
+                $smsBody="Confirmation message.\r\n".
+                    "Your pathology test order: $testOrder->order_no has been confirmed by OneTapHealth admin.\r\n".
+                    "For any assistance please call: ".env('ANY_ASSISTANCE_CALL');
+
+                $response= \MyHelper::sendConfirmationSMS($receiver,$smsBody);
+
+
+                if (strpos($response, "200") !== false){
+                    $smsInfo='SMS Sent';
+                }
+
+                Log::info('Test Order SMS successful : receiver: '.$receiver." message : $smsBody");
+            }
+
+
+            return redirect()->back()->with('success',"Order Status has been Successfully Updated & ".$smsInfo);
+        }catch(\Exception $e){
+            Log::error('Test Order confirmation error:'.$e->getMessage());
+            return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
+        }
     }
 
     /**

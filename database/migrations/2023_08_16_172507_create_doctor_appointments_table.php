@@ -27,7 +27,7 @@ class CreateDoctorAppointmentsTable extends Migration
             $table->double('reconciliation_amount',8,1)->default(0)->comment('This is the final payable amount');
             $table->double('system_commission',8,1)->default(0)->comment(' That amount system (company earn)');
             $table->timestamp('appointment_date')->comment('Doctor Appointment date');
-            $table->tinyInteger('appointment_status',false,1)->default(\App\Models\DoctorAppointment::NO);
+            $table->tinyInteger('appointment_status',false,1)->default(\App\Models\DoctorAppointment::APPOINTMENTNEW);
             $table->tinyInteger('approval_status',false,2)->default(\App\Models\DoctorAppointment::PENDING);
             $table->tinyInteger('payment_status',false,1)->default(\App\Models\DoctorAppointment::PENDING);
             $table->string('source')->default(\App\Models\DoctorAppointment::SOURCEMOBILE);
