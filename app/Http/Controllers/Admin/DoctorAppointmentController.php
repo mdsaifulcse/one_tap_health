@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\DoctorAppointment;
+use App\Models\DoctorAppointmentDetail;
 use App\Models\Hospital;
+use App\Models\HospitalWiseDoctorSchedule;
 use App\Models\HospitalWiseTestPrice;
 use App\Models\Patient;
+use App\Models\Setting;
 use App\Models\TestOrder;
 use App\Models\TestOrderDetail;
 use App\Models\TestOrderPaymentHistory;
@@ -141,31 +145,40 @@ class DoctorAppointmentController extends Controller
      */
     public function create()
     {
-        $lastOrderNo=TestOrder::generateOrderInvoiceNo();
-        return view('admin.doctor-appointments.create',compact('lastOrderNo'));
+        return view('admin.doctor-appointments.create');
     }
 
-    public function createTestOrderDetails($hospitalId){
-        $hospitalWiseTests=HospitalWiseTestPrice::with('test')->where(['hospital_id'=>$hospitalId])->get();
-        return view('admin.doctor-appointments.load-hospital-wise-test-details',compact('hospitalWiseTests'));
+    public function loadDoctorWiseDoctorSchedules($doctorId){
+        $setting=Setting::first();
+        $doctor=Doctor::with('doctorSchedules','doctorSchedules.hospital')->findOrFail($doctorId);
+
+        return view('admin.doctor-appointments.load-doctor-wise-doctor-schedules',compact('doctor','setting'));
     }
 
 
     public function store(Request $request)
     {
-        $orderNo=TestOrder::generateOrderInvoiceNo();
-        $request['order_no']=$orderNo;
-        $rules=$this->testOrderValidationRules($request);
+        $appointmentNo=DoctorAppointment::generateAppointmentInvoiceNo();
+        $request['appointment_no']=$appointmentNo;
+        $rules=$this->validationRules($request);
         $validator = Validator::make( $request->all(), $rules);
         if ($validator->fails()) {
             return redirect()->back()->with('error',$validator->errors()->first());
+        }
+
+        $appointmentDay=strtolower(date('l',strtotime($request->appointment_date)));
+
+        $hospitalWiseDoctorSchedule=HospitalWiseDoctorSchedule::where(['status'=>HospitalWiseDoctorSchedule::ACTIVE])->findOrFail($request->schedule_id);
+        $availableDay=json_decode($hospitalWiseDoctorSchedule->available_day);
+
+        if (!in_array($appointmentDay,$availableDay)) {
+            return redirect()->back()->with('error',"Appointment date must be according to $hospitalWiseDoctorSchedule->doctorAvailableDay");
         }
 
 
         DB::beginTransaction();
         try{
 
-            // generate patient id
             if ($request->patient_state=='existing_patient'){
                 $patientId=$request->patient_id;
             }else{ // for new patient ------------
@@ -173,42 +186,45 @@ class DoctorAppointmentController extends Controller
             }
 
 
-            $testOrder=TestOrder::create(
+            $siteSetting=Setting::first();
+            $request['service_charge']=$siteSetting->appointment_service_charge??0;
+
+            $doctorAppointment=DoctorAppointment::create(
                 [
-                    'order_no'=>$orderNo,
+                    'appointment_no'=>$appointmentNo,
+                    'user_id'=>\Auth::user()->id,
                     'refer_by_id'=>$request->refer_by_id??null,
                     'patient_id' => $patientId,
-                    'hospital_id' => $request->hospital_id,
-                    'test_date'=>date('Y-m-d',strtotime($request->test_date)),
+                    'appointment_date'=> date('Y-m-d',strtotime($request->appointment_date)),
                     'discount'=>$request->discount??0,
                     'service_charge'=>$request->service_charge??0,
-                    'amount'=>$this->calculateTestOrderAmount($request)['amount']??0,
-                    'total_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
-                    'reconciliation_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
+                    'amount'=>$this->calculateDoctorAppointmentAmount($request)['amount']??0,
+                    'total_amount'=>$this->calculateDoctorAppointmentAmount($request)['total_amount']??0,
+                    'reconciliation_amount'=>$this->calculateDoctorAppointmentAmount($request)['total_amount']??0,
                     'note' => $request->note??'',
-                    'source' => TestOrder::SOURCEADMIN,
+                    'source' => DoctorAppointment::SOURCEMOBILE,
                     'created_by' => \Auth::user()->id,
                 ]);
 
-            $saveStatus= $this->saveTestOrderDetails($request,$testOrder->id); //result true Or false
+            $saveStatus= $this->saveDoctorAppointmentDetails($request,$doctorAppointment->id); //result true Or false
             if ($saveStatus==false){
                 DB::rollback();
-                Log::info('Test order details did not save');
-                return redirect()->back()->with('error','Hospital wise test price not found');
+                Log::info('Hospital wise doctor schedule not found, schedule_id:'.$request->schedule_id);
+                return redirect()->back()->with('error','Hospital wise doctor schedule not found, schedule_id:'.$request->schedule_id);
             }
 
-            Log::info('Test order Place from web (admin)');
             DB::commit();
-            return redirect()->back()->with('success','Order has been Placed successful');
+            Log::info('Doctor Appointment Place from admin');
+            return redirect()->back()->with('success','Doctor Appointment has been Placed successful');
 
-        }catch(\Exception $e){
+        }catch(Exception $e){
             DB::rollback();
-            Log::info('Test order error web admin: '.$e->getMessage());
+            Log::info('Doctor Appointment error admin: '.$e->getMessage());
             return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }
     }
 
-    public function testOrderValidationRules($request){
+    public function validationRules($request){
         $rules=[
             'patient_no' => 'unique:patients,patient_no,NULL,id,deleted_at,NULL',
             'patient_id'  => "required_if:patient_state,==,existing_patient",
@@ -218,42 +234,57 @@ class DoctorAppointmentController extends Controller
             'patient_mobile'  => "nullable|max:15",
             'patient_email'  => "nullable|max:15",
 
-            'order_no' => 'unique:test_orders,order_no,NULL,id,deleted_at,NULL',
-            'test_date'  => "required|date",
-            'amount'  => "numeric|digits_between:1,9999999|min:1|max:9999999",
-            'discount'  => "numeric|numeric|digits_between:1,99999|max:9999",
+            'appointment_no' => 'unique:doctor_appointments,appointment_no,NULL,id,deleted_at,NULL',
+            'appointment_date'  => "required|date",
+            'discount'  => "nullable|numeric|digits_between:1,99999|max:9999",
             'service_charge'  => "numeric|digits_between:1,6",
-
-            "test_id"   => "required|array|min:1",
-            'test_id.*' => "exists:tests,id",
-            'hospital_id' => "exists:hospitals,id",
-            //"hospital_id"   => "required|array|min:1",
+            'schedule_id' => "exists:hospital_wise_doctor_schedules,id",
         ];
         return $rules;
     }
 
-    public function storeNewPatient($request){
-       return Patient::create([
-            'patient_no'=>Patient::generatePatientId(),
-            'name'=>$request->patient_name,
-            'age'=>$request->patient_age,
-            'mobile'=>$request->patient_mobile,
-            'address'=>$request->patient_address,
-        ]);
+    public function storeNewPatient($request,$userId=null){
+        $patient=new Patient();
+        if ($userId!=null){
+            $patient=$patient->where('user_id',$userId);
+        }else{
+            $patient=$patient->where(function ($query)use($request){
+                $query->where('mobile',$request->patient_mobile)
+                    ->where('name','like', '%'.$request->patient_name.'%');
+            });
+        }
+
+        $patient=$patient->first();
+
+        if ($patient){
+            return $patient;
+        }else{
+            return $patient= Patient::create([
+                'user_id'=>$userId,
+                'patient_no'=>Patient::generatePatientId(),
+                'name'=>$request->patient_name,
+                'age'=>$request->patient_age??18,
+                'mobile'=>$request->patient_mobile,
+                'address'=>$request->patient_address,
+                'refer_by_id'=>$request->refer_by_id??null,
+            ]);
+        }
+
+
     }
 
-    public function calculateTestOrderAmount($request){
+
+    public function calculateDoctorAppointmentAmount($request){
 
         $amount=0;
         $totalAmount=0;
-        foreach ($request->test_id as $key=>$item){
-            $hospitalTestPrice=HospitalWiseTestPrice::where(['test_id'=>$request->test_id[$key],'hospital_id'=>$request->hospital_id])->first();
 
-            if($hospitalTestPrice) {
-                // actual test price after discount -----
-                $testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
-                $amount+=$testPrice;
-            }
+        $hospitalWiseDoctorSchedule=HospitalWiseDoctorSchedule::where(['id'=>$request->schedule_id,'status'=>HospitalWiseDoctorSchedule::ACTIVE])->first();
+
+        if($hospitalWiseDoctorSchedule) {
+            // actual test price after discount -----
+            $doctorFee=$hospitalWiseDoctorSchedule->doctor_fee-$hospitalWiseDoctorSchedule->discount;
+            $amount+=$doctorFee;
         }
 
 
@@ -271,27 +302,28 @@ class DoctorAppointmentController extends Controller
         return ['amount'=>$amount,'total_amount'=>$totalAmount];
     }
 
-    public function saveTestOrderDetails($request,$testOrderId ){
+    public function saveDoctorAppointmentDetails($request,$appointmentId ){
 
-        $testOrderDetails=[];
-        foreach ($request->test_id as $key=>$item){
+        $doctorAppointmentDetails='';
 
-            $hospitalTestPrice=HospitalWiseTestPrice::where(['test_id'=>$request->test_id[$key],'hospital_id'=>$request->hospital_id])->first();
-            if($hospitalTestPrice) {
-                //$testPrice=$hospitalTestPrice->price-$hospitalTestPrice->discount;
-                $testOrderDetails[] = [
-                    'test_order_id' => $testOrderId,
-                    'test_id' => $request->test_id[$key],
-                    'hospital_id' => $request->hospital_id,
-                    'price' => $hospitalTestPrice->price,
-                    'discount' => $hospitalTestPrice->discount,
-                    'created_by' => \Auth::user()->id,
-                ];
-            }
+        $hospitalWiseDoctorSchedule=HospitalWiseDoctorSchedule::where(['id'=>$request->schedule_id,'status'=>HospitalWiseDoctorSchedule::ACTIVE])->first();
+        if($hospitalWiseDoctorSchedule) {
+            $doctorAppointmentDetails=DoctorAppointmentDetail::create( [
+                'doctor_appointment_id' => $appointmentId,
+                'doctor_id' => $hospitalWiseDoctorSchedule->doctor_id,
+                'hospital_id' => $hospitalWiseDoctorSchedule->hospital_id,
+                'time_slot' => "$hospitalWiseDoctorSchedule->available_from,$hospitalWiseDoctorSchedule->available_to",
+                'appointment_day' => date('l',strtotime($request->appointment_date)),
+                'doctor_fee' => $hospitalWiseDoctorSchedule->doctor_fee,
+                'discount' => $hospitalWiseDoctorSchedule->discount,
+                'chamber_no' => $hospitalWiseDoctorSchedule->chamber_no,
+                'doctor_schedule_details' => json_encode($hospitalWiseDoctorSchedule),
+                'created_by' => \Auth::user()->id,
+            ]);
         }
 
-        if (count($testOrderDetails)>0){
-            TestOrderDetail::insert($testOrderDetails);
+
+        if (!empty($doctorAppointmentDetails)){
             return true;
         }else{
             return false;
@@ -377,14 +409,13 @@ class DoctorAppointmentController extends Controller
     public function destroy($id)
     {
         try{
-            $userId=auth()->user()->id;
             $myDoctorAppointments=DoctorAppointment::with('doctorAppointmentDetails')->findOrFail($id);
             $myDoctorAppointments->doctorAppointmentDetails->each(function ($detail){
                 $detail->delete();
             });
             $myDoctorAppointments->delete();
-            Log::info('From Admin, Delete Doctor Appointment ID:'.$id.', UserId: '.$userId);
-
+            Log::info('From Admin, Delete Doctor Appointment ID:'.$id);
+            return redirect()->back()->with('success',"Appointment Status has been Successfully Deleted");
         }catch(\Exception $e){
             return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
         }

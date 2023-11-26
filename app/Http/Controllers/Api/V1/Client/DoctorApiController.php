@@ -36,7 +36,7 @@ class DoctorApiController extends Controller
     public function doctorsByHospital($hospitalId){
         try{
             $hospital=Hospital::with('doctorSchedules','doctorSchedules.doctor')->findOrFail($hospitalId);
-            return $this->respondWithSuccess('Hospital wise doctors',new HospitalResource($hospital),Response::HTTP_OK);
+            return $this->respondWithSuccess('Hospital wise Doctor & Doctor Schedule',new HospitalResource($hospital),Response::HTTP_OK);
         }catch(Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }

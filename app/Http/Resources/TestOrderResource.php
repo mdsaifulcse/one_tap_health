@@ -25,6 +25,8 @@ class TestOrderResource extends JsonResource
             'total_amount'=>$this->total_amount,
             'test_date'=>$this->test_date,
             'patient_name'=>$this->patient->name,
+            'patient_mobile'=>$this->patient->mobile,
+            'patient_age'=>$this->patient->age,
             'hospital_name'=>$this->hospital->name,
             'details'=>TestOrderDetailsResourceCollection::make($this->whenLoaded('testOrderDetails')),
         ];

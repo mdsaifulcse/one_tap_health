@@ -17,7 +17,7 @@ class Hospital extends Model
     const NO=0;
 
     protected $table='hospitals';
-    protected $fillable=['name','type','branch','address1','address2','photo','contact','latitude','longitude','service_details',
+    protected $fillable=['district_id','zone_area_id','name','type','branch','address1','address2','photo','contact','latitude','longitude','service_details',
         'status','show_home','sequence','created_by','updated_by'];
 
     public function hospitalTestPrice(){
@@ -36,6 +36,13 @@ class Hospital extends Model
     }
     public static function countInactiveHospital(){
         return self::where(['status'=>self::INACTIVE])->count();
+    }
+
+    public function district(){
+        return $this->belongsTo(District::class,'district_id','id');
+    }
+    public function zoneArea(){
+        return $this->belongsTo(ZoneArea::class,'zone_area_id','id');
     }
 
 

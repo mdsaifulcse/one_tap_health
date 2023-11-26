@@ -1721,7 +1721,7 @@ button {
 .page-title h3 {
     color: #fff;
     position: relative;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     text-align: center;
     font-size: 25px;
     font-weight: 700;

@@ -53,6 +53,10 @@ class TestOrder extends Model
         return $this->hasMany(TestOrderPaymentHistory::class,'test_order_id','id');
     }
 
+    public function testReportFile(){
+        return $this->hasOne(TestOrderReportFile::class,'test_order_id','id');
+    }
+
     public static function generateOrderInvoiceNo(){
         $testOrderPrefix='ton-';
 

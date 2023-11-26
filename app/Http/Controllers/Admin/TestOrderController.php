@@ -115,6 +115,7 @@ class TestOrderController extends Controller
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                            
+                            <li><a href="{{route(\'admin.test-reports.create\',[\'test_order_id\'=>$id])}}" target="_blank" class="btn btn-primary btn-sm" title="Click here for order details">Upload report <i class="icofont icofont-eye"></i> </a></li>
                             <li><a href="javascript:void(0)" onclick="showTestOrderDetailsModal({{$id}})" class="btn btn-success btn-sm" title="Click here for order details">Order Details <i class="icofont icofont-eye"></i> </a></li>
                            
                             @if($payment_status==\App\Models\TestOrder::PENDING)

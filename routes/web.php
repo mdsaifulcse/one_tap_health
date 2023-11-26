@@ -14,6 +14,7 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('clear-all','App\Http\Controllers\CacheClearController@clearAllAndReset');
 
 /*-- Frontend --*/
     Route::get('/',  [\App\Http\Controllers\Frontend\HomeController::class,'index'])->name('index');
@@ -34,7 +35,12 @@ Route::group(['prefix' => 'login','as' => 'login.'],function () {
 
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
 
+    Route::resource('test-reports',\App\Http\Controllers\Admin\TestOrderReportFileController::class );
+    Route::post('test-reports-upload',[App\Http\Controllers\Admin\TestOrderReportFileController::class,'testReportUpload'])->name('test-reports-upload');
+    Route::post('test-reports-delete',[App\Http\Controllers\Admin\TestOrderReportFileController::class,'testReportDelete'])->name('test-reports-delete');
+
     Route::resource('doctor-appointments',\App\Http\Controllers\Admin\DoctorAppointmentController::class );
+    Route::get('load-doctor-wise-doctor-schedules/{doctorId}','\App\Http\Controllers\Admin\DoctorAppointmentController@loadDoctorWiseDoctorSchedules' );
 
 
     Route::resource('test-orders',\App\Http\Controllers\Admin\TestOrderController::class );
@@ -56,7 +62,12 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::resource('third-sub-categories',\App\Http\Controllers\Admin\ThirdSubCategoryController::class );
     Route::resource('biggapons',\App\Http\Controllers\Admin\BiggaponController::class );
 
+    Route::resource('areas',\App\Http\Controllers\Admin\ZoneAreaController::class );
+    Route::resource('districts',\App\Http\Controllers\Admin\DistrictController::class );
+    Route::get('import-districts',[\App\Http\Controllers\Admin\DistrictController::class,'importDistricts']);
+
     // ----------- On Change load -----------------
+    Route::get('/load-area-by-district/{districtId}', '\App\CustomFacades\DataLoadController@loadAreaByDistrict');
     Route::get('/load-sub-cat-by-cat/{categoryId}', '\App\CustomFacades\DataLoadController@loadSubCatsByCat');
     Route::get('/load-third-sub-cat-by-sub-cat/{subCategoryId}', '\App\CustomFacades\DataLoadController@loadThirdSubCatsByCat');
 

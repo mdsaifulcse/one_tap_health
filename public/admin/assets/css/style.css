@@ -1960,7 +1960,7 @@ table thead .border-bottom-info th, table tbody .border-bottom-info th, table tb
 
 .header-navbar { min-height: 4em; padding: 0; }
 .header-navbar .navbar-wrapper { background-color: #2C3E50; }
-.header-navbar .navbar-wrapper .navbar-logo { align-items: center; display: flex; float: left; height: 3.5rem; justify-content: center; text-align: center; text-transform: uppercase; width: 240px; }
+.header-navbar .navbar-wrapper .navbar-logo { align-items: center; display: flex; float: left; height: 3.5rem; justify-content: center; text-align: center; text-transform: uppercase; width: 235px; }
 .header-navbar .navbar-wrapper .navbar-logo h5 { margin-bottom: 0; }
 .header-navbar .navbar-wrapper .navbar-logo a { color: #fff; }
 .header-navbar .navbar-wrapper .navbar-logo .mobile-menu, .header-navbar .navbar-wrapper .navbar-logo .mobile-search, .header-navbar .navbar-wrapper .navbar-logo .mobile-options { display: none; }

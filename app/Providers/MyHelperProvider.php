@@ -324,6 +324,36 @@ class MyHelperProvider extends ServiceProvider
 
      }
 
+     public static function multiReportFileUpload($photoData,$folderName,$size){
+
+         $photoOrgName=self::slugify($photoData->getClientOriginalName());
+         $photoType=$photoData->getClientOriginalExtension();
+
+         //$fileType = $photoData->getClientOriginalName();
+         $fileName =substr($photoOrgName,0,-4).date('d-m-Y-i-s').'.'.$photoType;
+         $bigPhotoPath = $folderName.date('/Y/m/d/');
+         //return $path2;
+
+         if (!is_dir(public_path($bigPhotoPath))) {
+             mkdir(public_path($bigPhotoPath), 0777, true);
+         }
+
+         $photoData->move(public_path($bigPhotoPath),$fileName);
+
+         $bigImg= \Image::make(public_path($bigPhotoPath.$fileName));
+         $bigImg->encode('webp',75)->resize($size,null, function ($constraint) {
+             $constraint->aspectRatio();
+         });
+         $bigImg->save(public_path("$bigPhotoPath".$fileName));
+
+         $uploadPaths="$bigPhotoPath".$fileName; // ---------------- big
+
+
+        return $uploadPaths;
+
+
+     }
+
 
     public static function imageCompressor($photoData,$folderName,$width=null,$height=null) {
         $file = $photoData->file('group_icon');

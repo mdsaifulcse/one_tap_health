@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Hospital;
 use App\Models\HospitalWiseTestPrice;
 use Illuminate\Http\Request;
-use Validator,MyHelper,DB;
+use Validator,MyHelper,DB,DataLoad;
 
 class HospitalController extends Controller
 {
@@ -29,7 +29,8 @@ class HospitalController extends Controller
     public function create()
     {
         $maxSerial=Hospital::max('sequence');
-        return view('admin.hospitals.create',compact('maxSerial'));
+        $districts=DataLoad::activeDistrictsForWeb();
+        return view('admin.hospitals.create',compact('districts','maxSerial'));
     }
 
     /**
@@ -88,7 +89,14 @@ class HospitalController extends Controller
     {
         $data=$hospital;
         $maxSerial=Hospital::max('sequence');
-        return view('admin.hospitals.edit',compact('data','maxSerial'));
+        $districts=DataLoad::activeDistrictsForWeb();
+
+        $zoneAreasByDistrict=[];
+        if ($hospital->district_id){
+            $zoneAreasByDistrict=DataLoad::activeZoneAreaForWeb($hospital->district_id);
+        }
+
+        return view('admin.hospitals.edit',compact('data','districts','zoneAreasByDistrict','maxSerial'));
     }
 
     /**

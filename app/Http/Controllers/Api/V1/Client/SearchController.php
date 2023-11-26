@@ -59,7 +59,7 @@ class SearchController extends Controller
         try{
             if ($request->q){
                 $search=$request->q;
-                $activeDoctors=Doctor::select('name','email','mobile','id')->where(function ($query)use ($search){
+                $activeDoctors=Doctor::select('name','email','mobile','id','department')->where(function ($query)use ($search){
                     $query->where('name', 'LIKE', '%'.$search.'%')
                         ->orWhere('email', 'LIKE', '%'.$search.'%')
                         ->orWhere('mobile', 'LIKE', '%'.$search.'%');

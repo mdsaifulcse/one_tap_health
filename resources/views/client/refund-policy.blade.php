@@ -16,7 +16,7 @@
     <!-- Start Page Title Area -->
     <div class="page-title bg-f9faff">
         <div class="container">
-            <h3>Refund Policy - One Tab Health</h3>
+            <h3>Refund Policy - OneTapHealth</h3>
         </div>
     </div>
     <!-- End Page Title Area -->

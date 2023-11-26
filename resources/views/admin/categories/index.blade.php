@@ -325,7 +325,7 @@
                                                 {!! Form::close() !!}
                                             </div><!--end content-->
 
-                                        </div>
+                                            </div>
                                         </div>
 
                                         <!-- end::modal -->

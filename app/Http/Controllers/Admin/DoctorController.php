@@ -135,7 +135,7 @@ class DoctorController extends Controller
                 }
             }
             $doctor->update($input);
-            return redirect()->back()->with('success','Hospital Updated Successfully');
+            return redirect()->back()->with('success','Doctor Updated Successfully');
         }catch(\Exception $e){
             return redirect()->back()->with('error','Something Error Found ! '.$e->getMessage());
         }

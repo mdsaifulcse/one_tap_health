@@ -70,8 +70,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
     /*--------- Doctor Appointment Api --------*/
     Route::apiResource('/doctor-appointment', 'DoctorAppointmentController');
 
+    /*--------- Test Report Api --------*/
+    Route::get('/fetch-test-report-by-test-order/{testOrderId}', 'TestReportController@testReportFileByTestOrder');
     /*--------- Test Order Api --------*/
     Route::apiResource('/test-order', 'TestOrderController');
+
+    /*--------- District & Zone Api --------*/
+    Route::get('/active-district-list', 'AreaZoneApiController@activeDistrictList');
+    Route::get('/active-area-by-district/{zoneAreaId?}', 'AreaZoneApiController@activeAreaByDistrict');
 
     /*--------- Hospital Api --------*/
     Route::get('/active-hospital-list', 'HospitalApiController@activeHospitalsList');

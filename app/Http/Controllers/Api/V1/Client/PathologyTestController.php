@@ -56,7 +56,7 @@ class PathologyTestController extends Controller
             $groupByTests=HospitalWiseTestPrice::with('test:id,title')->select('test_id')->whereIn('test_id',$testIds)
                 ->groupBy('test_id')->get();
 
-            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude')->whereIn('test_id',$testIds)
+            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude,district_id,zone_area_id','hospital.district:id,name,bn_name','hospital.zoneArea:id,name,bn_name')->whereIn('test_id',$testIds)
                 ->orderBy('test_id')->get();
 
             foreach ($groupByTests as $i=>$groupByTest){
@@ -77,6 +77,12 @@ class PathologyTestController extends Controller
                             'price'=>$testWiseHospital->price,
                             'discount'=>$testWiseHospital->discount,
                             'price_after_discount'=>$testWiseHospital->price_after_discount,
+                            'district_id'=>$testWiseHospital->hospital->district_id,
+                            'district_name'=>$testWiseHospital->hospital->district?$testWiseHospital->hospital->district->name:'',
+                            'district_bn_name'=>$testWiseHospital->hospital->district?$testWiseHospital->hospital->district->bn_name:'',
+                            'area_id'=>$testWiseHospital->hospital->zone_area_id,
+                            'area_name'=>$testWiseHospital->hospital->zoneArea?$testWiseHospital->hospital->zoneArea->name:'',
+                            'area_bn_name'=>$testWiseHospital->hospital->zoneArea?$testWiseHospital->hospital->zoneArea->bn_name:'',
                         ];
                     }
 

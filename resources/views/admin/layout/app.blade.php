@@ -20,6 +20,7 @@
     <meta name="description" content="Phoenixcoded">
     <meta name="keywords" content=", Flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="Phoenixcoded">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('style')
 

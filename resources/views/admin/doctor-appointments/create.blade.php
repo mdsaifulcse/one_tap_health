@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 @section('title')
-   Create Test Order | Dashboard
+    Doctor Appointment | Create
 @endsection
 
 @section('style')
@@ -23,7 +23,7 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="page-header-title">
-                <h4>Create Test Order </h4>
+                <h4>Create Doctor Appointment </h4>
             </div>
             <div class="page-header-breadcrumb">
                 <ul class="breadcrumb-title">
@@ -34,7 +34,7 @@
                     </li>
                     <li class="breadcrumb-item">
 
-                        <a href="{{route('admin.test-orders.index')}}" class="btn btn-info btn-sm"  title="Hospital List here"><i class="icofont icofont-list"></i> Test Order List</a>
+                        <a href="{{route('admin.doctor-appointments.index')}}" class="btn btn-info btn-sm"  title="appointment List here"><i class="icofont icofont-list"></i> Appointment List</a>
                     </li>
                 </ul>
             </div>
@@ -45,11 +45,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 ">
                     <!-- Form -->
-                        {!! Form::open(array('route' => 'admin.test-orders.store','class'=>'','files'=>true)) !!}
+                        {!! Form::open(array('route' => 'admin.doctor-appointments.store','class'=>'','files'=>true)) !!}
 
                     <div class="card">
                         <div class="card-header">
-                            <h5>Create new Test Order</h5>
+                            <h5>Create new Doctor Appointment</h5>
                             <span></span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>
@@ -73,12 +73,12 @@
                                                 <label class="form-check-label" for="existing_patient">Existing patient</label>
                                             </div>
                                         </div>
-                                        {{Form::label('Test Date', 'Test Date:', array('class' => 'col-md-2 control-label text-right'))}}
+                                        {{Form::label('Appointment Date', 'Date must be according to Schedule:', array('class' => 'col-md-2 control-label text-right','title'=>'Date must be according to Schedule'))}}
                                         <div class="col-md-3">
-                                            {{Form::date('test_date',$value=old('test_date'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Test Date','required'=>true])}}
-                                            @if ($errors->has('test_date'))
+                                            {{Form::date('appointment_date',$value=old('appointment_date'), ['class' => 'form-control','rows'=>'2','placeholder'=>'Test Date','required'=>true,'title'=>'Date must be according to Schedule'])}}
+                                            @if ($errors->has('appointment_date'))
                                                 <span class="help-block">
-                                                <strong class="text-danger text-center">{{ $errors->first('test_date') }}</strong>
+                                                <strong class="text-danger text-center">{{ $errors->first('appointment_date') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -163,10 +163,10 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    {{Form::label('Hospital', 'Hospital', array('class' => 'col-md-2 control-label text-right'))}}
+                                    {{Form::label('Doctor', 'Doctor', array('class' => 'col-md-2 control-label text-right'))}}
                                     <div class="col-9">
 
-                                        {{Form::select('hospital_id',[],[], ['class' => 'form-control search-hospital-data','id'=>'hospitalId','placeholder'=>'Select one','multiple'=>false,'required'=>true])}}
+                                        {{Form::select('doctor_id',[],[], ['class' => 'form-control search-doctor-data','id'=>'doctorId','placeholder'=>'Select one','multiple'=>false,'required'=>true])}}
 
                                         @if ($errors->has('doctor_id'))
                                             <span class="help-block">
@@ -177,9 +177,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    {{Form::label('Test Details', 'Test Details', array('class' => 'col-md-2 control-label text-right'))}}
-                                    <div class="col-9">
-                                        <div class="table-responsive" id="hospitalWiseTestDetails">
+                                    {{Form::label('Schedule', 'Schedule', array('class' => 'col-md-2 control-label text-right'))}}
+                                    <div class="col-12">
+                                        <div class="table-responsive" id="doctorWiseDoctorSchedule">
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
 
                                 </div>
                                 <div class="col-2">
-                                    <a href="{{url('admin/test-orders')}}" class="btn btn-secondary pull-right">Cancel</a>
+                                    <a href="{{url('admin/doctor-appointments')}}" class="btn btn-secondary pull-right">Cancel</a>
                                 </div>
                             </div>
 
@@ -337,13 +337,13 @@
 
 
             // Search active hospital -------------------
-            $(".search-hospital-data").select2({
+            $(".search-doctor-data").select2({
                 tags: true,
                 closeOnSelect: true,
                 multiple:false,
                 placeholder: 'Select an option',
                 ajax: {
-                    url: "{{url('/api/v1/client/search-active-hospitals')}}",
+                    url: "{{url('/api/v1/client/search-active-doctors')}}",
                     dataType: 'json',
                     delay: 250,
                     data: function(params) {
@@ -372,11 +372,11 @@
                 templateResult: function(result) {
                     if (result.loading) return 'Loading';
 
-                    var markup ="<div class='select2-result-repository__title'>" + result.name +' ('+result.branch +')' + "</div>";
+                    var markup ="<div class='select2-result-repository__title'>" + result.name +' ('+result.department +')' + "</div>";
                     return markup;
                 },
                 templateSelection: function(result) {
-                    return result.name || 'Search Hospital';
+                    return result.name || 'Search doctor';
                 }
             });
 
@@ -389,11 +389,11 @@
     <script>
         "use strict";
         $(document).ready(function(){
-            var hospitalId=0;
-           $('#hospitalId').on('change',function () {
-               hospitalId=$('#hospitalId').val();
-               $('#hospitalWiseTestDetails').empty().html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
-                   .load('{{URL::to("admin/load-hospital-wise-test-details")}}/'+hospitalId);
+            var doctorId=0;
+           $('#doctorId').on('change',function () {
+               doctorId=$('#doctorId').val();
+               $('#doctorWiseDoctorSchedule').empty().html('<center><img src=" {{asset('images/default/loading.gif')}}"/></center>')
+                   .load('{{URL::to("admin/load-doctor-wise-doctor-schedules")}}/'+doctorId);
            })
         });
     </script>

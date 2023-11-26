@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,8 +39,13 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->renderable(function (NotFoundHttpException $e, $request) {
-             return $this->respondWithError('Something went wrong, Try again later',$e->getStatusCode(),Response::HTTP_NOT_FOUND);
+        $this->renderable(function (\Exception $e, $request) {
+            Log::error($e);
+
+            if ($request->is('api/*')) {
+                return $this->respondWithError('Something went wrong, Try again later, '.$e->getMessage(),$e->getCode(),Response::HTTP_NOT_FOUND);
+            }
+
         });
 
         $this->reportable(function (Throwable $e) {

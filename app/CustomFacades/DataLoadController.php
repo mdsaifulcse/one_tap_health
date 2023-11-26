@@ -30,6 +30,7 @@ use App\Models\User;
 use App\Models\VatTax;
 use App\Models\Vendor;
 use App\Models\WeightUnit;
+use App\Models\ZoneArea;
 use DB;
 class DataLoadController
 {
@@ -57,10 +58,6 @@ class DataLoadController
         return Country::orderBy('sequence','ASC')->where('status',Country::ACTIVE)->get(['name','id']);
     }
 
-    public function languageList()
-    {
-        return Language::orderBy('sequence','ASC')->where('status',Language::ACTIVE)->get(['name','id']);
-    }
 
     public function authorList()
     {
@@ -73,10 +70,6 @@ class DataLoadController
             ->where('status',Vendor::ACTIVE)->get('name','id');
     }
 
-    public function publisherList()
-    {
-        return Publisher::orderBy('sequence','ASC')->where('status',Publisher::ACTIVE)->get(['name','id']);
-    }
 
     public function categoryForWeb()
     {
@@ -123,8 +116,6 @@ class DataLoadController
         }
     }
 
-
-
     public function thirdSubCatForWeb($subCategoryId=null)
     {
         if ($subCategoryId!=null)
@@ -137,12 +128,47 @@ class DataLoadController
         }
     }
 
-
-    public function loadPurchaseNumbersByVendor($vendorId)
+    public function activeDistrictsForWeb()
     {
-        $purchaseNoList= $this->purchaseNoList($vendorId);
-        return view('include.load-purchasenumber',compact('purchaseNoList'));
+        return District::select('name','id')->orderBy('name','ASC')->where('status',District::ACTIVE)->pluck('name','id');
     }
+
+    public function activeDistrictsForApi()
+    {
+        return District::select('name','bn_name','id')->orderBy('name','ASC')->where('status',District::ACTIVE)->get();
+    }
+
+
+    public function activeZoneAreaForWeb($districtId=null)
+    {
+        if ($districtId!=null)
+        {
+            return ZoneArea::select('name','id','district_id')->orderBy('name','ASC')->where(['district_id'=>$districtId,'status'=>ZoneArea::ACTIVE])->pluck('name','id');
+
+        }else{
+
+            return ZoneArea::select('name','id','district_id')->orderBy('name','ASC')->where(['status'=>ZoneArea::ACTIVE])->pluck('name','id');
+        }
+    }
+    public function activeZoneAreaForApi($districtId=null)
+    {
+        if ($districtId!=null)
+        {
+            District::findOrFail($districtId);
+            return ZoneArea::select('name','bn_name','id','district_id')->orderBy('name','ASC')->where(['district_id'=>$districtId,'status'=>ZoneArea::ACTIVE])->get();
+
+        }else{
+
+            return ZoneArea::select('name','bn_name','id','district_id')->orderBy('name','ASC')->where(['status'=>ZoneArea::ACTIVE])->get();
+        }
+    }
+
+    public function loadAreaByDistrict($districtId)
+    {
+        $areas=$this->activeZoneAreaForWeb($districtId);
+        return view('include.load-zone-area',compact('areas'));
+    }
+
 
     public function vendorRemainingDueCalculation($vendorId)
     {
@@ -151,7 +177,6 @@ class DataLoadController
         return $totalDueRemaining=$vendor->total_due-$vendor->balance;
         // return response()->json($totalDueRemaining);
     }
-
 
     public function loadSubCatsByCat($categoryId)
     {
@@ -165,11 +190,6 @@ class DataLoadController
         return view('include.load-third-subcategory',compact('thirdSubCats'));
     }
 
-    public function loadFourthSubCatsByCat($thirdSubCategoryId)
-    {
-        $fourthSubCats=$this->fourthSubCatList($thirdSubCategoryId);
-        return view('include.load-fourth-subcategory',compact('fourthSubCats'));
-    }
 
     public function setting()
     {

@@ -18,6 +18,7 @@ class TestResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'sub_title'=>$this->sub_title,
+            'description'=>$this->description,
             'category_name'=>$this->testCategory->category_name,
             'icon_photo'=>$this->icon_photo?url($this->icon_photo):'',
         ];

@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#" class="btn btn-info btn-sm" title="Create New Appointment"><i class="icofont icofont-plus"></i> Appointment</a>
+                        <a href="{{route('admin.doctor-appointments.create')}}" class="btn btn-info btn-sm" title="Create New Appointment"><i class="icofont icofont-plus"></i> Appointment</a>
                         {{--<a href="{{route('admin.test-orders.create')}}" class="btn btn-info btn-sm" title="Create New Hospital"><i class="icofont icofont-plus"></i> Test Order</a>--}}
                     </li>
                 </ul>

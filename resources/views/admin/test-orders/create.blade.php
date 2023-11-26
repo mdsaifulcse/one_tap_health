@@ -168,9 +168,9 @@
 
                                         {{Form::select('hospital_id',[],[], ['class' => 'form-control search-hospital-data','id'=>'hospitalId','placeholder'=>'Select one','multiple'=>false,'required'=>true])}}
 
-                                        @if ($errors->has('doctor_id'))
+                                        @if ($errors->has('hospital_id'))
                                             <span class="help-block">
-                                            <strong class="text-danger text-center">{{ $errors->first('doctor_id') }}</strong>
+                                            <strong class="text-danger text-center">{{ $errors->first('hospital_id') }}</strong>
                                         </span>
                                         @endif
                                     </div>

@@ -1,6 +1,21 @@
 @extends('admin.layout.app')
 @section('title')
-   Edit Hospital | Dashboard
+    Edit Hospital | Dashboard
+@endsection
+
+@section('style')
+    <style>
+        #dom-jqry_filter{
+            margin-top:-28px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered{
+            background-color: white;
+            color: #000000;
+        }
+        .select2-results__option:first-child{
+            display: none;
+        }
+    </style>
 @endsection
 
 @section('main-content')
@@ -30,7 +45,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 ">
                     <!-- Form -->
-                        {!! Form::open(array('route' => ['admin.hospitals.update',$data->id],'method'=>'PUT','class'=>'','files'=>true)) !!}
+                    {!! Form::open(array('route' => ['admin.hospitals.update',$data->id],'method'=>'PUT','class'=>'','files'=>true)) !!}
 
                     <div class="card">
                         <div class="card-header">
@@ -46,54 +61,79 @@
 
                             <div class="login-card0 auth-body0">
 
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Name</label>
-                                        <div class="col-9">
-                                            <input type="text" name="name" value="{{old('name',$data->name)}}" required autocomplete="off" class="form-control" placeholder="Hospital Name">
-                                            @if ($errors->has('name'))
-                                                <span class="help-block">
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-2 text-right col-form-label">District<sup class="text-danger">*</sup></label>
+                                    <div class="col-4">
+                                        {!! Form::select('district_id',$districts,$data->district_id, ['id'=>'loadZoneArea','placeholder' => '--Select District --','class' => 'form-control select2','required'=>true]) !!}
+
+                                        @if ($errors->has('district_id'))
+                                            <span class="help-block">
+                                                <strong class="text-danger">{{ $errors->first('district_id') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+
+                                    <label for="example-text-input" class="col-1 text-right col-form-label">Area<sup class="text-danger">*</sup></label>
+                                    <div class="col-4" id="zoneAreaList">
+                                        {!! Form::select('zone_area_id',$zoneAreasByDistrict,$data->zone_area_id, ['placeholder' => '--Select Area --','class' => 'form-control select2','required'=>true]) !!}
+
+                                        @if ($errors->has('zone_area_id'))
+                                            <span class="help-block">
+                                            <strong class="text-danger">{{ $errors->first('district_id') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-2 text-right">Name</label>
+                                    <div class="col-9">
+                                        <input type="text" name="name" value="{{old('name',$data->name)}}" required autocomplete="off" class="form-control" placeholder="Hospital Name">
+                                        @if ($errors->has('name'))
+                                            <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('name') }}</strong>
                                         </span>
-                                            @endif
-                                        </div>
-
+                                        @endif
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Branch</label>
-                                        <div class="col-9">
-                                            <input type="text" name="branch" value="{{old('branch',$data->branch)}}" required autocomplete="off" class="form-control" placeholder="Hospital Branch">
-                                            @if ($errors->has('branch'))
-                                                <span class="help-block">
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-2 text-right">Branch</label>
+                                    <div class="col-9">
+                                        <input type="text" name="branch" value="{{old('branch',$data->branch)}}" required autocomplete="off" class="form-control" placeholder="Hospital Branch">
+                                        @if ($errors->has('branch'))
+                                            <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('branch') }}</strong>
                                         </span>
-                                            @endif
-                                        </div>
+                                        @endif
                                     </div>
+                                </div>
 
 
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Contact no</label>
-                                        <div class="col-9">
-                                            <input type="text" name="contact" value="{{old('contact',$data->contact)}}"  autocomplete="off" class="form-control" placeholder="Your contact">
-                                            @if ($errors->has('contact'))
-                                                <span class="help-block">
+                                <div class="form-group row">
+                                    <label class="col-form-label col-2 text-right">Contact no</label>
+                                    <div class="col-9">
+                                        <input type="text" name="contact" value="{{old('contact',$data->contact)}}"  autocomplete="off" class="form-control" placeholder="Your contact">
+                                        @if ($errors->has('contact'))
+                                            <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('contact') }}</strong>
                                         </span>
-                                            @endif
-                                        </div>
+                                        @endif
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-2 text-right">Service Details</label>
-                                        <div class="col-9">
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-2 text-right">Service Details</label>
+                                    <div class="col-9">
 
-                                            <textarea rows="4" placeholder="Service of Hospital " class="form-control"  name="service_details" cols="50"><?php echo $data->service_details;?></textarea>
-                                            @if ($errors->has('service_details'))
-                                                <span class="help-block">
+                                        <textarea rows="4" placeholder="Service of Hospital " class="form-control"  name="service_details" cols="50"><?php echo $data->service_details;?></textarea>
+                                        @if ($errors->has('service_details'))
+                                            <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('service_details') }}</strong>
                                             </span>
-                                            @endif
-                                        </div>
+                                        @endif
                                     </div>
+                                </div>
 
                                 <div class="form-group row {{ $errors->has('icon_photo') ? 'has-error' : '' }}">
                                     <label class="col-md-2 control-label text-right">&nbsp;</label>
@@ -178,7 +218,7 @@
                         </div>
                     </div>
                 {!! Form::close() !!}
-                    <!-- end of form -->
+                <!-- end of form -->
                 </div>
             </div>
             <!-- Table header styling table end -->
@@ -188,6 +228,36 @@
 @endsection
 
 @section('script')
+
+    <script type="text/javascript" src="{{asset('admin/assets/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+
+    <script>
+        // Search active Patients -------------------
+        $(".select2").select2({
+            tags: true,
+            closeOnSelect: true,
+            multiple:false,
+            placeholder: 'Select an option',
+        });
+    </script>
+
+    {{--Load ZoneArea--}}
+    <script>
+        $('#loadZoneArea').on('change',function () {
+
+            var districtId=$(this).val()
+
+            if(districtId.length===0)
+            {
+                districtId=0
+                $('#zoneAreaList').html('<center><img src=" {{asset('images/default/loader.gif')}}"/></center>').load('{{URL::to("admin/load-area-by-district")}}/'+districtId);
+
+            }else {
+
+                $('#zoneAreaList').html('<center><img src=" {{asset('images/default/loader.gif')}}"/></center>').load('{{URL::to("admin/load-area-by-district")}}/'+districtId);
+            }
+        })
+    </script>
 
     <script type="text/javascript">
         function initialize() {

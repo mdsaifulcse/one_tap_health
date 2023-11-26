@@ -43,7 +43,7 @@
 
                     {{--Sub Menu--}}
                     <li class=" ">
-                        <a href="#" data-i18n="nav.page_layout.rtl">
+                        <a href="{{route('admin.doctor-appointments.create')}}" data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
                             <span class="pcoded-mtext">Create Appointment</span>
                             <span class="pcoded-mcaret"></span>
@@ -227,6 +227,14 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li class=" ">
+                        <a href="{{route('admin.districts.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Districts</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+
                     <li class=" ">
                         <a href="{{route('admin.biggapons.index')}}" data-i18n="nav.page_layout.rtl">
                             <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>

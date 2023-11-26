@@ -21,23 +21,3 @@
 
 @endif
 
-<script>
-    $('#loadThirdSubCategory').on('change',function () {
-
-        var subCategoryId=$(this).val()
-
-        $('#loadFourthSubCategory').empty()
-        $('#fourthSubCategory').empty()
-
-        if(subCategoryId.length===0)
-        {
-            subCategoryId=0
-            $('#thirdSubCategoryList').html('<center><img src=" {{asset('images/default/loader.gif')}}"/></center>').load('{{URL::to("admin/load-third-sub-cat-by-sub-cat")}}/'+subCategoryId);
-
-        }else {
-
-            $('#thirdSubCategoryList').html('<center><img src=" {{asset('images/default/loader.gif')}}"/></center>').load('{{URL::to("admin/load-third-sub-cat-by-sub-cat")}}/'+subCategoryId);
-        }
-    })
-
-</script>

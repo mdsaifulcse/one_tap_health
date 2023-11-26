@@ -52,6 +52,12 @@ class ProfileController extends Controller
     public function profileUpdate(Request $request)
     {
         $id=Auth::user()->id;
+        $user = $this->user->find($id);
+
+        $request['name']=$request->name??$user->name;
+        $request['email']=$request->email??$user->email;
+        $request['phone']=$request->phone??$user->phone;
+
         $rules=$this->registerValidationRules($request,$id);
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -59,7 +65,7 @@ class ProfileController extends Controller
         }
 
         try{
-            $user = $this->user->find($id);
+
             $input=[
                 'name'=>$request->name,
                 'email'=>$request->email,

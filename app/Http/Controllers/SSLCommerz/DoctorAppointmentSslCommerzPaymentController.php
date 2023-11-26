@@ -137,7 +137,8 @@ class DoctorAppointmentSslCommerzPaymentController extends Controller
 
         # OPTIONAL PARAMETERS
 
-        $post_data['value_a'] = "doctor_appointment";
+        $post_data['value_a'] = $tranId;
+        $_SESSION['payment_tranId']=$tranId;
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
@@ -163,8 +164,7 @@ class DoctorAppointmentSslCommerzPaymentController extends Controller
     {
         $sslc = new SSLCommerz();
         #Start to received these value from session. which was saved in index function.
-        $tran_id =$request->tran_id;
-        //$payFor=$request->value_a;
+        $tran_id=$request->value_a??$_SESSION['payment_tranId'];
 
         #End to received these value from session. which was saved in index function.
 
@@ -185,8 +185,8 @@ class DoctorAppointmentSslCommerzPaymentController extends Controller
                 /*-----------------Change status Doctor Appointment Payment history & Test_order -------------*/
                     $doctorAppointmentPaymentHistory->update([
                         'payment_status'=>DoctorAppointmentPaymentHistory::COMPLETE,
-                        'store_amount'=>$request->store_amount,
-                        'payment_gateway'=>$request->card_type,
+                        'store_amount'=>$request->store_amount??0,
+                        'payment_gateway'=>$request->card_type??'',
                         'payment_date'=>Carbon::now(),
                         'payment_track'=>json_encode($request->all())
                     ]);
@@ -280,8 +280,7 @@ class DoctorAppointmentSslCommerzPaymentController extends Controller
 
     public function fail(Request $request)
     {
-        $tran_id =$request->tran_id;
-        $payFor=$request->value_a;
+        $tran_id=$request->value_a??$_SESSION['payment_tranId'];
 
             $doctorAppointmentPaymentHistory = DoctorAppointmentPaymentHistory::where(['transaction_id' => $tran_id])->first();
 
@@ -321,8 +320,7 @@ class DoctorAppointmentSslCommerzPaymentController extends Controller
 
     public function cancel(Request $request)
     {
-        $tran_id =$request->tran_id;
-        $payFor=$request->value_a;
+        $tran_id=$request->value_a??$_SESSION['payment_tranId'];
 
             $doctorAppointmentPaymentHistory = DoctorAppointmentPaymentHistory::where(['transaction_id' => $tran_id])->first();
 

@@ -126,12 +126,11 @@ class PublicSslCommerzPaymentController extends Controller
         $post_data['ship_country'] = "Bangladesh";
 
         # OPTIONAL PARAMETERS
-        if ($request->test_order_id){ // Test order Payment ----------
-            //$_SESSION['payment_values']['pay_for']='test_order_pay';
-            $post_data['value_a'] = "test_order_pay";
-        }elseif (1){
-            $post_data['value_a'] = "doctor_book";
-        }
+        // Test order Payment ----------
+        //$_SESSION['payment_values']['pay_for']='test_order_pay';
+        $post_data['value_a'] = $tranId;
+        $_SESSION['payment_tranId']=$tranId;
+
 
         $post_data['value_b'] = "ref002";
         $post_data['value_c'] = "ref003";
@@ -158,14 +157,12 @@ class PublicSslCommerzPaymentController extends Controller
     {
         $sslc = new SSLCommerz();
         #Start to received these value from session. which was saved in index function.
-        $tran_id =$request->tran_id;
-        $payFor=$request->value_a;
+        $tran_id=$request->value_a??$_SESSION['payment_tranId'];
 
         #End to received these value from session. which was saved in index function.
 
         #Check order status in order table against the transaction id or order id.
-         // ----- For test Order Pay ----------------------------------------------------------------------
-        if ($payFor=='test_order_pay'){
+
             $testOrderPaymentHistory=TestOrderPaymentHistory::where(['transaction_id'=>$tran_id])->first();
 
             if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING)
@@ -181,8 +178,8 @@ class PublicSslCommerzPaymentController extends Controller
                 /*-----------------Change status Test order history & Test_order -------------*/
                     $testOrderPaymentHistory->update([
                         'payment_status'=>TestOrderPaymentHistory::COMPLETE,
-                        'store_amount'=>$request->store_amount,
-                        'payment_gateway'=>$request->card_type,
+                        'store_amount'=>$request->store_amount??0,
+                        'payment_gateway'=>$request->card_type??'',
                         'payment_date'=>Carbon::now(),
                         'payment_track'=>json_encode($request->all())
                     ]);
@@ -206,7 +203,6 @@ class PublicSslCommerzPaymentController extends Controller
                     $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
                     $data['status']='success';
                     $data['message']="";
-
                     return view('ssl.ssl-web-view',compact('data'));
                    // return $this->respondWithSuccess('Transaction is successfully Complete','',Response::HTTP_OK);
                 }
@@ -271,104 +267,84 @@ class PublicSslCommerzPaymentController extends Controller
                 #That means something wrong happened. You can redirect customer to your product page.
                // return $this->respondWithValidation('Invalid Transaction','Invalid Transaction',Response::HTTP_BAD_REQUEST);
             }
-        }elseif (1){
-            // ----- For Doctor Book Pay -------------------------------------------------------------------
-            return '';
-        }
-
-
-
-
 
     }
+
     public function fail(Request $request)
     {
-        $tran_id =$request->tran_id;
-        $payFor=$request->value_a;
+        $tran_id=$request->value_a??$_SESSION['payment_tranId'];
 
-        if ($payFor=='test_order_pay') { // Test Order Pay----------------
-            $testOrderPaymentHistory = TestOrderPaymentHistory::where(['transaction_id' => $tran_id])->first();
+        $testOrderPaymentHistory = TestOrderPaymentHistory::where(['transaction_id' => $tran_id])->first();
 
-            if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING)
-            {
-                $testOrderPaymentHistory->update(['payment_status'=>TestOrderPaymentHistory::FAILED]);
+        if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING)
+        {
+            $testOrderPaymentHistory->update(['payment_status'=>TestOrderPaymentHistory::FAILED]);
 
-                $data['payment_amount']=0;
-                $data['status']='failed';
-                $data['message']="Transaction is Fail";
+            $data['payment_amount']=0;
+            $data['status']='failed';
+            $data['message']="Transaction is Fail";
 
-                return view('ssl.ssl-web-view',compact('data'));
+            return view('ssl.ssl-web-view',compact('data'));
 
-                //return $this->respondWithValidation('Transaction is Fail','Transaction is Fail',Response::HTTP_BAD_REQUEST);
-            }
-            else if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE)
-            {
-
-                $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
-                $data['status']='failed';
-                $data['message']="Transaction is successfully Complete";
-
-                return view('ssl.ssl-web-view',compact('data'));
-                //return $this->respondWithSuccess('Transaction is successfully Complete','',Response::HTTP_OK);
-            }
-            else
-            {
-                $data['payment_amount']=0;
-                $data['status']='failed';
-                $data['message']="Invalid Transaction";
-
-                return view('ssl.ssl-web-view',compact('data'));
-                //return $this->respondWithValidation('Invalid Transaction','Invalid Transaction',Response::HTTP_BAD_REQUEST);
-            }
-
-
-        }elseif (1){
-            return 'No';
+            //return $this->respondWithValidation('Transaction is Fail','Transaction is Fail',Response::HTTP_BAD_REQUEST);
         }
+        else if($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE)
+        {
 
+            $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
+            $data['status']='failed';
+            $data['message']="Transaction is successfully Complete";
+
+            return view('ssl.ssl-web-view',compact('data'));
+            //return $this->respondWithSuccess('Transaction is successfully Complete','',Response::HTTP_OK);
+        }
+        else
+        {
+            $data['payment_amount']=0;
+            $data['status']='failed';
+            $data['message']="Invalid Transaction";
+
+            return view('ssl.ssl-web-view',compact('data'));
+            //return $this->respondWithValidation('Invalid Transaction','Invalid Transaction',Response::HTTP_BAD_REQUEST);
+        }
 
 
     }
 
     public function cancel(Request $request)
     {
-        $tran_id =$request->tran_id;
-        $payFor=$request->value_a;
+        $tran_id=$request->value_a??$_SESSION['payment_tranId'];
 
-        if ($payFor=='test_order_pay') { // Test Order Pay----------------
-            $testOrderPaymentHistory = TestOrderPaymentHistory::where(['transaction_id' => $tran_id])->first();
+        $testOrderPaymentHistory = TestOrderPaymentHistory::where(['transaction_id' => $tran_id])->first();
 
 
-            if ($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING) {
+        if ($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::PENDING) {
 
-                $testOrderPaymentHistory->update(['payment_status' => TestOrderPaymentHistory::CANCELED]);
+            $testOrderPaymentHistory->update(['payment_status' => TestOrderPaymentHistory::CANCELED]);
 
-                $data['payment_amount']=0;
-                $data['status']='canceled';
-                $data['message']="The payment has been canceled";
+            $data['payment_amount']=0;
+            $data['status']='canceled';
+            $data['message']="The payment has been canceled";
 
-                return view('ssl.ssl-web-view',compact('data'));
-                //return $this->respondWithValidation('Transaction is Fail', 'Transaction is Fail', Response::HTTP_BAD_REQUEST);
+            return view('ssl.ssl-web-view',compact('data'));
+            //return $this->respondWithValidation('Transaction is Fail', 'Transaction is Fail', Response::HTTP_BAD_REQUEST);
 
-            } else if ($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE) {
+        } else if ($testOrderPaymentHistory->payment_status==TestOrderPaymentHistory::COMPLETE) {
 
-                $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
-                $data['status']='success';
-                $data['message']="Transaction is successfully Complete";
+            $data['payment_amount']=$testOrderPaymentHistory->payment_amount;
+            $data['status']='success';
+            $data['message']="Transaction is successfully Complete";
 
-                return view('ssl.ssl-web-view',compact('data'));
-                //return $this->respondWithSuccess('Transaction is successfully Complete', '', Response::HTTP_OK);
+            return view('ssl.ssl-web-view',compact('data'));
+            //return $this->respondWithSuccess('Transaction is successfully Complete', '', Response::HTTP_OK);
 
-            } else {
-                $data['payment_amount']=0;
-                $data['status']='canceled';
-                $data['message']="Invalid Transaction";
+        } else {
+            $data['payment_amount']=0;
+            $data['status']='canceled';
+            $data['message']="Invalid Transaction";
 
-                return view('ssl.ssl-web-view',compact('data'));
-                //return $this->respondWithValidation('Invalid Transaction', 'Invalid Transaction', Response::HTTP_BAD_REQUEST);
-            }
-        }elseif (1){
-            return 'No';
+            return view('ssl.ssl-web-view',compact('data'));
+            //return $this->respondWithValidation('Invalid Transaction', 'Invalid Transaction', Response::HTTP_BAD_REQUEST);
         }
 
 

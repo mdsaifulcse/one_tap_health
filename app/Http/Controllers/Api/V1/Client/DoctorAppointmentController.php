@@ -135,9 +135,9 @@ class DoctorAppointmentController extends Controller
         $rules=[
             'appointment_for_other_patient' => 'required|numeric|in:0,1',
             'appointment_no' => 'unique:doctor_appointments,appointment_no,NULL,id,deleted_at,NULL',
-            'patient_name'  => 'required_if:order_for_other_patient,==,1|max:100',
-            'patient_age'  => 'required_if:order_for_other_patient,==,1|max:50',
-            'patient_address'  => 'required_if:order_for_other_patient,==,1|max:150',
+            'patient_name'  => 'required_if:appointment_for_other_patient,==,1|max:100',
+            'patient_age'  => 'required_if:appointment_for_other_patient,==,1|max:50',
+            'patient_address'  => 'required_if:appointment_for_other_patient,==,1|max:150',
             'patient_mobile'  => "nullable|max:15",
             'patient_email'  => "nullable|max:15",
 

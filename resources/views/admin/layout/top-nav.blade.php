@@ -1,6 +1,6 @@
 <nav class="navbar header-navbar pcoded-header" header-theme="theme4">
     <div class="navbar-wrapper">
-        <div class="navbar-logo">
+        <div class="navbar-logo" style="background-color: #ffffff">
             <a class="mobile-menu" id="mobile-collapse" href="#!">
                 <i class="ti-menu"></i>
             </a>
@@ -9,11 +9,11 @@
             </a>
             @if($authUser->is_admin)
             <a href="{{url('/admin/dashboard')}}">
-                <img class="img-fluid" src="{{asset('admin/assets/images/logo.png')}}" alt="Theme-Logo" />
+                <img class="img-fluid" src="{{asset('admin/assets/images/logo.png')}}" alt="Theme-Logo" style="max-width:90%;" />
             </a>
             @else
                 <a href="{{url('/user/user-dashboard')}}">
-                    <img class="img-fluid" src="{{asset('admin/assets/images/logo.png')}}" alt="Theme-Logo" />
+                    <img class="img-fluid" src="{{asset('admin/assets/images/logo.png')}}" alt="Theme-Logo"  style="max-width:90%;" />
                 </a>
                 @endif
             <a class="mobile-options">

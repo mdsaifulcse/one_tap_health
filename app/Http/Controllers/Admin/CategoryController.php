@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $allData=Category::orderBy('sequence','DESC')->paginate(50);
+        $allData=Category::orderBy('sequence','DESC')->get();
         $max_serial=Category::max('sequence');
         return view('admin.categories.index',compact('allData','max_serial'));
     }

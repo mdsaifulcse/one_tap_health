@@ -3,20 +3,28 @@
     <thead>
     <tr class="">
         <th width="4">SL.</th>
-        <th>Select</th>
-        <th>Price</th>
-        <th>Discount</th>
+        <th>Hospital</th>
+        <th>Day</th>
+        <th>Time Slot</th>
+        <th>Fee</th>
 
     </tr>
     </thead>
     <tbody>
     <?php $i=1; ?>
-    @forelse($hospitalWiseTests as $hospitalWiseTest)
+    @forelse($doctor->doctorSchedules as $doctorSchedule)
         <tr>
             <td>{{$i++}}</td>
-            <td>  <input type="checkbox"  name="test_id[]" value="{{$hospitalWiseTest->test->id}}" data-price="{{$hospitalWiseTest->price-$hospitalWiseTest->discount}}" class="test" id="test_{{$hospitalWiseTest->test->id}}">  <label for="test_{{$hospitalWiseTest->test->id}}"> {{$hospitalWiseTest->test->title}}</label></td>
-            <td>{{$hospitalWiseTest->price}}</td>
-            <td>{{$hospitalWiseTest->discount??0}}</td>
+            <td>  <input type="radio"  name="schedule_id" value="{{$doctorSchedule->id}}" data-price="{{$doctorSchedule->fee_after_discount}}" class="test" id="schedule_{{$doctorSchedule->id}}">  <label for="schedule_{{$doctorSchedule->id}}"> {{$doctorSchedule->hospital->name}}</label></td>
+            <td>
+                @foreach(json_decode($doctorSchedule->available_day) as $day)
+                     <label><i class="icofont icofont-rounded-right"></i> {{$day}}</label> <br>
+                    @endforeach
+                {{--{{$doctorSchedule->doctorAvailableDay}}--}}
+            </td>
+            <td>{{date('h:i:s a', strtotime($doctorSchedule->available_from))}} To {{date('h:i:s a', strtotime($doctorSchedule->available_to))}}</td>
+            <td> {{$doctorSchedule->fee_after_discount}} </td>
+
         </tr>
     @empty
         <tr>
@@ -44,7 +52,7 @@
             </tr>
             <tr class="">
                 <th>Service Charge (+)</th>
-                <th><input type="number" name="service_charge" value="0" id="serviceCharge" required class="form-control" min="0" step="any"></th>
+                <th><input type="number" name="service_charge" value="{{$setting->appointment_service_charge}}" readonly id="serviceCharge" required class="form-control" min="0" step="any"></th>
             </tr>
             <tr class="">
                 <th>Total Amount</th>
@@ -57,10 +65,12 @@
 
 <script>
     // calculate amount -----------
+    var amountServiceCharge="{{$setting->appointment_service_charge}}";
+
 $('.test').on('click',function () {
     var amount=0;
     var discount=0;
-    var serviceCharge=0;
+    var serviceCharge=amountServiceCharge;
     var totalAmount=0;
    $('.test').each(function () {
        if ($(this).is(':checked')){
@@ -72,7 +82,7 @@ $('.test').on('click',function () {
     $('#serviceCharge').val(serviceCharge);
 //    totalAmount=amount-Number($('#discount').val())
 //    totalAmount+=Number($('#serviceCharge').val())
-    $('#totalAmount').val(amount);
+    $('#totalAmount').val(amount+Number(serviceCharge));
 })
 
 // Discount Calculation ---------
