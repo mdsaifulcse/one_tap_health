@@ -18,7 +18,7 @@ class Doctor extends Model
         'specialist','bmdc_no','status','sequence'];
 
     public static function department(){
-       return [
+         $department= [
            'anesthetics'=>'Anesthetics',
            'breast screening'=>'Breast Screening',
            'cardiology'=>'Cardiology',
@@ -36,7 +36,26 @@ class Doctor extends Model
            'physiotherapy'=>'Physiotherapy',
            'sexual health'=>'Sexual health',
            'urology'=>'Urology',
+           'medicine'=>'Medicine',
+           'eye'=>'Eye',
+           'psychiatrist'=>'Psychiatrist',
+           'breast'=>'Breast',
+           'laparoscopic'=>'Laparoscopic',
+           'Dental'=>'Dental',
+           'skin diseases'=>'Skin diseases',
+           'neuro medicine'=>'Neuro Medicine',
+           'tuberculosis'=>'Tuberculosis',
+           'general surgeon'=>'General Surgeon',
+           'general physician'=>'General physician',
+           'kidney'=>'Kidney',
+           'diabetics'=>'Diabetics',
+           'brain '=>'Brain',
+           'allergy '=>'Allergy',
+           'sinologist '=>'sinologist',
+           'radiologist '=>'Radiologist',
        ];
+
+       return $department;
     }
     public static function degree(){
       return [

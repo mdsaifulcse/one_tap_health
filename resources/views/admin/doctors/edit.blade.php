@@ -119,12 +119,11 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-2 text-right">Degree <sup class="text-danger">*</sup></label>
                                     <div class="col-9">
-                                        {{Form::select('degree', $degrees,$data->degree, ['class' => 'form-control','placeholder'=>'Select one','required'=>true])}}
-
+                                        <textarea rows="4" placeholder="Doctor Degree " class="form-control"  name="degree" cols="50" rows="2"><?php echo $data->degree;?></textarea>
                                         @if ($errors->has('degree'))
                                             <span class="help-block">
                                             <strong class="text-danger text-center">{{ $errors->first('degree') }}</strong>
-                                        </span>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>

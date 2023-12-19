@@ -60,7 +60,7 @@
                                 <table class="table table-striped table-hover table-bordered center_table" id="my_table">
                                     <thead>
                                     <tr class="">
-                                        <th>Set Price</th>
+                                        <th width="50px">Set Price dd</th>
                                         <th>Discount</th>
                                         <th>Test Title</th>
                                         <th>Sub Title</th>

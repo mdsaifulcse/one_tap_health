@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\SSLCommerz;
 
+use Illuminate\Support\Facades\Log;
+
 define("SSLCZ_STORE_ID", env('SSLCZ_STORE_ID')); // It will provide by SSL COMMERZ
 define("SSLCZ_STORE_PASSWD", env('SSLCZ_STORE_PASSWD')); // It will provide by SSL COMMERZ
 
@@ -25,19 +27,23 @@ class SSLCommerz
         $this->setSSLCommerzMode((SSLCZ_IS_SANDBOX) ? 1 : 0);
         $this->store_id = SSLCZ_STORE_ID;
         $this->store_pass = SSLCZ_STORE_PASSWD;
-        $this->sslc_submit_url = "https://" . $this->sslc_mode . ".sslcommerz.com/gwprocess/v3/api.php";
+        $this->sslc_submit_url = "https://" . $this->sslc_mode . ".sslcommerz.com/gwprocess/v4/api.php";
         $this->sslc_validation_url = "https://" . $this->sslc_mode . ".sslcommerz.com/validator/api/validationserverAPI.php";
     }
 
     public function initiate($post_data, $get_pay_options = false)
     {
+
         if ($post_data != '' && is_array($post_data)) {
 
             $post_data['store_id'] = $this->store_id;
             $post_data['store_passwd'] = $this->store_pass;
 
+            Log::info('Store ID & Pass : '.env('SSLCZ_STORE_ID').' '.env('SSLCZ_STORE_PASSWD'));
+            Log::info('ssl post data : '.json_encode($post_data));
+
             $load_sslc = $this->sendRequest($post_data);
-            //$load_sslc = $this->sendRequest($post_data);
+           //return $load_sslc = $this->sendRequest($post_data);
 
             if ($load_sslc) {
                 if (isset($this->sslc_data['status']) && $this->sslc_data['status'] == 'SUCCESS') {
@@ -212,6 +218,7 @@ class SSLCommerz
                     }
 
                 } else {
+                    Log::error('ssl send request errors : '.json_encode($this->sslc_data));
 
                     $this->error = "Invalid Credential!";
                     return $this->error;

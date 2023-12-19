@@ -48,7 +48,7 @@ class DoctorController extends Controller
             'mobile' => 'nullable|max: 15',
             'bio' => 'nullable|max: 500',
             'address' => 'nullable|max: 250',
-            'degree' => 'required|max: 100',
+            'degree' => 'required|max: 500',
             'department' => 'required|max: 120',
             'photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:8120',
 
@@ -115,7 +115,7 @@ class DoctorController extends Controller
             'mobile' => 'nullable|max: 15',
             'bio' => 'nullable|max: 500',
             'address' => 'nullable|max: 250',
-            'degree' => 'required|max: 100',
+            'degree' => 'required|max: 500',
             'department' => 'required|max: 120',
             'photo' => 'image|mimes:jpg,jpeg,bmp,png,webp,gif|max:8120',
 

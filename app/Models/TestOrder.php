@@ -23,6 +23,7 @@ class TestOrder extends Model
     const ORDERNEW=0;
     const ORDERPROCESSED=1;
     const ORDERCOMPLETED=2;
+    const ORDERCANCEL=3;
 
     // payment status -------
     const PARTIALPAYMENT=1;

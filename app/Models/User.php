@@ -125,7 +125,7 @@ class User extends Authenticatable
 
 
     public function allGeneralUsers(){
-        return $this->where('user_role',self::GENERALUSER)->get();
+        return $this->where('user_role',self::USER)->get();
     }
 
     public function getIsAdminAttribute(){

@@ -5,7 +5,7 @@
                 <p><a href="#" target="_blank">
                         <img src="{{asset('/client/')}}/assets/img/logo/logo1.png" alt="logo" style="max-width: 180px;"></a></p>
                 <br>
-                <p><i class="icofont-phone icofont-1x" title="Phone"></i> : +880 1753-410009</p>
+                <p><i class="icofont-phone icofont-1x" title="Phone"></i> : +880 9613-825695</p>
                 <p><i class="icofont-email icofont-1x" title="Email"></i> : info@onetaphealth.com</p>
                 <p><i class="icofont-license icofont-1x" title="Trade license"></i> Trade license :  01727</p>
                 <p><i class="icofont-google-map icofont-1x" title="Office Address"></i> Office : Sobuj Para Nilphamari Sadar, Nilphamari</p>

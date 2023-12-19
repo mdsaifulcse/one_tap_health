@@ -22,6 +22,7 @@ class DoctorAppointment extends Model
     const APPOINTMENTNEW=0;
     const APPOINTMENTPROCESSED=1;
     const APPOINTMENTCOMPLETED=2;
+    const APPOINTMENTCANCEL=3;
 
     // payment status -------
     const PARTIALPAYMENT=1;

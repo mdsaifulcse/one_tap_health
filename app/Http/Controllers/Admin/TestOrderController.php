@@ -72,6 +72,10 @@ class TestOrderController extends Controller
                         
                         @elseif($order_status==\App\Models\TestOrder::ORDERCOMPLETED)
                         <button class="btn btn-success btn-sm">Completed</button>
+                        
+                         @elseif($order_status==\App\Models\TestOrder::ORDERCANCEL)
+                        <button class="btn btn-danger btn-sm">Cancel</button>
+                        
                             @else
                             <button class="btn btn-primary btn-sm">New</button>
                         @endif
@@ -93,7 +97,7 @@ class TestOrderController extends Controller
                                     
                                     <div class="col-md-10">
                                         {{Form::select(\'order_status\', [\App\Models\TestOrder::ORDERNEW  => \'New\' , \App\Models\TestOrder::ORDERPROCESSED  => \'Processed\',
-                                        \App\Models\TestOrder::ORDERCOMPLETED  => \'Completed\'],[$order_status], [\'class\' => \'form-control\'])}}
+                                        \App\Models\TestOrder::ORDERCOMPLETED  => \'Completed\',\App\Models\TestOrder::ORDERCANCEL  => \'Cancel\'],[$order_status], [\'class\' => \'form-control\'])}}
                                     </div>
                                 </div>
                             </div>

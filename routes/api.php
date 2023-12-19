@@ -45,6 +45,7 @@ Route::group(['namespace'=>'App\Http\Controllers\SSLCommerz','prefix' => 'sslPay
 Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','prefix' => 'client','as' => 'client.'],function (){
     Route::post('/login', 'AuthController@login');
     Route::post('/register', 'AuthController@generalUserRegister');
+    Route::post('/reset-password', 'AuthController@resetPassword');
 });
 
 /*

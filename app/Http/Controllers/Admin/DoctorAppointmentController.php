@@ -60,6 +60,10 @@ class DoctorAppointmentController extends Controller
                         
                         @elseif($appointment_status==\App\Models\DoctorAppointment::APPOINTMENTCOMPLETED)
                         <button class="btn btn-success btn-sm">Completed</button>
+                        
+                        @elseif($appointment_status==\App\Models\DoctorAppointment::APPOINTMENTCANCEL)
+                        <button class="btn btn-danger btn-sm">Cancel</button>
+                        
                             @else
                             <button class="btn btn-primary btn-sm">New</button>
                         @endif
@@ -84,7 +88,8 @@ class DoctorAppointmentController extends Controller
                                         [
                                         \App\Models\DoctorAppointment::APPOINTMENTNEW  => \'New\' ,
                                          \App\Models\DoctorAppointment::APPOINTMENTPROCESSED  => \'Processed\',
-                                        \App\Models\DoctorAppointment::APPOINTMENTCOMPLETED  => \'Completed\'
+                                        \App\Models\DoctorAppointment::APPOINTMENTCOMPLETED  => \'Completed\',
+                                        \App\Models\DoctorAppointment::APPOINTMENTCANCEL=> \'Cancel\'
                                         ],[$appointment_status], [\'class\' => \'form-control\'])}}
                                     </div>
                                 </div>

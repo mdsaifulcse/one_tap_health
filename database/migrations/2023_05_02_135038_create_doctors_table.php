@@ -25,7 +25,7 @@ class CreateDoctorsTable extends Migration
             $table->text('current_chamber')->nullable();
             $table->string('institute')->nullable();
             $table->string('designation')->nullable();
-            $table->string('degree')->nullable();
+            $table->text('degree')->nullable();
             $table->string('department')->nullable();
             $table->string('specialist')->nullable();
             $table->integer('bmdc_no',false,6)->nullable();

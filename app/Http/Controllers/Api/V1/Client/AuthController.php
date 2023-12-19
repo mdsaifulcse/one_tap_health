@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Http\Traits\ApiResponseTrait;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use DB,Hash,Validator,Auth;
+use DB,Validator,Auth;
 
 class AuthController extends Controller
 {
@@ -64,7 +65,7 @@ class AuthController extends Controller
         $rules=[
             'name' => 'required|max:100',
             'email'  => "nullable|unique:users,email,NULL,id,deleted_at,NULL|email|max:100",
-            'phone'  => "nullable|unique:users,phone,NULL,id,deleted_at,NULL|max:15",
+            'phone'  => "required|unique:users,phone,NULL,id,deleted_at,NULL|max:15",
             'user_role' => 'required|in:3,4,5',
             'birth_date' => 'date',
             'address' => 'nullable|max:250',
@@ -135,4 +136,39 @@ class AuthController extends Controller
         $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         return $this->respondWithSuccess('You successfully logged out',[],Response::HTTP_OK);
     }
+
+    public function resetPassword(Request $request){
+
+        $validator = Validator::make($request->all(),
+            [
+                'username' => ['required'],
+                'new_password' => ['required','min:8'],
+                'new_confirm_password' => ['same:new_password'],
+            ]);
+
+        if ($validator->fails()) {
+            return $this->respondWithValidation('Validation Fail',$validator->errors()->first(),Response::HTTP_BAD_REQUEST);
+        }
+
+        try{
+
+            $user = User::where('phone', $request->username)
+                ->activeUser([$this->user::USER])
+                ->first();
+
+            if (!$user) {
+                return $this->respondWithError('Username does not match to our record',['Username does not match to our record'],Response::HTTP_NOT_FOUND);
+            }
+
+            // Password Update -------
+            $user->update([
+                'password'=>Hash::make($request->new_password),
+            ]);
+            return $this->respondWithSuccess('You password is Successfully Update',[],Response::HTTP_OK);
+        }catch(\Exception $e){
+            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }

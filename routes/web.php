@@ -35,6 +35,10 @@ Route::group(['prefix' => 'login','as' => 'login.'],function () {
 
 Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admin.'], function() {
 
+    // Finance Report (Accounts)
+    Route::get('accounts-dashboard',[\App\Http\Controllers\Admin\AccountsReportController::class,'accountsDashboard'])->name('accounts-dashboard');
+
+    // Test report-------
     Route::resource('test-reports',\App\Http\Controllers\Admin\TestOrderReportFileController::class );
     Route::post('test-reports-upload',[App\Http\Controllers\Admin\TestOrderReportFileController::class,'testReportUpload'])->name('test-reports-upload');
     Route::post('test-reports-delete',[App\Http\Controllers\Admin\TestOrderReportFileController::class,'testReportDelete'])->name('test-reports-delete');

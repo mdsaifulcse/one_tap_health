@@ -73,7 +73,7 @@
                                     <?php $i=1; ?>
                                     @forelse($activeTests as $data)
                                         <tr>
-                                            <td>
+                                            <td width="100px">
                                                 <input type="number" name="test_price[{{$data->id}}]" value="{{$data->price}}" {{$data->price>0?'':'readonly'}} class="form-control" id="test_price_{{$data->id}}" min="1" max="999999" placeholder="price for {{$data->title}}"  />
                                                 <input type="hidden" value="{{$data->price}}" id="old_test_price_{{$data->id}}">
                                             </td>
@@ -150,76 +150,4 @@
         }
     </script>
 
-    <!-- Add / Remove Code -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            var maxField = 1000; //Input fields increment limitation
-            var addButton = $('.add_button'); //Add button selector
-            var wrapper = $('.field_wrapper'); //Input field wrapper
-            //var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="{{asset('images/default/remove-icon.png')}}"/></a></div>'; //New input field html
-            var fieldHTML = '<div class="clearfix m-b-10">\n' +
-                '\n' +
-                '<input class="form-control price-title" min="0" max="999999" step="any" placeholder="Search hospital here" required="" name="price_title[]" type="text">\n' +
-                '<input class="form-control price-amount" min="0" max="999999" step="any" placeholder="Test price" required="" name="price[]" type="number">\n' +
-                '\n' +
-                '\n' +
-                '<a href="javascript:void(0);" class="remove_button" title="Delete"><i class="icofont icofont-ui-remove icofont-2x"></i>\n' +
-                '</a>\n' +
-                '</div>'; //New input field html
-            var x = 1; //Initial field counter is 1
-
-            //Once add button is clicked
-            $(addButton).click(function(){
-                //Check maximum number of input fields
-                if(x < maxField){
-                    x++; //Increment field counter
-                    $(wrapper).append(fieldHTML); //Add field html
-                }
-            });
-
-            //Once remove button is clicked
-            $(wrapper).on('click', '.remove_button', function(e){
-                e.preventDefault();
-                $(this).parent('div').remove(); //Remove field html
-                x--; //Decrement field counter
-            });
-        });
-    </script>
-
-    {{--Load SubCategory--}}
-    <script>
-        $('#loadSubCategory').on('change',function () {
-
-            var categoryId=$(this).val()
-
-            $('#loadFourthSubCategory').empty()
-            $('#fourthSubCategory').empty()
-
-            if(categoryId.length===0)
-            {
-                categoryId=0
-                $('#subCategoryList').html('<center><img src=" {{asset('images/default/loader.gif')}}"/></center>').load('{{URL::to("admin/load-sub-cat-by-cat")}}/'+categoryId);
-
-            }else {
-
-                $('#subCategoryList').html('<center><img src=" {{asset('images/default/loader.gif')}}"/></center>').load('{{URL::to("admin/load-sub-cat-by-cat")}}/'+categoryId);
-            }
-        })
-    </script>
-
-    <script type="text/javascript">
-
-        function photoLoad(input,image_load) {
-            var target_image='#'+$('#'+image_load).prev().children().attr('id');
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $(target_image).attr('src', e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
 @endsection

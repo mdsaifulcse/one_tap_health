@@ -180,7 +180,7 @@ class HospitalWiseTestPriceController extends Controller
             }
 
             // Delete old test price data -------
-            HospitalWiseTestPrice::where(['hospital_id'=>$id])->delete();
+            HospitalWiseTestPrice::where(['hospital_id'=>$id])->forceDelete();
             // Create/insert new test price by hospital
             HospitalWiseTestPrice::insert($testPricesHospitalWise);
 

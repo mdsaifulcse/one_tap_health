@@ -32,7 +32,7 @@ class DoctorAppointmentController extends Controller
     public function index()
     {
         try{
-            $myDoctorAppointments=DoctorAppointment::with('patient')->where(['user_id'=>auth()->user()->id])->latest()->paginate(10);
+            $myDoctorAppointments=DoctorAppointment::with('patient','doctorAppointmentDetails','doctorAppointmentDetails.doctor','doctorAppointmentDetails.hospital')->where(['user_id'=>auth()->user()->id])->latest()->paginate(20);
 
             return $this->respondWithSuccess('My Doctor Appointment List',DoctorAppointmentResourceCollection::make($myDoctorAppointments),Response::HTTP_OK);
         }catch(Exception $e){
