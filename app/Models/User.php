@@ -27,9 +27,10 @@ class User extends Authenticatable
      */
 
 
-    const REJECTED=0;
+
+    const PENDING=0;
     const APPROVED=1;
-    const PENDING=2;
+    const REJECTED=2;
 
     const ACTIVE=1;
     const INACTIVE=0;
@@ -92,25 +93,25 @@ class User extends Authenticatable
         return [
             self::SUPERADMIN=>'Super Admin',
             self::ADMIN=>'Admin',
-            self::LIBRARIAN=>'Librarian',
-            self::GENERALUSER=>'General User',
+            //self::LIBRARIAN=>'Librarian',
+            self::USER=>'General User',
         ];
     }
     public function getUserStatusAttribute() {
 
-        if ($this->status==1){
+        if ($this->status==User::ACTIVE){
             return 'Active';
-        }elseif($this->status==0){
+        }elseif($this->status==User::INACTIVE){
             return 'Inactive';
         }
     }
     public function getApprovalStatusAttribute() {
 
-        if ($this->status==1){
+        if ($this->status==User::APPROVED){
             return 'Approved';
-        }elseif($this->status==0){
+        }elseif($this->status==User::REJECTED){
             return 'Rejected';
-        }elseif($this->status==2){
+        }elseif($this->status==User::PENDING){
             return 'Pending';
         }
     }

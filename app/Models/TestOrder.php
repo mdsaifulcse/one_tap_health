@@ -26,6 +26,7 @@ class TestOrder extends Model
     const ORDERCANCEL=3;
 
     // payment status -------
+    const DUEPAYMENT=0;
     const PARTIALPAYMENT=1;
     const FULLPAYMENT=2;
     // Source
@@ -78,6 +79,10 @@ class TestOrder extends Model
     }
     public static function countPaidTestOrder(){
         return self::where('payment_status','!=',self::PENDING)->count();
+    }
+
+    public function cancelRequest(){
+        return $this->hasOne(TestOrderCancelRequest::class,'test_order_id','id');
     }
 
     // TODO :: boot

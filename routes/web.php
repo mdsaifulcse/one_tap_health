@@ -46,7 +46,11 @@ Route::group(['middleware' => ['auth','admin'],'prefix' => 'admin','as' => 'admi
     Route::resource('doctor-appointments',\App\Http\Controllers\Admin\DoctorAppointmentController::class );
     Route::get('load-doctor-wise-doctor-schedules/{doctorId}','\App\Http\Controllers\Admin\DoctorAppointmentController@loadDoctorWiseDoctorSchedules' );
 
+    // Test Order CANCEL Request -----------
+    Route::resource('test-order-cancel-request',\App\Http\Controllers\Admin\TestOrderCancelRequestController::class );
+    Route::put('test-order-cancel-request',[\App\Http\Controllers\Admin\TestOrderCancelRequestController::class,'changeRefundStatus'])->name('changeRefundStatus');
 
+    // Test Order ------------
     Route::resource('test-orders',\App\Http\Controllers\Admin\TestOrderController::class );
     Route::get('test-order-manual-payment/{testOrderId}','\App\Http\Controllers\Admin\TestOrderController@testOrderManualPayment');
     Route::post('test-order-manual-payment','\App\Http\Controllers\Admin\TestOrderController@testOrderManualPaymentSave')->name('test-order-manual-payment');

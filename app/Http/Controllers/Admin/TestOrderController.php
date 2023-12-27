@@ -63,7 +63,7 @@ class TestOrderController extends Controller
                 ')
                 ->addColumn('order_status','
                 <a href="#"
-                @if($order_status!=\App\Models\TestOrder::ORDERCOMPLETED)
+                @if($order_status==\App\Models\TestOrder::ORDERNEW || $order_status==\App\Models\TestOrder::ORDERPROCESSED)
                  data-toggle="modal" data-target="#myModal{{$id}}" 
                  @endif
                  title="Click for changing status"> 
@@ -97,7 +97,7 @@ class TestOrderController extends Controller
                                     
                                     <div class="col-md-10">
                                         {{Form::select(\'order_status\', [\App\Models\TestOrder::ORDERNEW  => \'New\' , \App\Models\TestOrder::ORDERPROCESSED  => \'Processed\',
-                                        \App\Models\TestOrder::ORDERCOMPLETED  => \'Completed\',\App\Models\TestOrder::ORDERCANCEL  => \'Cancel\'],[$order_status], [\'class\' => \'form-control\'])}}
+                                        \App\Models\TestOrder::ORDERCOMPLETED  => \'Completed\'],[$order_status], [\'class\' => \'form-control\'])}}
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@ class TestOrderController extends Controller
                     </span>
                 ')
                 ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','order_status','visit_status','payment_status','created_at','control'])
-                ->toJson();
+                ->make(true);
         }
 
         return view('admin.test-orders.index');
@@ -344,6 +344,11 @@ class TestOrderController extends Controller
         try{
             $smsInfo='SMS NOT Sent';
             $testOrder->load('patient');
+
+
+            if ($testOrder->order_status==TestOrder::ORDERCOMPLETED || $testOrder->order_status==TestOrder::ORDERCANCEL){
+                return redirect()->back()->with('error','You can not change the status which Already Completed or Canceled order !');
+            }
             $testOrder->update(['order_status'=>$request->order_status]);
 
             // Sending Test Order confirmation -------------

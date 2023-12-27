@@ -81,6 +81,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li class=" ">
+                        <a href="{{route('admin.test-order-cancel-request.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">Order Cancel Request List</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -165,6 +172,23 @@
                 </ul>
             </li>
             {{--Main Menu--}}
+            <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
+                <a href="javascript:void(0)">
+                    <span class="pcoded-micon"><i class="ti-layout"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.page_layout.main">Users</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+
+                    <li class=" ">
+                        <a href="{{route('admin.users.index')}}" data-i18n="nav.page_layout.rtl">
+                            <span class="pcoded-micon"><i class="icon-pie-chart"></i></span>
+                            <span class="pcoded-mtext">User List</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style6">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="ti-layout"></i></span>

@@ -20,6 +20,14 @@
                 <span class="">{{$user->phone}}</span>
             </li>
             <li class="list-group-item justify-content-between">
+                Agea:
+                <span class="">{{$user->age}}</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+                Address:
+                <span class="">{{$user->address}}</span>
+            </li>
+            <li class="list-group-item justify-content-between">
                 Status:
                 <span class="">{{$user->user_status}}</span>
             </li>
@@ -46,7 +54,7 @@
                     {{--</select>--}}
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-warning">Submit</button>
                 </div>
             </div>
         </form>

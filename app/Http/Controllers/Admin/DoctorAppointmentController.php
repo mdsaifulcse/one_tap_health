@@ -88,8 +88,7 @@ class DoctorAppointmentController extends Controller
                                         [
                                         \App\Models\DoctorAppointment::APPOINTMENTNEW  => \'New\' ,
                                          \App\Models\DoctorAppointment::APPOINTMENTPROCESSED  => \'Processed\',
-                                        \App\Models\DoctorAppointment::APPOINTMENTCOMPLETED  => \'Completed\',
-                                        \App\Models\DoctorAppointment::APPOINTMENTCANCEL=> \'Cancel\'
+                                        \App\Models\DoctorAppointment::APPOINTMENTCOMPLETED  => \'Completed\'
                                         ],[$appointment_status], [\'class\' => \'form-control\'])}}
                                     </div>
                                 </div>

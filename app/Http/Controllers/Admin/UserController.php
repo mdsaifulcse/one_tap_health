@@ -8,7 +8,8 @@ use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Validator,MyHelper,DB,Auth;
-
+use Illuminate\Support\Facades\Log;
+use Yajra\DataTables\DataTables;
 class UserController extends Controller
 {
     /**
@@ -24,6 +25,45 @@ class UserController extends Controller
 
     public function index()
     {
+
+        if (request()->ajax()) {
+            $users=$this->users->allGeneralUsers();
+            return  DataTables::of($users)
+                ->addIndexColumn()
+                ->addColumn('DT_RowIndex','')
+                ->addColumn('status','
+                     @if($status==\App\Models\User::ACTIVE)
+                        <button class="btn btn-success btn-sm">Active</button
+                       
+                            @else
+                            <button class="btn btn-warning btn-sm">InActive</button>
+                        @endif
+                 
+                ')
+                ->addColumn('created_at','
+                    {{date(\'M-d-Y h:i A\',strtotime($created_at))}}
+                ')
+                ->addColumn('control','
+                    <span class=\'dropdown\'>
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                           
+                            <li><a href="{{route(\'admin.users.edit\', $id)}}" target="_blank" class="btn btn-warning btn-sm" title="Click here for order details">Edit <i class="icofont icofont-pencil"></i> </a></li>
+                            <li><a href="javascript:void(0)" onclick="showUserDetailsModal({{$id}})" class="btn btn-info btn-sm"> Details </a></li>
+                           
+                            <li>
+                                {!! Form::open(array(\'route\' => [\'admin.users.destroy\',$id],\'method\'=>\'DELETE\',\'id\'=>"deleteForm$id")) !!}
+                                <button type="button" class="btn btn-danger btn-sm" onclick=\'return deleteConfirm("deleteForm{{$id}}")\'>Delete <i class="icofont icofont-trash"></i></button>
+                                {!! Form::close() !!}
+                            </li>
+                            
+                        </ul>
+                    </span>
+                ')
+                ->rawColumns(['status','created_at','control'])
+                ->make(true);
+        }
 
         return view('admin.users.index',['users'=>$this->users->allGeneralUsers()]);
     }

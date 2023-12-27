@@ -73,6 +73,10 @@ Route::group(['namespace'=>'App\Http\Controllers\Api\V1\Client','middleware' => 
 
     /*--------- Test Report Api --------*/
     Route::get('/fetch-test-report-by-test-order/{testOrderId}', 'TestReportController@testReportFileByTestOrder');
+
+    /*--------- Test Order Cancel Api --------*/
+    Route::apiResource('/test-order-cancel-request', 'TestOrderCancelRequestController');
+
     /*--------- Test Order Api --------*/
     Route::apiResource('/test-order', 'TestOrderController');
 
