@@ -13,6 +13,7 @@ use App\Http\Resources\SubCategoryResourceCollection;
 use App\Http\Resources\ThirdSubCategoryResource;
 use App\Http\Resources\ThirdSubCategoryResourceCollection;
 use App\Models\Author;
+use App\Models\Hospital;
 use App\Models\HospitalWiseTestPrice;
 use App\Models\Item;
 use App\Models\Test;
@@ -50,14 +51,28 @@ class PathologyTestController extends Controller
             }
             $testIds=$request->test_ids;
 
-
            //return $costOfHospitalTest=HospitalWiseTestPrice::with('hospital')->where('test_id',3)->paginate(50);
 
-            $groupByTests=HospitalWiseTestPrice::with('test:id,title')->select('test_id')->whereIn('test_id',$testIds)
+            $groupByTests=HospitalWiseTestPrice::with('test:id,title','hospital:id,district_id')
+                ->select('test_id','hospital_id')->whereIn('test_id',$testIds)
+                ->whereHas('hospital',function ($hospital)use($request){
+                    $hospital=$hospital->where(['status'=>Hospital::ACTIVE]);
+                    if ($request->district_id && $request->filled('district_id')){
+                        $hospital->where('district_id',$request->district_id);
+                    }
+                })
                 ->groupBy('test_id')->get();
 
-            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude,district_id,zone_area_id','hospital.district:id,name,bn_name','hospital.zoneArea:id,name,bn_name')->whereIn('test_id',$testIds)
-                ->orderBy('test_id')->get();
+            $testWiseHospitals=HospitalWiseTestPrice::with('test:id,title','hospital:id,name,branch,address1,latitude,longitude,district_id,zone_area_id,status','hospital.district:id,name,bn_name','hospital.zoneArea:id,name,bn_name')
+                ->whereIn('test_id',$testIds)
+                ->orderBy('test_id')->where(['status'=>HospitalWiseTestPrice::ACTIVE])
+                ->whereHas('hospital',function ($hospital)use($request){
+                    $hospital=$hospital->where(['status'=>Hospital::ACTIVE]);
+                    if ($request->district_id && $request->filled('district_id')){
+                        $hospital->where('district_id',$request->district_id);
+                    }
+                })
+                ->get();
 
             foreach ($groupByTests as $i=>$groupByTest){
 
@@ -69,6 +84,7 @@ class PathologyTestController extends Controller
                         $hospitalArray[]=[
                             'test_id'=>$testWiseHospital->test->id,
                             'test_title'=>$testWiseHospital->test->title,
+                            'hospital_id'=>$testWiseHospital->hospital->id,
                             'hospital_name'=>$testWiseHospital->hospital->name,
                             'hospital_branch'=>$testWiseHospital->hospital->branch,
                             'latitude'=>$testWiseHospital->hospital->latitude?$testWiseHospital->hospital->latitude:'',

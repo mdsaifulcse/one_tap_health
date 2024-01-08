@@ -24,9 +24,21 @@ class DoctorApiController extends Controller
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    public function activeDoctorsList(){
+    public function activeDoctorsList(Request $request){
         try{
-            $activeDoctors=Doctor::where(['status'=>Doctor::ACTIVE])->paginate(500);
+            //return $request;
+             $activeDoctors=Doctor::with('doctorSchedules','doctorSchedules.hospital')
+                 ->where(['doctors.status'=>Doctor::ACTIVE]);
+                 if ($request->district){
+                     $activeDoctors=$activeDoctors->whereHas('doctorSchedules.hospital',function ($query)use($request) {
+                         return $query->where('hospitals.district_id','=',$request->district);
+                     });
+                 }
+
+                 $activeDoctors=$activeDoctors->distinct('id')->paginate(500);
+
+            //return count($activeDoctors);
+
             return $this->respondWithSuccess('Active Doctors List',DoctorResourceCollection::make($activeDoctors),Response::HTTP_OK);
         }catch(\Exception $e){
             return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);

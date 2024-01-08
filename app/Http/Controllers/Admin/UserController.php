@@ -27,7 +27,7 @@ class UserController extends Controller
     {
 
         if (request()->ajax()) {
-            $users=$this->users->allGeneralUsers();
+            $users=DB::table('users')->where('user_role',User::USER);
             return  DataTables::of($users)
                 ->addIndexColumn()
                 ->addColumn('DT_RowIndex','')
@@ -65,7 +65,7 @@ class UserController extends Controller
                 ->make(true);
         }
 
-        return view('admin.users.index',['users'=>$this->users->allGeneralUsers()]);
+        return view('admin.users.index');
     }
 
     /**
@@ -158,6 +158,7 @@ class UserController extends Controller
                     'name'=>$request->name,
                     'email'=>$request->email,
                     'phone'=>$request->phone,
+                    'age'=>$request->age,
                     'status'=>$request->status,
                 ]);
 

@@ -6,7 +6,6 @@ namespace App\Providers;
 use App\Models\MasterExamResult;
 use App\Models\PrimaryInfo;
 use App\Models\VisitorTrack;
-use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Image,Auth;
@@ -487,7 +486,7 @@ class MyHelperProvider extends ServiceProvider
         return PrimaryInfo::first();
     }
 
-    public static function sendConfirmationSMS($receiver,$smsBody){
+    public static function sendSMS($receiver,$smsBody){
 
         try {
 

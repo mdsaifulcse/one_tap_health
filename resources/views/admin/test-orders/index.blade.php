@@ -73,7 +73,7 @@
                                         <th>Amount</th>
                                         <th>Status</th>
                                         <th>Test Date</th>
-                                        <th>Visit</th>
+                                        <th>Test Sample</th>
                                         <th>Payment</th>
                                         <th>Created At</th>
                                         <th>Control</th>
@@ -119,7 +119,7 @@
             table= $('.datatable-ajax').DataTable( {
                 processing: true,
                 serverSide: true,
-                "lengthMenu": [[50, 100, 200,500, -1], [50, 100, 200, 500,"All"]],
+                "lengthMenu": [[20,50, 100, 200,500, -1], [50, 100, 200, 500,"All"]],
 
                 ajax: {
                     url: window.location.href,
@@ -137,7 +137,7 @@
                     { data: 'reconciliation_amount',name:'test_orders.reconciliation_amount'},
                     { data: 'order_status',name:'test_orders.order_status'},
                     { data: 'test_date',name:'test_orders.test_date'},
-                    { data: 'visit_status',name:'test_orders.visit_status'},
+                    { data: 'test_sample',name:'test_orders.test_sample'},
                     { data: 'payment_status',name:'test_orders.payment_status'},
                     { data: 'created_at',name:'test_orders.created_at'},
                     { data: 'control'},

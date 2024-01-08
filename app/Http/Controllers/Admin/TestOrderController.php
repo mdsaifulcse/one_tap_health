@@ -42,11 +42,13 @@ class TestOrderController extends Controller
                 ->addColumn('test_date','
                     {{date(\'M-d-Y\',strtotime($test_date))}}
                 ')
-                ->addColumn('visit_status','
-                     @if($visit_status==\App\Models\TestOrder::YES)
-                        <button class="btn btn-success btn-sm">Yes</button>
+                ->addColumn('test_sample','
+                     @if($test_sample==\App\Models\TestOrder::NOTGIVEN)
+                        <button class="btn btn-warning btn-sm">Not Given</button>
+                        @elseif($test_sample==\App\Models\TestOrder::BYHOSPITAL)
+                        <button class="btn btn-primary btn-sm">Hospital</button>
                             @else
-                            <button class="btn btn-warning btn-sm">No</button>
+                            <button class="btn btn-success btn-sm">By Collection</button>
                         @endif
                 ')
                 ->addColumn('payment_status','
@@ -133,7 +135,7 @@ class TestOrderController extends Controller
                         </ul>
                     </span>
                 ')
-                ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','order_status','visit_status','payment_status','created_at','control'])
+                ->rawColumns(['hospitals_name','patient_name','patient_mobile','test_date','order_status','test_sample','payment_status','created_at','control'])
                 ->make(true);
         }
 
@@ -358,14 +360,14 @@ class TestOrderController extends Controller
                     "Your pathology test order: $testOrder->order_no has been confirmed by OneTapHealth admin.\r\n".
                     "For any assistance please call: ".env('ANY_ASSISTANCE_CALL');
 
-                $response= \MyHelper::sendConfirmationSMS($receiver,$smsBody);
+                $response= \MyHelper::sendSMS($receiver,$smsBody);
 
 
                 if (strpos($response, "200") !== false){
                     $smsInfo='SMS Sent';
                 }
 
-                Log::info('Test Order SMS successful : receiver: '.$receiver." message : $smsBody");
+                Log::info('Test Order Confirmation SMS successful : receiver: '.$receiver." message : $smsBody");
             }
 
 

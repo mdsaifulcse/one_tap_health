@@ -64,6 +64,7 @@
                             <thead>
                             <tr>
                                 <th>Sl</th>
+                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -75,30 +76,6 @@
                             </thead>
                             <tbody>
                             <tbody>
-                            {{--@forelse($users as $key=>$user)--}}
-                                {{--<tr>--}}
-                                    {{--<th scope="row">{{$key+1}}</th>--}}
-                                    {{--<td>{{$user->name}}</td>--}}
-                                    {{--<td>{{$user->email}}</td>--}}
-                                    {{--<td>{{$user->phone}}</td>--}}
-                                    {{--<td>{{$user->approval_status}}</td>--}}
-                                    {{--<td>--}}
-
-
-                                        {{--{{Form::open(array('route'=>['admin.users.destroy',$user->id],'method'=>'DELETE','id'=>"deleteForm$user->id"))}}--}}
-                                        {{--<a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-warning btn-sm"> Edit </a>--}}
-                                        {{--<a href="javascript:void(0)" id="userDetail" data-userid="{{$user->id}}" class="btn btn-info btn-sm"> Details </a>--}}
-                                        {{--<button type="button" class="btn btn-danger btn-sm" onclick="return deleteConfirm('deleteForm{{$user->id}}')">--}}
-                                            {{--<i class="icofont icofont-trash"></i>--}}
-                                        {{--</button>--}}
-                                        {{--{!! Form::close() !!}--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                            {{--@empty--}}
-                                {{--<tr>--}}
-                                    {{--<th colspan="6" class="text-center text-danger">No Data Found</th>--}}
-                                {{--</tr>--}}
-                            {{--@endforelse--}}
                             </tbody>
                         </table>
                     </div>
@@ -133,7 +110,7 @@
             table= $('.datatable-ajax').DataTable( {
                 processing: true,
                 serverSide: true,
-                "lengthMenu": [[50, 100, 200,500, -1], [50, 100, 200, 500,"All"]],
+                "lengthMenu": [[25,50, 100, 200,500, -1], [25,50, 100, 200, 500,"All"]],
 
                 ajax: {
                     url: window.location.href,
@@ -141,15 +118,16 @@
                         console.log(d)
                     },
                 },
-                order: [[6, "DESC"]],
+                order: [[1, "DESC"]],
                 columns: [
                     { data: 'DT_RowIndex',orderable:false},
+                    { data: 'id',name:'users.id'},
                     { data: 'name',name:'users.name'},
                     { data: 'email',name:'users.email'},
                     { data: 'phone',name:'users.phone'},
                     { data: 'age',name:'users.age'},
-                    { data: 'status',name:'users.approval_status'},
-                    { data: 'created_at'},
+                    { data: 'status',name:'users.status'},
+                    { data: 'created_at',orderable:true},
                     { data: 'control'},
                 ]
             });

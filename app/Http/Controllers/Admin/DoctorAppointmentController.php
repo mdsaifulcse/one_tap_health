@@ -386,7 +386,7 @@ class DoctorAppointmentController extends Controller
                     "Your appointment: $doctorAppointment->appointment_no has been confirmed by OneTapHealth admin.\r\n".
                     "For any assistance please call: ".env('ANY_ASSISTANCE_CALL');
 
-                 $response= \MyHelper::sendConfirmationSMS($receiver,$smsBody);
+                 $response= \MyHelper::sendSMS($receiver,$smsBody);
 
 
                 if (strpos($response, "200") !== false){

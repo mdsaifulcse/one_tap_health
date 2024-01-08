@@ -81,6 +81,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label class="col-form-label col-2 text-right">Age</label>
+                                        <div class="col-9">
+                                            <input type="text" name="age" value="{{old('age',$user->age)}}" required autocomplete="off" class="form-control" placeholder="age">
+                                            @if ($errors->has('age'))
+                                                <span class="help-block">
+                                            <strong class="text-danger text-center">{{ $errors->first('age') }}</strong>
+                                        </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-form-label col-2 text-right">Address</label>
                                         <div class="col-9">
                                             <input type="text" name="address" value="{{old('address',isset($user->profile)?$user->profile->address:'')}}"  autocomplete="off" class="form-control" placeholder="Your address">

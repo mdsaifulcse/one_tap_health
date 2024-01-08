@@ -20,7 +20,7 @@
                 <span class="">{{$user->phone}}</span>
             </li>
             <li class="list-group-item justify-content-between">
-                Agea:
+                Age:
                 <span class="">{{$user->age}}</span>
             </li>
             <li class="list-group-item justify-content-between">

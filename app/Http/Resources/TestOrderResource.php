@@ -24,10 +24,12 @@ class TestOrderResource extends JsonResource
             'service_charge'=>$this->service_charge,
             'total_amount'=>$this->total_amount,
             'test_date'=>$this->test_date,
+            'test_sample'=>$this->test_sample,
             'patient_name'=>$this->patient->name,
             'patient_mobile'=>$this->patient->mobile,
             'patient_age'=>$this->patient->age,
             'hospital_name'=>$this->hospital->name,
+            'cancelRequest'=>$this->cancelRequest,
             'details'=>TestOrderDetailsResourceCollection::make($this->whenLoaded('testOrderDetails')),
         ];
     }

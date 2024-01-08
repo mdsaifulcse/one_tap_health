@@ -27,9 +27,9 @@ class TestOrderCancelRequestController extends Controller
                 })->leftjoin('hospitals',function ($join){
                     $join->on('hospitals.id','=','test_orders.hospital_id');
                 })
-               ->leftjoin('patients',function ($join){
-                   $join->on('patients.id','=','test_orders.patient_id');
-               })
+                ->leftjoin('patients',function ($join){
+                    $join->on('patients.id','=','test_orders.patient_id');
+                })
                 ->select('test_orders.id','test_orders.order_no','test_orders.payment_status','test_orders.reconciliation_amount','patients.id','patients.name as patient_name',
                     'patients.mobile','hospitals.id','hospitals.id','hospitals.name as hospital_name','test_order_cancel_requests.*');
 
@@ -217,43 +217,6 @@ class TestOrderCancelRequestController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make( $request->all(),
-            [
-            'test_order_id' => "required|exists:test_orders,id",
-            'notes' => 'required|max: 200|min:10',
-            ]);
-        if ($validator->fails()) {
-            return $this->respondWithValidation('Validation Fail',$validator->errors()->first(),Response::HTTP_BAD_REQUEST);
-        }
-
-        $testOrder=TestOrder::with('cancelRequest')->findOrFail($request->test_order_id);
-
-        if ($testOrder->user_id!==auth()->user()->id){
-            return $this->respondWithValidation('Validation Fail','Test Order ID does not belong to you!',Response::HTTP_BAD_REQUEST);
-        }
-
-        if ($testOrder->cancelRequest){
-            return $this->respondWithValidation('Validation Fail','Already Cancel Request has been submitted',Response::HTTP_BAD_REQUEST);
-        }
-
-
-        try{
-
-            TestOrderCancelRequest::create(
-                [
-                    'test_order_id' => $request->test_order_id,
-                    'notes' => $request->notes??'',
-                    'created_by' => \Auth::user()->id,
-                ]);
-
-
-            Log::info('Test order Cancel Request from api');
-            return $this->respondWithSuccess('Test order Cancel Request has been Placed successful',['Test order Cancel Request has been Placed successful'],Response::HTTP_OK);
-
-        }catch(\Exception $e){
-            Log::info('Test order Cancel Request error api: '.$e->getMessage());
-            return $this->respondWithError('Something went wrong, Try again later',$e->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
     }
 
     /**
@@ -298,14 +261,34 @@ class TestOrderCancelRequestController extends Controller
                 return redirect()->back()->with('error','Already Cancel Request Approved');
             }
 
-           TestOrder::findOrFail($testOrderCancelRequest->test_order_id)->update(['order_status'=>TestOrder::ORDERCANCEL]);
-
+            // Change Order Status(Cancel) ------------
+            $testOrder=TestOrder::with('patient')->findOrFail($testOrderCancelRequest->test_order_id);
+            $testOrder->update(['order_status'=>TestOrder::ORDERCANCEL]);
+            // Change Cancel Request Status ---------------
             $testOrderCancelRequest->update(['cancel_status'=>$request->cancel_status,'cancel_by '=>auth()->user()->id,'cancel_at'=>Carbon::now()]);
 
-            return redirect()->back()->with('success',"Cancel Request has been Approved Successfully ");
+            // Sending Test Order confirmation -------------
+            $smsInfo='';
+            if ($request->cancel_status==TestOrderCancelRequest::APPROVED){
+                $receiver=$testOrder->patient->mobile;
+                $smsBody="Cancellation message.\r\n".
+                    "Your pathology test order: $testOrder->order_no has been cancelled  by OneTapHealth admin.\r\n".
+                    "For any assistance please call: ".env('ANY_ASSISTANCE_CALL');
+
+                $response= \MyHelper::sendSMS($receiver,$smsBody);
+
+
+                if (strpos($response, "200") !== false){
+                    $smsInfo='& SMS Sent';
+                }
+
+                Log::info('Test Order Cancellation SMS successful : receiver: '.$receiver." message : $smsBody");
+            }
+
+            return redirect()->back()->with('success',"Cancel Request has been Approved Successfully ".$smsInfo);
         }catch(\Exception $e){
-        Log::error('Test order cancel request error:'.$e->getMessage());
-        return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
+            Log::error('Test order cancel request error:'.$e->getMessage());
+            return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
         }
     }
 
@@ -317,6 +300,13 @@ class TestOrderCancelRequestController extends Controller
      */
     public function destroy(TestOrderCancelRequest $testOrderCancelRequest)
     {
-        return $testOrderCancelRequest;
-    }
+        try{
+            $testOrderCancelRequest->delete();
+            return redirect()->back()->with('success',"Cancel Request has been deleted Successfully");
+        }catch(\Exception $e){
+        Log::error('Test order cancel request delete error:'.$e->getMessage());
+        return redirect()->back()->with('error','Some thing error found !'.$e->getMessage());
+        }
+
+        }
 }

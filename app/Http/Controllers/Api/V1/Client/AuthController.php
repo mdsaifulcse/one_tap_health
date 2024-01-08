@@ -36,6 +36,7 @@ class AuthController extends Controller
                 'address'=>$request->address?$request->address:'',
                 'firebase_token'=>$request->firebase_token?$request->firebase_token:'',
                 'user_role'=>$request->user_role,
+                'age'=>$request->age??'',
                 'status'=>$this->user::APPROVED,
                 'password'=>Hash::make($request->password)
             ];

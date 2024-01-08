@@ -31,7 +31,7 @@ class TestOrderController extends Controller
     {
         try{
 
-            $myTestOrders=TestOrder::with('patient','hospital')->where(['user_id'=>auth()->user()->id])->latest()->paginate(10);
+            $myTestOrders=TestOrder::with('patient','hospital','cancelRequest')->where(['user_id'=>auth()->user()->id])->latest()->paginate(10);
 
             return $this->respondWithSuccess('My Test Orders List',TestOrderResourceCollection::make($myTestOrders),Response::HTTP_OK);
         }catch(Exception $e){
@@ -97,6 +97,7 @@ class TestOrderController extends Controller
                  'reconciliation_amount'=>$this->calculateTestOrderAmount($request)['total_amount']??0,
                  'note' => $request->note??'',
                  'source' => TestOrder::SOURCEMOBILE,
+                 'test_sample' => $request->test_sample??TestOrder::NOTGIVEN,
                  'created_by' => \Auth::user()->id,
                 ]);
 
@@ -123,7 +124,7 @@ class TestOrderController extends Controller
             'order_for_other_patient' => 'required|numeric|in:0,1',
             'order_no' => 'unique:test_orders,order_no,NULL,id,deleted_at,NULL',
             'patient_name'  => 'required_if:order_for_other_patient,==,1|max:100',
-            'patient_age'  => 'required_if:order_for_other_patient,==,1|max:50',
+            'patient_age'  => 'required_if:order_for_other_patient,==,1|max:120',
             'patient_address'  => 'required_if:order_for_other_patient,==,1|max:150',
             'patient_mobile'  => "nullable|max:15",
             'patient_email'  => "nullable|max:15",
@@ -136,7 +137,7 @@ class TestOrderController extends Controller
             'test_id.*' => "exists:tests,id",
 
             'hospital_id' => "exists:hospitals,id",
-            //"hospital_id"   => "required|array|min:1",
+            'test_sample'  => "nullable|numeric|digits_between:1,2",
         ];
         return $rules;
     }
@@ -240,7 +241,7 @@ class TestOrderController extends Controller
     {
         try{
 
-            $myTestOrder=TestOrder::with('patient','hospital','testOrderDetails','testOrderDetails.hospital','testOrderDetails.test')
+            $myTestOrder=TestOrder::with('patient','hospital','testOrderDetails','testOrderDetails.hospital','testOrderDetails.test','cancelRequest')
                 ->where(['user_id'=>auth()->user()->id])->findOrFail($id);
 
             return $this->respondWithSuccess('Single Test Orders Details',new TestOrderResource($myTestOrder),Response::HTTP_OK);
